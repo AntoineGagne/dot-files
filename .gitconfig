@@ -1,0 +1,7 @@
+[user]
+	email = gagnantoine@gmail.com
+	name = Antoine Gagné
+[push]
+	default = simple
+[credential]
+	helper = cache --timeout=3600
