@@ -191,14 +191,14 @@ set nocompatible " no longer compatible with Vi, required for Vundle
     "colorscheme darcula
 
 " 5. Space & Tabs
-    syntax enable         " enable syntax processing
-    set list              " Show spaces visually
-    set listchars=space:· " Display spaces as dots
-    set tabstop=4         " number of visual spaces per TAB
-    set softtabstop=4     " number of spaces in tab when editing
-    set shiftwidth=4      " number of spaces inserted for indentation
-    set expandtab         " replace tabs by spaces
-    set smarttab          " make tab insert indents instead of tabs at the beginning of a line
+    syntax enable                  " enable syntax processing
+    set list                       " Show spaces visually
+    set listchars=space:·,tab:<-   " Display spaces as dots
+    set tabstop=4                  " number of visual spaces per TAB
+    set softtabstop=4              " number of spaces in tab when editing
+    set shiftwidth=4               " number of spaces inserted for indentation
+    set expandtab                  " replace tabs by spaces
+    set smarttab                   " make tab insert indents instead of tabs at the beginning of a line
 
 " 6. UI Configuration
     set number            " show line numbers
