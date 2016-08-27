@@ -188,10 +188,6 @@ fi
 export WORKON_HOME=$HOME/.virtualenvs
 source /usr/local/bin/virtualenvwrapper_lazy.sh
 
-# Github environment variable
-export GITHUB_TOKEN=1b6dd87a4862ecb004423902e92e27f4d6be8855
-export UMOVIE_TOKEN=130a0d5e2f7752b322cb68df0a420b96079280cc
-
 ### Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"
 
