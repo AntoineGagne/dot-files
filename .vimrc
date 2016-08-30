@@ -145,9 +145,11 @@ set nocompatible " no longer compatible with Vi, required for Vundle
     let g:ghcmod_type_highlight = 'ghcmodType'
 
     " Syntastic
+    set statusline=%f\ %h%w%m%r\ 
     set statusline+=%#warningmsg#
     set statusline+=%{SyntasticStatuslineFlag()}
     set statusline+=%*
+    set statusline+=%=%(%l,%c%V\ %=\ %P%)
 
     let g:syntastic_always_populate_loc_list = 1
     " Always show the errors list
@@ -192,6 +194,8 @@ set nocompatible " no longer compatible with Vi, required for Vundle
 
 " 5. Space & Tabs
     syntax enable                  " enable syntax processing
+    set backspace=indent,eol,start " Allow backspacing over autoindent, line breaks and start of insert action
+    set autoindent
     set list                       " Show spaces visually
     set listchars=space:·,tab:<-   " Display spaces as dots
     set tabstop=4                  " number of visual spaces per TAB
@@ -201,15 +205,22 @@ set nocompatible " no longer compatible with Vi, required for Vundle
     set smarttab                   " make tab insert indents instead of tabs at the beginning of a line
 
 " 6. UI Configuration
-    set number            " show line numbers
-    set showcmd           " show command in bottom bar
-    set cursorline        " highligh current line
     filetype indent on    " load filetype-specific indent files
-    set wildmenu          " visual autocomplete for command menu
+    set cmdheight=2       " Set the command window height to 2 lines
+    set confirm           " Instead of failing a command because of unsaved changes, instead raise a dialogue asking if you wish to save changed files
+    set cursorline        " highligh current line
+    set laststatus=2      " Always display the status line, even if only one window is displayed
     set lazyredraw        " redraw only when we need to   
+    set number            " show line numbers
+    set ruler             " Display the cursor position on the last line of the screen or in the status line of a window
+    set showcmd           " show command in bottom bar
     set showmatch         " highlight matching [{()}]
+    set visualbell        " Use visual bell instead of beeping when doing something wrong
+    set wildmenu          " visual autocomplete for command menu
 
 " 7. Searching
+    set ignorecase        " Case insensitive search
+    set smartcase         " Case sensitive search when using capitals
     set incsearch         " search as characters are entered
     set hlsearch          " highlight matches
 
