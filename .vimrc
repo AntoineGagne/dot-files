@@ -51,6 +51,9 @@ set nocompatible " no longer compatible with Vi, required for Vundle
         " Asynchronous Execution
         Plugin 'Shougo/vimproc.vim'
 
+        " Elm Syntax Highlighting
+        Plugin 'elmcast/elm-vim'
+
         " ColorScheme 
         "Plugin 'morhetz/gruvbox'
 
@@ -68,7 +71,10 @@ set nocompatible " no longer compatible with Vi, required for Vundle
     let g:Show_diagnostics_ui = 1 "default 1
 
     "enable neco-ghc completion from YouCompleteMe
-    let g:ycm_semantic_triggers = {'haskell' : ['.']}
+    let g:ycm_semantic_triggers = {
+                \ 'haskell' : ['.'],
+                \ 'elm' : ['.']
+                \}
 
     "will put icons in Vim's gutter on lines that have a diagnostic set.
     "Turning this off will also turn off the YcmErrorLine and YcmWarningLine
@@ -159,6 +165,17 @@ set nocompatible " no longer compatible with Vi, required for Vundle
 
     " Gruvbox Settings
     "let g:gruvbox_termcolors=16
+    
+    " Elm
+    let g:elm_jump_to_error = 0
+    let g:elm_make_output_file = "elm.js"
+    let g:elm_make_show_warnings = 0
+    let g:elm_syntastic_show_warnings = 0
+    let g:elm_browser_command = ""
+    let g:elm_detailed_complete = 0
+    let g:elm_format_autosave = 0
+    let g:elm_setup_keybindings = 1
+    let g:elm_classic_highlighting = 0
 
 " To ignore plugin indent changes, instead use:
 "filetype plugin on
