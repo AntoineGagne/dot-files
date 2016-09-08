@@ -54,6 +54,10 @@ set nocompatible " no longer compatible with Vi, required for Vundle
         " Elm Syntax Highlighting
         Plugin 'elmcast/elm-vim'
 
+        " Pandoc Syntax
+        " Plugin 'vim-pandoc/vim-pandoc'
+        " Plugin 'vim-pandoc/vim-pandoc-syntax'
+
         " ColorScheme 
         "Plugin 'morhetz/gruvbox'
 
@@ -195,7 +199,7 @@ set nocompatible " no longer compatible with Vi, required for Vundle
 
     " Molokai
     colorscheme molokai         " awesome colorscheme
-    "let g:regash256 = 1
+    let g:regash256 = 1
 
     " Solarized
     "colorscheme solarized
@@ -234,6 +238,10 @@ set nocompatible " no longer compatible with Vi, required for Vundle
     set showmatch         " highlight matching [{()}]
     set visualbell        " Use visual bell instead of beeping when doing something wrong
     set wildmenu          " visual autocomplete for command menu
+    "set termguicolors
+    if $COLORTERM == 'gnome-terminal'
+        set t_Co=256
+    endif
 
 " 7. Searching
     set ignorecase        " Case insensitive search
