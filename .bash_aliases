@@ -109,3 +109,8 @@ alias format='fmt -w 80 -u -s -t -c'    # Formats a file to respect 80 character
 alias rmtabs='expand -t 4'              # Replaces tabs by spaces
 alias rmspaces='unexpand -a -t 4'       # Replaces spaces by tabs
 alias look='look -f'                    # Finds a word and ignores its letter case
+
+
+# Superuser
+
+alias sudo='sudo '
