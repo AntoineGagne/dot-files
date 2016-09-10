@@ -117,3 +117,8 @@ alias look='look -f'                    # Finds a word and ignores its letter ca
 # Superuser
 
 alias sudo='sudo '
+
+
+# PDF
+
+alias pdfrmencryption='qpdf --decrypt'
