@@ -12,9 +12,6 @@ case $- in
       *) return;;
 esac
 
-# Set the language to UTF-8
-export LANG="en_US.UTF-8"
-
 # don't put duplicate lines or lines starting with space in the history.
 # See bash(1) for more options
 HISTCONTROL=ignoreboth
@@ -44,7 +41,7 @@ fi
 
 # set a fancy prompt (non-color, unless we know we "want" color)
 case "$TERM" in
-    xterm-color) color_prompt=yes;;
+    xterm-color|*-256color) color_prompt=yes;;
 esac
 
 # uncomment for a colored prompt, if the terminal has the capability; turned
@@ -81,6 +78,9 @@ if [ -x /usr/bin/dircolors ]; then
     alias fgrep='fgrep --color=auto'
     alias egrep='egrep --color=auto'
 fi
+
+# colored GCC warnings and errors
+export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 
 # some more ls aliases
 alias ll='ls -alF'
@@ -177,21 +177,6 @@ esac
 # Set Stack autocompletion on tab
 eval "$(stack --bash-completion-script stack)"
 
-# Set the 256 colors
-if [ -n "$TMUX" ]; then
-    export TERM=screen-256color
-else
-    export TERM=xterm-256color
-fi
-
 # virtualenvwrapper needed configuration
 export WORKON_HOME=$HOME/.virtualenvs
 source /usr/local/bin/virtualenvwrapper_lazy.sh
-
-### Added by the Heroku Toolbelt
-export PATH="/usr/local/heroku/bin:$PATH"
-
-# added by travis gem
-[ -f /home/twain/.travis/travis.sh ] && source /home/twain/.travis/travis.sh
-
-startup_message
