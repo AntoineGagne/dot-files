@@ -58,6 +58,8 @@ set nocompatible " no longer compatible with Vi, required for Vundle
         " Plugin 'vim-pandoc/vim-pandoc'
         " Plugin 'vim-pandoc/vim-pandoc-syntax'
 
+        " Markdown Tables
+        Plugin 'dhruvasagar/vim-table-mode'
         " ColorScheme 
         "Plugin 'morhetz/gruvbox'
 
@@ -194,6 +196,9 @@ set nocompatible " no longer compatible with Vi, required for Vundle
 " see :h vundle for more details or wiki for FAQ
 " Put your non-Plugin stuff after this line
 
+    " Markdown table
+    let g:table_mode_corner_corner="+"
+    let g:table_mode_header_fillchar="="
 
 " 4. Colors 
 
