@@ -1,4 +1,4 @@
 #! /bin/sh
 
 sudo pip3 install virtualenvwrapper \
-    && mkdir "~/.virtualenvs"
+    && mkdir "${HOME}/.virtualenvs"
