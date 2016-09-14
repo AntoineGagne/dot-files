@@ -55,13 +55,13 @@ set nocompatible " no longer compatible with Vi, required for Vundle
         Plugin 'elmcast/elm-vim'
 
         " Pandoc Syntax
-        " Plugin 'vim-pandoc/vim-pandoc'
-        " Plugin 'vim-pandoc/vim-pandoc-syntax'
+        Plugin 'vim-pandoc/vim-pandoc'
+        Plugin 'vim-pandoc/vim-pandoc-syntax'
 
         " Markdown Tables
         Plugin 'dhruvasagar/vim-table-mode'
         " ColorScheme 
-        "Plugin 'morhetz/gruvbox'
+        Plugin 'morhetz/gruvbox'
 
         " Show the CSS colors visually
         " Plugin 'skammer/vim-css-color'
@@ -203,8 +203,8 @@ set nocompatible " no longer compatible with Vi, required for Vundle
 " 4. Colors 
 
     " Molokai
-    colorscheme molokai         " awesome colorscheme
-    let g:regash256 = 1
+    "colorscheme molokai         " awesome colorscheme
+    "let g:regash256 = 1
 
     " Solarized
     "colorscheme solarized
@@ -217,6 +217,11 @@ set nocompatible " no longer compatible with Vi, required for Vundle
 
     " Darcula
     "colorscheme darcula
+    
+    " Gruvbox
+    colorscheme gruvbox
+    set background=dark
+    let g:gruvbox_italic=1
 
 " 5. Space & Tabs
     syntax enable                  " enable syntax processing
@@ -243,7 +248,7 @@ set nocompatible " no longer compatible with Vi, required for Vundle
     set showmatch         " highlight matching [{()}]
     set visualbell        " Use visual bell instead of beeping when doing something wrong
     set wildmenu          " visual autocomplete for command menu
-    "set termguicolors
+    set termguicolors
     if $COLORTERM == 'gnome-terminal'
         set t_Co=256
     endif
@@ -308,3 +313,6 @@ set nocompatible " no longer compatible with Vi, required for Vundle
         let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
         let &t_SR = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=2\x7\<Esc>\\"
     endif
+
+" 12. Languages
+setlocal nospell " Disables spell check
