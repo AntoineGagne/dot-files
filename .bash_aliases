@@ -1,6 +1,6 @@
 # Programs
 
-alias python='python3.4'
+alias python='python3.5'
 
 
 # Processes
