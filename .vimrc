@@ -223,7 +223,7 @@ set nocompatible " no longer compatible with Vi, required for Vundle
     set backspace=indent,eol,start " Allow backspacing over autoindent, line breaks and start of insert action
     set autoindent
     set list                       " Show spaces visually
-    set listchars=space:·,tab:<-   " Display spaces as dots
+    set listchars=space:·,tab:⟶\ 
     set tabstop=4                  " number of visual spaces per TAB
     set softtabstop=4              " number of spaces in tab when editing
     set shiftwidth=4               " number of spaces inserted for indentation
