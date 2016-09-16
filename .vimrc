@@ -20,6 +20,10 @@ set nocompatible " no longer compatible with Vi, required for Vundle
 
         " Autocompletion plugin
         Plugin 'Valloric/YouCompleteMe'
+        "Plugin 'Shougo/neocomplete.vim'
+
+        " Status bar
+        Plugin 'bling/vim-airline'
 
         " Rust autocompletion bundle
         Plugin 'phildawes/racer'
@@ -27,14 +31,14 @@ set nocompatible " no longer compatible with Vi, required for Vundle
         " Syntax highlighter for the Rust language
         Plugin 'rust-lang/rust.vim'
 
+        " Haskell Syntax Checking
+        Plugin 'eagletmt/ghcmod-vim'
+
         " Autocompletion for the Haskell language
         Plugin 'eagletmt/neco-ghc'
 
         " Syntax highlighting for the Haskell language
         Plugin 'neovimhaskell/haskell-vim'
-
-        " Haskell Syntax Checking
-        Plugin 'eagletmt/ghcmod-vim'
 
         " Spell checker (requires further installations)
         " Plugin 'vim-scripts/LanguageTool'
@@ -60,11 +64,28 @@ set nocompatible " no longer compatible with Vi, required for Vundle
 
         " Markdown Tables
         Plugin 'dhruvasagar/vim-table-mode'
+
         " ColorScheme 
         Plugin 'morhetz/gruvbox'
 
+        " Utility functions
+        Plugin 'MarcWeber/vim-addon-mw-utils'
+        Plugin 'tomtom/tlib_vim'
+
+        " Snippets
+        Plugin 'garbas/vim-snipmate'
+
+        " Aligning
+        Plugin 'godlygeek/tabular'
+
+        " Autocomplete
+        Plugin 'ervandew/supertab'
+
         " Show the CSS colors visually
         " Plugin 'skammer/vim-css-color'
+
+        " Haskell unicode symbols
+        Plugin 'Twinside/vim-haskellConceal'
 
     " All of your Plugins must be added before the following line
     call vundle#end()            " required
@@ -114,8 +135,26 @@ set nocompatible " no longer compatible with Vi, required for Vundle
     let g:racer_cmd = "~/.vim/bundle/racer/target/release/racer"
     let $RUST_SRC_PATH="/home/twain/rustc-1.5.0/src/"
 
+    " Ghc-mod
+    map <silent> tw :GhcModTypeInsert<CR>
+    map <silent> ts :GhcModSplitFunCase<CR>
+    map <silent> tq :GhcModType<CR>
+    map <silent> te :GhcModTypeClear<CR>
+
+    " Supertab
+    let g:SuperTabDefaultCompletionType = '<c-x><c-o>'
+
+    if has("gui_running")
+        imap <c-space> <c-r>=SuperTabAlternateCompletion("\<lt>c-x>\<lt>c-o>")<cr>
+    else " no gui
+        if has("unix")
+            inoremap <Nul> <c-r>=SuperTabAlternateCompletion("\<lt>c-x>\<lt>c-o>")<cr>
+        endif
+    endif
+
     " neco-ghc options
-    set path=~/.cabal/bin/ghc-mod
+    autocmd BufWritePost *.hs GhcModCheckAndLintAsync
+    set path="~/.local/bin/ghc-mod"
     let g:necoghc_enable_detailed_browse = 1
     " Disable haskell-vim omnifunc
     let g:haskellmode_completion_ghc = 0
@@ -147,9 +186,7 @@ set nocompatible " no longer compatible with Vi, required for Vundle
     endif
 
     " Haskell
-    au FileType haskell nnoremap <buffer> <F1> :HdevtoolsType<CR>
-    au FileType haskell nnoremap <buffer> <silent> <F2> :HdevtoolsClear<CR>
-    au FileType haskell nnoremap <buffer> <silent> <F3> :HdevtoolsInfo<CR>
+    au Bufenter *.hs compiler ghc
     autocmd BufEnter *.hs set formatprg=pointfree
 
     " ghcmod-vim
@@ -182,6 +219,15 @@ set nocompatible " no longer compatible with Vi, required for Vundle
     let g:elm_format_autosave = 0
     let g:elm_setup_keybindings = 1
     let g:elm_classic_highlighting = 0
+
+    " Tabular
+    let g:haskell_tabular = 1
+
+    vmap a= :Tabularize /=<CR>
+    vmap a; :Tabularize /::<CR>
+    vmap a- :Tabularize /-><CR>
+    vmap a, :Tabularize /<-<CR>
+    vmap al :Tabularize /[\[\\|,]<CR>
 
 " To ignore plugin indent changes, instead use:
 "filetype plugin on
@@ -228,7 +274,7 @@ set nocompatible " no longer compatible with Vi, required for Vundle
     set backspace=indent,eol,start " Allow backspacing over autoindent, line breaks and start of insert action
     set autoindent
     set list                       " Show spaces visually
-    set listchars=space:·,tab:⟶\ 
+    set listchars=space:•,tab:⟶\ 
     set tabstop=4                  " number of visual spaces per TAB
     set softtabstop=4              " number of spaces in tab when editing
     set shiftwidth=4               " number of spaces inserted for indentation
@@ -237,7 +283,7 @@ set nocompatible " no longer compatible with Vi, required for Vundle
 
 " 6. UI Configuration
     filetype indent on    " load filetype-specific indent files
-    set cmdheight=2       " Set the command window height to 2 lines
+    set cmdheight=1       " Set the command window height
     set confirm           " Instead of failing a command because of unsaved changes, instead raise a dialogue asking if you wish to save changed files
     set cursorline        " highligh current line
     set laststatus=2      " Always display the status line, even if only one window is displayed
@@ -315,4 +361,4 @@ set nocompatible " no longer compatible with Vi, required for Vundle
     endif
 
 " 12. Languages
-setlocal nospell " Disables spell check
+set nospell " Disables spell check
