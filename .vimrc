@@ -184,9 +184,9 @@ set nocompatible " no longer compatible with Vi, required for Vundle
         let g:haskell_indent_do = 4
         let g:haskell_indent_in = 4
     endif
+    let g:haskell_classic_highlighting = 0
 
     " Haskell
-    au Bufenter *.hs compiler ghc
     autocmd BufEnter *.hs set formatprg=pointfree
 
     " ghcmod-vim
