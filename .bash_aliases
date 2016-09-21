@@ -28,8 +28,6 @@ alias du='du -sh'
 
 # Movements
 
-alias cdu='cd ~/Documents/Universite'
-alias cdp='cd ~/Documents/Programmation'
 alias ..='cd ../'
 alias ...='cd ../../'
 alias ....='cd ../../../'
