@@ -174,3 +174,8 @@ complete -F _command extract
 function sprev {
     sudo $(history -p \!\!)
 }
+
+# List the top 10 commands used
+function top10 {
+    history | awk 'BEGIN {FS="[ \t]+|\\|"} {print $3}' | sort | uniq -c | sort -nr | head
+}
