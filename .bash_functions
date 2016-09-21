@@ -1,6 +1,6 @@
 # Tabs to spaces
 
-tabs2spaces() {
+function tabs2spaces {
     if [ -z "${1}" ]; then
         echo "You must enter a filename"
     else
@@ -15,7 +15,7 @@ tabs2spaces() {
 
 # Output CSV files as tables
 
-outputcsvtables() {
+function outputcsvtables {
     if [ -z "${1}" ]; then
         echo "You must enter a filename"
     else
@@ -30,7 +30,7 @@ outputcsvtables() {
 
 # Output a funny message
 
-startup_message() {
+function startup_message {
     cow_forms=(apt beavis.zen bong bud-frogs bunny calvin cheese cock cower daemon default
                dragon dragon-and-cow duck elephant elephant-in-snake eyes flaming-sheep
                ghostbusters gnu head-in hellokitty kiss kitty koala kosh luke-koala
@@ -43,11 +43,11 @@ startup_message() {
     echo -e "Today is: $(nowdate) \nTime is:  $(now) \n$(fortune)" | cowsay -f ${cow_forms[$((${RANDOM}%${array_size}))]}
 }
 
-build_tex() {
+function build_tex {
     pdflatex "${1}" && pdflatex "${1}" && rm *.toc *.lof *.log *.lot *.out *.aux *.lol
 }
 
-playlist_to_links() {
+function playlist_to_links {
     if [[ -z "$1" ]];
     then
         echo "Please, specify the playlist code as argument" 1>&2
@@ -97,6 +97,31 @@ playlist_to_links() {
     rm -f ${TMPFILE}*
 }
 
-parallel_download() {
+function parallel_download {
     parallel youtube-dl -o "\%\(title\)s.\%\(ext\)s" -x :::: "${1}"
+}
+
+# Set marks to quickly jump to directories
+export MARKPATH=$HOME/.marks
+function jump {
+    cd -P "${MARKPATH}/${1}" 2>/dev/null || echo "No such mark: ${1}"
+}
+
+function mark {
+    mkdir -p "${MARKPATH}"; ln -s "$(pwd)" "${MARKPATH}/${1}"
+}
+
+function unmark {
+    rm -i "${MARKPATH}/${1}"
+}
+
+function marks {
+    ls -l "$MARKPATH" | sed 's/  / /g' | cut -d' ' -f9- | sed 's/ -/\t-/g' && echo
+}
+
+function _completemarks {
+    local curw=${COMP_WORDS[COMP_CWORD]}
+    local wordlist=$(find $MARKPATH -type l -printf "%f\n")
+    COMPREPLY=($(compgen -W '${wordlist[@]}' -- "$curw"))
+    return 0
 }
