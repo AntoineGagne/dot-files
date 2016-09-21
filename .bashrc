@@ -106,6 +106,7 @@ fi
 
 # Autocomplete marks
 complete -F _completemarks jump unmark
+complete -F _completemarks j um
 
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile

@@ -32,6 +32,9 @@ alias ..='cd ../'
 alias ...='cd ../../'
 alias ....='cd ../../../'
 alias .....='cd ../../../../'
+alias j='jump'
+alias m='mark'
+alias um='unmark'
 
 
 # Terminal History
