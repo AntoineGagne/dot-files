@@ -319,8 +319,9 @@ set nocompatible " no longer compatible with Vi, required for Vundle
 
     " move to beginning/end of line
     " Switches `^` and `0`
-    nnoremap 0 ^
-    nnoremap ^ 0
+    nnoremap 0 g^
+    nnoremap ^ g0
+    nnoremap $ g$
     "nnoremap B ^
     "nnoremap E $
 
