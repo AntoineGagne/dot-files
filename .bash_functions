@@ -179,3 +179,8 @@ function sprev {
 function top10 {
     history | awk 'BEGIN {FS="[ \t]+|\\|"} {print $3}' | sort | uniq -c | sort -nr | head
 }
+
+function gitstasharchive {
+    stash_name=$(git stash create)
+    git archive --format=tar -o "${1}" ${stash_name}
+}
