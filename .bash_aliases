@@ -99,8 +99,8 @@ alias rsync='rsync --ignore-existing --progress -rz'
 
 # Git
 
-alias oneline='git log --pretty=oneline'
-alias graph='git log --pretty=full --date=relative --graph --color=auto --numstat'
+alias oneline='git log --decorate --graph --all --oneline'
+alias graph='git log --pretty=full --date=relative --graph --color=auto --numstat --decorate --all'
 alias gtag='git tag -a'
 alias gtagp='git push --tag'
 alias gdiff='git diff --color=auto --summary --stat'

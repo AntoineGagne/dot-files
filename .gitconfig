@@ -9,3 +9,5 @@
 	ui = auto
 [core]
 	excludesfile = ~/.gitignore
+[diff]
+	algorithm = patience
