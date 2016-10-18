@@ -301,6 +301,8 @@ set nocompatible " no longer compatible with Vi, required for Vundle
     if $COLORTERM == 'gnome-terminal'
         set t_Co=256
     endif
+    set cole=2
+    let g:tex_conceal= 'adgm'
 
 " 7. Searching
     set ignorecase        " Case insensitive search
