@@ -9,3 +9,8 @@ mkdir -p "${HOME}/.vim/bundle" \
 mkdir -p "${HOME}/.config" \
     && ln -sf "${HOME}/.vim" "${HOME}/.config/nvim" \
     && ln -sf "${HOME}/.vimrc" "${HOME}/.config/nvim/init.vim"
+
+# Install the plugins
+nvim +PluginInstall +qa \
+    && cd ~/.vim/bundle/vimproc.vim \
+    && make

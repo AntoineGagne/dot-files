@@ -8,7 +8,8 @@ set nocompatible " no longer compatible with Vi, required for Vundle
 
 " 3. Plugins
 
-    let g:python_host_prog='/usr/bin/python'
+    "let g:python_host_prog = '~/.virtualenvs/neovim2/bin/python'
+    let g:python3_host_prog = '~/.virtualenvs/neovim3/bin/python'
     " set the runtime path to include Vundle and initialize
     set rtp+=~/.vim/bundle/Vundle.vim
     call vundle#begin()
@@ -88,7 +89,7 @@ set nocompatible " no longer compatible with Vi, required for Vundle
         Plugin 'Twinside/vim-haskellConceal'
 
         " LaTeX plugins
-        Plugin 'lervag/vimtex'
+        "Plugin 'lervag/vimtex'
 
     " All of your Plugins must be added before the following line
     call vundle#end()            " required
@@ -126,6 +127,9 @@ set nocompatible " no longer compatible with Vi, required for Vundle
 
     let g:ycm_goto_buffer_command = 'same-buffer' "[ 'same-buffer', 'horizontal-split', 'vertical-split', 'new-tab' ]
     let g:ycm_filetype_whitelist = { '*': 1 }
+    let g:ycm_filetype_blacklist = {
+                \ 'tex' : 1
+                \}
     let g:ycm_key_invoke_completion = '<C-Space>'
 
     nnoremap <F11> :YcmForceCompileAndDiagnostics <CR>
@@ -271,6 +275,9 @@ set nocompatible " no longer compatible with Vi, required for Vundle
     colorscheme gruvbox
     set background=dark
     let g:gruvbox_italic=1
+    let g:gruvbox_invert_indent_guides=1
+    let g:gruvbox_improved_strings=1
+    let g:gruvbox_improved_warnings=1
 
 " 5. Space & Tabs
     syntax enable                  " enable syntax processing
