@@ -276,8 +276,8 @@ set nocompatible " no longer compatible with Vi, required for Vundle
     set background=dark
     let g:gruvbox_italic=1
     let g:gruvbox_invert_indent_guides=1
-    let g:gruvbox_improved_strings=1
-    let g:gruvbox_improved_warnings=1
+    "let g:gruvbox_improved_strings=1
+    "let g:gruvbox_improved_warnings=1
 
 " 5. Space & Tabs
     syntax enable                  " enable syntax processing
