@@ -101,6 +101,16 @@ function parallel_download {
     parallel youtube-dl -o "\%\(title\)s.\%\(ext\)s" -x :::: "${1}"
 }
 
+function download_playlist {
+    youtube-dl -o '%(playlist)s/%(playlist_index)s - %(title)s.%(ext)s' -x "${1}"
+}
+
+function download_playlists {
+    export -f download_playlist
+    parallel download_playlist :::: "${1}"
+    rm "${1}"
+}
+
 # Set marks to quickly jump to directories
 export MARKPATH=$HOME/.marks
 function jump {

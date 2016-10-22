@@ -1,8 +1,5 @@
 # Programs
 
-alias python='python3.5'
-
-
 # Processes
 
 alias htop='htop -u twain'
