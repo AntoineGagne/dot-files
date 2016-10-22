@@ -1,5 +1,7 @@
 # Programs
 
+alias parallel='parallel --no-notice'
+
 # Processes
 
 alias htop='htop -u twain'
