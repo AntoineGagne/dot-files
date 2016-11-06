@@ -111,6 +111,16 @@ function download_playlists {
     rm "${1}"
 }
 
+function download_video_playlist {
+    youtube-dl  --prefer-free-formats --all-subs -o '%(playlist)s/%(playlist_index)s - %(title)s.%(ext)s' "${1}"
+}
+
+function download_video_playlists {
+    export -f download_video_playlist
+    parallel download_video_playlist :::: "${1}"
+    rm "${1}"
+}
+
 # Set marks to quickly jump to directories
 export MARKPATH=$HOME/.marks
 function jump {
