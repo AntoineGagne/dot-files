@@ -8,8 +8,8 @@ set nocompatible " no longer compatible with Vi, required for Vundle
 
 " 3. Plugins
 
-    "let g:python_host_prog = '~/.virtualenvs/neovim2/bin/python'
-    let g:python3_host_prog = '~/.virtualenvs/neovim3/bin/python'
+    let g:python_host_prog = '/home/twain/.virtualenvs/neovim2/bin/python'
+    let g:python3_host_prog = '/home/twain/.virtualenvs/neovim3/bin/python'
     " set the runtime path to include Vundle and initialize
     set rtp+=~/.vim/bundle/Vundle.vim
     call vundle#begin()
