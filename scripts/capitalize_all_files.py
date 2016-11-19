@@ -3,10 +3,11 @@
 from os import listdir, rename
 from os.path import isfile, join
 from string import capwords
+from typing import List
 
 import sys
 
-def capitalize_file_names(files):
+def capitalize_file_names(files: List[str]):
     """Capitalizes all the given files.
     :param files: The files to capitalize
     :type files: list<str>

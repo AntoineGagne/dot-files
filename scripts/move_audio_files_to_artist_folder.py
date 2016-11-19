@@ -1,16 +1,19 @@
+#! /usr/bin/python3
+
 from collections import defaultdict
 from errno import EEXIST
 from os import listdir, makedirs
 from os.path import isfile, join
 from shutil import move
 from string import capwords
+from typing import List, DefaultDict
 
 import re
 import sys
 
 AUDIO_FILE_PATTERN = re.compile(r'^(?P<file_name>\D+)\s+-\s+.+')
 
-def process_audio_files(files):
+def process_audio_files(files: List[str]) -> DefaultDict[str, List[str]]:
     """Processes the audio files and regroups them in a dictionary by their artist's name.
     :param files: The audio files
     :type files: list<str>
@@ -26,7 +29,7 @@ def process_audio_files(files):
     return audio_files_by_artist_name
 
 
-def move_audio_files(artist_directory, audio_files):
+def move_audio_files(artist_directory: str, audio_files: List[str]):
     """Moves the audio files to their artist's directory.
     :param artist_directory: The artist's directory path
     :type artist_directory: str
@@ -37,7 +40,7 @@ def move_audio_files(artist_directory, audio_files):
         move(audio_file, artist_directory)
 
 
-def create_artist_directory(base_path, artist_name):
+def create_artist_directory(base_path: str, artist_name: str) -> str:
     """Creates the artist's directory.
     :param base_path: The path in which the program was called
     :type base_path: str
@@ -51,7 +54,7 @@ def create_artist_directory(base_path, artist_name):
     return artist_directory
 
 
-def create_directory(path):
+def create_directory(path: str):
     """Create a directory at the given path if it doesn't exist.
     :param path: The path to the directory
     :type path: str
@@ -68,6 +71,6 @@ if __name__ == '__main__':
     files = (audio_file for audio_file in listdir(directory_path) if isfile(join(directory_path, audio_file)))
 
     audio_files_by_artist_name = process_audio_files(files)
-    for artist_name, audio_files in audio_files_by_artist_name.viewitems():
+    for artist_name, audio_files in audio_files_by_artist_name.items():
         artist_directory = create_artist_directory(directory_path, artist_name)
         move_audio_files(artist_directory, audio_files)
