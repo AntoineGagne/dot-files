@@ -72,11 +72,11 @@ def create_directory(path: str):
 
 
 if __name__ == '__main__':
-    directory_path = sys.argv[1]
-    files = (audio_file for audio_file in listdir(directory_path)
-             if isfile(join(directory_path, audio_file)))
+    DIRECTORY_PATH = sys.argv[1]
+    FILES = (audio_file for audio_file in listdir(DIRECTORY_PATH)
+             if isfile(join(DIRECTORY_PATH, audio_file)))
 
-    audio_files_by_artist_name = process_audio_files(files)
-    for artist_name, audio_files in audio_files_by_artist_name.items():
-        artist_directory = create_artist_directory(directory_path, artist_name)
+    AUDIO_FILES_BY_ARTIST_NAME = process_audio_files(FILES)
+    for artist_name, audio_files in AUDIO_FILES_BY_ARTIST_NAME.items():
+        artist_directory = create_artist_directory(DIRECTORY_PATH, artist_name)
         move_audio_files(artist_directory, audio_files)

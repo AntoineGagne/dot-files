@@ -19,7 +19,7 @@ def capitalize_file_names(files: List[str]):
 
 
 if __name__ == '__main__':
-    directory_path = sys.argv[1]
-    files = (single_file for single_file in listdir(directory_path)
-             if isfile(join(directory_path, single_file)))
-    capitalize_file_names(files)
+    DIRECTORY_PATH = sys.argv[1]
+    FILES = (single_file for single_file in listdir(DIRECTORY_PATH)
+             if isfile(join(DIRECTORY_PATH, single_file)))
+    capitalize_file_names(FILES)
