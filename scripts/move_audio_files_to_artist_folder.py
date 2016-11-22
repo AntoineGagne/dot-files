@@ -1,4 +1,6 @@
 #! /usr/bin/python3
+"""Creates folders with the artists names and moves the corresponding audio
+   files in these folders."""
 
 from collections import defaultdict
 from errno import EEXIST
@@ -13,8 +15,10 @@ import sys
 
 AUDIO_FILE_PATTERN = re.compile(r'^(?P<file_name>\D+)\s+-\s+.+')
 
+
 def process_audio_files(files: List[str]) -> DefaultDict[str, List[str]]:
-    """Processes the audio files and regroups them in a dictionary by their artist's name.
+    """Processes the audio files and regroups them in a dictionary by their
+    artist's name.
     :param files: The audio files
     :type files: list<str>
     :return: The grouped audio files by their artist's name
@@ -24,7 +28,8 @@ def process_audio_files(files: List[str]) -> DefaultDict[str, List[str]]:
     for audio_file in files:
         file_name_match = AUDIO_FILE_PATTERN.match(audio_file)
         if file_name_match:
-            audio_files_by_artist_name[file_name_match.group('file_name').lower().strip()].append(audio_file)
+            artist_name = file_name_match.group('file_name').lower().strip()
+            audio_files_by_artist_name[artist_name].append(audio_file)
 
     return audio_files_by_artist_name
 
@@ -68,7 +73,8 @@ def create_directory(path: str):
 
 if __name__ == '__main__':
     directory_path = sys.argv[1]
-    files = (audio_file for audio_file in listdir(directory_path) if isfile(join(directory_path, audio_file)))
+    files = (audio_file for audio_file in listdir(directory_path)
+             if isfile(join(directory_path, audio_file)))
 
     audio_files_by_artist_name = process_audio_files(files)
     for artist_name, audio_files in audio_files_by_artist_name.items():
