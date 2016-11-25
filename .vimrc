@@ -200,13 +200,23 @@ set nocompatible " no longer compatible with Vi, required for Vundle
     hi ghcmodType ctermbg=yellow
     let g:ghcmod_type_highlight = 'ghcmodType'
 
-    " Syntastic
-    set statusline=%f\ %h%w%m%r\ 
-    set statusline+=%#warningmsg#
-    set statusline+=%{SyntasticStatuslineFlag()}
-    set statusline+=%*
-    set statusline+=%=%(%l,%c%V\ %=\ %P%)
+    " vim-airline
+    let g:airline#extensions#tabline#enabled = 1
+    let g:airline_powerline_fonts = 1
+    let g:airline#extensions#ycm#enabled = 1
+    let g:airline#extensions#ycm#error_symbol = 'E:'
+    let g:airline#extensions#ycm#warning_symbol = 'W:'
+    let g:airline#extensions#syntastic#enabled = 1
+    let g:airline#extensions#branch#enabled=1
+    let g:airline#extensions#hunks#enabled=0
+    let g:airline_detect_spell=1
 
+    " Syntastic
+    " set statusline=%f\ %h%w%m%r\ 
+    " set statusline+=%#warningmsg#
+    " set statusline+=%{SyntasticStatuslineFlag()}
+    " set statusline+=%*
+    " set statusline+=%=%(%l,%c%V\ %=\ %P%)
     let g:syntastic_always_populate_loc_list = 1
     " Always show the errors list
     let g:syntastic_auto_loc_list = 1
@@ -309,7 +319,7 @@ set nocompatible " no longer compatible with Vi, required for Vundle
         set t_Co=256
     endif
     set cole=2
-    let g:tex_conceal= 'adgm'
+    let g:tex_conceal='adgm'
 
 " 7. Searching
     set ignorecase        " Case insensitive search
@@ -374,4 +384,5 @@ set nocompatible " no longer compatible with Vi, required for Vundle
     endif
 
 " 12. Languages
-set nospell " Disables spell check
+    set spell " Enables spell check
+    set spelllang=en " Enables the english spell checker
