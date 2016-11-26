@@ -386,3 +386,9 @@ set nocompatible " no longer compatible with Vi, required for Vundle
 " 12. Languages
     set spell " Enables spell check
     set spelllang=en " Enables the english spell checker
+
+    " Special Characters
+    " Inserts a «
+    map <Leader>og i« <ESC> 
+    " Inserts a »
+    map <Leader>fg a »<ESC>
