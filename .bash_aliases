@@ -98,15 +98,7 @@ alias rsync='rsync --ignore-existing --progress -rz'
 
 # Git
 
-alias oneline='git log --decorate --graph --all --oneline'
-alias graph='git log --pretty=full --date=relative --graph --color=auto --numstat --decorate --all'
 alias gtag='git tag -a'
-alias gtagp='git push --tag'
-alias gdiff='git diff --color=auto --summary --stat'
-alias grrm='git remote rm'
-alias grshow='git remote -v'
-alias gradd='git remote add' # To add an existing repository, `git remote add origin <url>`
-
 
 # Text
 
