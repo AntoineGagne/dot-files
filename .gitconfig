@@ -11,3 +11,195 @@
 	excludesfile = ~/.gitignore
 [diff]
 	algorithm = patience
+[web]
+    browser = firefox
+[rerere]
+    enabled = 1
+    autoupdate = 1
+[alias]
+    # Taken from: https://gist.github.com/pksunkara/988716
+
+    # Adds file contents to the index
+    a = add --all
+    ai = add -i
+
+    # Applies a patch to files and/or to the index
+    ap = apply
+    as = apply --stat
+    ac = apply --check
+
+    # Apply a series of patches from a mailbox    
+    ama = am --abort
+    amr = am --resolved
+    ams = am --skip
+
+    # Lists, creates, or deletes branches
+    b = branch
+    ba = branch -a
+    bd = branch -d
+    br = branch -r
+
+    # Records changes to the repository
+    c = commit
+    ca = commit -a
+    cm = commit -m
+    cem = commit --allow-empty -m
+    cam = commit -am
+    cd = commit --amen
+    ced = commit --allow-empty --amend
+
+    # Shows changes between commits, commit and working tree, etc
+    d = diff --color=auto
+    dc = diff --cached --color=auto
+    dl = difftool
+    dlc = difftool --cached
+    dk = diff --check --color=auto
+    dp = diff --patience --color=auto
+    dck = diff --cached --check --color=auto
+
+    # Downloads objects and refs from another repository
+    f = fetch
+    fo = fetch origin
+    fu = fetch upstream
+
+    # Prepares patches for e-mail submission
+    fp = format-patch
+
+    # Verifies the connectivity and validity of the objects in the database
+    fk = fsck
+
+    # Prints lines matching a pattern
+    g = grep -p
+
+    # Shows commit logs
+    l = log --decorate --graph --all --oneline
+    lg = log --pretty=full --date=relative --graph --color=auto --numstat --decorate --all
+
+    # Shows information about files in the index and the working tree
+    ls = ls-files
+    lsf = "!git ls-files | grep -i"
+
+    # Joins two or more development histories together
+    m = merge
+    ma = merge --abort
+    mc = merge --continue
+    ms = merge --skip
+
+    # Switches branches or restores working tree files
+    o = checkout
+    ob = checkout -b
+
+    # Prunes all unreachable objects from the object database
+    pr = prune -v
+
+    # Updates remote refs along with associated objects
+    ps = push
+    psf = push -f
+    psu = push -u
+    psta = push --tag
+    pso = push origin
+    psao = push --all origin
+    psfo = push -f origin
+    psuo = push -u origin
+    psom = push origin master
+    psfom = push -f origin master
+    psuom = push -u origin master
+
+    # Fetches from and integrates with another repository or a local branch
+    pl = pull
+    plu = pull -u
+    plo = pull origin
+    plp = pull upstream
+    plom = pull origin master
+    plpm = pull upstream master
+    pb = pull --rebase
+    pbo = pull --rebase origin
+    pbp = pull --rebase upstream
+    pbom = pull --rebase origin master
+    pbpm = pull --rebase upstream master
+
+    # Forward-ports local commits to the updated upstream head
+    rb = rebase
+    rba = rebase --abort
+    rbc = rebase --continue
+    rbi = rebase --interactive
+    rbs = rebase --skip
+
+    # Resets current HEAD to the specified state
+    re = reset
+    rh = reset HEAD
+    reh = reset --hard
+    rem = reset --mixed
+    res = reset --soft
+    rehh = reset --hard HEAD
+    remh = reset --mixed HEAD
+    resh = reset --soft HEAD
+
+    # Manages set of tracked repositories
+    r = remote
+    ra = remote add
+    rr = remote rm
+    rv = remote -v
+    rm = remote rename
+    rp = remote prune
+    rs = remote show
+    rao = remote add origin
+    rau = remote add upstream
+    rso = remote show origin
+    rsu = remote show upstream
+    rpo = remote prune origin
+    rpu = remote prune upstream
+
+    # Shows the working tree status
+    s = status
+    sb = status -s -b
+
+    # Stashes the changes in a dirty working directory away
+    sa = stash apply
+    sc = stash clear
+    sd = stash drop
+    sl = stash list
+    sp = stash pop
+    ss = stash save
+    sw = stash show
+
+    # Creates, lists, deletes or verifies a tag object signed with GPG
+    t = tag
+    ta = tag -a
+
+    # Shows various types of objects
+    w = show
+    wp = show -p
+    wr = show -p --no-color
+
+    # Registers file contents in the working tree to the index
+    assume = update-index --assume-unchanged
+    unassume = update-index --no-assume-unchanged
+    assumed = "!git ls-files -v | grep ^h | cut -c 3-"
+    unassumeall = !git assumed | xargs git update-index --no-assume-unchanged
+    assumeall = "!git st -s | awk {'print $2'} | xargs git assume"
+
+    # Checkout to the corresponding changes during a merge/rebase
+    ours = "!f() { git checkout --ours $@ && git add $@; }; f"
+    theirs = "!f() { git checkout --theirs $@ && git add $@; }; f"
+
+    # Finds the person who did a particular commit
+    whois = "!sh -c 'git log -i -1 --pretty=\"format:%an <%ae>\n\" --author=\"$1\"' -"
+
+    # Finds more information about a commit
+    whatis = show -s --pretty='tformat:%h (%s, %ad)' --date=short
+
+    barebranch = !sh -c 'git symbolic-ref HEAD refs/heads/$1 && git rm --cached -r . && git clean -xfd' -
+
+    # Shallow clone of a repository
+    flat = clone --depth 1
+
+    # Pulls each subrepositories
+    subpull = !git submodule foreach git pull --tags origin master
+
+    subrepo = !sh -c 'filter-branch --prune-empty --subdirectory-filter $1 master' -
+
+    human = name-rev --name-only --refs=refs/heads/*
+
+    # Saves a snapshot of the repository
+    snapshot = !git stash save "snapshot: $(date)" && git stash apply "stash@{0}"
