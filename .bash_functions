@@ -188,7 +188,7 @@ function extract {
         fi
     fi
 }
-complete -F _command extract
+complete -o default extract
 
 # Execute previous command as root
 function sprev {
