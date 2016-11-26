@@ -190,6 +190,11 @@ function extract {
 }
 complete -o default extract
 
+# Fetches a .gitignore according to some keywords
+function gitignore {
+    curl -L -s "https://www.gitignore.io/api/$@"
+}
+
 # Execute previous command as root
 function sprev {
     sudo $(history -p \!\!)
