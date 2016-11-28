@@ -319,7 +319,7 @@ set nocompatible " no longer compatible with Vi, required for Vundle
         set t_Co=256
     endif
     set cole=2
-    let g:tex_conceal='adgm'
+    let g:tex_conceal='adgms'
 
 " 7. Searching
     set ignorecase        " Case insensitive search
@@ -392,3 +392,8 @@ set nocompatible " no longer compatible with Vi, required for Vundle
     map <Leader>og i« <ESC> 
     " Inserts a »
     map <Leader>fg a »<ESC>
+
+    " Programming languages
+    " Sets the filetype for tex files
+    au BufNewFile,BufRead *.sty *.cls *.tex :setlocal filetype=tex
+    au BufNewFile,BufRead *.sty *.cls *.tex :setlocal syntax=tex
