@@ -45,7 +45,7 @@
     cm = commit -m
     cem = commit --allow-empty -m
     cam = commit -am
-    cd = commit --amen
+    cd = commit --amend
     ced = commit --allow-empty --amend
 
     # Shows changes between commits, commit and working tree, etc
