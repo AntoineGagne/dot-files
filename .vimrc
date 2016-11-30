@@ -395,5 +395,9 @@ set nocompatible " no longer compatible with Vi, required for Vundle
 
     " Programming languages
     " Sets the filetype for tex files
-    au BufNewFile,BufRead *.sty *.cls *.tex :setlocal filetype=tex
-    au BufNewFile,BufRead *.sty *.cls *.tex :setlocal syntax=tex
+    au BufNewFile,BufRead *.sty setfiletype tex
+    au BufNewFile,BufRead *.cls setfiletype tex
+    au BufNewFile,BufRead *.tex setfiletype tex
+    au BufNewFile,BufRead *.tikz setfiletype tex
+    au BufNewFile,BufRead *.bib setfiletype tex
+    " au BufNewFile,BufRead *.sty *.cls *.tex *.tikz :setlocal syntax=tex
