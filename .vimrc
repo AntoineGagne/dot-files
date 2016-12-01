@@ -25,6 +25,7 @@ set nocompatible " no longer compatible with Vi, required for Vundle
 
         " Status bar
         Plugin 'bling/vim-airline'
+        Plugin 'vim-airline/vim-airline-themes'
 
         " Rust autocompletion bundle
         Plugin 'phildawes/racer'
@@ -201,6 +202,7 @@ set nocompatible " no longer compatible with Vi, required for Vundle
     let g:ghcmod_type_highlight = 'ghcmodType'
 
     " vim-airline
+    let g:airline_theme='distinguished'
     let g:airline#extensions#tabline#enabled = 1
     let g:airline_powerline_fonts = 1
     let g:airline#extensions#ycm#enabled = 1
