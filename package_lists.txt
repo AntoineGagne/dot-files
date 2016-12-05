@@ -1,3 +1,5 @@
+autoconf
+automake
 biber
 cabal-install
 chktex
@@ -24,6 +26,8 @@ libappindicator-dev
 libav-tools
 libbz2-dev
 libcairo2-dev
+libtool
+libtool-bin
 libudev-dev
 libx11-dev
 libxcb1-dev
