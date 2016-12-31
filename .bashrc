@@ -200,3 +200,6 @@ export PATH="/usr/local/heroku/bin:$PATH"
 # added by travis gem
 [ -f /home/twain/.travis/travis.sh ] && source /home/twain/.travis/travis.sh
 export PYTHONSTARTUP=~/.pythonrc.py
+
+# Add autocompletion to the custom Haskell scripts
+eval "$(create-gitignore --bash-completion-script create-gitignore)"
