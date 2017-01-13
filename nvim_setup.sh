@@ -2,7 +2,7 @@
 
 # Clone the `Vundle` plugin manager
 mkdir -p "${HOME}/.vim/bundle" \
-    && ln -sf "$(pwd)/colors" "${HOME}/.vim" \
+    && ln -sf "$(pwd)/colors" "${HOME}/.vim/" \
     && git clone git@github.com:VundleVim/Vundle.vim.git "${HOME}/.vim/bundle"
 
 # Setup `Neovim`
@@ -16,3 +16,4 @@ nvim +PluginInstall +qa \
     && make
 
 ln -sf "$(pwd)/spell" "${HOME}/.vim/"
+ln -sf "$(pwd)/tags" "${HOME}/.vim/"

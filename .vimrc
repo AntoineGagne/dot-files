@@ -5,6 +5,7 @@ set encoding=utf-8   " Set the encoding to utf-8
 
 "{{{1 2. Editor
 set nocompatible " no longer compatible with Vi, required for Vundle
+set tags+=~/.vim/tags/opencv3
 
 "{{{1 3. Plugins
 
