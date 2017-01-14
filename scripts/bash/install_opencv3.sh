@@ -41,4 +41,4 @@ make -j4 || make clean && make
 sudo make install
 
 sudo find ${INSTALL_PATH} -type f -name 'cv2*.so' -exec mv {} cv2.so \;
-sudo ln -s "${INSTALL_PATH}/cv2.so" ~/.virtualenv/cv/lib/python3.5/site-packages/
+sudo ln -sf "${INSTALL_PATH}/cv2.so" ~/.virtualenv/cv/lib/python3.5/site-packages/

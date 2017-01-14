@@ -1,6 +1,8 @@
 [user]
 	email = gagnantoine@gmail.com
 	name = Antoine Gagné
+[init]
+	templatedir = ~/.git_templates
 [push]
 	default = simple
 [credential]

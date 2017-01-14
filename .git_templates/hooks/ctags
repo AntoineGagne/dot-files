@@ -1,0 +1,8 @@
+#! /bin/sh
+
+# Taken from: http://simena86.github.io/blog/2013/04/12/my-vim-setup/ (Fri Jan 13 20:17:00 EST 2017)
+set -e
+PATH="/usr/local/bin:$PATH"
+trap "rm -f .git/tags.$$" EXIT
+ctags  --c++-kinds=+p --fields=+iaS --extra=+q --tag-relative -Rf.git/tags.$$  --exclude=.git
+mv .git/tags.$$ .git/tags
