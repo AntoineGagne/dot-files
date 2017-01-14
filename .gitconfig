@@ -10,7 +10,7 @@
 [color]
 	ui = auto
 [core]
-	excludesfile = ~/.gitignore
+	excludesfile = ~/.global_gitignore
 [diff]
 	algorithm = patience
 [web]
