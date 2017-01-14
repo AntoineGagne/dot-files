@@ -16,4 +16,3 @@ nvim +PluginInstall +qa \
     && make
 
 ln -sf "$(pwd)/spell" "${HOME}/.vim/"
-ln -sf "$(pwd)/tags" "${HOME}/.vim/"
