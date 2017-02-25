@@ -83,7 +83,7 @@ call vundle#begin()
     Plugin 'godlygeek/tabular'
 
     "{{{2 Autocomplete
-    Plugin 'ervandew/supertab'
+    " Plugin 'ervandew/supertab'
 
     "{{{2 Show the CSS colors visually
     " Plugin 'skammer/vim-css-color'
@@ -154,15 +154,15 @@ map <silent> tq :GhcModType<CR>
 map <silent> te :GhcModTypeClear<CR>
 
 "{{{2 Supertab
-let g:SuperTabDefaultCompletionType = '<c-x><c-o>'
-
-if has("gui_running")
-    imap <c-space> <c-r>=SuperTabAlternateCompletion("\<lt>c-x>\<lt>c-o>")<cr>
-else " no gui
-    if has("unix")
-        inoremap <Nul> <c-r>=SuperTabAlternateCompletion("\<lt>c-x>\<lt>c-o>")<cr>
-    endif
-endif
+" let g:SuperTabDefaultCompletionType = '<c-x><c-o>'
+" 
+" if has("gui_running")
+"     imap <c-space> <c-r>=SuperTabAlternateCompletion("\<lt>c-x>\<lt>c-o>")<cr>
+" else " no gui
+"     if has("unix")
+"         inoremap <Nul> <c-r>=SuperTabAlternateCompletion("\<lt>c-x>\<lt>c-o>")<cr>
+"     endif
+" endif
 
 "{{{2 neco-ghc options
 autocmd BufWritePost *.hs GhcModCheckAndLintAsync
