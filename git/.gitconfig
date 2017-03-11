@@ -19,6 +19,9 @@
     enabled = 1
     autoupdate = 1
 [alias]
+    # Taken from: https://wikileaks.org/ciav7p1/cms/page_1179773.html
+    aliases = !git config --get-regexp 'alias.*' | colrm 1 6 | sed 's/[ ]/ = /' | sort
+
     # Taken from: https://gist.github.com/pksunkara/988716
 
     # Adds file contents to the index
