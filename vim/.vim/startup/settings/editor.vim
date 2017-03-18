@@ -12,6 +12,7 @@ set confirm
 " {{{1 Tags
 
 set tags+=~/.tags
+set tags+=./.git/tags
 set tags+=./tags
 
 
