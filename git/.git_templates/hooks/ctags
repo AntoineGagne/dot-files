@@ -4,5 +4,11 @@
 set -e
 PATH="/usr/local/bin:$PATH"
 trap "rm -f .git/tags.$$" EXIT
-ctags  --c++-kinds=+p --fields=+iaS --extra=+q --tag-relative -Rf.git/tags.$$  --exclude=.git
+ctags -f.git/tags.$$  --exclude=.git
 mv .git/tags.$$ .git/tags
+
+if which hasktags > /dev/null ; then
+    OLD_DIR=$(pwd)
+    (cd "$GITDIR" && hasktags -c -x --ignore-close-implementation -a -f "$TAGSFILE" "$OLD_DIR")
+    LC_COLLATE=C sort "$GITDIR/$TAGSFILE" -o "$GITDIR/$TAGSFILE"
+fi
