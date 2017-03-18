@@ -59,7 +59,6 @@ set omnifunc=syntaxcomplete#Complete
 " {{{3 Rust
 
 " {{{4 Racer
-set hidden
 let g:racer_cmd = "~/.vim/bundle/racer/target/release/racer"
 let $RUST_SRC_PATH="~/rustc-1.5.0/src/"
 
@@ -181,6 +180,8 @@ endif
 syntax enable
 " Load filetype-specific indent files
 filetype indent on
+" Set the terminal's title
+set title
 " Set the command window height
 set cmdheight=1
 " Instead of failing a command because of unsaved changes, instead raise a 
@@ -242,7 +243,7 @@ set autoindent
 " Show spaces visually
 set list
 " Display spaces as dots and tabs as arrows
-set listchars=space:•,tab:⟶\ 
+set listchars=space:•,tab:⟶\ ,nbsp:⚠
 " Number of visual spaces per TAB
 set tabstop=4
 " Number of spaces in tab when editing
@@ -291,3 +292,7 @@ set writebackup
 set spell
 " Enables the english spell checker
 set spelllang=en
+
+
+" {{{2 Buffers & Tabs
+set hidden
