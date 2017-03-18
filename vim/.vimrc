@@ -10,18 +10,18 @@ call vundle#begin()
     " Call vundle#begin('~/some/path/here')
 
     " Let Vundle manage Vundle, required
-    Plugin 'gmarik/Vundle.vim'
+    Plugin 'VundleVim/Vundle.vim'
 
     " {{{2 Autocompletion plugin
     Plugin 'Valloric/YouCompleteMe'
     " Plugin 'Shougo/neocomplete.vim'
 
     " {{{2 Status bar
-    Plugin 'bling/vim-airline'
+    Plugin 'vim-airline/vim-airline'
     Plugin 'vim-airline/vim-airline-themes'
 
     " {{{2 Rust autocompletion bundle
-    Plugin 'phildawes/racer'
+    Plugin 'racer-rust/vim-racer'
 
     " {{{2 Syntax highlighter for the Rust language
     Plugin 'rust-lang/rust.vim'
@@ -42,7 +42,7 @@ call vundle#begin()
     Plugin 'scrooloose/nerdtree'
 
     " {{{2 Syntax checking
-    Plugin 'scrooloose/syntastic'
+    Plugin 'vim-syntastic/syntastic'
 
     " {{{2 Asynchronous Execution
     Plugin 'Shougo/vimproc.vim'
