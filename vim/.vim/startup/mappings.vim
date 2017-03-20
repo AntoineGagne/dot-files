@@ -3,22 +3,9 @@
 " {{{2 YouCompleteMe
 nnoremap <F11> :YcmForceCompileAndDiagnostics <CR>
 
-" {{{2 ghc-mod
-map <silent> tw :GhcModTypeInsert<CR>
-map <silent> ts :GhcModSplitFunCase<CR>
-map <silent> tq :GhcModType<CR>
-map <silent> te :GhcModTypeClear<CR>
-
-" {{{2 Tabular
-vmap a= :Tabularize /=<CR>
-vmap a; :Tabularize /::<CR>
-vmap a- :Tabularize /-><CR>
-vmap a, :Tabularize /<-<CR>
-vmap al :Tabularize /[\[\\|,]<CR>
-
-"
 " {{{1 Folding
-nnoremap <space> za     " space open/closes folds
+" space open/closes folds
+nnoremap <space> za
 
 " {{{1 Movements
 " Move vertically by visual line
