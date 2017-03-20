@@ -9,3 +9,11 @@ To install, you can use GNU `stow`. For example, to install the `vim` dotfiles, 
 ```shell
 stow vim -t ~
 ```
+
+### Fonts
+
+To install the fonts, you can simply run the following command on the font directory:
+
+```sh
+fc-cache -fv .fonts
+```
