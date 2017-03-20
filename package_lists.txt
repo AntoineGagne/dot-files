@@ -1,6 +1,7 @@
 anki
 autoconf
 automake
+bibclean
 biber
 cabal-install
 chktex
