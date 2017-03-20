@@ -22,17 +22,9 @@
     path = vim/.vim/bundle/nerdtree
     url = https://github.com/scrooloose/nerdtree
     ignore = dirty
-[submodule "vim/.vim/bundle/vim-addon-mw-utils"]
-    path = vim/.vim/bundle/vim-addon-mw-utils
-    url = https://github.com/MarcWeber/vim-addon-mw-utils
-    ignore = dirty
 [submodule "vim/.vim/bundle/vim-racer"]
     path = vim/.vim/bundle/vim-racer
     url = https://github.com/racer-rust/vim-racer
-    ignore = dirty
-[submodule "vim/.vim/bundle/tlib_vim"]
-    path = vim/.vim/bundle/tlib_vim
-    url = https://github.com/tomtom/tlib_vim
     ignore = dirty
 [submodule "vim/.vim/bundle/neco-ghc"]
     path = vim/.vim/bundle/neco-ghc
@@ -62,10 +54,6 @@
     path = vim/.vim/bundle/vimproc.vim
     url = https://github.com/Shougo/vimproc.vim
     ignore = dirty
-[submodule "vim/.vim/bundle/vim-snipmate"]
-    path = vim/.vim/bundle/vim-snipmate
-    url = https://github.com/garbas/vim-snipmate
-    ignore = dirty
 [submodule "vim/.vim/bundle/haskell-vim"]
     path = vim/.vim/bundle/haskell-vim
     url = https://github.com/neovimhaskell/haskell-vim
@@ -85,4 +73,12 @@
 [submodule "vim/.vim/bundle/vim-airline"]
     path = vim/.vim/bundle/vim-airline
     url = https://github.com/vim-airline/vim-airline
+    ignore = dirty
+[submodule "vim/.vim/bundle/ultisnips"]
+    path = vim/.vim/bundle/ultisnips
+    url = https://github.com/SirVer/ultisnips.git
+    ignore = dirty
+[submodule "vim/.vim/bundle/vim-snippets"]
+    path = vim/.vim/bundle/vim-snippets
+    url = https://github.com/honza/vim-snippets.git
     ignore = dirty

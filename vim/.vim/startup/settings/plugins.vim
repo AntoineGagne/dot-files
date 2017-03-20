@@ -39,6 +39,10 @@ source ~/.vim/startup/settings/plugins/gruvbox.vim
 source ~/.vim/startup/settings/plugins/syntastic.vim
 
 
+" {{{1 Snippets
+source ~/.vim/startup/settings/plugins/ultisnips.vim
+
+
 " {{{1 Formatting
 
 source ~/.vim/startup/settings/plugins/tabular.vim

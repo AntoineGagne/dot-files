@@ -61,11 +61,13 @@ call vundle#begin()
     Plugin 'morhetz/gruvbox'
 
     " {{{2 Utility functions
-    Plugin 'MarcWeber/vim-addon-mw-utils'
-    Plugin 'tomtom/tlib_vim'
+    " Plugin 'MarcWeber/vim-addon-mw-utils'
+    " Plugin 'tomtom/tlib_vim'
 
     " {{{2 Snippets
-    Plugin 'garbas/vim-snipmate'
+    " Plugin 'garbas/vim-snipmate'
+    Plugin 'SirVer/ultisnips'
+    Plugin 'honza/vim-snippets'
 
     " {{{2 Aligning
     Plugin 'godlygeek/tabular'
