@@ -82,3 +82,7 @@
     path = vim/.vim/bundle/vim-snippets
     url = https://github.com/honza/vim-snippets.git
     ignore = dirty
+[submodule "./vim/.vim/bundle/rust.vim"]
+    path = ./vim/.vim/bundle/rust.vim
+    url = https://github.com/rust-lang/rust.vim.git
+    ignore = dirty
