@@ -5,6 +5,8 @@ let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 " Put all the checkers errors together
 let g:syntastic_aggregate_errors = 1
+let g:syntastic_error_symbol = '🗙'
+let g:syntastic_warning_symbol = '⚠'
 
 " {{{1 Python
 let g:syntastic_python_checkers = ['mypy', 'flake8', 'pylint', 'python']
