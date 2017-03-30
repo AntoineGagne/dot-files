@@ -36,7 +36,8 @@ source ~/.vim/startup/settings/plugins/gruvbox.vim
 
 " {{{1 Linting
 
-source ~/.vim/startup/settings/plugins/syntastic.vim
+" source ~/.vim/startup/settings/plugins/syntastic.vim
+source ~/.vim/startup/settings/plugins/ale.vim
 
 
 " {{{1 Snippets

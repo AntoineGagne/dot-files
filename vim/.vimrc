@@ -42,7 +42,8 @@ call vundle#begin()
     Plugin 'scrooloose/nerdtree'
 
     " {{{2 Syntax checking
-    Plugin 'vim-syntastic/syntastic'
+    " Plugin 'vim-syntastic/syntastic'
+    Plugin 'w0rp/ale'
 
     " {{{2 Asynchronous Execution
     Plugin 'Shougo/vimproc.vim'

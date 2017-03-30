@@ -8,6 +8,7 @@ let g:airline#extensions#syntastic#enabled = 1
 let g:airline#extensions#branch#enabled=1
 let g:airline#extensions#hunks#enabled=0
 let g:airline_detect_spell=1
+let g:airline_section_error = '%{ALEGetStatusLine()}'
 
 " if !exists('g:airline_symbols')
 "     let g:airline_symbols = {}
