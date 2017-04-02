@@ -1,5 +1,17 @@
 set editing-mode vi
 set keymap vi-command
 set blink-matching-paren on
-Tab: complete
+# `complete` for standard autocompletion (default)
+# `menu-complete` for cycling autocompletion
+Tab: menu-complete
+"\e\t": menu-complete-backward
+"\e[Z": menu-complete-backward
 set completion-ignore-case on
+set colored-completion-prefix on
+set colored-stats on
+set completion-query-items on
+set keyseq-timeout 250
+set mark-directories on
+set mark-symlinked-directories on
+set match-hidden-files on
+set menu-complete-display-prefix on
