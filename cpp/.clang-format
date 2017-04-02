@@ -1,4 +1,4 @@
----
+--- # C++ Language
 # BasedOnStyle: Mozilla
 AccessModifierOffset: -4
 AlignAfterOpenBracket: Align
