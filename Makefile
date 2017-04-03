@@ -1,5 +1,14 @@
 FONTS_DIR := fonts
-SOFTWARE_DIRS := bash ctags git haskell python redshift shell vim formatters
+SOFTWARE_DIRS := bash \
+	ctags \
+	git \
+	haskell \
+	python \
+	redshift \
+	shell \
+	vim \
+	formatters \
+	glances
 INSTALL_DIRS := $(SOFTWARE_DIRS:%=install-%)
 
 YOUCOMPLETEME_DIR := ~/.vim/bundle/YouCompleteMe
