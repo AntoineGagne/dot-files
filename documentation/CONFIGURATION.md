@@ -31,70 +31,70 @@ The `.vim` has the following hierarchy:
     └── settings.vim
 ```
 
-### `after`
+#### `after/`
 
 This directory contains language specific configuration to be set after the plugins are loaded.
 
-### `bundle`
+#### `bundle/`
 
 This directory contains the plugins.
 
-### `colors`
+#### `colors/`
 
 This directory contains the various colorschemes.
 
-### `snippets`
+#### `snippets/`
 
 This directory contains the custom snippets for `UltiSnips` or other snippets plugins.
 
-### `spell`
+#### `spell/`
 
 This directory contains the spelling files with custom words.
 
-### `startup`
+#### `startup/`
 
 This directory contains various editor configurations.
 
-#### `autocommands.vim`
+##### `autocommands.vim`
 
 Contains the settings to be run on certain triggers.
 
-#### `functions.vim`
+##### `functions.vim`
 
 Contains the various custom functions.
 
-#### `mappings.vim`
+##### `mappings.vim`
 
 Contains the custom mappings.
 
-#### `settings`
+##### `settings`
 
 The file `settings.vim` is only for including the specific settings.
 
-##### `editor.vim`
+###### `editor.vim`
 
 Contains settings specific to editing.
 
-##### `folds.vim`
+###### `folds.vim`
 
 Contains folds specific settings.
 
-##### `languages.vim`
+###### `languages.vim`
 
 Contains languages specific settings.
 
-##### `plugins`
+###### `plugins/`
 
 This directory contains the settings specific to plugins. When you want to specify settings for a specific plugin, you add a Vim file with the same name as the plugin and you include it in the `plugins.vim` file.
 
-#### `search.vim`
+##### `search.vim`
 
 Contains all the settings specific to searching.
 
-#### `spaces.vim`
+##### `spaces.vim`
 
 Contains all the settings specific to spaces.
 
-##### `ui.vim`
+###### `ui.vim`
 
 Contains all the settings specific to UI such as colorschemes, drawing, etc.
