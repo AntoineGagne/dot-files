@@ -165,4 +165,9 @@ jspm_packages
 # End of https://www.gitignore.io/api/python,bash,node,linux
 
 Library
-**/lib.pl
+cmus/.cmus/autosave
+cmus/.cmus/lib.pl
+cmus/.cmus/cache
+cmus/.cmus/command-history
+cmus/.cmus/playlist.pl
+cmus/.cmus/search-history
