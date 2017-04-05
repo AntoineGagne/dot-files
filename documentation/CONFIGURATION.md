@@ -6,6 +6,8 @@ This directory contains all the useful scripts classfied by programming language
 
 ## `vim/`
 
+Contains the settings for Vim and Neovim.
+
 ### Structure
 
 The `.vim/` folder has the following hierarchy:
