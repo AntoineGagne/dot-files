@@ -92,5 +92,5 @@
     ignore = dirty
 [submodule "scripts/haskell/create-gitignore"]
     path = "scripts/haskell/create-gitignore"
-    url = https://github.com/w0rp/ale.git
+    url = https://github.com/AntoineGagne/create-gitignore.git
     ignore = dirty
