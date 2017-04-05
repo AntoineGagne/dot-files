@@ -87,11 +87,11 @@ Contains languages specific settings.
 
 This directory contains the settings specific to plugins. When you want to specify settings for a specific plugin, you add a Vim file with the same name as the plugin and you include it in the `plugins.vim` file.
 
-##### `search.vim`
+###### `search.vim`
 
 Contains all the settings specific to searching.
 
-##### `spaces.vim`
+###### `spaces.vim`
 
 Contains all the settings specific to spaces.
 
