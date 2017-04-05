@@ -14,22 +14,22 @@ The `.vim/` folder has the following hierarchy:
 
 ```
 .
-├── after
-│   └── ftplugin
-├── bundle
-├── colors
-├── snippets
-├── spell
-└── startup
+├── after/
+│   └── ftplugin/
+├── bundle/
+├── colors/
+├── snippets/
+├── spell/
+└── startup/
     ├── autocommands.vim
     ├── commands.vim
     ├── functions.vim
     ├── mappings.vim
-    ├── settings
+    ├── settings/
     │   ├── editor.vim
     │   ├── folds.vim
     │   ├── languages.vim
-    │   ├── plugins
+    │   ├── plugins/
     │   ├── plugins.vim
     │   ├── search.vim
     │   ├── spaces.vim
