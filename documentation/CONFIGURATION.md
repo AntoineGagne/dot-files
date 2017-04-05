@@ -1,10 +1,14 @@
 # Configuration
 
-## Vim
+## `scripts/`
+
+This directory contains all the useful scripts classfied by programming languages (i.e. Python scripts in the `python/` folder).
+
+## `vim/`
 
 ### Structure
 
-The `.vim` has the following hierarchy:
+The `.vim/` folder has the following hierarchy:
 
 ```
 .
