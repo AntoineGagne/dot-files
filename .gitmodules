@@ -90,3 +90,7 @@
     path = "vim/.vim/bundle/ale"
     url = https://github.com/w0rp/ale.git
     ignore = dirty
+[submodule "scripts/haskell/create-gitignore"]
+    path = "scripts/haskell/create-gitignore"
+    url = https://github.com/w0rp/ale.git
+    ignore = dirty
