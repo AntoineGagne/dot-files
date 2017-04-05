@@ -1,0 +1,4 @@
+alias cal='cal -A 11'
+alias now='date +"%T"'
+alias nowtime=now
+alias nowdate='date +"%d-%m-%Y"'

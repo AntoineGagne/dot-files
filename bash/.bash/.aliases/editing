@@ -1,0 +1,20 @@
+# Text
+
+# Formats a file to respect 80 character
+alias fold='fold -w 80 -s'
+# Formats a file to respect 80 character
+alias format='fmt -w 80 -u -s -t -c'
+# Replaces tabs by spaces
+alias rmtabs='expand -t 4'
+# Replaces spaces by tabs
+alias rmspaces='unexpand -a -t 4'
+# Finds a word and ignores its letter case
+alias look='look -f'
+
+
+# Vim
+
+alias vim='nvim'
+alias vimd='nvim -dR'
+alias svi='sudo nvim'
+alias edit='nvim'

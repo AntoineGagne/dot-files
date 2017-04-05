@@ -1,0 +1,4 @@
+# Execute previous command as root
+function sprev {
+    sudo $(history -p \!\!)
+}

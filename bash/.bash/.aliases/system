@@ -1,0 +1,29 @@
+alias htop='htop -u twain'
+alias meminfo='free -m -l -t'
+alias cpuinfo='lscpu'
+
+# Get top processes eating memory
+
+alias psmem='ps auxf | sort -nr -k 4'
+alias psmem10='ps auxf | sort -nr -k 4 | head -10'
+
+# Get top processes eating cpu
+
+alias pscpu='ps auxf | sort -nr -k 3'
+alias pscpu10='ps auxf | sort -nr -k 3 | head -10'
+
+alias df='df -hT'
+alias du='du -sh'
+
+
+# Laptop Power
+
+alias shutdown='sudo shutdown -h now'
+alias reboot='sudo shutdown -r now'
+alias hibernate='sudo pm-hibernate'
+alias suspend='sudo pm-suspend'
+
+
+# Superuser
+
+alias sudo='sudo '

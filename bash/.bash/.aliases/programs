@@ -1,0 +1,30 @@
+# Files
+
+alias sdiff='sdiff -ZEB'
+alias rm='rm -I --preserve-root'
+alias rsync='rsync --ignore-existing --progress -rz'
+
+
+# Git
+
+alias gtag='git tag -a'
+
+
+# PDF
+
+alias pdfrmencryption='qpdf --decrypt'
+
+
+# Packages
+
+alias showuserpkg='comm -23 <(apt-mark showmanual | sort -u) <(gzip -dc /var/log/installer/initial-status.gz | sed -n "s/^Package: //p" | sort -u)'
+
+
+# Parallel
+
+alias parallel='parallel --no-notice'
+
+
+# Terminal History
+
+alias h='history'

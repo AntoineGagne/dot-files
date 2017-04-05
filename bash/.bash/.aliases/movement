@@ -1,0 +1,8 @@
+alias ..='cd ../'
+alias ...='cd ../../'
+alias ....='cd ../../../'
+alias .....='cd ../../../../'
+alias b='cd - &> /dev/null'
+alias j='jump'
+alias m='mark'
+alias um='unmark'
