@@ -10,6 +10,7 @@ clang-format-3.8
 clang-tidy-3.8
 clementine
 cmake
+cmus
 cowsay
 dconf-editor
 dos2unix
@@ -27,6 +28,7 @@ git
 gitk
 gmtp
 gparted
+graphviz
 guvcview
 handbrake
 heroku-toolbelt
