@@ -48,7 +48,7 @@ Sources all the files containing aliases.
 
 #### `aliases/`
 
-Contains all the aliases. The aliases are in separate files according to the category they fit in.
+Contains all the aliases. The aliases are in separate files according to the category they fit in. To define a new category, just create a file with the category's name.
 
 #### `.bash_functions`
 
@@ -56,7 +56,7 @@ Sources all the files containing functions.
 
 #### `functions/`
 
-Contains all the functions. The functions are in separate files according to the category they fit in.
+Contains all the functions. The functions are in separate files according to the category they fit in. To define a new category, just create a file with the category's name.
 
 ## `vim/`
 
