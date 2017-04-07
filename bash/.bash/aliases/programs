@@ -10,6 +10,10 @@ alias rsync='rsync --ignore-existing --progress -rz'
 alias gtag='git tag -a'
 
 
+# create-gitignore
+alias list-available-tools='create-gitignore list | column -s, -t'
+
+
 # PDF
 
 alias pdfrmencryption='qpdf --decrypt'
