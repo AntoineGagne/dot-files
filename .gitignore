@@ -176,3 +176,12 @@ cmus/.cmus/search-history
 
 # Vim spell files
 vim/.vim/spell/*.add.spl
+
+# Created by https://www.gitignore.io/api/dotfilessh
+
+### DotfilesSh ###
+local-patch
+patched-src
+
+# End of https://www.gitignore.io/api/dotfilessh
+
