@@ -165,9 +165,14 @@ jspm_packages
 # End of https://www.gitignore.io/api/python,bash,node,linux
 
 Library
+
+# cmus specific files
 cmus/.cmus/autosave
 cmus/.cmus/lib.pl
 cmus/.cmus/cache
 cmus/.cmus/command-history
 cmus/.cmus/playlist.pl
 cmus/.cmus/search-history
+
+# Vim spell files
+vim/.vim/spell/*.add.spl
