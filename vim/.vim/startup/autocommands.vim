@@ -6,8 +6,8 @@ autocmd BufWritePost *.hs GhcModCheckAndLintAsync
 autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc
 
 " {{{1 LaTeX & TeX
-au BufNewFile,BufRead,BufReadPre,BufReadPost *.sty setfiletype tex
-au BufNewFile,BufRead,BufReadPre,BufReadPost *.cls setfiletype tex
-au BufNewFile,BufRead,BufReadPre,BufReadPost *.tex setfiletype tex
-au BufNewFile,BufRead,BufReadPre,BufReadPost *.tikz setfiletype tex
-au BufNewFile,BufRead,BufReadPre,BufReadPost *.bib setfiletype tex
+au BufNewFile,BufRead,BufReadPre,BufReadPost *.sty setfiletype plaintex
+au BufNewFile,BufRead,BufReadPre,BufReadPost *.cls setfiletype plaintex
+au BufNewFile,BufRead,BufReadPre,BufReadPost *.tex setfiletype plaintex
+au BufNewFile,BufRead,BufReadPre,BufReadPost *.tikz setfiletype plaintex
+au BufNewFile,BufRead,BufReadPre,BufReadPost *.bib setfiletype plaintex
