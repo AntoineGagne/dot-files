@@ -203,3 +203,8 @@ export PYTHONSTARTUP=~/.pythonrc.py
 
 # Add autocompletion to the custom Haskell scripts
 eval "$(create-gitignore --bash-completion-script create-gitignore)"
+
+# Run xbindkeys if it is installed and not running
+if type "xbindkeys" > /dev/null 2>&1 && ! pidof -x "xbindkeys" > /dev/null 2>&1; then
+    xbindkeys
+fi
