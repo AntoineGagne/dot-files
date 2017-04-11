@@ -98,16 +98,17 @@ def _format_notification_message(status_information):
     :param status_information: The information to be sent
     :type status_information: :class:`StatusInformation`
     """
-    title = '{0} ⸺ {1}'.format(
+    title = 'Current Status: {0}'.format(
         status_information.status.capitalize(),
-        status_information.title
     )
-    text = ('<b>Artist:</b> {0}\n'
-            '<b>Album:</b> {1}\n'
-            '<b>Date:</b> {2}\n'
-            '<b>Track:</b> {3}\n'
-            '<b>Disc:</b> {4}\n'
-            '<b>Duration:</b> {5}').format(
+    text = ('<b>Title:</b> {0}\n'
+            '<b>Artist:</b> {1}\n'
+            '<b>Album:</b> {2}\n'
+            '<b>Date:</b> {3}\n'
+            '<b>Track:</b> {4}\n'
+            '<b>Disc:</b> {5}\n'
+            '<b>Duration:</b> {6}').format(
+                status_information.title,
                 status_information.artist,
                 status_information.album,
                 status_information.date,
