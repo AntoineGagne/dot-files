@@ -46,6 +46,7 @@ class Notifier:
         :type text: str
         """
         notification = notify2.Notification(title, text, icon_path)
+        notification.set_urgency(notify2.URGENCY_LOW)
         notification.show()
 
 
@@ -200,4 +201,4 @@ if __name__ == '__main__':
     )
     TITLE, TEXT = _format_notification_message(STATUS_INFORMATION)
     NOTIFIER = Notifier('Cmus Media Player')
-    NOTIFIER.send_notification(TITLE, TEXT)
+    NOTIFIER.send_notification(TITLE, TEXT, 'notification-audio-play')
