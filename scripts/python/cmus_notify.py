@@ -5,9 +5,8 @@
 import sys
 from collections import defaultdict
 from functools import reduce
+from subprocess import call
 from typing import List
-
-import notify2
 
 
 #: Default text for the display values
@@ -41,9 +40,9 @@ class Notifier:
         :param application_name: The application's name
         :type application_name: str
         """
-        notify2.init(application_name)
+        self.application_name = application_name
 
-    def send_notification(self, title: str, text: str, icon_path=''):
+    def send_notification(self, title: str, text: str, icon_path: str=''):
         """Send the notification to the OS.
 
         :param title: The message's title
@@ -51,6 +50,23 @@ class Notifier:
         :param text: The message's body
         :type text: str
         """
+        try:
+            self._send_notification_with_library(title, text, icon_path)
+        except ImportError:
+            call('notify-send {0} {1} -i {2}'.format(title, text, icon_path))
+
+
+    def _send_notification_with_library(self, title: str, text: str, icon_path: str=''):
+        """Send the notification to the OS with a Python library.
+
+        :param title: The message's title
+        :type title: str
+        :param text: The message's body
+        :type text: str
+        :raises ImportError: If the library :module:`notify` is not installed
+        """
+        import notify2
+        notify2.init(self.application_name)
         notification = notify2.Notification(title, text, icon_path)
         notification.set_urgency(notify2.URGENCY_LOW)
         notification.show()
