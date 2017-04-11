@@ -1,3 +1,3 @@
 #! /bin/sh
 
-~/.cmus/cmus_notify.py "$*" &
+cmus_notify "$*" &
