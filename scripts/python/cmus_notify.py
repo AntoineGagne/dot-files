@@ -54,7 +54,7 @@ ICONS_BY_STATUS = {
 class Notifier:
     """A notification to the Gnome notification system."""
 
-    def __init__(self, application_name) -> None:
+    def __init__(self, application_name):
         """Initialize a :class:`Notification` object.
 
         :param application_name: The application's name
@@ -62,7 +62,7 @@ class Notifier:
         """
         self.application_name = application_name
 
-    def send_notification(self, title: str, text: str, icon_path: str=''):
+    def send_notification(self, title, text, icon_path=''):
         """Send the notification to the OS.
 
         :param title: The message's title
@@ -76,7 +76,7 @@ class Notifier:
             call('notify-send {0} {1} -i {2}'.format(title, text, icon_path))
 
 
-    def _send_notification_with_library(self, title: str, text: str, icon_path: str=''):
+    def _send_notification_with_library(self, title, text, icon_path=''):
         """Send the notification to the OS with a Python library.
 
         :param title: The message's title
@@ -92,7 +92,7 @@ class Notifier:
         notification.show()
 
 
-def _format_notification_message(status_information: 'StatusInformation'):
+def _format_notification_message(status_information):
     """Format the :class:`StatusInformation` to be send.
 
     :param status_information: The information to be sent
@@ -148,7 +148,7 @@ class StatusInformation:
         self.tracknumber = kwargs.get('tracknumber', DEFAULT_STATUS_DISPLAY)
 
 
-def _parse_status_information(informations: List[str]):
+def _parse_status_information(informations):
     """Parse the status informations from the informations list.
 
     :param informations: The list containing the various song's information
@@ -168,7 +168,7 @@ def _parse_status_information(informations: List[str]):
     return status_information
 
 
-def _format_status_information_fields(status_information, *formatters) -> StatusInformation:
+def _format_status_information_fields(status_information, *formatters):
     """Format the status informations dictionary.
 
     :param status_information: The various fields information
