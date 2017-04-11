@@ -7,6 +7,8 @@ from collections import defaultdict
 from functools import reduce
 from typing import List
 
+import notify2
+
 
 #: Default text for the display values
 DEFAULT_STATUS_DISPLAY = 'N/A'
@@ -22,6 +24,55 @@ FIELDS = (
     'date',
     'duration'
 )
+
+
+class Notifier:
+    """A notification to the Gnome notification system."""
+
+    def __init__(self, application_name) -> None:
+        """Initialize a :class:`Notification` object.
+
+        :param application_name: The application's name
+        :type application_name: str
+        """
+        notify2.init(application_name)
+
+    def send_notification(self, title: str, text: str, icon_path=''):
+        """Send the notification to the OS.
+
+        :param title: The message's title
+        :type title: str
+        :param text: The message's body
+        :type text: str
+        """
+        notification = notify2.Notification(title, text, icon_path)
+        notification.show()
+
+
+def _format_notification_message(status_information: 'StatusInformation'):
+    """Format the :class:`StatusInformation` to be send.
+
+    :param status_information: The information to be sent
+    :type status_information: :class:`StatusInformation`
+    """
+    title = '{0} ⸺ {1}'.format(
+        status_information.status.capitalize(),
+        status_information.title
+    )
+    text = ('<b>Artist:</b> {0}\n'
+            '<b>Album:</b> {1}\n'
+            '<b>Date:</b> {2}\n'
+            '<b>Track:</b> {3}\n'
+            '<b>Disc:</b> {4}\n'
+            '<b>Duration:</b> {5}').format(
+                status_information.artist,
+                status_information.album,
+                status_information.date,
+                status_information.tracknumber,
+                status_information.discnumber,
+                status_information.duration,
+            )
+    return title, text
 
 
 class StatusInformation:
@@ -147,4 +198,6 @@ if __name__ == '__main__':
         _format_duration_field,
         _format_left_fields
     )
-    print(STATUS_INFORMATION.__dict__)
+    TITLE, TEXT = _format_notification_message(STATUS_INFORMATION)
+    NOTIFIER = Notifier('Cmus Media Player')
+    NOTIFIER.send_notification(TITLE, TEXT)
