@@ -24,6 +24,12 @@ FIELDS = (
     'date',
     'duration'
 )
+#: The icons by the media player status
+ICONS_BY_STATUS = {
+    'paused': 'stock_media-pause',
+    'playing': 'stock_media-play',
+    'stopped': 'stock_media-stop'
+}
 
 
 class Notifier:
@@ -201,4 +207,4 @@ if __name__ == '__main__':
     )
     TITLE, TEXT = _format_notification_message(STATUS_INFORMATION)
     NOTIFIER = Notifier('Cmus Media Player')
-    NOTIFIER.send_notification(TITLE, TEXT, 'notification-audio-play')
+    NOTIFIER.send_notification(TITLE, TEXT, ICONS_BY_STATUS.get(STATUS_INFORMATION.status, ''))
