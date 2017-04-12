@@ -26,7 +26,6 @@ import sys
 from collections import defaultdict
 from functools import reduce
 from subprocess import call
-from typing import List
 
 
 #: Default text for the display values
