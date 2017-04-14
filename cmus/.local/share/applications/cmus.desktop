@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Encoding=UTF-8
+Name=Cmus
+Comment=C* Music Player
+Exec=pantheon-terminal -e /usr/bin/cmus %F
+Terminal=false
+Categories=AudioVideo;Player;Video;
