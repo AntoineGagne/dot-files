@@ -94,3 +94,7 @@
     path = "scripts/haskell/create-gitignore"
     url = https://github.com/AntoineGagne/create-gitignore.git
     ignore = dirty
+[submodule "scripts/python/cmus-notify"]
+    path = "scripts/python/cmus-notify"
+    url = https://github.com/AntoineGagne/cmus-notify.git
+    ignore = dirty
