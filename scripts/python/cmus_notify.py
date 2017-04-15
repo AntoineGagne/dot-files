@@ -49,6 +49,12 @@ ICONS_BY_STATUS = {
     'playing': 'stock_media-play',
     'stopped': 'stock_media-stop'
 }
+#: The icon's path to be used by default
+DEFAULT_ICON_PATH = ''
+#: The default timeout for the notification to disappear
+DEFAULT_TIMEOUT = 5000
+#: The default name of the application
+DEFAULT_APPLICATION_NAME = 'Cmus'
 
 
 class Notifier:
@@ -72,9 +78,9 @@ class Notifier:
         :raises ImportError: If the library :module:`notify` is not installed
         """
         notify2.init(self.application_name)
-        notification = notify2.Notification(title, text, kwargs.get('icon_path', ''))
+        notification = notify2.Notification(title, text, kwargs.get('icon_path', DEFAULT_ICON_PATH))
         notification.set_urgency(kwargs.get('urgency', notify2.URGENCY_LOW))
-        notification.timeout = kwargs.get('timeout', 5000)
+        notification.timeout = kwargs.get('timeout', DEFAULT_TIMEOUT)
         notification.show()
 
 
@@ -229,5 +235,5 @@ if __name__ == '__main__':
         _format_left_fields
     )
     TITLE, TEXT = _format_notification_message(STATUS_INFORMATION)
-    NOTIFIER = Notifier('Cmus')
+    NOTIFIER = Notifier(DEFAULT_APPLICATION_NAME)
     NOTIFIER.send_notification(TITLE, TEXT, icon_path=ICONS_BY_STATUS.get(STATUS_INFORMATION.status, ''))
