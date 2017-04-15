@@ -25,7 +25,8 @@
 import sys
 from collections import defaultdict
 from functools import reduce
-from subprocess import call
+
+import notify2
 
 
 #: Default text for the display values
@@ -61,21 +62,7 @@ class Notifier:
         """
         self.application_name = application_name
 
-    def send_notification(self, title, text, icon_path=''):
-        """Send the notification to the OS.
-
-        :param title: The message's title
-        :type title: str
-        :param text: The message's body
-        :type text: str
-        """
-        try:
-            self._send_notification_with_library(title, text, icon_path)
-        except ImportError:
-            call('notify-send {0} {1} -i {2}'.format(title, text, icon_path))
-
-
-    def _send_notification_with_library(self, title, text, icon_path=''):
+    def send_notification(self, title, text, **kwargs):
         """Send the notification to the OS with a Python library.
 
         :param title: The message's title
@@ -84,10 +71,10 @@ class Notifier:
         :type text: str
         :raises ImportError: If the library :module:`notify` is not installed
         """
-        import notify2
         notify2.init(self.application_name)
-        notification = notify2.Notification(title, text, icon_path)
-        notification.set_urgency(notify2.URGENCY_LOW)
+        notification = notify2.Notification(title, text, kwargs.get('icon_path', ''))
+        notification.set_urgency(kwargs.get('urgency', notify2.URGENCY_LOW))
+        notification.timeout = kwargs.get('timeout', 5000)
         notification.show()
 
 
@@ -242,5 +229,5 @@ if __name__ == '__main__':
         _format_left_fields
     )
     TITLE, TEXT = _format_notification_message(STATUS_INFORMATION)
-    NOTIFIER = Notifier('Cmus Media Player')
-    NOTIFIER.send_notification(TITLE, TEXT, ICONS_BY_STATUS.get(STATUS_INFORMATION.status, ''))
+    NOTIFIER = Notifier('Cmus')
+    NOTIFIER.send_notification(TITLE, TEXT, icon_path=ICONS_BY_STATUS.get(STATUS_INFORMATION.status, ''))
