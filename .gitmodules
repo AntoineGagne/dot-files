@@ -98,3 +98,7 @@
     path = "scripts/python/cmus-notify"
     url = https://github.com/AntoineGagne/cmus-notify.git
     ignore = dirty
+[submodule "vim/.vim/bundle/vimwiki"]
+    path = "vim/.vim/bundle/vimwiki"
+    url = https://github.com/vimwiki/vimwiki.git
+    ignore = dirty

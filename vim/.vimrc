@@ -76,6 +76,9 @@ call vundle#begin()
     " {{{2 Haskell unicode symbols
     Plugin 'Twinside/vim-haskellConceal'
 
+    " {{{2 Note Taking
+    Plugin 'vimwiki/vimwiki'
+
 " All of your Plugins must be added before the following line
 " Required
 call vundle#end()
