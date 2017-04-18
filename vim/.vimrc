@@ -16,6 +16,9 @@ call vundle#begin()
     Plugin 'Valloric/YouCompleteMe'
     " Plugin 'Shougo/neocomplete.vim'
 
+    " {{{2 Surrounding Text Objects
+    Plugin 'tpope/vim-surround'
+
     " {{{2 Status bar
     Plugin 'vim-airline/vim-airline'
     Plugin 'vim-airline/vim-airline-themes'

@@ -102,3 +102,7 @@
     path = "vim/.vim/bundle/vimwiki"
     url = https://github.com/vimwiki/vimwiki.git
     ignore = dirty
+[submodule "vim/.vim/bundle/vim-surround"]
+    path = "vim/.vim/bundle/vim-surround"
+    url = https://github.com/tpope/vim-surround.git
+    ignore = dirty
