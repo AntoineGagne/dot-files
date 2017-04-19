@@ -35,6 +35,8 @@ urxvt.cursorBlink: true
 urxvt.pointerBlankDelay: 60
 
 ! {{{1 Colors
+urxvt.pointerColor: #839496
+
 urxvt.background: #252E32
 urxvt.foreground: #94a3a5
 urxvt.transparent: true
