@@ -12,7 +12,8 @@ SOFTWARE_DIRS := bash \
 	cmus \
 	latex \
 	xbindkeys \
-	urxvt
+	urxvt \
+	tmux
 INSTALL_DIRS := $(SOFTWARE_DIRS:%=install-%)
 
 YOUCOMPLETEME_DIR := ~/.vim/bundle/YouCompleteMe

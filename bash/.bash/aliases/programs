@@ -32,3 +32,7 @@ alias parallel='parallel --no-notice'
 # Terminal History
 
 alias h='history'
+
+# Tmux
+# This forces tmux to assume the terminal has 256 colors
+alias tmux="tmux -2"
