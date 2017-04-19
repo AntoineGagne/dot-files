@@ -63,7 +63,7 @@ urxvt.font: xft:Roboto Mono for Powerline:style=Regular:size=10:antialias=true,x
 urxvt.boldFont: xft:Roboto Mono for Powerline:style=Bold:size=10:antialias=true
 urxvt.italicFont: xft:Roboto Mono for Powerline:style=Italic:size=10:antialias=true
 urxvt.boldItalicFont: xft:Roboto Mono for Powerline:style=Bold Italic:size=10:antialias=true
-urxvt.letterSpace: -1
+urxvt.letterSpace: 0
 
 urxvt.xftAutoHint: true
 Xft.antialias: true
