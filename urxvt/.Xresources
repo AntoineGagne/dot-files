@@ -17,11 +17,6 @@ urxvt.scrollBar_align: bottom
 urxvt.scrollstyle: plain
 urxvt.thickness: 1
 
-! When you scroll a pager in a secondary screen (e.g. less without the -X
-! option), it may be a good idea to disable the scrollback buffer to be able to
-! scroll in the pager itself, instead of the terminal's buffer: this is default
-! and unchangeable behaviour in konsole and vte-based terminals.
-! In urxvt, to disable the scrollback buffer for the secondary screen: 
 urxvt.secondaryScreen: 1
 urxvt.secondaryScroll: 0
 
@@ -38,11 +33,12 @@ urxvt.pointerBlankDelay: 60
 ! {{{1 Colors
 urxvt.pointerColor: #839496
 
-urxvt.background: #252E32
+urxvt.background: [95]#252E32
 urxvt.foreground: #94a3a5
 urxvt.transparent: true
-urxvt.shading: 100
-urxvt.inheritPixmap: true
+urxvt.shading: 30
+urxvt.fading: 60
+! urxvt.inheritPixmap: true
 
 urxvt.color0: #073642
 urxvt.color1: #dc322f
@@ -63,7 +59,7 @@ urxvt.color15: #6c71c4
 
 
 ! {{{1 Fonts
-urxvt.font: xft:Roboto Mono for Powerline:style=Regular:size=10:antialias=true
+urxvt.font: xft:Roboto Mono for Powerline:style=Regular:size=10:antialias=true,xft:Inconsolata\ for\ Powerline:pixelsize=12
 urxvt.boldFont: xft:Roboto Mono for Powerline:style=Bold:size=10:antialias=true
 urxvt.italicFont: xft:Roboto Mono for Powerline:style=Italic:size=10:antialias=true
 urxvt.boldItalicFont: xft:Roboto Mono for Powerline:style=Bold Italic:size=10:antialias=true
@@ -78,10 +74,23 @@ Xft.hintstyle: hintslight
 
 ! {{{1 Extensions
 
+urxvt.perl-ext-common: default,matcher,tabbed,selection-to-clipboard,background,confirm-paste,keysym-list,clipboard
+
 ! {{{2 URL Links
-urxvt.perl-ext-common: default,matcher,tabbed,selection-to-clipboard,background,confirm-paste,keysym-list
 urxvt.urlLauncher: firefox
 urxvt.matcher.button: 1
+
+! {{{2 Tabs
+urxvt.tabbed.tabbar-fg: 2
+urxvt.tabbed.tabbar-bg: 0
+urxvt.tabbed.tab-fg: 3
+urxvt.tabbed.tab-bg: 0
 urxvt.keysym.Control-Shift-T: perl:tabbed:new_tab
 urxvt.keysym.Shift-Right: perl:tabbed:next_tab
 urxvt.keysym.Shift-Left: perl:tabbed:prev_tab
+urxvt.clipboard.autocopy: false
+
+urxvt.iso14755: false
+urxvt.keysym.Control-Shift-C: perl:clipboard:copy
+urxvt.keysym.Control-Shift-V: perl:clipboard:paste
+urxvt.keysym.M-V: perl:clipboard:paste_escaped
