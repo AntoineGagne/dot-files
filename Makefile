@@ -11,7 +11,8 @@ SOFTWARE_DIRS := bash \
 	glances \
 	cmus \
 	latex \
-	xbindkeys
+	xbindkeys \
+	urxvt
 INSTALL_DIRS := $(SOFTWARE_DIRS:%=install-%)
 
 YOUCOMPLETEME_DIR := ~/.vim/bundle/YouCompleteMe

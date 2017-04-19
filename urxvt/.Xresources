@@ -1,0 +1,36 @@
+! {{{1 Scrolling
+! do not scroll with output
+urxvt.scrollTtyOutput: false
+
+! scroll in relation to buffer (with mouse scroll or Shift+Page Up)
+urxvt.scrollWithBuffer: true
+
+! scroll back to the bottom on keypress
+urxvt.scrollTtyKeypress: true
+
+URxvt*saveLines: 10000
+URxvt*scrollBar: false
+URxvt*scrollBar_right: true
+URxvt*scrollColor: #c2dd5a
+URxvt*scrollBar_floating: true
+URxvt*scrollstyle: plain
+
+! When you scroll a pager in a secondary screen (e.g. less without the -X
+! option), it may be a good idea to disable the scrollback buffer to be able to
+! scroll in the pager itself, instead of the terminal's buffer: this is default
+! and unchangeable behaviour in konsole and vte-based terminals.
+! In urxvt, to disable the scrollback buffer for the secondary screen: 
+urxvt.secondaryScreen: 1
+urxvt.secondaryScroll: 0
+
+! {{{1 Colors
+urxvt.background: #252E32
+urxvt.foreground: #94a3a5
+urxvt.transparent: true
+urxvt.shading: 90
+urxvt.inheritPixmap: true
+
+! {{{1 Fonts
+urxvt.font: xft:Roboto Mono for Powerline:size=10
+urxvt.boldFont: xft:Roboto Mono Bold for Powerline:size=10
+urxvt.letterSpace: -1
