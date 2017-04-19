@@ -34,10 +34,12 @@ urxvt.pointerBlankDelay: 60
 urxvt.pointerColor: #839496
 
 urxvt.background: [95]#252E32
-urxvt.foreground: #94a3a5
-urxvt.transparent: true
-urxvt.shading: 30
-urxvt.fading: 60
+urxvt.foreground: [95]#94a3a5
+urxvt*depth: 32
+! This is for fake transparency
+! urxvt.transparent: true
+! urxvt.shading: 30
+! urxvt.fading: 60
 ! urxvt.inheritPixmap: true
 
 urxvt.color0: #073642
