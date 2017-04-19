@@ -3,6 +3,6 @@ Type=Application
 Encoding=UTF-8
 Name=Cmus
 Comment=C* Music Player
-Exec=pantheon-terminal -e /usr/bin/cmus %F %U
+Exec=urxvt -e /usr/bin/cmus %F %U
 Terminal=false
 Categories=AudioVideo;Audio;
