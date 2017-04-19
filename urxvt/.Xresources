@@ -15,6 +15,7 @@ urxvt.scrollColor: #939393
 urxvt.scrollBar_floating: true
 urxvt.scrollBar_align: bottom
 urxvt.scrollstyle: plain
+urxvt.thickness: 1
 
 ! When you scroll a pager in a secondary screen (e.g. less without the -X
 ! option), it may be a good idea to disable the scrollback buffer to be able to
@@ -68,7 +69,6 @@ urxvt.boldItalicFont: xft:Roboto Mono for Powerline:style=Bold Italic:size=10:an
 urxvt.letterSpace: -1
 
 urxvt.xftAutoHint: true
-Xft.dpi: 96
 Xft.antialias: true
 Xft.rgba: none
 Xft.hinting: true
