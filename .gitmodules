@@ -106,3 +106,7 @@
     path = "vim/.vim/bundle/vim-surround"
     url = https://github.com/tpope/vim-surround.git
     ignore = dirty
+[submodule "fonts/.fonts/powerline-patched-fonts"]
+    path = "fonts/.fonts/powerline-patched-fonts"
+    url = https://github.com/powerline/fonts.git
+    ignore = dirty
