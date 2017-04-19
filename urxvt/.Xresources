@@ -13,6 +13,7 @@ urxvt.scrollBar: true
 urxvt.scrollBar_right: true
 urxvt.scrollColor: #939393
 urxvt.scrollBar_floating: true
+urxvt.scrollBar_align: bottom
 urxvt.scrollstyle: plain
 
 ! When you scroll a pager in a secondary screen (e.g. less without the -X
@@ -23,6 +24,16 @@ urxvt.scrollstyle: plain
 urxvt.secondaryScreen: 1
 urxvt.secondaryScroll: 0
 
+! {{{1 Borders
+urxvt.borderLess: false
+
+! {{{1 Glyphs
+urxvt.skipBuiltinGlyphs: false
+
+! {{{1 Cursor
+urxvt.cursorBlink: true
+urxvt.pointerBlankDelay: 60
+
 ! {{{1 Colors
 urxvt.background: #252E32
 urxvt.foreground: #94a3a5
@@ -30,22 +41,22 @@ urxvt.transparent: true
 urxvt.shading: 100
 urxvt.inheritPixmap: true
 
-URxvt*color0:  #073642
-URxvt*color1:  #dc322f
-URxvt*color2:  #859900
-URxvt*color3:  #b58900
-URxvt*color4:  #268bd2
-URxvt*color5:  #ec0048
-URxvt*color6:  #2aa198
-URxvt*color7:  #94a3a5
-URxvt*color8:  #586e75
-URxvt*color9:  #cb4b16
-URxvt*color10: #859900
-URxvt*color11: #b58900
-URxvt*color12: #268bd2
-URxvt*color13: #d33682
-URxvt*color14: #2aa198
-URxvt*color15: #6c71c4
+urxvt.color0:  #073642
+urxvt.color1:  #dc322f
+urxvt.color2:  #859900
+urxvt.color3:  #b58900
+urxvt.color4:  #268bd2
+urxvt.color5:  #ec0048
+urxvt.color6:  #2aa198
+urxvt.color7:  #94a3a5
+urxvt.color8:  #586e75
+urxvt.color9:  #cb4b16
+urxvt.color10: #859900
+urxvt.color11: #b58900
+urxvt.color12: #268bd2
+urxvt.color13: #d33682
+urxvt.color14: #2aa198
+urxvt.color15: #6c71c4
 
 ! {{{1 Fonts
 urxvt.font: xft:Roboto Mono for Powerline:size=10
