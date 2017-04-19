@@ -61,10 +61,10 @@ urxvt.color14: #2aa198
 urxvt.color15: #6c71c4
 
 ! {{{1 Fonts
-urxvt.font: xft:Roboto Mono for Powerline:size=10
-urxvt.boldFont: xft:Roboto Mono Bold for Powerline:size=10
-urxvt.italicFont: xft:Roboto Mono Italic for Powerline:size=10
-urxvt.boldItalicFont: xft:Roboto Mono Bold Italic for Powerline:size=10
+urxvt.font: xft:Roboto Mono for Powerline:style=Regular:size=10:antialias=true
+urxvt.boldFont: xft:Roboto Mono for Powerline:style=Bold:size=10:antialias=true
+urxvt.italicFont: xft:Roboto Mono for Powerline:style=Italic:size=10:antialias=true
+urxvt.boldItalicFont: xft:Roboto Mono for Powerline:style=Bold Italic:size=10:antialias=true
 urxvt.letterSpace: -1
 
 urxvt.xftAutoHint: true
