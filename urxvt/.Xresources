@@ -24,6 +24,7 @@ urxvt.secondaryScroll: 0
 ! {{{1 Borders
 
 ! remove border
+urxvt.internalBorder: 5
 urxvt.borderLess: false
 urxvt.title: Terminal
 urxvt.termName:rxvt-unicode
