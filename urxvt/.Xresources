@@ -22,9 +22,12 @@ urxvt.secondaryScreen: 1
 urxvt.secondaryScroll: 0
 
 ! {{{1 Borders
+
+! remove border
 urxvt.borderLess: false
 urxvt.title: Terminal
 urxvt.termName:rxvt-unicode
+urxvt.iconName: string
 
 ! {{{1 Glyphs
 urxvt.skipBuiltinGlyphs: false
@@ -38,7 +41,7 @@ urxvt.pointerColor: #839496
 
 urxvt.background: [95]#252E32
 urxvt.foreground: [95]#94a3a5
-urxvt*depth: 32
+urxvt.depth: 32
 ! This is for fake transparency
 ! urxvt.transparent: true
 ! urxvt.shading: 30
@@ -62,7 +65,6 @@ urxvt.color13: #d33682
 urxvt.color14: #2aa198
 urxvt.color15: #6c71c4
 
-
 ! {{{1 Fonts
 urxvt.font: xft:Roboto Mono for Powerline:style=Regular:size=10:antialias=true,xft:Inconsolata\ for\ Powerline:pixelsize=12
 urxvt.boldFont: xft:Roboto Mono for Powerline:style=Bold:size=10:antialias=true
@@ -79,23 +81,24 @@ Xft.hintstyle: hintslight
 
 ! {{{1 Extensions
 
-urxvt.perl-ext-common: default,matcher,tabbed,selection-to-clipboard,background,confirm-paste,keysym-list,clipboard
+urxvt.perl-ext-common: default,matcher,selection-to-clipboard,background,confirm-paste,keysym-list,clipboard
 
 ! {{{2 URL Links
 urxvt.urlLauncher: firefox
 urxvt.matcher.button: 1
 
-! {{{2 Tabs
-urxvt.tabbed.tabbar-fg: 2
-urxvt.tabbed.tabbar-bg: 0
-urxvt.tabbed.tab-fg: 3
-urxvt.tabbed.tab-bg: 0
-urxvt.keysym.Control-Shift-T: perl:tabbed:new_tab
-urxvt.keysym.Shift-Right: perl:tabbed:next_tab
-urxvt.keysym.Shift-Left: perl:tabbed:prev_tab
-urxvt.clipboard.autocopy: false
+! {{{2 Tabs (tabbed extension)
+! urxvt.tabbed.tabbar-fg: 2
+! urxvt.tabbed.tabbar-bg: 0
+! urxvt.tabbed.tab-fg: 3
+! urxvt.tabbed.tab-bg: 0
+! urxvt.keysym.Control-Shift-T: perl:tabbed:new_tab
+! urxvt.keysym.Shift-Right: perl:tabbed:next_tab
+! urxvt.keysym.Shift-Left: perl:tabbed:prev_tab
 
+! {{{2 Clipboard
 urxvt.iso14755: false
+urxvt.clipboard.autocopy: false
 urxvt.keysym.Control-Shift-C: perl:clipboard:copy
 urxvt.keysym.Control-Shift-V: perl:clipboard:paste
 urxvt.keysym.M-V: perl:clipboard:paste_escaped
