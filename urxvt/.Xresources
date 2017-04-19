@@ -79,6 +79,9 @@ Xft.hintstyle: hintslight
 ! {{{1 Extensions
 
 ! {{{2 URL Links
-URxvt.perl-ext-common: default,matcher
-URxvt.urlLauncher: firefox
-URxvt.matcher.button: 1
+urxvt.perl-ext-common: default,matcher,tabbed,selection-to-clipboard,background,confirm-paste,keysym-list
+urxvt.urlLauncher: firefox
+urxvt.matcher.button: 1
+urxvt.keysym.Control-Shift-T: perl:tabbed:new_tab
+urxvt.keysym.Shift-Right: perl:tabbed:next_tab
+urxvt.keysym.Shift-Left: perl:tabbed:prev_tab
