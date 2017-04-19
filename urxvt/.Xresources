@@ -16,12 +16,15 @@ urxvt.scrollBar_floating: true
 urxvt.scrollBar_align: bottom
 urxvt.scrollstyle: plain
 urxvt.thickness: 1
+urxvt.transpscrollbar:true
 
 urxvt.secondaryScreen: 1
 urxvt.secondaryScroll: 0
 
 ! {{{1 Borders
 urxvt.borderLess: false
+urxvt.title: Terminal
+urxvt.termName:rxvt-unicode
 
 ! {{{1 Glyphs
 urxvt.skipBuiltinGlyphs: false
