@@ -44,22 +44,23 @@ urxvt.transparent: true
 urxvt.shading: 100
 urxvt.inheritPixmap: true
 
-urxvt.color0:  #073642
-urxvt.color1:  #dc322f
-urxvt.color2:  #859900
-urxvt.color3:  #b58900
-urxvt.color4:  #268bd2
-urxvt.color5:  #ec0048
-urxvt.color6:  #2aa198
-urxvt.color7:  #94a3a5
-urxvt.color8:  #586e75
-urxvt.color9:  #cb4b16
+urxvt.color0: #073642
+urxvt.color1: #dc322f
+urxvt.color2: #859900
+urxvt.color3: #b58900
+urxvt.color4: #268bd2
+urxvt.color5: #ec0048
+urxvt.color6: #2aa198
+urxvt.color7: #94a3a5
+urxvt.color8: #586e75
+urxvt.color9: #cb4b16
 urxvt.color10: #859900
 urxvt.color11: #b58900
 urxvt.color12: #268bd2
 urxvt.color13: #d33682
 urxvt.color14: #2aa198
 urxvt.color15: #6c71c4
+
 
 ! {{{1 Fonts
 urxvt.font: xft:Roboto Mono for Powerline:style=Regular:size=10:antialias=true
@@ -78,6 +79,6 @@ Xft.hintstyle: hintslight
 ! {{{1 Extensions
 
 ! {{{2 URL Links
-URxvt.perl-ext-common : default,matcher
-URxvt.urlLauncher     : firefox
-URxvt.matcher.button  : 1
+URxvt.perl-ext-common: default,matcher
+URxvt.urlLauncher: firefox
+URxvt.matcher.button: 1
