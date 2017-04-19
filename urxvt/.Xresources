@@ -8,12 +8,12 @@ urxvt.scrollWithBuffer: true
 ! scroll back to the bottom on keypress
 urxvt.scrollTtyKeypress: true
 
-URxvt*saveLines: 10000
-URxvt*scrollBar: false
-URxvt*scrollBar_right: true
-URxvt*scrollColor: #c2dd5a
-URxvt*scrollBar_floating: true
-URxvt*scrollstyle: plain
+urxvt.saveLines: 10000
+urxvt.scrollBar: true
+urxvt.scrollBar_right: true
+urxvt.scrollColor: #939393
+urxvt.scrollBar_floating: true
+urxvt.scrollstyle: plain
 
 ! When you scroll a pager in a secondary screen (e.g. less without the -X
 ! option), it may be a good idea to disable the scrollback buffer to be able to
@@ -27,10 +27,44 @@ urxvt.secondaryScroll: 0
 urxvt.background: #252E32
 urxvt.foreground: #94a3a5
 urxvt.transparent: true
-urxvt.shading: 90
+urxvt.shading: 100
 urxvt.inheritPixmap: true
+
+URxvt*color0:  #073642
+URxvt*color1:  #dc322f
+URxvt*color2:  #859900
+URxvt*color3:  #b58900
+URxvt*color4:  #268bd2
+URxvt*color5:  #ec0048
+URxvt*color6:  #2aa198
+URxvt*color7:  #94a3a5
+URxvt*color8:  #586e75
+URxvt*color9:  #cb4b16
+URxvt*color10: #859900
+URxvt*color11: #b58900
+URxvt*color12: #268bd2
+URxvt*color13: #d33682
+URxvt*color14: #2aa198
+URxvt*color15: #6c71c4
 
 ! {{{1 Fonts
 urxvt.font: xft:Roboto Mono for Powerline:size=10
 urxvt.boldFont: xft:Roboto Mono Bold for Powerline:size=10
+urxvt.italicFont: xft:Roboto Mono Italic for Powerline:size=10
+urxvt.boldItalicFont: xft:Roboto Mono Bold Italic for Powerline:size=10
 urxvt.letterSpace: -1
+
+urxvt.xftAutoHint: true
+Xft.dpi: 96
+Xft.antialias: true
+Xft.rgba: none
+Xft.hinting: true
+Xft.autohint: true
+Xft.hintstyle: hintslight
+
+! {{{1 Extensions
+
+! {{{2 URL Links
+URxvt.perl-ext-common : default,matcher
+URxvt.urlLauncher     : firefox
+URxvt.matcher.button  : 1
