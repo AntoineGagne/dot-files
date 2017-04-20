@@ -2,7 +2,7 @@
 	email = gagnantoine@gmail.com
 	name = Antoine Gagné
 [init]
-	templatedir = ~/.git_templates
+	templatedir = ~/.git.d/git_templates
 [push]
 	default = simple
 [credential]
@@ -10,7 +10,7 @@
 [color]
 	ui = auto
 [core]
-	excludesfile = ~/.global_gitignore
+	excludesfile = ~/.git.d/global_gitignore
 [diff]
 	algorithm = patience
 [web]
