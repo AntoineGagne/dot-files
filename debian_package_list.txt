@@ -17,6 +17,7 @@ dos2unix
 dvdrip
 easytag
 etoolbox
+feh
 ffmpeg
 firefox
 flashplugin-installer
@@ -51,7 +52,9 @@ libghc-libxml-sax-dev
 libgtk-3-dev
 libjasper-dev
 libjpeg8-dev
+libperl-dev
 libpng12-dev
+libqtgui4-perl
 libswscale-dev
 libtiff5-dev
 libtool
@@ -79,6 +82,7 @@ oracle-java8-set-default
 pandoc
 par
 parallel
+perlqt-dev
 powerline
 python3.5-dev
 python3-apt-dbg
@@ -116,6 +120,7 @@ thunderbird
 thunderbird-gnome-support
 tlp
 tlp-rdw
+tmux
 transmission
 tree
 ttf-liberation
