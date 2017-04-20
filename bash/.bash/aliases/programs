@@ -29,8 +29,9 @@ alias showuserpkg='comm -23 <(apt-mark showmanual | sort -u) <(gzip -dc /var/log
 alias parallel='parallel --no-notice'
 
 
-# Terminal History
+# Terminal
 
+alias e='exit'
 alias h='history'
 
 # Tmux
