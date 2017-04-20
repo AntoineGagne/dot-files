@@ -1,0 +1,3 @@
+urxvt.cursorBlink: true
+urxvt.pointerBlankDelay: 60
+urxvt.pointerColor: #839496

@@ -1,0 +1,18 @@
+! {{{1 rxvt-unicode
+#include ".Xresources.d/rxvt-unicode/borders"
+#include ".Xresources.d/rxvt-unicode/colors"
+#include ".Xresources.d/rxvt-unicode/cursor"
+#include ".Xresources.d/rxvt-unicode/fonts"
+#include ".Xresources.d/rxvt-unicode/misc"
+#include ".Xresources.d/rxvt-unicode/scrollbar"
+#include ".Xresources.d/rxvt-unicode/scrolling"
+
+! {{{2 Extensions
+urxvt.perl-ext-common: default,matcher,selection-to-clipboard,background,confirm-paste,keysym-list,clipboard
+#include ".Xresources.d/rxvt-unicode/extensions/clipboard"
+#include ".Xresources.d/rxvt-unicode/extensions/matcher"
+! #include ".Xresources.d/rxvt-unicode/extensions/tabbed"
+
+
+! {{{1 XFonts
+#include ".Xresources.d/xfonts"

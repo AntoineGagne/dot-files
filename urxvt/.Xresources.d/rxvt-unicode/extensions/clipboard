@@ -1,0 +1,5 @@
+urxvt.iso14755: false
+urxvt.clipboard.autocopy: false
+urxvt.keysym.Control-Shift-C: perl:clipboard:copy
+urxvt.keysym.Control-Shift-V: perl:clipboard:paste
+urxvt.keysym.M-V: perl:clipboard:paste_escaped

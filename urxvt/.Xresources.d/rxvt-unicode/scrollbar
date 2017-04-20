@@ -1,0 +1,8 @@
+urxvt.scrollBar: true
+urxvt.scrollBar_right: true
+urxvt.scrollColor: #939393
+urxvt.scrollBar_floating: true
+urxvt.scrollBar_align: bottom
+urxvt.scrollstyle: plain
+urxvt.thickness: 1
+urxvt.transpscrollbar:true

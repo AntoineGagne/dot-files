@@ -1,0 +1,5 @@
+urxvt.title: Terminal
+urxvt.termName:rxvt-unicode
+urxvt.iconName: string
+
+urxvt.skipBuiltinGlyphs: false
