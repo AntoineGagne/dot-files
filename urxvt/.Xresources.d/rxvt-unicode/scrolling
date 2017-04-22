@@ -1,11 +1,13 @@
-! do not scroll with output
-urxvt.scrollTtyOutput: false
+! Scroll with output
+urxvt.scrollTtyOutput: true
 
-! scroll in relation to buffer (with mouse scroll or Shift+Page Up)
-urxvt.scrollWithBuffer: true
+! Scroll in relation to buffer (with mouse scroll or Shift+Page Up)
+urxvt.scrollWithBuffer: false
 
-! scroll back to the bottom on keypress
-urxvt.scrollTtyKeypress: true
+! Scroll back to the bottom on keypress
+urxvt.scrollTtyKeypress: false
+
+urxvt.skipScroll: true
 
 urxvt.saveLines: 10000
 
