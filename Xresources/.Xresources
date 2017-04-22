@@ -1,6 +1,7 @@
 ! {{{1 rxvt-unicode
 #include ".Xresources.d/rxvt-unicode/borders"
-#include ".Xresources.d/rxvt-unicode/colors"
+#include ".Xresources.d/rxvt-unicode/themes/elementary-os.theme.xresources"
+! #include ".Xresources.d/rxvt-unicode/themes/gruvbox.theme.xresources"
 #include ".Xresources.d/rxvt-unicode/cursor"
 #include ".Xresources.d/rxvt-unicode/fonts"
 #include ".Xresources.d/rxvt-unicode/misc"
