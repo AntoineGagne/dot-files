@@ -71,6 +71,8 @@ maven
 mercurial
 mkvtoolnix
 mkvtoolnix-gui
+mplayer
+mutt
 neovim
 nethack-console
 nodejs
