@@ -119,7 +119,7 @@ if ! shopt -oq posix; then
   fi
 fi
 
-# If this is an xterm set more declarative titles 
+# If this is an xterm set more declarative titles
 # "dir: last_cmd" and "actual_cmd" during execution
 # If you want to exclude a cmd from being printed see line 156
 case "$TERM" in
@@ -178,31 +178,36 @@ xterm*|rxvt*)
     ;;
 esac
 
+
 # Set Stack autocompletion on tab
-eval "$(stack --bash-completion-script stack)"
+if type "stack" > /dev/null 2>&1; then
+    eval "$(stack --bash-completion-script stack)"
+fi
 
 # virtualenvwrapper needed configuration
 export WORKON_HOME=$HOME/.virtualenvs
-source /usr/local/bin/virtualenvwrapper_lazy.sh
+[ -f /usr/local/bin/virtualenvwrapper.sh ] && source /usr/local/bin/virtualenvwrapper.sh
 
 # Colorful manpages
 export LESS_TERMCAP_mb=$(printf '\e[01;31m') # enter blinking mode – red
 export LESS_TERMCAP_md=$(printf '\e[01;35m') # enter double-bright mode – bold, magenta
-export LESS_TERMCAP_me=$(printf '\e[0m') # turn off all appearance modes (mb, md, so, us)
-export LESS_TERMCAP_se=$(printf '\e[0m') # leave standout mode
+export LESS_TERMCAP_me=$(printf '\e[0m')     # turn off all appearance modes (mb, md, so, us)
+export LESS_TERMCAP_se=$(printf '\e[0m')     # leave standout mode
 export LESS_TERMCAP_so=$(printf '\e[01;33m') # enter standout mode – yellow
-export LESS_TERMCAP_ue=$(printf '\e[0m') # leave underline mode
-export LESS_TERMCAP_us=$(printf '\e[04;36m') # enter underline mode – cyan 
+export LESS_TERMCAP_ue=$(printf '\e[0m')     # leave underline mode
+export LESS_TERMCAP_us=$(printf '\e[04;36m') # enter underline mode – cyan
 
 ### Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"
 
-# added by travis gem
+# Added by travis gem
 [ -f /home/twain/.travis/travis.sh ] && source /home/twain/.travis/travis.sh
 export PYTHONSTARTUP=~/.pythonrc.py
 
 # Add autocompletion to the custom Haskell scripts
-eval "$(create-gitignore --bash-completion-script create-gitignore)"
+if type "create-gitignore" > /dev/null 2>&1; then
+    eval "$(create-gitignore --bash-completion-script create-gitignore)"
+fi
 
 # Run xbindkeys if it is installed and not running
 if type "xbindkeys" > /dev/null 2>&1 && ! pidof -x "xbindkeys" > /dev/null 2>&1; then
