@@ -1,3 +1,4 @@
+# vim: ft=sh
 # Files
 
 alias sdiff='sdiff -ZEB'

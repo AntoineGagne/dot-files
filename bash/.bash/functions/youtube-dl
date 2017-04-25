@@ -1,4 +1,5 @@
-function playlist_to_links {
+# vim: ft=sh
+playlist_to_links() {
     if [[ -z "$1" ]];
     then
         echo "Please, specify the playlist code as argument" 1>&2
@@ -48,25 +49,25 @@ function playlist_to_links {
     rm -f ${TMPFILE}*
 }
 
-function parallel_download {
+parallel_download() {
     parallel youtube-dl -o "\%\(title\)s.\%\(ext\)s" -x :::: "${1}"
 }
 
-function download_playlist {
+download_playlist() {
     youtube-dl -o '%(playlist)s/%(playlist_index)s - %(title)s.%(ext)s' -x "${1}"
 }
 
-function download_playlists {
+download_playlists() {
     export -f download_playlist
     parallel download_playlist :::: "${1}"
     rm "${1}"
 }
 
-function download_video_playlist {
+download_video_playlist() {
     youtube-dl  --prefer-free-formats --all-subs -o '%(playlist)s/%(playlist_index)s - %(title)s.%(ext)s' "${1}"
 }
 
-function download_video_playlists {
+download_video_playlists() {
     export -f download_video_playlist
     parallel download_video_playlist :::: "${1}"
     rm "${1}"

@@ -1,4 +1,5 @@
+# vim: ft=sh
 # Execute previous command as root
-function sprev {
+sprev() {
     sudo $(history -p \!\!)
 }

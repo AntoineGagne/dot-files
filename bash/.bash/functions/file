@@ -1,5 +1,6 @@
+# vim: ft=sh
 # Extract archives of any type
-function extract {
+extract() {
     if [ -z "$1" ]; then
         # display usage if no parameters given
         echo -n "Usage: extract <path/file_name>"
@@ -35,7 +36,7 @@ function extract {
 }
 complete -o default extract
 
-function gitstasharchive {
+gitstasharchive() {
     stash_name=$(git stash create)
-    git archive --format=tar -o "${1}" ${stash_name}
+    git archive --format=tar -o "${1}" "${stash_name}"
 }

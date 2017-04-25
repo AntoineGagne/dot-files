@@ -1,3 +1,5 @@
+# vim:ft=sh
+
 alias cal='cal -A 11'
 alias now='date +"%T"'
 alias nowtime=now

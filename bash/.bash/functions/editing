@@ -1,6 +1,7 @@
+# vim: ft=sh
 # Tabs to spaces
 
-function tabs2spaces {
+tabs2spaces() {
     if [ -z "${1}" ]; then
         echo "You must enter a filename"
     else
@@ -15,7 +16,7 @@ function tabs2spaces {
 
 # Output CSV files as tables
 
-function outputcsvtables {
+outputcsvtables() {
     if [ -z "${1}" ]; then
         echo "You must enter a filename"
     else

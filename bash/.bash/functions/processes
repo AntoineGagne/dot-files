@@ -1,5 +1,6 @@
+# vim: ft=sh
 # Run the process in background
-function rb {
+rb() {
     "$@" &>/dev/null &
 }
 complete -F _command rb

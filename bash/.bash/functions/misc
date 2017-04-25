@@ -1,11 +1,12 @@
+# vim: ft=sh
 # List the top 10 commands used
-function top10 {
+top10() {
     history | awk '{CMD[$2]++;count++;}END { for (a in CMD)print CMD[a] " " CMD[a]/count*100 "% " a;}' | grep -v "./" | column -c3 -s " " -t | sort -nr | nl | head -n10
 }
 
 
 # Output a funny message
-function startup_message {
+startup_message() {
     cow_forms=(apt beavis.zen bong bud-frogs bunny calvin cheese cock cower daemon default
                dragon dragon-and-cow duck elephant elephant-in-snake eyes flaming-sheep
                ghostbusters gnu head-in hellokitty kiss kitty koala kosh luke-koala

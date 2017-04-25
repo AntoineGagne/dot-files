@@ -1,3 +1,4 @@
+# vim: ft=sh
 alias htop='htop -u twain'
 alias meminfo='free -m -l -t'
 alias cpuinfo='lscpu'
