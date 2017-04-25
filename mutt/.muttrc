@@ -16,6 +16,12 @@ set header_cache=~/.cache/mutt
 # Change the encoding of sent emails
 set send_charset="utf-8"
 
+# Press Esc + 5 to send HTML version of markdown text
+macro compose \e5 "F pandoc -s -f markdown -t html \ny^T^Utext/html; charset=us-ascii\n"
+
+# Do not require to press key after running outside program
+set wait_key=no
+
 # Macros
 source ~/.mutt/macros
 
