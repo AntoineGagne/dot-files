@@ -1,0 +1,3 @@
+# vim: ft=muttrc
+
+macro attach 'V' "<pipe-entry>cat >~/.cache/mutt/mail.html && firefox ~/.cache/mutt/mail.html && rm ~/.cache/mutt/mail.html<enter>"
