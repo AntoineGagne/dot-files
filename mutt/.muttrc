@@ -13,6 +13,14 @@ set mbox= +Inbox
 set spoolfile= +Inbox
 set mbox_type=Maildir
 set header_cache=~/.cache/mutt
+# Change the encoding of sent emails
+set send_charset="utf-8"
+
+# Macros
+source ~/.mutt/macros
+
+# Movement
+set pager_stop=yes
 
 # Colorscheme
 source ~/.mutt/gruvbox-theme
