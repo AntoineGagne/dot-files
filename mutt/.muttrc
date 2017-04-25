@@ -1,0 +1,21 @@
+## General options
+set imap_check_subscribed
+
+# Keep IMAP connection alive by polling intermittently 
+# (time in seconds).
+set imap_keepalive = 300
+# Allow Mutt to open new imap connection automatically.
+unset imap_passive
+set folder=~/.mail
+set mail_check = 60
+set mbox_type=Maildir
+set mbox= +Inbox
+set spoolfile= +Inbox
+set mbox_type=Maildir
+set header_cache=~/.cache/mutt
+
+# Colorscheme
+source ~/.mutt/gruvbox-theme
+
+source ~/.mutt/gmail/gagnantoine/account-settings
+folder-hook gagnantoine@gmail.com/ 'source ~/.mutt/gmail/gagnantoine/account-settings'

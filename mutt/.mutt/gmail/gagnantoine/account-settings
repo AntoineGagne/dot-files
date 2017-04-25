@@ -1,0 +1,28 @@
+# vim: ft=muttrc
+
+# Source passwords
+source "gpg -dq $HOME/.mutt-passwords.gpg |"
+
+# Receive options.
+set imap_user = "gagnantoine@gmail.com"
+set imap_pass = $my_gagnantoine_password
+set folder = "imaps://imap.gmail.com:993"
+set spoolfile = "+INBOX"
+set postponed = "+Drafts"
+set record = +Sent
+
+# Send options.
+set smtp_url = 'smtp://gagnantoine@smtp.gmail.com:587/'
+set smtp_pass = $my_gagnantoine_password
+set realname = 'Antoine Gagné'
+set from = "gagnantoine@gmail.com"
+set hostname = "gmail.com"
+set signature = "Antoine Gagné"
+set imap_keepalive = 900
+
+# Connection options
+set ssl_starttls = yes
+set ssl_force_tls = yes
+
+## Hook
+# account-hook $folder "set imap_user=gagnantoine@gmail.com imap_pass=$my_gmail_application_password"
