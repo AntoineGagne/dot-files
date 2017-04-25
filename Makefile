@@ -28,7 +28,6 @@ YOUCOMPLETEME_FLAGS := --tern-completer \
 
 .PHONY: all
 all: $(SOFTWARE_DIRS) \
-	 setup_vim_plugins \
 	 setup_youcompleteme \
 	 setup_virtual_environments \
 	 install_fonts
@@ -51,7 +50,7 @@ setup_youcompleteme: setup_vim_plugins
 
 .PHONY: install_virtual_environment
 install_virtual_environment:
-	@sudo pip3 install virtualenv virtualenvwrapper
+	@pip3 install virtualenv virtualenvwrapper
 
 .PHONY: setup_virtual_environments
 setup_virtual_environments: install_virtual_environment
