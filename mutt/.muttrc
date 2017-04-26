@@ -16,6 +16,11 @@ set header_cache=~/.cache/mutt
 # Change the encoding of sent emails
 set send_charset="utf-8"
 
+# view html automatically
+auto_view text/html
+# save html for last
+alternative_order text/plain text/enriched text/html
+
 # Press Esc + 5 to send HTML version of markdown text
 macro compose \e5 "F pandoc -s -f markdown -t html \ny^T^Utext/html; charset=us-ascii\n"
 
