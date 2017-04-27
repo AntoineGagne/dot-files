@@ -40,7 +40,7 @@ $(INSTALL_DIRS):
 	@stow $(@:install-%=%) -t ~
 
 .PHONY: setup_vim_plugins
-setup_vim_plugins: vim-install
+setup_vim_plugins: install-vim
 	@nvim +PluginInstall +qa
 	@$(MAKE) -C ~/.vim/bundle/vimproc.vim
 
