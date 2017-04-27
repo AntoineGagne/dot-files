@@ -23,7 +23,7 @@ SOFTWARE_DIRS := bash \
 	xorg
 INSTALL_DIRS := $(SOFTWARE_DIRS:%=install-%)
 
-YOUCOMPLETEME_DIR := ~/.vim/bundle/YouCompleteMe
+YOUCOMPLETEME_DIR := ${HOME}/.vim/bundle/YouCompleteMe
 YOUCOMPLETEME_FLAGS := --tern-completer \
 					   --racer-completer \
 					   --clang-completer
@@ -48,7 +48,7 @@ setup_vim_plugins: install-vim
 
 .PHONY: setup_youcompleteme
 setup_youcompleteme: setup_vim_plugins
-	@./$(YOUCOMPLETEME_DIR)/install.py $(YOUCOMPLETEME_FLAGS)
+	@$(shell exec $(YOUCOMPLETEME_DIR)/install.py $(YOUCOMPLETEME_FLAGS))
 
 .PHONY: install_virtual_environment
 install_virtual_environment:
