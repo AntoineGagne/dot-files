@@ -190,7 +190,13 @@ fi
 
 # virtualenvwrapper needed configuration
 export WORKON_HOME=$HOME/.virtualenvs
-[ -f /usr/local/bin/virtualenvwrapper.sh ] && source /usr/local/bin/virtualenvwrapper.sh
+if [ -f /usr/local/bin/virtualenvwrapper.sh ]; then
+    source /usr/local/bin/virtualenvwrapper.sh
+fi
+
+if [ -f /usr/bin/virtualenvwrapper.sh ]; then
+    source /usr/bin/virtualenvwrapper.sh
+fi
 
 # Colorful manpages
 export LESS_TERMCAP_mb=$(printf '\e[01;31m') # enter blinking mode – red
