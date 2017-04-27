@@ -18,7 +18,8 @@ SOFTWARE_DIRS := bash \
 	Xresources \
 	mutt \
 	javascript \
-	cpp
+	cpp \
+	xmonad
 INSTALL_DIRS := $(SOFTWARE_DIRS:%=install-%)
 
 YOUCOMPLETEME_DIR := ~/.vim/bundle/YouCompleteMe
