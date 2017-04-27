@@ -186,3 +186,11 @@ patched-src
 # End of https://www.gitignore.io/api/dotfilessh
 
 vimwiki_html
+
+**/.xmonad/*
+**/.xmonad/**
+!**/.xmonad/*.hs
+
+**/.vim/spell/*
+**/.vim/spell/**
+!**/.vim/spell/*.add
