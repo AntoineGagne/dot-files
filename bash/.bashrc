@@ -208,11 +208,15 @@ export LESS_TERMCAP_ue=$(printf '\e[0m')     # leave underline mode
 export LESS_TERMCAP_us=$(printf '\e[04;36m') # enter underline mode – cyan
 
 ### Added by the Heroku Toolbelt
-export PATH="/usr/local/heroku/bin:$PATH"
+if [ -d /usr/local/heroku ]; then
+    export PATH="/usr/local/heroku/bin:$PATH"
+fi
 
 # Added by travis gem
 [ -f /home/twain/.travis/travis.sh ] && source /home/twain/.travis/travis.sh
-export PYTHONSTARTUP=~/.pythonrc.py
+if [ -f ~/.pythonrc.py ]; then
+    export PYTHONSTARTUP=~/.pythonrc.py
+fi
 
 # Add autocompletion to the custom Haskell scripts
 if type "create-gitignore" > /dev/null 2>&1; then
