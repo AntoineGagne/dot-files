@@ -20,7 +20,8 @@ SOFTWARE_DIRS := bash \
 	javascript \
 	cpp \
 	xmonad \
-	xorg
+	xorg \
+	locale
 INSTALL_DIRS := $(SOFTWARE_DIRS:%=install-%)
 
 YOUCOMPLETEME_DIR := ${HOME}/.vim/bundle/YouCompleteMe
