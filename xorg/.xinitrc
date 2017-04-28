@@ -31,6 +31,11 @@ if [ -d /etc/X11/xinit/xinitrc.d ] ; then
  unset f
 fi
 
+# Start redshift if it is installed
+if type "$foobar_command_name" > /dev/null; then
+    pgrep redshift &> /dev/null || redshift &> /dev/null &
+fi
+
 # Set the keyboard layout to french canadian
 setxkbmap -layout ca -variant fr
 # Start urxvt daemon
