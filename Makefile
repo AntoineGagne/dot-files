@@ -31,8 +31,7 @@ YOUCOMPLETEME_FLAGS := --tern-completer \
 .PHONY: all
 all: $(SOFTWARE_DIRS) \
 	 setup_youcompleteme \
-	 setup_virtual_environments \
-	 install_fonts
+	 setup_virtual_environments
 
 .PHONY: subdirs $(SOFTWARE_DIRS)
 $(SOFTWARE_DIRS): $(INSTALL_DIRS)
