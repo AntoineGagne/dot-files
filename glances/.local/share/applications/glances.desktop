@@ -1,9 +1,0 @@
-[Desktop Entry]
-Version=1.0
-Type=Application
-Name=Glances
-Comment=An Eye on your System
-Icon="~/.local/share/applications/glances.png"
-Exec=pantheon-terminal -e /usr/local/bin/glances
-Categories=System;
-Terminal=false
