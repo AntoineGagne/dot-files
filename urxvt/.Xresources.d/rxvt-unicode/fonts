@@ -1,7 +1,11 @@
-urxvt.font: xft:Roboto Mono for Powerline:style=Regular:size=10:antialias=true,xft:Inconsolata\ for\ Powerline:pixelsize=12
-urxvt.boldFont: xft:Roboto Mono for Powerline:style=Bold:size=10:antialias=true
-urxvt.italicFont: xft:Roboto Mono for Powerline:style=Italic:size=10:antialias=true
-urxvt.boldItalicFont: xft:Roboto Mono for Powerline:style=Bold Italic:size=10:antialias=true
+urxvt.font: xft:Source Code Pro:style=Regular:size=10:antialias=true
+urxvt.boldFont: xft:Source Code Pro:style=Bold:size=10:antialias=true
+urxvt.italicFont: xft:Source Code Pro:style=Italic:size=10:antialias=true
+urxvt.boldItalicFont: xft:Source Code Pro:style=Bold Italic:size=10:antialias=true
+!urxvt.font: xft:Roboto Mono for Powerline:style=Regular:size=10:antialias=true,xft:Inconsolata\ for\ Powerline:pixelsize=12
+!urxvt.boldFont: xft:Roboto Mono for Powerline:style=Bold:size=10:antialias=true
+!urxvt.italicFont: xft:Roboto Mono for Powerline:style=Italic:size=10:antialias=true
+!urxvt.boldItalicFont: xft:Roboto Mono for Powerline:style=Bold Italic:size=10:antialias=true
 urxvt.letterSpace: 0
 
 urxvt.xftAutoHint: true
