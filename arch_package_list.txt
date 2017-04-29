@@ -38,6 +38,7 @@ make
 man-db
 man-pages
 mdadm
+mplayer
 mutt
 nano
 neovim
