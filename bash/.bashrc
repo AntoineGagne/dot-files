@@ -228,4 +228,10 @@ if type "xbindkeys" > /dev/null 2>&1 && ! pidof -x "xbindkeys" > /dev/null 2>&1;
     xbindkeys
 fi
 
-source ~/.bash/fix_colors.sh
+if [ -f ~/.bash/fix_colors.sh ]; then
+    source ~/.bash/fix_colors.sh
+fi
+
+if [ -d ~/.local/bin ]; then
+    export PATH=$PATH:"$HOME/.local/bin"
+fi
