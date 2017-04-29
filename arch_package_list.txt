@@ -82,6 +82,8 @@ wpa_supplicant
 xbindkeys
 xclip
 xfsprogs
+xmobar
 xmonad
+xmonad-contrib
 xorg-server
 xorg-xinit
