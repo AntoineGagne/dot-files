@@ -3,6 +3,7 @@ alsa-utils
 bash
 bash-completion
 bzip2
+cmus
 coreutils
 cryptsetup
 device-mapper
@@ -50,6 +51,7 @@ powerline-fonts
 procps-ng
 psmisc
 pulseaudio
+pulseaudio-alsa
 python
 python-pip
 redshift
