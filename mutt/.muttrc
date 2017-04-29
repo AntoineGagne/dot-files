@@ -30,6 +30,9 @@ set wait_key=no
 # Macros
 source ~/.mutt/macros
 
+# Sidebar
+source ~/.mutt/sidebar
+
 # Movement
 set pager_stop=yes
 
