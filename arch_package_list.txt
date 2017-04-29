@@ -71,6 +71,7 @@ tar
 texinfo
 tmux
 udisks2
+ufw
 urxvt-perls
 usbutils
 util-linux
