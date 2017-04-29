@@ -15,3 +15,4 @@ set mark-directories on
 set mark-symlinked-directories on
 set match-hidden-files on
 set menu-complete-display-prefix on
+set bell-style none
