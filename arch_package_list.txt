@@ -68,6 +68,7 @@ systemd-sysvcompat
 tar
 texinfo
 tmux
+udisks2
 urxvt-perls
 usbutils
 util-linux
