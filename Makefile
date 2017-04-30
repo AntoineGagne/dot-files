@@ -22,7 +22,8 @@ SOFTWARE_DIRS := bash \
 	xmonad \
 	xorg \
 	locale \
-	xmobar
+	xmobar \
+	zathura
 INSTALL_DIRS := $(SOFTWARE_DIRS:%=install-%)
 
 YOUCOMPLETEME_DIR := ${HOME}/.vim/bundle/YouCompleteMe
