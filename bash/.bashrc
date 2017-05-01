@@ -29,7 +29,25 @@ shopt -s checkwinsize
 
 # If set, the pattern "**" used in a pathname expansion context will
 # match all files and zero or more directories and subdirectories.
-#shopt -s globstar
+shopt -s globstar
+
+# If set, a command name that is the name of a directory is executed
+# as if it were the argument to the `cd` command. This options is
+# only used by interactive shells.
+shopt -s autocd
+
+# If set, minor errors in the spelling of a directory components in
+# a `cd` command will be corrected. The errors checked for are
+# transposed characters, a missing character, and a character too
+# many. If a correction is found, the corrected path is printed, and
+# the command proceeds. This option is only used by interactive
+# shells.
+shopt -s cdspell
+
+# If set, Bash attempts spelling correction on directory names during
+# word completion if the directory name initially supplied does not
+# exist.
+shopt -s dirspell
 
 # make less more friendly for non-text input files, see lesspipe(1)
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
