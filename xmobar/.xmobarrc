@@ -4,6 +4,7 @@ Config {
      font =         "xft:Source Code Pro:style=Bold:size=9:antialias=true"
    , bgColor =      "#1d2021"
    , fgColor =      "#ebdbb2"
+   , alpha   =      190
    , position =     TopW L 100
    , border =       TopB
    , borderColor =  "#1d2021"
@@ -38,7 +39,7 @@ Config {
    , commands = 
 
         -- weather monitor
-        [ Run Weather "RJTT" [ "--template", "<skyCondition> | <fc=#458588><tempC></fc>°C | <fc=#458588><rh></fc>%"
+        [ Run Weather "CYQB" [ "--template", "<skyCondition> | <fc=#458588><tempC></fc>°C | <fc=#458588><rh></fc>%"
                              ] 36000
 
         -- network activity monitor (dynamic interface resolution)
