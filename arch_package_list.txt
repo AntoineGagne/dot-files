@@ -9,6 +9,7 @@ cryptsetup
 device-mapper
 dhcpcd
 diffutils
+dmenu
 e2fsprogs
 efibootmgr
 file
