@@ -44,7 +44,7 @@ urxvtd -q -f -o
 urxvtc &
 
 # Set the background image
-sh ~/.fehbg &
+~/.fehbg &
 
 # Launch XMonad
 exec xmonad
