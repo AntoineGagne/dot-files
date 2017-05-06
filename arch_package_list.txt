@@ -12,6 +12,7 @@ diffutils
 dmenu
 e2fsprogs
 efibootmgr
+feh
 file
 filesystem
 findutils
@@ -24,6 +25,7 @@ glibc
 grep
 grub
 gzip
+imagemagick
 inetutils
 intel-ucode
 iproute2
@@ -98,6 +100,7 @@ urxvt-perls
 usbutils
 util-linux
 vi
+wget
 which
 wpa_actiond
 wpa_supplicant
