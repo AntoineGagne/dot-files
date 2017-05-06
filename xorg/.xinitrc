@@ -42,4 +42,9 @@ setxkbmap -layout ca -variant fr
 urxvtd -q -f -o
 # Spawn a urxvt terminal
 urxvtc &
+
+# Set the background image
+sh ~/.fehbg &
+
+# Launch XMonad
 exec xmonad
