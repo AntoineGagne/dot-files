@@ -43,6 +43,9 @@ urxvtd -q -f -o
 # Spawn a urxvt terminal
 urxvtc &
 
+# Create a named pipe for xmobar to be able to read volume levels
+control-volume --create-pipe
+
 # Set the background image
 ~/.fehbg &
 
