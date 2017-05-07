@@ -12,7 +12,7 @@ Config {
    -- layout
    , sepChar =  "%"   -- delineator between plugin names and straight text
    , alignSep = "}{"  -- separator between left-right alignment
-   , template = "%battery% | %multicpu% | %coretemp% | %memory% | %dynnetwork% }{ %CYQB% | %date% "
+   , template = "%battery% | %multicpu% | %coretemp% | %memory% | %dynnetwork% }{ %vol% | %CYQB% | %date% "
 
    -- general behavior
    -- , lowerOnStart =     True    -- send to bottom of window stack on start
@@ -102,6 +102,10 @@ Config {
         -- keyboard layout indicator
         , Run Kbd            [ ("ca"         , "<fc=#8B0000>FR</fc>")
                              ]
+
+        -- volume indicator
+        , Run PipeReader "Vol:/$HOME/.volume" "vol"
+
         , Run StdinReader
         ]
 }
