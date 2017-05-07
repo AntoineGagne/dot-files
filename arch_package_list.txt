@@ -3,9 +3,11 @@ alsa-utils
 bash
 bash-completion
 bzip2
+cmake
 cmus
 coreutils
 cryptsetup
+cups
 device-mapper
 dhcpcd
 diffutils
