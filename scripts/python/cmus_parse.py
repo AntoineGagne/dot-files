@@ -22,6 +22,10 @@ FIELDS = (
     'date',
     'duration'
 )
+DISPLAY_BY_STATUS = {
+    'Stopped': '■ Stopped',
+    'Paused': '▍▍Paused'
+}
 
 
 class StatusInformation:
@@ -181,4 +185,9 @@ def _format_left_fields(status_information):
 
 if __name__ == '__main__':
     STATUS_INFORMATION = parse_status_information(sys.argv[2])
-    print(sys.argv[1].format(**STATUS_INFORMATION.__dict__))
+    print(
+        DISPLAY_BY_STATUS.get(
+            STATUS_INFORMATION.status,
+            sys.argv[1].format(**STATUS_INFORMATION.__dict__)
+        )
+    )
