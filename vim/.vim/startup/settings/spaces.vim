@@ -3,7 +3,8 @@
 " Show spaces visually
 set list
 " Display spaces as dots and tabs as arrows
-set listchars=space:•,tab:⟶\ ,nbsp:␣
+" set listchars=space:•,tab:⟶\ ,nbsp:␣
+set listchars=space:•,tab:→\ ,nbsp:␣
 
 
 " {{{1 Backspace Behavior
