@@ -46,6 +46,11 @@ urxvtc &
 # Create a named pipe for xmobar to be able to read volume levels
 control-volume --create-pipe
 
+if type "create-named-pipe" > /dev/null; then
+    # Create the song indicator pipe and put a default value
+    create-named-pipe "$HOME/.song-information" "Nothing playing"
+fi
+
 # Set the background image
 ~/.fehbg &
 
