@@ -4,6 +4,7 @@
 
 from collections import defaultdict
 from functools import reduce, partial
+from textwrap import shorten
 
 import sys
 
@@ -186,8 +187,12 @@ def _format_left_fields(status_information):
 if __name__ == '__main__':
     STATUS_INFORMATION = parse_status_information(sys.argv[2])
     print(
-        DISPLAY_BY_STATUS.get(
-            STATUS_INFORMATION.status,
-            sys.argv[1].format(**STATUS_INFORMATION.__dict__)
+        shorten(
+            DISPLAY_BY_STATUS.get(
+                STATUS_INFORMATION.status,
+                sys.argv[1].format(**STATUS_INFORMATION.__dict__)
+            ),
+            width=80,
+            placeholder='...'
         )
     )
