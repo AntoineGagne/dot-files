@@ -87,17 +87,17 @@
     Mod2 + XF86AudioStop
 
 # Mute/Unmute the default audio sink
-"pactl set-sink-mute @DEFAULT_SINK@ toggle"
+"control-volume -t"
     m:0x0 + c:121
     XF86AudioMute
 
 # Lower the volume of the default audio sink by 5%
-"sh -c ""pactl set-sink-mute @DEFAULT_SINK@ false ; pactl set-sink-volume @DEFAULT_SINK@ -5%"""
+"control-volume -c -5%"
     m:0x0 + c:122
     XF86AudioLowerVolume
 
 # Raise the volume of the default audio sink by 5%
-"sh -c ""pactl set-sink-mute @DEFAULT_SINK@ false ; pactl set-sink-volume @DEFAULT_SINK@ +5%"""
+"control-volume -c +5%"
     m:0x0 + c:123
     XF86AudioRaiseVolume
 
