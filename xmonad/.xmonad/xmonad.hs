@@ -11,4 +11,4 @@ main = do
     xmonad xmobarStatusBar
 
 statusBarName = "xmobar"
-terminalName = "urxvt"
+terminalName = "urxvtc"
