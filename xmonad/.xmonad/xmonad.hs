@@ -15,18 +15,23 @@ import qualified Data.Map as Map
 
 
 main = do
-    barHandle <- xmobar $ defaults 
-        { layoutHook = avoidStruts $ layoutHook def
-        , manageHook = myManageHooks  <+> manageHook def <+> manageDocks
-        , logHook = dynamicLogWithPP $ xmobarPP
-            { ppTitle = xmobarColor xmobarTitleColor "" . shorten 50
-            , ppCurrent = xmobarColor xmobarCurrentWorkspaceColor ""
-            , ppSep = "   "
-            }
-        -- To make Java applications behave normally...
-        , startupHook = setWMName "LG3D"
-        }
+    barHandle <- statusBar "xmobar" ( 
+        xmobarPP { ppTitle = xmobarColor xmobarTitleColor "" . shorten 50 
+                 , ppCurrent = xmobarColor xmobarCurrentWorkspaceColor "" 
+                 , ppSep = "   " 
+                 }
+                                    )
+            toggleStrutsKey $ defaults
+                { layoutHook = avoidStruts $ layoutHook def
+                , manageHook = myManageHooks  <+> manageHook def <+> manageDocks
+                -- To make Java applications behave normally...
+                , startupHook = setWMName "LG3D"
+                }
     xmonad barHandle
+
+-- | The unexported X.H.DynamicLog.toggleStrutsKey
+toggleStrutsKey :: XConfig l -> (KeyMask, KeySym)
+toggleStrutsKey XConfig { modMask = modm } = (modm, xK_b)
 
 defaults = def
     { borderWidth = myBorderWidth
