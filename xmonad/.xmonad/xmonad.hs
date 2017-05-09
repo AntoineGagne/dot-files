@@ -15,19 +15,18 @@ import qualified Data.Map as Map
 
 
 main = do
-    barHandle <- spawnPipe "xmobar"
-    xmonad $ defaults 
-        { logHook = dynamicLogWithPP $ xmobarPP
-            { ppOutput = hPutStrLn barHandle
-            , ppTitle = xmobarColor xmobarTitleColor "" . shorten 50
+    barHandle <- xmobar $ defaults 
+        { layoutHook = avoidStruts $ layoutHook def
+        , manageHook = myManageHooks  <+> manageHook def <+> manageDocks
+        , logHook = dynamicLogWithPP $ xmobarPP
+            { ppTitle = xmobarColor xmobarTitleColor "" . shorten 50
             , ppCurrent = xmobarColor xmobarCurrentWorkspaceColor ""
             , ppSep = "   "
             }
-        , layoutHook = avoidStruts $ layoutHook def
-        , manageHook = manageDocks <+> myManageHooks <+> manageHook def
         -- To make Java applications behave normally...
         , startupHook = setWMName "LG3D"
         }
+    xmonad barHandle
 
 defaults = def
     { borderWidth = myBorderWidth
