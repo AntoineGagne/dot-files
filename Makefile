@@ -32,6 +32,9 @@ YOUCOMPLETEME_FLAGS := --tern-completer \
 					   --racer-completer \
 					   --clang-completer
 
+install-scripts:
+	@$(MAKE) -C scripts
+
 .PHONY: all
 all: $(SOFTWARE_DIRS) \
 	 setup_youcompleteme \

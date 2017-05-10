@@ -11,8 +11,8 @@ all: $(INSTALL_SCRIPTS)
 
 .PHONY: $(INSTALL_SCRIPTS)
 $(INSTALL_SCRIPTS):
-	@chmod +x "$(@:install-%=%)"
-	@ln -sf "$(shell pwd)/$(@:install-%=%)" "$(INSTALL_DIR)/$(subst _,-,$(basename $(@:install-%=%)))"
+	# @chmod +x "$(@:install-%=%)"
+	# @ln -sf "$(shell pwd)/$(@:install-%=%)" "$(INSTALL_DIR)/$(subst _,-,$(notdir $(basename $(@:install-%=%))))"
 
 .PHONY: subdirs $(SCRIPTS)
 $(SCRIPTS): $(INSTALL_SCRIPTS)
