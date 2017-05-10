@@ -32,13 +32,15 @@ YOUCOMPLETEME_FLAGS := --tern-completer \
 					   --racer-completer \
 					   --clang-completer
 
-install-scripts:
-	@$(MAKE) -C scripts
-
 .PHONY: all
 all: $(SOFTWARE_DIRS) \
 	 setup_youcompleteme \
-	 setup_virtual_environments
+	 setup_virtual_environments \
+	 install-scripts
+
+.PHONY: install-scripts
+install-scripts:
+	@$(MAKE) -C scripts
 
 .PHONY: subdirs $(SOFTWARE_DIRS)
 $(SOFTWARE_DIRS): $(INSTALL_DIRS)
