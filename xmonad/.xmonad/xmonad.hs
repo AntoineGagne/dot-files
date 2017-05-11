@@ -85,6 +85,7 @@ myManageHooks = composeAll
     [ className =? "URxvt" --> doShift "2:term"
     , className =? "Firefox" --> doShift "1:web"
     , className =? "Zathura" --> doShift "3:read"
+    , className =? "jetbrains-idea" --> doShift "4:code"
     , className =? "MPlayer" --> doShift "5:media"
     , className =? "feh" --> doShift "5:media"
     ]
