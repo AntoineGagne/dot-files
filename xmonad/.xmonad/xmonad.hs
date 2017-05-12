@@ -89,4 +89,5 @@ myManageHooks = composeAll
     , className =? "Easytag" --> doShift "5:media"
     , className =? "MPlayer" --> doShift "5:media"
     , className =? "feh" --> doShift "5:media"
+    , className =? "Firefox" <&&> resource =? "Dialog" --> doFloat
     ]
