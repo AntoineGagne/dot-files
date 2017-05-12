@@ -253,3 +253,7 @@ fi
 if [ -d ~/.local/bin ]; then
     export PATH=$PATH:"$HOME/.local/bin"
 fi
+
+if type "nvim" >/dev/null 2>&1; then
+    export EDITOR=nvim
+fi
