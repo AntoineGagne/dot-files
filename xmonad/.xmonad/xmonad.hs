@@ -18,7 +18,7 @@ main = do
     barHandle <- statusBar "xmobar" ( 
         xmobarPP { ppTitle = xmobarColor xmobarTitleColor "" . shorten 50 
                  , ppCurrent = xmobarColor xmobarCurrentWorkspaceColor "" 
-                 , ppSep = "   " 
+                 , ppSep = "  "
                  }
                                     )
             toggleStrutsKey $ defaults
@@ -53,8 +53,8 @@ myTerminal = "urxvtc"
 myFocusFollowsMouse :: Bool
 myFocusFollowsMouse = True
 
-myNormalBorderColor  = "#7c7c7c"
-myFocusedBorderColor = "#ffb6b0"
+myNormalBorderColor  = "#928374"
+myFocusedBorderColor = "#8ec07c"
 
 -- Colors for text and backgrounds of each tab when in "Tabbed" layout.
 tabConfig = def {
@@ -66,9 +66,9 @@ tabConfig = def {
     inactiveColor = "#000000"
 }
 -- Color of current window title in xmobar.
-xmobarTitleColor = "#FFB6B0"
+xmobarTitleColor = "#d79921"
 -- Color of current workspace in xmobar.
-xmobarCurrentWorkspaceColor = "#CEFFAC"
+xmobarCurrentWorkspaceColor = "#b8bb26"
 
 myMouseBindings (XConfig {XMonad.modMask = modMask}) = Map.fromList $
     [ -- mod-button1, Set the window to floating mode and move by dragging
@@ -89,4 +89,3 @@ myManageHooks = composeAll
     , className =? "MPlayer" --> doShift "5:media"
     , className =? "feh" --> doShift "5:media"
     ]
-
