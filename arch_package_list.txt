@@ -114,5 +114,6 @@ xmonad
 xmonad-contrib
 xorg-server
 xorg-xinit
+xorg-xprop
 zathura
 zathura-pdf-mupdf
