@@ -1,7 +1,4 @@
 # vim: filetype=muttrc
-# author: Tom Auty
-# site: tomauty.cc
-# Inspired by https://github.com/jamesnvc/dotfiles/blob/master/mutt/themes/tomorrow-night
 
 # basic colors ---------------------------------------------------------
 color normal color223 color235
