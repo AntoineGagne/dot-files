@@ -51,6 +51,7 @@ $(INSTALL_DIRS):
 
 .PHONY: setup_vim_plugins
 setup_vim_plugins: install-vim
+	@mkdir -p ~/.tmp
 	@nvim +PluginInstall +qa
 	@$(MAKE) -C ~/.vim/bundle/vimproc.vim
 
