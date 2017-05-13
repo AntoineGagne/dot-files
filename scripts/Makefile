@@ -3,7 +3,8 @@ SCRIPTS = bash/cmus-status.bash \
 		  bash/control-volume.bash \
 		  bash/create-named-pipe.bash \
 		  bash/printscreen.sh \
-		  python/cmus_parse.py
+		  python/cmus_parse.py \
+		  bash/clean-local-tmp.sh
 INSTALL_SCRIPTS := $(SCRIPTS:%=install-%)
 
 .PHONY: all

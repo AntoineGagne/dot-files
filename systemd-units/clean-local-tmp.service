@@ -1,0 +1,7 @@
+[Unit]
+Description=Clean the `tmp` folder in `$HOME` every month.
+
+[Service]
+Environment="PATH=/usr/bin:/bin:~/.local/bin"
+Type=simple
+ExecStart=~/.local/bin/clean-local-tmp
