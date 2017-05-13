@@ -4,7 +4,8 @@ SCRIPTS = bash/cmus-status.bash \
 		  bash/create-named-pipe.bash \
 		  bash/printscreen.sh \
 		  python/cmus_parse.py \
-		  bash/clean-local-tmp.sh
+		  bash/clean-local-tmp.sh \
+		  bash/fix-systemd-user-units.sh
 INSTALL_SCRIPTS := $(SCRIPTS:%=install-%)
 
 .PHONY: all
