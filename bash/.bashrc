@@ -202,12 +202,16 @@ esac
 
 
 # Set Stack autocompletion on tab
-if type "stack" > /dev/null 2>&1; then
+if type "stack" >/dev/null 2>&1; then
     eval "$(stack --bash-completion-script stack)"
 fi
 
 # virtualenvwrapper needed configuration
-export WORKON_HOME=$HOME/.virtualenvs
+if [ -d "${HOME}/.virtualenvs" ]; then
+    mkdir -p "${HOME}/.virtualenvs"
+    export WORKON_HOME=$HOME/.virtualenvs
+fi
+
 if [ -f /usr/local/bin/virtualenvwrapper.sh ]; then
     source /usr/local/bin/virtualenvwrapper.sh
 elif [ -f /usr/bin/virtualenvwrapper.sh ]; then
@@ -224,14 +228,17 @@ export LESS_TERMCAP_ue=$(printf '\e[0m')     # leave underline mode
 export LESS_TERMCAP_us=$(printf '\e[04;36m') # enter underline mode – cyan
 
 ### Added by the Heroku Toolbelt
-if [ -d /usr/local/heroku ]; then
+if [ -d "/usr/local/heroku" ]; then
     export PATH="/usr/local/heroku/bin:$PATH"
 fi
 
 # Added by travis gem
-[ -f /home/twain/.travis/travis.sh ] && source /home/twain/.travis/travis.sh
-if [ -f ~/.pythonrc.py ]; then
-    export PYTHONSTARTUP=~/.pythonrc.py
+if [ -f "${HOME}/.travis/travis.sh" ]; then
+    source "${HOME}/.travis/travis.sh"
+fi
+
+if [ -f "${HOME}/.pythonrc.py" ]; then
+    export PYTHONSTARTUP="${HOME}/.pythonrc.py"
 fi
 
 # Add autocompletion to the custom Haskell scripts
@@ -244,12 +251,12 @@ if type "xbindkeys" > /dev/null 2>&1 && ! pidof -x "xbindkeys" > /dev/null 2>&1;
     xbindkeys
 fi
 
-if [ -f ~/.bash/fix_colors.sh ]; then
-    source ~/.bash/fix_colors.sh
+if [ -f "${HOME}/.bash/fix_colors.sh" ]; then
+    source "${HOME}/.bash/fix_colors.sh"
 fi
 
-if [ -d ~/.local/bin ]; then
-    export PATH=$PATH:"$HOME/.local/bin"
+if [ -d "${HOME}/.local/bin" ]; then
+    export PATH=$PATH:"${HOME}/.local/bin"
 fi
 
 if type "nvim" >/dev/null 2>&1; then
