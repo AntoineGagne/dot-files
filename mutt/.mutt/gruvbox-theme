@@ -24,7 +24,7 @@ mono error bold
 color sidebar_highlight color250 color237
 
 # Color of the divider separating the Sidebar from Mutt panels
-color sidebar_divider color246 color239
+color sidebar_divider color246 color235
 
 # Color to give mailboxes containing flagged mail
 color sidebar_flagged color167 color235
