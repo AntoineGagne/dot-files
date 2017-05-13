@@ -32,7 +32,7 @@ if [ -d /etc/X11/xinit/xinitrc.d ] ; then
 fi
 
 # Start redshift if it is installed
-if type "redshift" > /dev/null; then
+if type "redshift" >/dev/null 2>&1; then
     pgrep redshift &> /dev/null || redshift &> /dev/null &
 fi
 
@@ -44,15 +44,19 @@ urxvtd -q -f -o
 urxvtc &
 
 # Create a named pipe for xmobar to be able to read volume levels
-control-volume --create-pipe
+if type "control-volume" >/dev/null 2>&1; then
+    control-volume --create-pipe
+fi
 
-if type "create-named-pipe" > /dev/null; then
-    # Create the song indicator pipe and put a default value
+# Create the song indicator pipe and put a default value
+if type "create-named-pipe" >/dev/null 2>&1; then
     create-named-pipe "$HOME/.song-information" "Nothing playing"
 fi
 
 # Set the background image
-~/.fehbg &
+if [ -f "${HOME}/.fehbg " ]; then
+    ~/.fehbg &
+fi
 
 # Launch XMonad
 exec xmonad
