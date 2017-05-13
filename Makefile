@@ -1,6 +1,6 @@
 FONTS_DIR := fonts
 SYSTEMD_DIR := systemd-units
-SYSTEMD_CONFIG_DIR := "${HOME}/.config/systemd/${USER}/"
+SYSTEMD_CONFIG_DIR := "${HOME}/.config/systemd/user/"
 SOFTWARE_DIRS := bash \
 	ctags \
 	git \

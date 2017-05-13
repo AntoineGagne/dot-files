@@ -8,4 +8,4 @@ Persistent=true
 Unit=clean-local-tmp.service
 
 [Install]
-WantedBy=multi-user.target
+WantedBy=default.target
