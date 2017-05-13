@@ -76,6 +76,6 @@ setup_virtual_environments: install_virtual_environment
 fonts:
 	@stow fonts -t ~
 
-.PHONY: install_fonts
-install_fonts: fonts
+.PHONY: install-fonts
+install-fonts: fonts
 	@fc-cache -fv fonts/.fonts

@@ -22,8 +22,12 @@ set tags+=./tags
 " {{{1 Python Hosts
 
 if has('nvim')
-    let g:python_host_prog = expand('~') . '/.virtualenvs/neovim2/bin/python'
-    let g:python3_host_prog = expand('~') . '/.virtualenvs/neovim3/bin/python'
+    if isdirectory(expand('~') . '/.virtualenvs/neovim2/bin/python')
+        let g:python_host_prog = expand('~') . '/.virtualenvs/neovim2/bin/python'
+    endif
+    if isdirectory(expand('~') . '/.virtualenvs/neovim3/bin/python')
+        let g:python3_host_prog = expand('~') . '/.virtualenvs/neovim3/bin/python'
+    endif
 endif
 
 
