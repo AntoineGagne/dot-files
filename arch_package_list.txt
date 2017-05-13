@@ -62,12 +62,14 @@ pulseaudio
 pulseaudio-alsa
 python
 python-pip
+python2-neovim
 redshift
 reiserfsprogs
 rxvt-unicode
 s-nail
 sed
 shadow
+shellcheck
 stack
 stow
 sudo
