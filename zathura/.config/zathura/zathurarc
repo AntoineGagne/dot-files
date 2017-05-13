@@ -20,6 +20,12 @@ set scroll-full-overlap 0.01
 set scroll-step 100
 # }}}
 
+# {{{1 Loading
+# Defines if the "Loading..." text should be displayed if a page is
+# rendered.
+set render-loading "true"
+# }}}
+
 # {{{1 Miscellaneous
 # Defines the font that will be used
 set font "Source Code Pro 10"
@@ -128,11 +134,30 @@ set index-active-bg "#3C3836"
 set index-active-fg "#EBDBB2"
 # }}}
 
+# {{{2 Loading
+# Defines the background color that is used for the "Loading..." text.
+set render-loading-bg "#282828"
+# Defines the foreground color that is used for the "Loading..." text.
+set render-loading-fg "#EBDBB2"
+# }}}
+
 # {{{2 Recolors
+# En/Disables recoloring
 # set recolor "true"
+
+# Defines the color value that is used to represent light colors in
+# recoloring mode
 # set recolor-lightcolor "#EBDBB2"
+set recolor-lightcolor "#282828"
+# Defines the color value that is used to represent dark colors in
+# recoloring mode
 # set recolor-darkcolor "#282828"
+set recolor-darkcolor "#EBDBB2"
+
+# Defines if original image colors should be kept while recoloring.
 # set recolor-reverse-video "true"
+
+# En/Disables keeping original hue when recoloring
 # set recolor-keephue "true"
 # }}}
 
