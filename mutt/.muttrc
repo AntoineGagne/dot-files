@@ -18,6 +18,7 @@ set send_charset="utf-8"
 
 # view html automatically
 auto_view text/html
+
 # save html for last
 alternative_order text/plain text/enriched text/html
 

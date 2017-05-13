@@ -1,1 +1,2 @@
 text/html; cp %s /tmp/mail.html && firefox --private-window /tmp/mail.html; nametemplate=%s.html; copiousoutput
+application/pdf; cp %s /tmp/mail.pdf && zathura --fork /tmp/mail.pdf;
