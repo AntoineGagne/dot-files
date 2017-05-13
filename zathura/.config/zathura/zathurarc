@@ -1,1 +1,169 @@
+# vim: ft=conf
+# See also: http://manpages.ubuntu.com/manpages/zesty/man5/zathurarc.5.html
+
+# {{{1 Clipboard
+# Defines the X clipboard into which mouse-selected data will be written.
+# When it is "clipboard", selected data will be written to the CLIPBOARD
+# clipboard, and can be pasted using the Ctrl+v key combination. When it
+# is "primary", selected data will be written to the PRIMARY clipboard,
+# and can be pasted using the middle mouse button, or the Shift-Insert
+# key combination.
 set selection-clipboard clipboard
+# Defines if a notification should be displayed after selecting text.
+set selection-notification "true"
+# }}}
+
+# {{{1 Scrolling
+set scroll-page-aware "true"
+set smooth-scroll "true"
+set scroll-full-overlap 0.01
+set scroll-step 100
+# }}}
+
+# {{{1 Miscellaneous
+# Defines the font that will be used
+set font "Source Code Pro 10"
+
+# Shows or hides GUI elements. If it contains 'c', the command line is
+# displayed. If it contains 's', the statusbar is displayed. If it
+# contains 'h', the horizontal scrollbar is displayed. If it contains
+# 'v', the vertical scrollbar is displayed.
+set guioptions "shv"
+# }}}
+
+# {{{1 Colors
+
+# {{{2 Default
+# Defines the default background color
+set default-bg "#282828"
+# Defines the default foreground color
+set default-fg "#EBDBB2"
+# }}}
+# {{{2 Status Bar
+# Defines the background color of the statusbar
+set statusbar-bg "#282828"
+# Defines the foreground color of the statusbar
+set statusbar-fg "#EBDBB2"
+# }}}
+
+# {{{2 Input Bar
+# Defines the background color for the inputbar
+set inputbar-bg "#1d2021"
+# Defines the foreground color for the inputbar
+set inputbar-fg "#EBDBB2"
+# }}}
+
+# {{{2 Notifications
+# Defines the background color for a notification
+set notification-bg "#B8BB26"
+# Defines the foreground color for a notification
+set notification-fg "#282828"
+
+# Defines the background color for an error notification
+set notification-error-bg "#FB4934"
+# Defines the foreground color for an error notification
+set notification-error-fg "#282828"
+
+# Defines the background color for a warning notification
+set notification-warning-bg "#FE8019"
+# Defines the foreground color for a warning notification
+set notification-warning-fg "#282828"
+# }}}
+
+# {{{2 Highlight
+# Defines the color that is used for highlighting parts of the document
+# (e.g.: show search results)
+set highlight-color "#B16286"
+# Defines the color that is used to show the current selected highlighted
+# element (e.g: current search result)
+set highlight-active-color "#D3869B"
+# Defines the opacity of a highlighted element
+set highlight-transparency 0.6
+# }}}
+
+# {{{2 Completions
+# Defines the background color that is used for the current command line
+# completion element
+set completion-highlight-bg "#D3869B"
+# Defines the foreground color that is used for the current command line
+# completion element
+set completion-highlight-fg "#282828"
+
+# Defines the background color that is used for command line completion
+# entries
+set completion-bg "#83A598"
+# Defines the foreground color that is used for command line completion
+# entries
+set completion-fg "#282828"
+
+# Defines the background color that is used for command line completion
+# group elements
+set completion-group-bg "#282828"
+# Defines the foreground color that is used for command line completion
+# group elements
+set completion-group-fg "#EBDBB2"
+# }}}
+
+# {{{2 Tab Bar
+# Defines the background color for a tab
+set tabbar-bg "#282828"
+# Defines the foreground color for a tab
+set tabbar-fg "#EBDBB2"
+
+# Defines the background color for the focused tab
+set tabbar-focus-bg "#282828"
+# Defines the foreground color for the focused tab
+set tabbar-focus-fg "#EBDBB2"
+# }}}
+
+# {{{2 Index
+# Define the background color of the index mode.
+set index-bg "#282828"
+# Defines the foreground color of the index mode.
+set index-fg "#EBDBB2"
+
+# Define the background color of the selected element in index mode.
+set index-active-bg "#3C3836"
+# Defines the foreground color of the selected element in index mode.
+set index-active-fg "#EBDBB2"
+# }}}
+
+# {{{2 Recolors
+# set recolor "true"
+# set recolor-lightcolor "#EBDBB2"
+# set recolor-darkcolor "#282828"
+# set recolor-reverse-video "true"
+# set recolor-keephue "true"
+# }}}
+
+# }}}
+
+# {{{1 SyncTeX
+# En/Disables SyncTeX backward synchronization support.
+set synctex "true"
+# Defines the command executed for SyncTeX backward synchronization.
+set synctex-editor-command ""
+# }}}
+
+# {{{1 Title
+
+# {{{2 Window
+# Use basename of the file in the window title.
+set window-title-basename "true"
+
+# Display a short version of the file path, which replaces $HOME with ~,
+# in the window title.
+set window-title-home-tilde "true"
+
+# Display the page number in the window title.
+set window-title-page "true"
+# }}}
+
+# {{{2 Status Bar
+# Use basename of the file in the statusbar.
+set statusbar-basename "false"
+
+# Display a short version of the file path, which replaces $HOME with ~,
+# in the statusbar.
+set statusbar-home-tilde "true"
+# }}}
