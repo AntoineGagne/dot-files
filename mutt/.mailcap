@@ -1,1 +1,1 @@
-text/html; firefox --private-window %s; nametemplate=%s.html; copiousoutput
+text/html; cp %s /tmp/mail.html && firefox --private-window /tmp/mail.html; nametemplate=%s.html; copiousoutput
