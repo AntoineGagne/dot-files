@@ -2,8 +2,11 @@
 
 systemd_units_directory="${HOME}/.config/systemd/user"
 
-if [ ! -f "${systemd_units_directory}/$(basename "$1")" ]; then
-    # Swap all the `~` for the absolute `${HOME}` path
-    sed -i 's@~@'"${HOME}"'@g@' "${1}"
-    cp "${1}" "${systemd_units_directory}/"
-fi
+for file_path in "$@"; do
+    file="$(basename "${file_path}")"
+    if [ ! -f "${systemd_units_directory}/${file}" ]; then
+        # Swap all the `~` for the absolute `${HOME}` path
+        cp "${file_path}" "${systemd_units_directory}/${file}"
+        sed -i 's@~@'"${HOME}"'@g@' "${systemd_units_directory}/${file}"
+    fi
+done

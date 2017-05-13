@@ -1,3 +1,7 @@
+SYSTEMD_DIR := systemd-units
+SYSTEMD_CONFIG_DIR := "${HOME}/.config/systemd/user/" 
+SYSTEMD_UNITS := "$(wildcard $(SYSTEMD_DIR)/*)"
+
 SOFTWARE_DIRS := bash \
 	ctags \
 	git \
@@ -70,6 +74,15 @@ setup_virtual_environments: install_virtual_environment
 	@mkvirtualenv neovim3 -p /usr/bin/python3
 	@pip install neovim
 	@deactivate
+
+
+.PHONY: create-user-systemd-units-folder
+create-user-systemd-units-folder:
+	@mkdir -p $(SYSTEMD_CONFIG_DIR)
+
+.PHONY: install-systemd-units
+install-systemd-units: create-user-systemd-units-folder
+	@$(shell fix-systemd-user-units $(SYSTEMD_UNITS))
 
 .PHONY: fonts
 fonts:
