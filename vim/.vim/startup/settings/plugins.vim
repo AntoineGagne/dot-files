@@ -46,5 +46,4 @@ source ~/.vim/startup/settings/plugins/ultisnips.vim
 
 " {{{1 Formatting
 
-source ~/.vim/startup/settings/plugins/tabular.vim
 source ~/.vim/startup/settings/plugins/vim-table-mode.vim

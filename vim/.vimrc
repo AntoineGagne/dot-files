@@ -74,7 +74,7 @@ call vundle#begin()
     Plugin 'honza/vim-snippets'
 
     " {{{2 Aligning
-    Plugin 'godlygeek/tabular'
+    " Plugin 'godlygeek/tabular'
 
     " {{{2 Haskell unicode symbols
     Plugin 'Twinside/vim-haskellConceal'
