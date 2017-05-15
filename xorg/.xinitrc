@@ -55,7 +55,7 @@ fi
 
 # Set the background image
 if [ -f "${HOME}/.fehbg " ]; then
-    ~/.fehbg &
+    sh ~/.fehbg &
 fi
 
 # Launch XMonad
