@@ -5,6 +5,7 @@ bash-completion
 bzip2
 cmake
 cmus
+compton
 coreutils
 cryptsetup
 cups

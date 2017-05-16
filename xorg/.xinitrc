@@ -58,5 +58,7 @@ if [ -f "${HOME}/.fehbg " ]; then
     sh ~/.fehbg &
 fi
 
+compton --daemon
+
 # Launch XMonad
 exec xmonad
