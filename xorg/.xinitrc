@@ -54,8 +54,8 @@ if type "create-named-pipe" >/dev/null 2>&1; then
 fi
 
 # Set the background image
-if [ -f "${HOME}/.fehbg " ]; then
-    sh ~/.fehbg &
+if [ -f "${HOME}/.fehbg" ]; then
+    sh ~/.fehbg
 fi
 
 compton --daemon
