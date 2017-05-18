@@ -1,4 +1,4 @@
--- vim: syntax=haskell
+-- vim: ft=haskell
 Config { 
    -- appearance
      font =         "xft:Source Code Pro:style=Bold:size=9:antialias=true"
@@ -12,7 +12,7 @@ Config {
    -- layout
    , sepChar =  "%"   -- delineator between plugin names and straight text
    , alignSep = "}{"  -- separator between left-right alignment
-   , template = "%StdinReader%  }{ %song% | %vol% | %CYQB% | %date% | %battery% "
+   , template = "%StdinReader%  } %date% { %song% | %vol% | %CYQB% | %battery% "
 
    -- general behavior
    -- , lowerOnStart =     True    -- send to bottom of window stack on start
@@ -97,7 +97,7 @@ Config {
 
         -- time and date indicator
         --   (%F = y-m-d date, %a = day of week, %T = h:m:s time)
-        , Run Date           "<fc=#ebdbb2>%F (%a) %T</fc>" "date" 10
+        , Run Date           "<fc=#ebdbb2>%a %b %T</fc>" "date" 10
 
         -- keyboard layout indicator
         , Run Kbd            [ ("ca", "<fc=#8B0000>FR</fc>")
