@@ -1,3 +1,4 @@
+# vim:ft=yaml
 --- # C++ Language
 # BasedOnStyle: Mozilla
 AccessModifierOffset: -4
