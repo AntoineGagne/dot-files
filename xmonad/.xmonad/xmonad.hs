@@ -16,9 +16,10 @@ import qualified Data.Map as Map
 
 main = do
     barHandle <- statusBar "xmobar" ( 
-        xmobarPP { ppTitle = xmobarColor xmobarTitleColor "" . shorten 50 
+        xmobarPP { ppTitle = xmobarColor xmobarTitleColor "" . shorten 40 
                  , ppCurrent = xmobarColor xmobarCurrentWorkspaceColor "" 
                  , ppSep = "  "
+                 , ppLayout = myLayoutPrinter
                  }
                                     )
             toggleStrutsKey $ defaults
@@ -44,6 +45,12 @@ defaults = def
     , terminal = myTerminal
     , workspaces = myWorkspaces
     }
+
+myLayoutPrinter :: String -> String
+myLayoutPrinter "Full" = "F"
+myLayoutPrinter "Tall" = "T"
+myLayoutPrinter "Mirror Tall" = "M"
+myLayoutPrinter x = x
 
 myModMask = mod4Mask
 myBorderWidth = 1
