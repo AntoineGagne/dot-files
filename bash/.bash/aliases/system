@@ -20,8 +20,7 @@ alias du='du -sh'
 
 alias shutdown='sudo shutdown -h now'
 alias reboot='sudo shutdown -r now'
-alias hibernate='sudo pm-hibernate'
-alias suspend='sudo pm-suspend'
+alias suspend='sudo systemctl suspend'
 
 
 # Superuser
