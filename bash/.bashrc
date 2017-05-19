@@ -246,11 +246,6 @@ if type "create-gitignore" > /dev/null 2>&1; then
     eval "$(create-gitignore --bash-completion-script create-gitignore)"
 fi
 
-# Run xbindkeys if it is installed and not running
-if type "xbindkeys" >/dev/null 2>&1 && ! pidof -x "xbindkeys" >/dev/null 2>&1; then
-    xbindkeys
-fi
-
 if [ -f "${HOME}/.bash/fix_colors.sh" ]; then
     source "${HOME}/.bash/fix_colors.sh"
 fi

@@ -58,6 +58,11 @@ if [ -f "${HOME}/.fehbg" ]; then
     sh ~/.fehbg
 fi
 
+# Run xbindkeys if it is installed and not running
+if type "xbindkeys" >/dev/null 2>&1 && ! pidof -x "xbindkeys" >/dev/null 2>&1; then
+    xbindkeys
+fi
+
 compton --daemon
 
 # Launch XMonad
