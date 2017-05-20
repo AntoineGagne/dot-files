@@ -51,6 +51,7 @@ defaults = def
     , mouseBindings = myMouseBindings
     , normalBorderColor  = myNormalBorderColor
     , terminal = myTerminal
+    -- , keys = myKeys
     }
 
 myLayoutPrinter :: String -> String
@@ -83,6 +84,14 @@ tabConfig = def {
 xmobarTitleColor = "#d79921"
 -- Color of current workspace in xmobar.
 xmobarCurrentWorkspaceColor = "#b8bb26"
+
+myKeys conf = let m = modMask conf in Map.fromList $ 
+    [ ((m .|. e .|. i, key), windows (onCurrentScreen f workspace)) | (key, workspace) <- zip [xK_1..xK_9] (workspaces' conf)
+    , (e, f)           <- [(0, W.view), (shiftMask, viewShift)]
+    , i                <- [0, controlMask, mod1Mask, controlMask .|. mod4Mask]
+    ]
+        where viewShift i = W.view i . W.shift i
+ 
 
 myMouseBindings (XConfig {XMonad.modMask = modMask}) = Map.fromList $
     [ -- mod-button1, Set the window to floating mode and move by dragging
