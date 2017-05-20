@@ -2,6 +2,7 @@
 Config { 
    -- appearance
      font =         "xft:Source Code Pro:style=Bold:size=9:antialias=true"
+   , additionalFonts = ["xft:FontAwesome:style=Regular:size=10"]
    , bgColor =      "#1d2021"
    , fgColor =      "#ebdbb2"
    , alpha   =      200
@@ -90,14 +91,14 @@ Config {
                                        -- discharging status
                                        , "-o", "<left>% (<timeleft>)"
                                        -- AC "on" status
-                                       , "-O", "<fc=#689d6a>Charging</fc>"
+                                       , "-O", "<fn=1>\xf1e6</fn>"
                                        -- charged status
-                                       , "-i", "<fc=#b8bb26>Charged</fc>"
+                                       , "-i", "<fn=1>\xf1e6</fn>"
                              ] 50
 
         -- time and date indicator
         --   (%F = y-m-d date, %a = day of week, %T = h:m:s time)
-        , Run Date           "<fc=#ebdbb2>%a %b %T</fc>" "date" 10
+        , Run Date           "<fn=1>\xf073</fn> <fc=#ebdbb2>%a %b %T</fc>" "date" 10
 
         -- keyboard layout indicator
         , Run Kbd            [ ("ca", "<fc=#8B0000>FR</fc>")
