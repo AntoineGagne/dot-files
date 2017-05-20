@@ -1,7 +1,7 @@
 -- vim: ft=haskell
 Config { 
    -- appearance
-     font =         "xft:Source Code Pro:style=Bold:size=9:antialias=true"
+     font =         "xft:Source Code Pro:style=Bold:size=9:antialias=true,xft:FontAwesome:style=Regular:size=10"
    , additionalFonts = ["xft:FontAwesome:style=Regular:size=10"]
    , bgColor =      "#1d2021"
    , fgColor =      "#ebdbb2"
@@ -91,7 +91,7 @@ Config {
                                        -- discharging status
                                        , "-o", "<left>% (<timeleft>)"
                                        -- AC "on" status
-                                       , "-O", "<fn=1>\xf1e6</fn>"
+                                       , "-O", "<fn=1>\xf1e6</fn> <left>%"
                                        -- charged status
                                        , "-i", "<fn=1>\xf1e6</fn>"
                              ] 50

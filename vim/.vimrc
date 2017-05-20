@@ -77,7 +77,7 @@ call vundle#begin()
     " Plugin 'godlygeek/tabular'
 
     " {{{2 Haskell unicode symbols
-    Plugin 'Twinside/vim-haskellConceal'
+    " Plugin 'Twinside/vim-haskellConceal'
 
     " {{{2 Note Taking
     Plugin 'vimwiki/vimwiki'
