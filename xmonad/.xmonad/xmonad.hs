@@ -17,6 +17,10 @@ import XMonad.Util.Cursor (setDefaultCursor)
 import XMonad.Util.EZConfig (additionalKeys)
 import XMonad.Util.Run (spawnPipe, hPutStrLn)
 
+import System.Exit ( exitWith
+                   , ExitCode (..)
+                   )
+
 import qualified XMonad.StackSet as W
 import qualified Data.Map as Map
 
@@ -51,7 +55,7 @@ defaults = def
     , mouseBindings = myMouseBindings
     , normalBorderColor  = myNormalBorderColor
     , terminal = myTerminal
-    -- , keys = myKeys
+    , keys = myKeys
     }
 
 myLayoutPrinter :: String -> String
@@ -64,6 +68,7 @@ myModMask = mod4Mask
 myBorderWidth = 1
 myStatusBar = "xmobar"
 myTerminal = "urxvtc"
+myLauncher = "dmenu_run"
 
 myFocusFollowsMouse :: Bool
 myFocusFollowsMouse = True
@@ -85,10 +90,26 @@ xmobarTitleColor = "#d79921"
 -- Color of current workspace in xmobar.
 xmobarCurrentWorkspaceColor = "#b8bb26"
 
-myKeys conf = let m = modMask conf in Map.fromList $ 
-    [ ((m .|. e .|. i, key), windows (onCurrentScreen f workspace)) | (key, workspace) <- zip [xK_1..xK_9] (workspaces' conf)
-    , (e, f)           <- [(0, W.view), (shiftMask, viewShift)]
-    , i                <- [0, controlMask, mod1Mask, controlMask .|. mod4Mask]
+myKeys conf = let m = modMask conf in Map.fromList $
+    [ ((myModMask, xK_p), spawn myLauncher)
+    , ((myModMask .|. shiftMask, xK_Return), spawn myTerminal)
+    , ((myModMask .|. shiftMask, xK_c), kill)
+    , ((myModMask, xK_q), restart "xmonad" True)
+    , ((myModMask .|. shiftMask, xK_q), io (exitWith ExitSuccess))
+    , ((myModMask, xK_space), sendMessage NextLayout)
+    , ((myModMask, xK_j), windows W.focusDown)
+    , ((myModMask, xK_k), windows W.focusUp)
+    , ((myModMask, xK_comma), sendMessage (IncMasterN 1))
+    , ((myModMask, xK_period), sendMessage (IncMasterN (-1)))
+    , ((myModMask, xK_m), windows W.focusMaster)
+    , ((myModMask, xK_h), sendMessage Shrink)
+    , ((myModMask, xK_l), sendMessage Expand)
+    , ((myModMask, xK_t), withFocused $ windows . W.sink)
+    ] ++
+    [ ((m .|. e .|. i, key), windows (onCurrentScreen f workspace)) 
+      | (key, workspace) <- zip [xK_1..xK_9] (workspaces' conf)
+      , (e, f)           <- [(0, W.view), (shiftMask, viewShift)]
+    , i                  <- [0, controlMask, myModMask, controlMask .|. myModMask]
     ]
         where viewShift i = W.view i . W.shift i
  
