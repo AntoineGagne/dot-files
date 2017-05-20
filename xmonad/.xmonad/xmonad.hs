@@ -4,10 +4,17 @@ import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.ManageHelpers
 import XMonad.Hooks.SetWMName
 import XMonad.Layout.Fullscreen
+import XMonad.Layout.IndependentScreens ( withScreens
+                                        , countScreens
+                                        , onCurrentScreen
+                                        , workspaces'
+                                        )
 import XMonad.Layout.NoBorders
 import XMonad.Layout.Spiral
 import XMonad.Layout.Tabbed
 import XMonad.Layout.ThreeColumns
+import XMonad.Util.Cursor (setDefaultCursor)
+import XMonad.Util.EZConfig (additionalKeys)
 import XMonad.Util.Run (spawnPipe, hPutStrLn)
 
 import qualified XMonad.StackSet as W
@@ -15,6 +22,7 @@ import qualified Data.Map as Map
 
 
 main = do
+    screenNumber <- countScreens
     barHandle <- statusBar "xmobar" ( 
         xmobarPP { ppTitle = xmobarColor xmobarTitleColor "" . shorten 40 
                  , ppCurrent = xmobarColor xmobarCurrentWorkspaceColor "" 
@@ -23,10 +31,7 @@ main = do
                  }
                                     )
             toggleStrutsKey $ defaults
-                { layoutHook = avoidStruts $ layoutHook def
-                , manageHook = myManageHooks  <+> manageHook def <+> manageDocks
-                -- To make Java applications behave normally...
-                , startupHook = setWMName "LG3D"
+                { workspaces = withScreens screenNumber myWorkspaces
                 }
     xmonad barHandle
 
@@ -36,14 +41,16 @@ toggleStrutsKey XConfig { modMask = modm } = (modm, xK_b)
 
 defaults = def
     { borderWidth = myBorderWidth
+    , layoutHook = avoidStruts $ layoutHook def
     , focusFollowsMouse = myFocusFollowsMouse
     , focusedBorderColor = myFocusedBorderColor
-    , manageHook = myManageHooks
+    , manageHook = myManageHooks  <+> manageHook def <+> manageDocks
+    -- To make Java applications behave normally...
+    , startupHook = setWMName "LG3D" <+> setDefaultCursor xC_left_ptr
     , modMask = mod4Mask
     , mouseBindings = myMouseBindings
     , normalBorderColor  = myNormalBorderColor
     , terminal = myTerminal
-    , workspaces = myWorkspaces
     }
 
 myLayoutPrinter :: String -> String
