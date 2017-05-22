@@ -1,5 +1,8 @@
 import XMonad
 import XMonad.Actions.CycleWS
+import XMonad.Actions.PhysicalScreens ( viewScreen
+                                      , sendToScreen
+                                      )
 import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.ManageHelpers
@@ -121,6 +124,10 @@ myKeys conf = let m = modMask conf in Map.fromList $
       | (key, workspace) <- zip [xK_1..xK_9] (workspaces' conf)
       , (e, f)           <- [(0, W.view), (shiftMask, viewShift)]
     , i                  <- [0, controlMask, myModMask, controlMask .|. myModMask]
+    ] ++
+    [ ((myModMask .|. mask, key), f sc)
+    | (key, sc) <- zip [xK_w, xK_e, xK_r] [0..]
+    , (f, mask) <- [(viewScreen, 0), (sendToScreen, shiftMask)]
     ]
         where viewShift i = W.view i . W.shift i
               withScreen screen f = screenWorkspace screen >>= flip whenJust (windows . f)
