@@ -112,8 +112,10 @@ myKeys conf = let m = modMask conf in Map.fromList $
     , ((myModMask, xK_l), sendMessage Expand)
     , ((myModMask, xK_t), withFocused $ windows . W.sink)
     , ((myModMask, xK_b), sendMessage ToggleStruts)
-    , ((myModMask, xK_Right), prevScreen)
-    , ((myModMask, xK_Left),  nextScreen)
+    , ((myModMask, xK_Left), prevScreen)
+    , ((myModMask .|. shiftMask, xK_Left), shiftPrevScreen)
+    , ((myModMask, xK_Right),  nextScreen)
+    , ((myModMask .|. shiftMask, xK_Right), shiftNextScreen)
     ] ++
     [ ((m .|. e .|. i, key), windows (onCurrentScreen f workspace)) 
       | (key, workspace) <- zip [xK_1..xK_9] (workspaces' conf)
@@ -133,14 +135,14 @@ myMouseBindings (XConfig {XMonad.modMask = modMask}) = Map.fromList $
     -- you may also bind events to the mouse scroll wheel (button4 and button5)
     ]
 
-myWorkspaces = ["<fn=1>\xf269</fn>", "<fn=1>\xf120</fn>", "<fn=1>\xf02d</fn>", "<fn=1>\xf121</fn>", "5:media"] ++ map show [6..9]
+myWorkspaces = ["1 <fn=1>\xf269</fn>", "2 <fn=1>\xf120</fn>", "3 <fn=1>\xf02d</fn>", "4 <fn=1>\xf121</fn>", "5 media"] ++ map show [6..9]
 myManageHooks = composeAll
-    [ className =? "URxvt" --> doShift "2:term"
-    , className =? "Firefox" --> doShift "1:web"
-    , className =? "Zathura" --> doShift "3:read"
-    , className =? "jetbrains-idea" --> doShift "4:code"
-    , className =? "Easytag" --> doShift "5:media"
-    , className =? "MPlayer" --> doShift "5:media"
-    , className =? "feh" --> doShift "5:media"
+    [ className =? "URxvt" --> doShift (myWorkspaces !! 1)
+    , className =? "Firefox" --> doShift (myWorkspaces !! 0)
+    , className =? "Zathura" --> doShift (myWorkspaces !! 2)
+    , className =? "jetbrains-idea" --> doShift (myWorkspaces !! 3)
+    , className =? "Easytag" --> doShift (myWorkspaces !! 4)
+    , className =? "MPlayer" --> doShift (myWorkspaces !! 4)
+    , className =? "feh" --> doShift (myWorkspaces !! 4)
     , className =? "Firefox" <&&> resource =? "Dialog" --> doFloat
     ]
