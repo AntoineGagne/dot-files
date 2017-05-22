@@ -1,7 +1,7 @@
 -- vim: ft=haskell
 Config { 
    -- appearance
-     font =         "xft:Source Code Pro:style=Bold:size=9:antialias=true,xft:FontAwesome:style=Regular:size=10"
+     font =         "xft:Source Code Pro:style=Bold:size=9:antialias=true,FontAwesome:style=Regular:size=10"
    , additionalFonts = ["xft:FontAwesome:style=Regular:size=10"]
    , bgColor =      "#1d2021"
    , fgColor =      "#ebdbb2"

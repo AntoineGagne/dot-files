@@ -105,6 +105,10 @@ myKeys conf = let m = modMask conf in Map.fromList $
     , ((myModMask, xK_h), sendMessage Shrink)
     , ((myModMask, xK_l), sendMessage Expand)
     , ((myModMask, xK_t), withFocused $ windows . W.sink)
+    , ((myModMask, xK_w), withScreen 0 W.view)
+    , ((myModMask .|. shiftMask  , xK_w), withScreen 0 viewShift)
+    , ((myModMask, xK_e), withScreen 1 W.view)
+    , ((myModMask .|. shiftMask, xK_e), withScreen 1 viewShift)
     ] ++
     [ ((m .|. e .|. i, key), windows (onCurrentScreen f workspace)) 
       | (key, workspace) <- zip [xK_1..xK_9] (workspaces' conf)
@@ -112,7 +116,7 @@ myKeys conf = let m = modMask conf in Map.fromList $
     , i                  <- [0, controlMask, myModMask, controlMask .|. myModMask]
     ]
         where viewShift i = W.view i . W.shift i
- 
+              withScreen screen f = screenWorkspace screen >>= flip whenJust (windows . f)
 
 myMouseBindings (XConfig {XMonad.modMask = modMask}) = Map.fromList $
     [ -- mod-button1, Set the window to floating mode and move by dragging
