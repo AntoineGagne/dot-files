@@ -6,6 +6,7 @@ import XMonad.Hooks.SetWMName
 import XMonad.Layout.Fullscreen
 import XMonad.Layout.IndependentScreens ( withScreens
                                         , countScreens
+                                        , marshallPP
                                         , onCurrentScreen
                                         , workspaces'
                                         )
@@ -27,17 +28,24 @@ import qualified Data.Map as Map
 
 main = do
     screenNumber <- countScreens
-    barHandle <- statusBar "xmobar" ( 
-        xmobarPP { ppTitle = xmobarColor xmobarTitleColor "" . shorten 40 
-                 , ppCurrent = xmobarColor xmobarCurrentWorkspaceColor "" 
-                 , ppSep = "  "
-                 , ppLayout = myLayoutPrinter
-                 }
-                                    )
-            toggleStrutsKey $ defaults
-                { workspaces = withScreens screenNumber myWorkspaces
-                }
-    xmonad barHandle
+    hs <- mapM (spawnPipe . xmobarCommand) [0..screenNumber - 1]
+    xmonad $ defaults
+        { workspaces = withScreens screenNumber myWorkspaces
+        , logHook = mapM_ dynamicLogWithPP $ zipWith myBarPrettyPrinter hs [0..screenNumber]
+        }
+
+xmobarCommand (S screenNumber) = unwords [myStatusBar, "-x", show screenNumber]
+myBarPrettyPrinter handle screenNumber = marshallPP screenNumber def 
+    { ppVisible           = color "white"
+    , ppUrgent            = color "red"
+    , ppOrder             = \(wss:layout:title:_) -> [wss, layout, title]
+    , ppOutput            = hPutStrLn handle
+    , ppTitle = xmobarColor xmobarTitleColor "" . shorten 40 
+    , ppCurrent = xmobarColor xmobarCurrentWorkspaceColor "" 
+    , ppSep = "  "
+    , ppLayout = myLayoutPrinter
+    }
+    where color colorName = xmobarColor colorName ""
 
 -- | The unexported X.H.DynamicLog.toggleStrutsKey
 toggleStrutsKey :: XConfig l -> (KeyMask, KeySym)
@@ -45,17 +53,18 @@ toggleStrutsKey XConfig { modMask = modm } = (modm, xK_b)
 
 defaults = def
     { borderWidth = myBorderWidth
-    , layoutHook = avoidStruts $ layoutHook def
+    , layoutHook = smartBorders $ avoidStruts $ layoutHook def
     , focusFollowsMouse = myFocusFollowsMouse
     , focusedBorderColor = myFocusedBorderColor
-    , manageHook = myManageHooks  <+> manageHook def <+> manageDocks
+    , manageHook = manageDocks <+> myManageHooks  <+> manageHook def
     -- To make Java applications behave normally...
-    , startupHook = setWMName "LG3D" <+> setDefaultCursor xC_left_ptr
+    , startupHook = setWMName "LG3D" <+> setDefaultCursor xC_left_ptr <+> docksStartupHook
     , modMask = mod4Mask
     , mouseBindings = myMouseBindings
     , normalBorderColor  = myNormalBorderColor
     , terminal = myTerminal
     , keys = myKeys
+    , handleEventHook = docksEventHook
     }
 
 myLayoutPrinter :: String -> String
@@ -105,10 +114,7 @@ myKeys conf = let m = modMask conf in Map.fromList $
     , ((myModMask, xK_h), sendMessage Shrink)
     , ((myModMask, xK_l), sendMessage Expand)
     , ((myModMask, xK_t), withFocused $ windows . W.sink)
-    , ((myModMask, xK_w), withScreen 0 W.view)
-    , ((myModMask .|. shiftMask  , xK_w), withScreen 0 viewShift)
-    , ((myModMask, xK_e), withScreen 1 W.view)
-    , ((myModMask .|. shiftMask, xK_e), withScreen 1 viewShift)
+    , ((myModMask, xK_b), sendMessage ToggleStruts)
     ] ++
     [ ((m .|. e .|. i, key), windows (onCurrentScreen f workspace)) 
       | (key, workspace) <- zip [xK_1..xK_9] (workspaces' conf)
