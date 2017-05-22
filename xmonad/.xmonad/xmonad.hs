@@ -15,6 +15,7 @@ import XMonad.Layout.IndependentScreens ( withScreens
                                         , workspaces'
                                         )
 import XMonad.Layout.NoBorders
+import XMonad.Layout.Grid
 import XMonad.Layout.Spiral
 import XMonad.Layout.Tabbed
 import XMonad.Layout.ThreeColumns
@@ -53,7 +54,7 @@ myBarPrettyPrinter handle screenNumber = marshallPP screenNumber def
 
 defaults = def
     { borderWidth = myBorderWidth
-    , layoutHook = smartBorders $ avoidStruts $ layoutHook def
+    , layoutHook = smartBorders $ avoidStruts $ myLayoutHook
     , focusFollowsMouse = myFocusFollowsMouse
     , focusedBorderColor = myFocusedBorderColor
     , manageHook = manageDocks <+> myManageHooks  <+> manageHook def
@@ -71,8 +72,10 @@ myLayoutPrinter :: String -> String
 myLayoutPrinter "Full" = "<fn=1>\xf0b2</fn>"
 myLayoutPrinter "Tall" = "<fn=1>\xf07e</fn>"
 myLayoutPrinter "Mirror Tall" = "<fn=1>\xf07d</fn>"
+myLayoutPrinter "Grid" = "<fn=1>\xf00a</fn>"
 myLayoutPrinter x = x
 
+myLayoutHook = layoutHook def ||| Grid
 myModMask = mod4Mask
 myBorderWidth = 1
 myStatusBar = "xmobar"
