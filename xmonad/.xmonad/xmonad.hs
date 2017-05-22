@@ -22,6 +22,9 @@ import XMonad.Layout.ThreeColumns
 import XMonad.Util.Cursor (setDefaultCursor)
 import XMonad.Util.EZConfig (additionalKeys)
 import XMonad.Util.Run (spawnPipe, hPutStrLn)
+import qualified XMonad.Prompt         as Prompt
+import qualified XMonad.Actions.Submap as Submap
+import qualified XMonad.Actions.Search as Search
 
 import System.Exit ( exitWith
                    , ExitCode (..)
@@ -122,6 +125,8 @@ myKeys conf = let m = modMask conf in Map.fromList $
     , ((myModMask .|. shiftMask, xK_Left), shiftPrevScreen)
     , ((myModMask, xK_Right),  nextScreen)
     , ((myModMask .|. shiftMask, xK_Right), shiftNextScreen)
+    , ((myModMask, xK_s), Submap.submap $ searchEngineMap $ Search.promptSearch Prompt.def)
+    , ((myModMask .|. shiftMask, xK_s), Submap.submap $ searchEngineMap $ Search.selectSearch)
     ] ++
     [ ((m .|. e .|. i, key), windows (onCurrentScreen f workspace)) 
       | (key, workspace) <- zip [xK_1..xK_9] (workspaces' conf)
@@ -134,6 +139,16 @@ myKeys conf = let m = modMask conf in Map.fromList $
     ]
         where viewShift i = W.view i . W.shift i
               withScreen screen f = screenWorkspace screen >>= flip whenJust (windows . f)
+              searchEngineMap method = Map.fromList $
+                  [ ((0, xK_g), method Search.google)
+                  , ((0, xK_h), method Search.hoogle)
+                  , ((0, xK_w), method Search.wikipedia)
+                  , ((0, xK_s), method Search.stackage)
+                  , ((0, xK_i), method Search.images)
+                  , ((0, xK_m), method Search.imdb)
+                  , ((0, xK_a), method Search.amazon)
+                  , ((0, xK_y), method Search.youtube)
+                  ]
 
 myMouseBindings (XConfig {XMonad.modMask = modMask}) = Map.fromList $
     [ -- mod-button1, Set the window to floating mode and move by dragging
