@@ -1,4 +1,5 @@
 import XMonad
+import XMonad.Actions.CycleWS
 import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.ManageHelpers
@@ -111,6 +112,8 @@ myKeys conf = let m = modMask conf in Map.fromList $
     , ((myModMask, xK_l), sendMessage Expand)
     , ((myModMask, xK_t), withFocused $ windows . W.sink)
     , ((myModMask, xK_b), sendMessage ToggleStruts)
+    , ((myModMask, xK_Right), prevScreen)
+    , ((myModMask, xK_Left),  nextScreen)
     ] ++
     [ ((m .|. e .|. i, key), windows (onCurrentScreen f workspace)) 
       | (key, workspace) <- zip [xK_1..xK_9] (workspaces' conf)
