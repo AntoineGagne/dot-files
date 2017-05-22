@@ -47,10 +47,6 @@ myBarPrettyPrinter handle screenNumber = marshallPP screenNumber def
     }
     where color colorName = xmobarColor colorName ""
 
--- | The unexported X.H.DynamicLog.toggleStrutsKey
-toggleStrutsKey :: XConfig l -> (KeyMask, KeySym)
-toggleStrutsKey XConfig { modMask = modm } = (modm, xK_b)
-
 defaults = def
     { borderWidth = myBorderWidth
     , layoutHook = smartBorders $ avoidStruts $ layoutHook def
@@ -134,7 +130,7 @@ myMouseBindings (XConfig {XMonad.modMask = modMask}) = Map.fromList $
     -- you may also bind events to the mouse scroll wheel (button4 and button5)
     ]
 
-myWorkspaces = ["1:web", "2:term", "3:read", "4:code", "5:media"] ++ map show [6..9]
+myWorkspaces = ["<fn=1>\xf269</fn>", "<fn=1>\xf120</fn>", "<fn=1>\xf02d</fn>", "<fn=1>\xf121</fn>", "5:media"] ++ map show [6..9]
 myManageHooks = composeAll
     [ className =? "URxvt" --> doShift "2:term"
     , className =? "Firefox" --> doShift "1:web"
