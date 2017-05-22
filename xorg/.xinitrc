@@ -63,7 +63,13 @@ if type "xbindkeys" >/dev/null 2>&1 && ! pidof -x "xbindkeys" >/dev/null 2>&1; t
     xbindkeys
 fi
 
-compton --daemon
+if [ "$(xrandr | grep -v '^\s\+' | grep -cv '^Screen')" = 2 ]; then
+    xrandr --output eDP-1 --auto --output HDMI-1 --auto --noprimary
+fi
+
+if type "compton" >/dev/null 2>&1; then
+    compton --daemon
+fi
 
 # Launch XMonad
 exec xmonad
