@@ -68,9 +68,9 @@ defaults = def
     }
 
 myLayoutPrinter :: String -> String
-myLayoutPrinter "Full" = "F"
-myLayoutPrinter "Tall" = "T"
-myLayoutPrinter "Mirror Tall" = "M"
+myLayoutPrinter "Full" = "<fn=1>\xf0b2</fn>"
+myLayoutPrinter "Tall" = "<fn=1>\xf07e</fn>"
+myLayoutPrinter "Mirror Tall" = "<fn=1>\xf07d</fn>"
 myLayoutPrinter x = x
 
 myModMask = mod4Mask
