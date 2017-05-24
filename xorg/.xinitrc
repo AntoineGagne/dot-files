@@ -60,7 +60,9 @@ fi
 
 # Run xbindkeys if it is installed and not running
 if type "xbindkeys" >/dev/null 2>&1 && ! pidof -x "xbindkeys" >/dev/null 2>&1; then
-    xbindkeys
+    if ! type "xmonad" >/dev/null 2>&1 || [ "$(xmonad --version | awk -F'.' '{print $2}')" -lt 13 ]; then
+        xbindkeys
+    fi
 fi
 
 if [ "$(xrandr | grep -v '^\s\+' | grep -cv '^Screen')" = 2 ]; then

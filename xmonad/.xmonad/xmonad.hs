@@ -25,6 +25,15 @@ import XMonad.Util.Run (spawnPipe, hPutStrLn)
 import qualified XMonad.Prompt         as Prompt
 import qualified XMonad.Actions.Submap as Submap
 import qualified XMonad.Actions.Search as Search
+import Graphics.X11.Types ( xK_Print )
+import Graphics.X11.ExtraTypes.XF86 ( xF86XK_AudioLowerVolume
+                                    , xF86XK_AudioMute
+                                    , xF86XK_AudioRaiseVolume
+                                    , xF86XK_AudioPlay
+                                    , xF86XK_AudioStop
+                                    , xF86XK_AudioPrev
+                                    , xF86XK_AudioNext
+                                    )
 
 import System.Exit ( exitWith
                    , ExitCode (..)
@@ -42,7 +51,9 @@ main = do
         , logHook = mapM_ dynamicLogWithPP $ zipWith myBarPrettyPrinter hs [0..screenNumber]
         }
 
+xmobarCommand :: ScreenId -> String
 xmobarCommand (S screenNumber) = unwords [myStatusBar, "-x", show screenNumber]
+
 myBarPrettyPrinter handle screenNumber = marshallPP screenNumber def 
     { ppVisible           = color "white"
     , ppUrgent            = color "red"
@@ -121,10 +132,23 @@ myKeys conf = let m = modMask conf in Map.fromList $
     , ((myModMask, xK_l), sendMessage Expand)
     , ((myModMask, xK_t), withFocused $ windows . W.sink)
     , ((myModMask, xK_b), sendMessage ToggleStruts)
+    -- Screenshots
+    , ((0, xK_Print), spawn "printscreen")
+    -- Audio Controls
+    , ((0, xF86XK_AudioMute), spawn "control-volume -t")
+    , ((0, xF86XK_AudioLowerVolume), spawn "control-volume -c -5%")
+    , ((0, xF86XK_AudioRaiseVolume), spawn "control-volume -c +5%")
+    -- Music Controls
+    , ((0, xF86XK_AudioNext), spawn "cmus-remote -n")
+    , ((0, xF86XK_AudioPrev), spawn "cmus-remote -r")
+    , ((0, xF86XK_AudioStop), spawn "cmus-remote -s")
+    , ((0, xF86XK_AudioPlay), spawn "cmus-remote -u")
+    -- Screens Related
     , ((myModMask, xK_Left), prevScreen)
     , ((myModMask .|. shiftMask, xK_Left), shiftPrevScreen)
     , ((myModMask, xK_Right),  nextScreen)
     , ((myModMask .|. shiftMask, xK_Right), shiftNextScreen)
+    -- Search Engines
     , ((myModMask, xK_s), Submap.submap $ searchEngineMap $ Search.promptSearch myPrompt)
     , ((myModMask .|. shiftMask, xK_s), Submap.submap $ searchEngineMap $ Search.selectSearch)
     ] ++
