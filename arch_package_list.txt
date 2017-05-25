@@ -120,7 +120,6 @@ wget
 which
 wpa_actiond
 wpa_supplicant
-xbindkeys
 xclip
 xfsprogs
 xmobar
@@ -129,5 +128,6 @@ xmonad-contrib
 xorg-server
 xorg-xinit
 xorg-xprop
+xorg-xrandr
 zathura
 zathura-pdf-mupdf
