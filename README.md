@@ -6,3 +6,4 @@ This repository regroups all my dotfiles.
 
 - [Installation](documentation/INSTALL.md)
 - [Configuration](documentation/CONFIGURATION.md)
+- [Screenshots](documentation/SCREENSHOTS.md)
