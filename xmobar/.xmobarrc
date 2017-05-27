@@ -94,10 +94,11 @@ Config { font =         "xft:Source Code Pro:style=Bold:size=9:antialias=true,Fo
                                        , "-i", "<fn=1>\xf1e6</fn>"
                              , "--on-icon-pattern", "<icon=.icons/battery/charging_battery_%%.xpm/>"
                              ] 50
-        , Run Brightness ["--template", "<ipat>"
+        , Run Brightness ["--template", "<ipat>(<percent>%)"
 
                          , "--"
                          , "-D", "intel_backlight"
+                         , "--brightness-icon-pattern", "<icon=.icons/luminosity/luminosity_%%.xpm/>"
                          ] 60
 
         -- time and date indicator
