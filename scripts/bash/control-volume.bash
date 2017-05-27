@@ -63,6 +63,6 @@ case "$1" in
         control_volume "$2"
         ;;
     *)
-        echo "Could not parse $1 option"
+        echo "Could not parse $1 option."
         ;;
 esac

@@ -2,7 +2,7 @@ INSTALL_DIR = $(HOME)/.local/bin
 SCRIPTS = bash/cmus-status.bash \
 		  bash/control-volume.bash \
 		  bash/create-named-pipe.bash \
-		  bash/printscreen.sh \
+		  bash/printscreen.bash \
 		  python/cmus_parse.py \
 		  bash/clean-local-tmp.sh \
 		  bash/fix-systemd-user-units.sh \
