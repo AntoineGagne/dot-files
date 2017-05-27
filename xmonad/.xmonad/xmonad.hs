@@ -33,8 +33,6 @@ import Graphics.X11.ExtraTypes.XF86 ( xF86XK_AudioLowerVolume
                                     , xF86XK_AudioStop
                                     , xF86XK_AudioPrev
                                     , xF86XK_AudioNext
-                                    , xF86XK_KbdBrightnessUp
-                                    , xF86XK_KbdBrightnessDown
                                     , xF86XK_MonBrightnessUp
                                     , xF86XK_MonBrightnessDown
                                     )
@@ -148,8 +146,6 @@ myKeys conf = let m = modMask conf in Map.fromList $
     , ((0, xF86XK_AudioStop), spawn "cmus-remote -s")
     , ((0, xF86XK_AudioPlay), spawn "cmus-remote -u")
     -- Brightness Controls
-    , ((0, xF86XK_KbdBrightnessDown), spawn "control-brightness -5")
-    , ((0, xF86XK_KbdBrightnessUp), spawn "control-brightness 5")
     , ((0, xF86XK_MonBrightnessDown), spawn "control-brightness -5")
     , ((0, xF86XK_MonBrightnessUp), spawn "control-brightness 5")
     -- Screens Related
