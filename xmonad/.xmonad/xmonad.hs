@@ -135,7 +135,8 @@ myKeys conf = let m = modMask conf in Map.fromList $
     , ((myModMask, xK_t), withFocused $ windows . W.sink)
     , ((myModMask, xK_b), sendMessage ToggleStruts)
     -- Screenshots
-    , ((0, xK_Print), spawn "printscreen")
+    , ((0, xK_Print), spawn "printscreen -f")
+    , ((myModMask, xK_Print), spawn "printscreen -s")
     -- Audio Controls
     , ((0, xF86XK_AudioMute), spawn "control-volume -t")
     , ((0, xF86XK_AudioLowerVolume), spawn "control-volume -c -5%")
