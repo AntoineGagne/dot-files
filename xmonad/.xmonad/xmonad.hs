@@ -198,7 +198,7 @@ myMouseBindings (XConfig {XMonad.modMask = modMask}) = Map.fromList $
     -- you may also bind events to the mouse scroll wheel (button4 and button5)
     ]
 
-myWorkspaces = ["1 <fn=1>\xf269</fn>", "2 <fn=1>\xf120</fn>", "3 <fn=1>\xf02d</fn>", "4 <fn=1>\xf121</fn>", "5 media"] ++ map show [6..9]
+myWorkspaces = ["1 <fn=1>\xf269</fn>", "2 <fn=1>\xf120</fn>", "3 <fn=1>\xf02d</fn>", "4 <fn=1>\xf121</fn>", "5 <fn=1>\xf11b</fn>", "6 <fn=1>\xf1fc</fn>"] ++ map show [7..9]
 myManageHooks = composeAll
     [ className =? "URxvt" --> doShift (myWorkspaces !! 1)
     , className =? "Firefox" --> doShift (myWorkspaces !! 0)
@@ -208,4 +208,5 @@ myManageHooks = composeAll
     , className =? "MPlayer" --> doShift (myWorkspaces !! 4)
     , className =? "feh" --> doShift (myWorkspaces !! 4)
     , className =? "Firefox" <&&> resource =? "Dialog" --> doFloat
+    , className =? "krita" --> doShift (myWorkspaces !! 5)
     ]
