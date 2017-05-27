@@ -28,13 +28,15 @@ write_volume_status() {
 }
 
 is_muted() {
-    SINK_NUMBER="$(get_default_sink_number)"
-    pactl list sinks | perl -000ne 'if(/#$ENV{'SINK_NUMBER'}/){/(Mute:\s*(.*)\s*)/; print "$2\n"}'
+    export sink_number
+    sink_number="$(get_default_sink_number)"
+    pactl list sinks | perl -000ne 'if(/#$ENV{'sink_number'}/){/(Mute:\s*(.*)\s*)/; print "$2\n"}'
 }
 
 get_volume_level() {
-    SINK_NUMBER="$(get_default_sink_number)"
-    pactl list sinks | perl -000ne 'if(/#$ENV{'SINK_NUMBER'}/){/Volume:\s*front-left:.*\/\s*(\d+%).*front-right:.*\/\s*(\d+%).*/; print "$1 $2\n"}'
+    export sink_number
+    sink_number="$(get_default_sink_number)"
+    pactl list sinks | perl -000ne 'if(/#$ENV{'sink_number'}/){/Volume:\s*front-left:.*\/\s*(\d+%).*front-right:.*\/\s*(\d+%).*/; print "$1 $2\n"}'
 }
 
 get_default_sink_number() {
