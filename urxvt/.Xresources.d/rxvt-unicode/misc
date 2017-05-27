@@ -3,3 +3,15 @@ urxvt.termName:rxvt-unicode
 urxvt.iconName: string
 
 urxvt.skipBuiltinGlyphs: false
+
+! {{{1 Transparency
+
+! {{{2 Real
+urxvt.depth: 32
+
+! {{{2 Fake
+! urxvt.transparent: true
+! urxvt.shading: 30
+! urxvt.fading: 60
+! urxvt.inheritPixmap: true
+

@@ -1,17 +1,6 @@
 urxvt.background: [95]#252E32
 urxvt.foreground: [95]#94a3a5
 
-! {{{1 Transparency
-
-! {{{2 Real
-urxvt.depth: 32
-
-! {{{2 Fake
-! urxvt.transparent: true
-! urxvt.shading: 30
-! urxvt.fading: 60
-! urxvt.inheritPixmap: true
-
 ! {{{1 Color Palette
 urxvt.color0: #073642
 urxvt.color1: #dc322f
