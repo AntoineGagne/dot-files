@@ -11,7 +11,7 @@ Config { font =         "xft:Source Code Pro:style=Bold:size=9:antialias=true,Fo
        -- layout
        , sepChar =  "%"   -- delineator between plugin names and straight text
        , alignSep = "}{"  -- separator between left-right alignment
-       , template = "%StdinReader% } %date% { %song% | %vol% | %CYQB% | %battery% "
+       , template = "%StdinReader% } %date% { %song% | %vol% | %bright% | %CYQB% | %battery% "
 
        -- general behavior
        , lowerOnStart =     True    -- send to bottom of window stack on start
@@ -78,7 +78,7 @@ Config { font =         "xft:Source Code Pro:style=Bold:size=9:antialias=true,Fo
                              ] 10
 
         -- battery monitor
-        , Run Battery        [ "--template" , "<acstatus>"
+        , Run Battery        [ "--template" , "<leftipat><acstatus>"
                              , "--Low"      , "10"        -- units: %
                              , "--High"     , "80"        -- units: %
                              , "--low"      , "#fb4934"
@@ -87,12 +87,18 @@ Config { font =         "xft:Source Code Pro:style=Bold:size=9:antialias=true,Fo
 
                              , "--" -- battery specific options
                                        -- discharging status
-                                       , "-o", "<left>% (<timeleft>)"
+                                       -- , "-o", "<left>% (<timeleft>)"
                                        -- AC "on" status
-                                       , "-O", "<fn=1>\xf1e6</fn> <left>%"
+                                       , "-O", "<left>%"
                                        -- charged status
                                        , "-i", "<fn=1>\xf1e6</fn>"
+                             , "--on-icon-pattern", "<icon=.icons/battery/charging_battery_%%.xpm/>"
                              ] 50
+        , Run Brightness ["--template", "<ipat>"
+
+                         , "--"
+                         , "-D", "intel_backlight"
+                         ] 60
 
         -- time and date indicator
         --   (%F = y-m-d date, %a = day of week, %T = h:m:s time)
