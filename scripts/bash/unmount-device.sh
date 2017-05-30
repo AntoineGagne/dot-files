@@ -1,4 +1,4 @@
 #! /bin/sh
 
-udiskctl unmount -b "$1"
-udiskctl power-off -b "$1"
+udisksctl unmount -b "$1"
+udisksctl power-off -b "$1"
