@@ -3,7 +3,6 @@ Description=Clean the `tmp` folder in `$HOME` every month.
 
 [Timer]
 OnCalendar=monthly
-OnBootSec=15min
 Persistent=true
 Unit=clean-local-tmp.service
 
