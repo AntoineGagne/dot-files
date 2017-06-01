@@ -66,6 +66,8 @@ else
     let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
     let &t_SR = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=2\x7\<Esc>\\"
 endif
+" Set the number of screen lines above and below the cursor
+set scrolloff=4
 
 
 " {{{1 Command Window

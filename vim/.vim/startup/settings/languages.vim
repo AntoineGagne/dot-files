@@ -2,5 +2,5 @@
 
 " Enables spell check
 set spell
-" Enables the english spell checker
-set spelllang=en
+" Enables the english and the french spell checker
+set spelllang=en,fr

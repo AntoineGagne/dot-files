@@ -10,6 +10,8 @@ set confirm
 " Reload file when there is no local changes and the file has been changed
 " externally
 set autoread
+" Set the default filetype
+set fileformats=unix
 
 
 " {{{1 Tags
@@ -35,11 +37,28 @@ endif
 
 " Put the backup files in the temporary folder
 set backup
-set backupdir=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
+call CreateDirectoryIfItDoesNotExists(expand('$HOME') . '/.tmp')
+" The directory where to put the backups
+set backupdir=~/.tmp
+" Skip creating backups for the files matching the following patterns
 set backupskip=/tmp/*,/private/tmp/*
-set directory=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
+
+" {{{1 Swap
+" The directory where to save the swap files
+call CreateDirectoryIfItDoesNotExists(expand('$HOME') . '/.swap')
+set directory=~/.swap
 set writebackup
 
+" {{{1 Undo
+" Keep undo even after closing the file
+set undofile
+call CreateDirectoryIfItDoesNotExists(expand('~') . '/.undo')
+" Set the undo directory
+set undodir=~/.undo
+" Set the maximum number of undo that can be undone
+set undolevels=1000
+" Set the maximum number of lines to save for undo on a buffer reload
+set undoreload=10000
 
 " {{{1 Buffers & Tabs
 
