@@ -14,10 +14,6 @@
     path = vim/.vim/bundle/syntastic
     url = https://github.com/vim-syntastic/syntastic
     ignore = dirty
-[submodule "vim/.vim/bundle/nerdtree"]
-    path = vim/.vim/bundle/nerdtree
-    url = https://github.com/scrooloose/nerdtree
-    ignore = dirty
 [submodule "vim/.vim/bundle/vim-racer"]
     path = vim/.vim/bundle/vim-racer
     url = https://github.com/racer-rust/vim-racer
