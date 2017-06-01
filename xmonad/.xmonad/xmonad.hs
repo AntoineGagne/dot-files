@@ -207,6 +207,7 @@ myManageHooks = composeAll
     , className =? "jetbrains-idea" --> doShift (myWorkspaces !! 3)
     , className =? "Easytag" --> doShift (myWorkspaces !! 4)
     , className =? "MPlayer" --> doShift (myWorkspaces !! 4)
+    , className =? "mpv" --> doShift (myWorkspaces !! 4)
     , className =? "feh" --> doShift (myWorkspaces !! 4)
     , className =? "Firefox" <&&> resource =? "Dialog" --> doFloat
     , className =? "krita" --> doShift (myWorkspaces !! 5)
