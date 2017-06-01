@@ -1,7 +1,9 @@
 #! /bin/sh
 
-temporary_directory="${HOME}/.tmp"
+directories="${HOME}/.tmp ${HOME}/.undo ${HOME}/.swap"
 
-if [ -d "${temporary_directory}" ]; then
-    /usr/bin/find "${temporary_directory}" -name '*~' -type f -delete
-fi
+for directory in $directories; do
+    if [ -d "${directory}" ]; then
+        /usr/bin/find "${directory}" -name '*~' -type f -mtime +90 -delete
+    fi
+done
