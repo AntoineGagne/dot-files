@@ -194,3 +194,4 @@ vimwiki_html
 **/.vim/spell/*
 **/.vim/spell/**
 !**/.vim/spell/*.add
+**/.netrwhist
