@@ -42,7 +42,8 @@ call vundle#begin()
     Plugin 'othree/html5.vim'
 
     "  {{{2 Show filesystem as a tree
-    Plugin 'scrooloose/nerdtree'
+    " See https://shapeshed.com/vim-netrw/
+    " Plugin 'scrooloose/nerdtree'
 
     " {{{2 Syntax checking
     " Plugin 'vim-syntastic/syntastic'
