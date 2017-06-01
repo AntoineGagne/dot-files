@@ -53,7 +53,7 @@ make
 man-db
 man-pages
 mdadm
-mplayer
+mpv
 mutt
 namcap
 nano
