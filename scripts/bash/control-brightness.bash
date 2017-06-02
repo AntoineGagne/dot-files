@@ -25,11 +25,11 @@ new_brightness=$(( max_brightness * new_brightness_percentage / 100 ))
 
 if [ $new_brightness -le "$max_brightness" ] && [ $new_brightness -ge 0 ]; then
     # set the new brightness value
-    echo "$new_brightness" > "$handler/brightness"
+    echo "$new_brightness" | sudo tee "$handler/brightness"
 elif [ $new_brightness -lt 0 ]; then
     # If it is lower than the minimum brightness, set its value to 0%
-    echo "0" > "$handler/brightness"
+    echo "0" | sudo tee "$handler/brightness"
 else
     # If it is higher than the maximum brightness, set its value to 100%
-    echo "$max_brightness" > "$handler/brightness"
+    echo "$max_brightness" | sudo tee "$handler/brightness"
 fi
