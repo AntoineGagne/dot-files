@@ -5,6 +5,7 @@ automake
 bash
 bash-completion
 bison
+bitlbee
 bzip2
 cabal-install
 cmake
@@ -119,6 +120,7 @@ urxvt-perls
 usbutils
 util-linux
 vi
+weechat
 wget
 which
 wpa_actiond
