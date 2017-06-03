@@ -28,7 +28,8 @@ SOFTWARE_DIRS := bash \
 	xmobar \
 	zathura \
 	feh \
-	icons
+	icons \
+	weechat
 INSTALL_DIRS := $(SOFTWARE_DIRS:%=install-%)
 
 YOUCOMPLETEME_DIR := ${HOME}/.vim/bundle/YouCompleteMe

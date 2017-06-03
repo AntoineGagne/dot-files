@@ -195,3 +195,21 @@ vimwiki_html
 **/.vim/spell/**
 !**/.vim/spell/*.add
 **/.netrwhist
+
+# Weechat dotfiles
+**/.weechat/*
+!**/.weechat/alias.conf
+!**/.weechat/buflist.conf
+!**/.weechat/charset.conf
+!**/.weechat/exec.conf
+!**/.weechat/fifo.conf
+!**/.weechat/irc.conf
+!**/.weechat/logger.conf
+!**/.weechat/plugins.conf
+!**/.weechat/relay.conf
+!**/.weechat/script.conf
+!**/.weechat/trigger.conf
+!**/.weechat/weechat.conf
+!**/.weechat/xfer.conf
+!**/.weechat/perl
+!**/.weechat/python
