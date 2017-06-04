@@ -85,10 +85,10 @@ defaults = def
     }
 
 myLayoutPrinter :: String -> String
-myLayoutPrinter "Full" = "<fn=1>\xf0b2</fn>"
-myLayoutPrinter "Tall" = "<fn=1>\xf07e</fn>"
-myLayoutPrinter "Mirror Tall" = "<fn=1>\xf07d</fn>"
-myLayoutPrinter "Grid" = "<fn=1>\xf00a</fn>"
+myLayoutPrinter "Full" = "<icon=.icons/layout/full_screen_layout.xpm/>"
+myLayoutPrinter "Tall" = "<icon=.icons/layout/vertical_layout.xpm/>"
+myLayoutPrinter "Mirror Tall" = "<icon=.icons/layout/horizontal_layout.xpm/>"
+myLayoutPrinter "Grid" = "<icon=.icons/layout/grid_layout.xpm/>"
 myLayoutPrinter x = x
 
 myLayoutHook = layoutHook def ||| Grid
