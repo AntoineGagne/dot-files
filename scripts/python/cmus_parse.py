@@ -192,7 +192,7 @@ if __name__ == '__main__':
                 STATUS_INFORMATION.status,
                 sys.argv[1].format(**STATUS_INFORMATION.__dict__)
             ),
-            width=50,
+            width=48,
             placeholder='…'
         )
     )
