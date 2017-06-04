@@ -103,7 +103,7 @@ Config { font =         "xft:Source Code Pro:style=Bold:size=9:antialias=true,Fo
 
         -- time and date indicator
         --   (%F = y-m-d date, %a = day of week, %T = h:m:s time)
-        , Run Date           "<fn=1>\xf073</fn> <fc=#ebdbb2>%a %b %T</fc>" "date" 10
+        , Run Date           "<fn=1>\xf073</fn> <fc=#ebdbb2>%a %b %d %T</fc>" "date" 10
 
         -- keyboard layout indicator
         , Run Kbd            [ ("ca", "<fc=#8B0000>FR</fc>")
