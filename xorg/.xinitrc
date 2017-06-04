@@ -65,8 +65,8 @@ if type "xbindkeys" >/dev/null 2>&1 && ! pidof -x "xbindkeys" >/dev/null 2>&1; t
     fi
 fi
 
-if [ "$(xrandr | grep -v '^\s\+' | grep -cv '^Screen')" -ge 2 ]; then
-    xrandr --output eDP-1 --auto --output HDMI-1 --auto --noprimary
+if type "display-screens" >/dev/null 2>&1; then
+    display-screens
 fi
 
 if type "compton" >/dev/null 2>&1; then

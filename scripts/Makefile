@@ -7,7 +7,8 @@ SCRIPTS = bash/cmus-status.bash \
 		  bash/clean-local-tmp.sh \
 		  bash/fix-systemd-user-units.sh \
 		  bash/control-brightness.bash \
-		  bash/unmount-device.sh
+		  bash/unmount-device.sh \
+		  python/display_screens.py
 INSTALL_SCRIPTS := $(SCRIPTS:%=install-%)
 
 .PHONY: all
