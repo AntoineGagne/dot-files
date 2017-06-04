@@ -11,7 +11,7 @@ Config { font =         "xft:Source Code Pro:style=Bold:size=9:antialias=true,Fo
        -- layout
        , sepChar =  "%"   -- delineator between plugin names and straight text
        , alignSep = "}{"  -- separator between left-right alignment
-       , template = "%StdinReader% } %date% { %song%<icon=.icons/volume/volume_3.xpm/>%vol%%bright%%CYQB%  %battery% "
+       , template = "%StdinReader% } %date% { %song%<icon=.icons/volume/volume_3.xpm/>%vol% %wlo1wi%%bright%%CYQB%  %battery% "
 
        -- general behavior
        , lowerOnStart =     True    -- send to bottom of window stack on start
@@ -49,6 +49,10 @@ Config { font =         "xft:Source Code Pro:style=Bold:size=9:antialias=true,Fo
                              , "--normal"   , "darkorange"
                              , "--high"     , "darkred"
                              ] 10
+        , Run Wireless "wlo1" [ "--template" , "<qualityipat>"
+                              , "--"
+                              , "--quality-icon-pattern", "<icon=.icons/wifi/second_alternative_wifi_%%.xpm/>"
+                              ] 20
 
         -- cpu activity monitor
         , Run MultiCpu       [ "--template" , "CPU: <total0>%|<total1>%"
