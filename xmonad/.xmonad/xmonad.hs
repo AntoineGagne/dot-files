@@ -22,6 +22,13 @@ import XMonad.Layout.ThreeColumns
 import XMonad.Util.Cursor (setDefaultCursor)
 import XMonad.Util.EZConfig (additionalKeys)
 import XMonad.Util.Run (spawnPipe, hPutStrLn)
+import XMonad.Hooks.WallpaperSetter ( defWallpaperConf
+                                    , defWPNames
+                                    , wallpaperSetter
+                                    , WallpaperConf (..)
+                                    , Wallpaper ( WallpaperDir )
+                                    , WallpaperList (..)
+                                    )
 import qualified XMonad.Prompt         as Prompt
 import qualified XMonad.Actions.Submap as Submap
 import qualified XMonad.Actions.Search as Search
@@ -52,6 +59,12 @@ main = do
         { workspaces = withScreens screenNumber myWorkspaces
         , logHook = mapM_ dynamicLogWithPP $ zipWith myBarPrettyPrinter hs [0..screenNumber]
         }
+
+-- TODO: Find a way to make it work with the multi-head setup
+myWallpaperSetterHook :: X ()
+myWallpaperSetterHook = wallpaperSetter defWallpaperConf 
+    { wallpapers = WallpaperList $ zip myWorkspaces $ replicate (length myWorkspaces) (WallpaperDir "~/.wallpapers")
+    }
 
 xmobarCommand :: ScreenId -> String
 xmobarCommand (S screenNumber) = unwords [myStatusBar, "-x", show screenNumber]
@@ -92,16 +105,28 @@ myLayoutPrinter "Grid" = "<icon=.icons/layout/grid_layout.xpm/>"
 myLayoutPrinter x = x
 
 myLayoutHook = layoutHook def ||| Grid
+
 myModMask = mod4Mask
+
+myBorderWidth :: Dimension
 myBorderWidth = 1
+
+myStatusBar :: String
 myStatusBar = "xmobar"
+
+myTerminal :: String
 myTerminal = "urxvtc"
+
+myLauncher :: String
 myLauncher = "dmenu_run"
 
 myFocusFollowsMouse :: Bool
 myFocusFollowsMouse = True
 
+myNormalBorderColor :: String
 myNormalBorderColor  = "#928374"
+
+myFocusedBorderColor :: String
 myFocusedBorderColor = "#8ec07c"
 
 -- Colors for text and backgrounds of each tab when in "Tabbed" layout.
@@ -114,10 +139,13 @@ tabConfig = def {
     inactiveColor = "#000000"
 }
 -- Color of current window title in xmobar.
+xmobarTitleColor :: String
 xmobarTitleColor = "#d79921"
 -- Color of current workspace in xmobar.
+xmobarCurrentWorkspaceColor :: String
 xmobarCurrentWorkspaceColor = "#b8bb26"
 
+myKeys :: (XConfig Layout -> Map.Map (ButtonMask, KeySym) (X ()))
 myKeys conf = let m = modMask conf in Map.fromList $
     [ ((myModMask, xK_p), spawn myLauncher)
     , ((myModMask .|. shiftMask, xK_Return), spawn myTerminal)
@@ -189,6 +217,7 @@ myPrompt = Prompt.def { Prompt.font = "xft:xft:Source Code Pro:style=Bold:size=9
                       , Prompt.borderColor = "#3c3836"
                       }
 
+myMouseBindings :: (XConfig Layout -> Map.Map (ButtonMask, Button) (Window -> X ()))
 myMouseBindings (XConfig {XMonad.modMask = modMask}) = Map.fromList $
     [ -- mod-button1, Set the window to floating mode and move by dragging
       ((modMask, button1), (\w -> focus w >> mouseMoveWindow w))
@@ -199,7 +228,10 @@ myMouseBindings (XConfig {XMonad.modMask = modMask}) = Map.fromList $
     -- you may also bind events to the mouse scroll wheel (button4 and button5)
     ]
 
+myWorkspaces :: [WorkspaceId]
 myWorkspaces = ["1 <fn=1>\xf269</fn>", "2 <fn=1>\xf120</fn>", "3 <fn=1>\xf02d</fn>", "4 <fn=1>\xf121</fn>", "5 <fn=1>\xf11b</fn>", "6 <fn=1>\xf1fc</fn>"] ++ map show [7..9]
+
+myManageHooks :: ManageHook
 myManageHooks = composeAll
     [ className =? "URxvt" --> doShift (myWorkspaces !! 1)
     , className =? "Firefox" --> doShift (myWorkspaces !! 0)
