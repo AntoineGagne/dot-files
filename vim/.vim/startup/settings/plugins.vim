@@ -47,3 +47,6 @@ source ~/.vim/startup/settings/plugins/ultisnips.vim
 " {{{1 Formatting
 
 source ~/.vim/startup/settings/plugins/vim-table-mode.vim
+
+" {{{1 Note taking
+source ~/.vim/startup/settings/plugins/vimwiki.vim
