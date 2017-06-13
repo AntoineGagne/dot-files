@@ -55,6 +55,7 @@ import qualified Data.Map as Map
 main = do
     screenNumber <- countScreens
     hs <- mapM (spawnPipe . xmobarCommand) [0..screenNumber - 1]
+    spawn "display-screens"
     xmonad $ defaults
         { workspaces = withScreens screenNumber myWorkspaces
         , logHook = mapM_ dynamicLogWithPP $ zipWith myBarPrettyPrinter hs [0..screenNumber]
@@ -67,7 +68,15 @@ myWallpaperSetterHook = wallpaperSetter defWallpaperConf
     }
 
 xmobarCommand :: ScreenId -> String
-xmobarCommand (S screenNumber) = unwords [myStatusBar, "-x", show screenNumber]
+xmobarCommand (S screenNumber) = unwords [ myStatusBar
+                                         , "-x"
+                                         , show screenNumber
+                                         , additionalCommands
+                                         , "-i"
+                                         , "~"
+                                         ]
+    where additionalCommands = "-C '[Run PipeReader \"N/A:/$HOME/.volume-" ++ show screenNumber ++ "\" \"vol\", Run PipeReader \"Nothing Playing:$HOME/.song-information-" ++ show screenNumber ++ "\" \"song\"]'"
+
 
 myBarPrettyPrinter handle screenNumber = marshallPP screenNumber def 
     { ppVisible           = color "white"

@@ -1,5 +1,5 @@
 -- vim: ft=haskell
-Config { font =         "xft:Source Code Pro:style=Bold:size=9:antialias=true,FontAwesome:style=Regular:size=10"
+Config { font =         "xft:Source Code Pro:style=Regular:size=9:antialias=true"
        , additionalFonts = ["xft:FontAwesome:style=Regular:size=10", "xft:DejaVu Sans:style=Book:size=10"]
        , bgColor =      "#1d2021"
        , fgColor =      "#ebdbb2"
@@ -11,7 +11,7 @@ Config { font =         "xft:Source Code Pro:style=Bold:size=9:antialias=true,Fo
        -- layout
        , sepChar =  "%"   -- delineator between plugin names and straight text
        , alignSep = "}{"  -- separator between left-right alignment
-       , template = "%StdinReader% } %date% { %song%<icon=.icons/volume/volume_3.xpm/>%vol% %wlo1wi%%bright%%CYQB%  %battery% "
+       , template = "%StdinReader% } %date% { %song%<icon=.icons/volume/volume_3.xpm/>%vol% %wlo1wi%%bright%%CYQB% %battery% "
 
        -- general behavior
        , lowerOnStart =     True    -- send to bottom of window stack on start
@@ -114,10 +114,10 @@ Config { font =         "xft:Source Code Pro:style=Bold:size=9:antialias=true,Fo
                              ]
 
         -- volume indicator
-        , Run PipeReader "N/A:/$HOME/.volume" "vol"
+        --, Run PipeReader "N/A:/$HOME/.volume" "vol"
         
         -- song indicator
-        , Run PipeReader "Nothing playing:/$HOME/.song-information" "song"
+        -- , Run PipeReader "Nothing playing:/$HOME/.song-information" "song"
 
         , Run StdinReader
         ]

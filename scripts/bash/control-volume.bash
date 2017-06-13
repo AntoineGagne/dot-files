@@ -1,5 +1,7 @@
 #!/usr/bin/bash
 
+named_volume_pipes="${HOME}/.volume*"
+
 toggle_sound() {
     pactl set-sink-mute @DEFAULT_SINK@ toggle
     write_volume_status
@@ -11,20 +13,14 @@ control_volume() {
     write_volume_status
 }
 
-create_volume_pipe() {
-    if [ -p "$HOME/.volume" ]; then
-        rm "$HOME/.volume"
-    fi
-    mkfifo "$HOME/.volume"
-    write_volume_status >"$HOME/.volume" &
-}
-
 write_volume_status() {
-    if [ "$(is_muted)" = "no" ]; then
-        get_volume_level >"$HOME/.volume" &
-    else
-        echo "Muted" > "$HOME/.volume" &
-    fi
+    for named_volume_pipe in $named_volume_pipes; do
+        if [ "$(is_muted)" = "no" ]; then
+            get_volume_level >"${named_volume_pipe}" &
+        else
+            echo "Muted" >"${named_volume_pipe}" &
+        fi
+    done
 }
 
 is_muted() {
@@ -44,9 +40,6 @@ get_default_sink_number() {
 }
 
 case "$1" in
-    --create-pipe)
-        create_volume_pipe
-        ;;
     -v|--volume)
         get_volume_level
         ;;

@@ -43,14 +43,13 @@ urxvtd -q -f -o
 # Spawn a urxvt terminal
 urxvtc &
 
-# Create a named pipe for xmobar to be able to read volume levels
-if type "control-volume" >/dev/null 2>&1; then
-    control-volume --create-pipe
-fi
-
 # Create the song indicator pipe and put a default value
 if type "create-named-pipe" >/dev/null 2>&1; then
-    create-named-pipe "$HOME/.song-information" "Nothing playing"
+    screen_number=$(xrandr | grep -c 'connected')
+    for number in $(seq 0 "$((screen_number - 1))"); do
+        create-named-pipe "${HOME}/.volume-${number}" "N/A"
+        create-named-pipe "$HOME/.song-information-${number}" "Nothing playing"
+    done
 fi
 
 # Set the background image
@@ -63,10 +62,6 @@ if type "xbindkeys" >/dev/null 2>&1 && ! pidof -x "xbindkeys" >/dev/null 2>&1; t
     if ! type "xmonad" >/dev/null 2>&1 || [ "$(xmonad --version | awk -F'.' '{print $2}')" -lt 13 ]; then
         xbindkeys
     fi
-fi
-
-if type "display-screens" >/dev/null 2>&1; then
-    display-screens
 fi
 
 if type "compton" >/dev/null 2>&1; then
