@@ -64,7 +64,7 @@ main = do
 -- TODO: Find a way to make it work with the multi-head setup
 myWallpaperSetterHook :: X ()
 myWallpaperSetterHook = wallpaperSetter defWallpaperConf 
-    { wallpapers = WallpaperList $ zip myWorkspaces $ replicate (length myWorkspaces) (WallpaperDir "~/.wallpapers")
+    { wallpapers = WallpaperList $ zip (workspaces' defaults) $ replicate (length myWorkspaces) (WallpaperDir "~/.wallpapers")
     }
 
 xmobarCommand :: ScreenId -> String
@@ -154,44 +154,67 @@ xmobarTitleColor = "#d79921"
 xmobarCurrentWorkspaceColor :: String
 xmobarCurrentWorkspaceColor = "#b8bb26"
 
+-- {{{1 Keybindings
 myKeys :: (XConfig Layout -> Map.Map (ButtonMask, KeySym) (X ()))
 myKeys conf = let m = modMask conf in Map.fromList $
+    -- {{{2 Programs
     [ ((myModMask, xK_p), spawn myLauncher)
     , ((myModMask .|. shiftMask, xK_Return), spawn myTerminal)
     , ((myModMask .|. shiftMask, xK_c), kill)
+    -- {{{2 XMonad
     , ((myModMask, xK_q), restart "xmonad" True)
     , ((myModMask .|. shiftMask, xK_q), io (exitWith ExitSuccess))
+    -- {{{2 Layouts
     , ((myModMask, xK_space), sendMessage NextLayout)
+    -- Reset the layouts on the current workspace
+    , ((myModMask .|. shiftMask, xK_space), setLayout $ XMonad.layoutHook conf)
+    -- {{{2 Focus
+    -- Move focus to the next window
+    , ((myModMask, xK_Tab), windows W.focusDown)
     , ((myModMask, xK_j), windows W.focusDown)
     , ((myModMask, xK_k), windows W.focusUp)
-    , ((myModMask, xK_comma), sendMessage (IncMasterN 1))
-    , ((myModMask, xK_period), sendMessage (IncMasterN (-1)))
     , ((myModMask, xK_m), windows W.focusMaster)
+    -- Swap the focused window with the next window
+    , ((myModMask .|. shiftMask, xK_j), windows W.swapDown)
+    -- Swap the focused window with the previous window
+    , ((myModMask .|. shiftMask, xK_k), windows W.swapUp)
+    -- Swap the focused window and the master window
+    , ((myModMask, xK_Return), windows W.swapMaster)
+    -- {{{2 Sizing
+    -- Increment the number of windows in the master area
+    , ((myModMask, xK_comma), sendMessage (IncMasterN 1))
+    -- Deincrement the number of windows in the master area
+    , ((myModMask, xK_period), sendMessage (IncMasterN (-1)))
+    -- Resize viewed windows to the correct size
+    , ((myModMask, xK_n), refresh)
+    -- Shrink the master area
     , ((myModMask, xK_h), sendMessage Shrink)
+    -- Expand the master area
     , ((myModMask, xK_l), sendMessage Expand)
+    -- Push window back into tiling
     , ((myModMask, xK_t), withFocused $ windows . W.sink)
     , ((myModMask, xK_b), sendMessage ToggleStruts)
-    -- Screenshots
+    -- {{{2 Screenshots
     , ((0, xK_Print), spawn "printscreen -f")
     , ((myModMask, xK_Print), spawn "printscreen -s")
-    -- Audio Controls
+    -- {{{2 Audio Controls
     , ((0, xF86XK_AudioMute), spawn "control-volume -t")
     , ((0, xF86XK_AudioLowerVolume), spawn "control-volume -c -5%")
     , ((0, xF86XK_AudioRaiseVolume), spawn "control-volume -c +5%")
-    -- Music Controls
+    -- {{{2 Music Controls
     , ((0, xF86XK_AudioNext), spawn "cmus-remote -n")
     , ((0, xF86XK_AudioPrev), spawn "cmus-remote -r")
     , ((0, xF86XK_AudioStop), spawn "cmus-remote -s")
     , ((0, xF86XK_AudioPlay), spawn "cmus-remote -u")
-    -- Brightness Controls
+    -- {{{2 Brightness Controls
     , ((0, xF86XK_MonBrightnessDown), spawn "control-brightness -5")
     , ((0, xF86XK_MonBrightnessUp), spawn "control-brightness 5")
-    -- Screens Related
+    -- {{{2 Screens Related
     , ((myModMask, xK_Left), prevScreen)
     , ((myModMask .|. shiftMask, xK_Left), shiftPrevScreen)
     , ((myModMask, xK_Right),  nextScreen)
     , ((myModMask .|. shiftMask, xK_Right), shiftNextScreen)
-    -- Search Engines
+    -- {{{2 Search Engines
     , ((myModMask, xK_s), Submap.submap $ searchEngineMap $ Search.promptSearch myPrompt)
     , ((myModMask .|. shiftMask, xK_s), Submap.submap $ searchEngineMap $ Search.selectSearch)
     ] ++
