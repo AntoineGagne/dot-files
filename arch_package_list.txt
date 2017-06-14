@@ -60,6 +60,7 @@ namcap
 nano
 neovim
 netctl
+ntfs-3g
 openssh
 opusfile
 pacman
