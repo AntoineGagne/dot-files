@@ -11,6 +11,7 @@ import XMonad.Layout.Fullscreen
 import XMonad.Layout.IndependentScreens ( withScreens
                                         , countScreens
                                         , marshallPP
+                                        , marshall
                                         , onCurrentScreen
                                         , workspaces'
                                         )
@@ -58,6 +59,7 @@ main = do
     spawn "display-screens"
     xmonad $ defaults
         { workspaces = withScreens screenNumber myWorkspaces
+        , manageHook = manageDocks <+> myManageHooks screenNumber <+> manageHook def
         , logHook = mapM_ dynamicLogWithPP $ zipWith myBarPrettyPrinter hs [0..screenNumber]
         }
 
@@ -95,7 +97,7 @@ defaults = def
     , layoutHook = smartBorders $ avoidStruts $ myLayoutHook
     , focusFollowsMouse = myFocusFollowsMouse
     , focusedBorderColor = myFocusedBorderColor
-    , manageHook = manageDocks <+> myManageHooks  <+> manageHook def
+    -- , manageHook = manageDocks <+> myManageHooks  <+> manageHook def
     -- To make Java applications behave normally...
     , startupHook = setWMName "LG3D" <+> setDefaultCursor xC_left_ptr <+> docksStartupHook
     , modMask = mod4Mask
@@ -263,16 +265,21 @@ myMouseBindings (XConfig {XMonad.modMask = modMask}) = Map.fromList $
 myWorkspaces :: [WorkspaceId]
 myWorkspaces = ["1 <fn=1>\xf269</fn>", "2 <fn=1>\xf120</fn>", "3 <fn=1>\xf02d</fn>", "4 <fn=1>\xf121</fn>", "5 <fn=1>\xf11b</fn>", "6 <fn=1>\xf1fc</fn>"] ++ map show [7..9]
 
-myManageHooks :: ManageHook
-myManageHooks = composeAll
-    [ className =? "URxvt" --> doShift (myWorkspaces !! 1)
-    , className =? "Firefox" --> doShift (myWorkspaces !! 0)
-    , className =? "Zathura" --> doShift (myWorkspaces !! 2)
-    , className =? "jetbrains-idea" --> doShift (myWorkspaces !! 3)
-    , className =? "Easytag" --> doShift (myWorkspaces !! 4)
-    , className =? "MPlayer" --> doShift (myWorkspaces !! 4)
-    , className =? "mpv" --> doShift (myWorkspaces !! 4)
-    , className =? "feh" --> doShift (myWorkspaces !! 4)
+myManageHooks :: ScreenId -> ManageHook
+myManageHooks screenNumber = composeAll
+    [ className =? "URxvt" --> moveToWorkspace 1 1
+    , className =? "Firefox" --> moveToWorkspace 0 0
+    , className =? "Zathura" --> moveToWorkspace 1 2
+    , className =? "jetbrains-idea" --> moveToWorkspace 1 3
+    , className =? "Easytag" --> moveToWorkspace 1 4
+    , className =? "MPlayer" --> moveToWorkspace 1 4
+    , className =? "mpv" --> moveToWorkspace 1 4
+    , className =? "feh" --> moveToWorkspace 1 4
     , className =? "Firefox" <&&> resource =? "Dialog" --> doFloat
-    , className =? "krita" --> doShift (myWorkspaces !! 5)
+    , className =? "krita" --> moveToWorkspace 1 5
     ]
+        where moveToWorkspace :: ScreenId -> Int -> ManageHook
+              moveToWorkspace screenId workspaceNumber = if screenId < screenNumber 
+                                                             then doShift $ marshall screenId (chooseWorkspace workspaceNumber)
+                                                             else doShift $ marshall 0 (chooseWorkspace workspaceNumber)
+              chooseWorkspace = (!!) myWorkspaces
