@@ -4,6 +4,7 @@ import XMonad.Actions.PhysicalScreens ( viewScreen
                                       , sendToScreen
                                       )
 import XMonad.Hooks.DynamicLog
+import XMonad.Hooks.FadeInactive ( fadeInactiveCurrentWSLogHook )
 import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.ManageHelpers
 import XMonad.Hooks.SetWMName
@@ -60,7 +61,7 @@ main = do
     xmonad $ defaults
         { workspaces = withScreens screenNumber myWorkspaces
         , manageHook = manageDocks <+> myManageHooks screenNumber <+> manageHook def
-        , logHook = mapM_ dynamicLogWithPP $ zipWith myBarPrettyPrinter hs [0..screenNumber]
+        , logHook = fadeInactiveCurrentWSLogHook 0.8 <+> (mapM_ dynamicLogWithPP $ zipWith myBarPrettyPrinter hs [0..screenNumber])
         }
 
 -- TODO: Find a way to make it work with the multi-head setup
