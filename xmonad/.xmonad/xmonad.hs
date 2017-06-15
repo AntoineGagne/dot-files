@@ -267,7 +267,8 @@ myWorkspaces = ["1 <fn=1>\xf269</fn>", "2 <fn=1>\xf120</fn>", "3 <fn=1>\xf02d</f
 
 myManageHooks :: ScreenId -> ManageHook
 myManageHooks screenNumber = composeAll $
-    [ className =? "Firefox" --> moveToWorkspace [0] 0
+    [ className =? "URxvt" --> moveToWorkspace [1] 1
+    , className =? "Firefox" --> moveToWorkspace [0] 0
     , className =? "Chromium-browser" --> moveToWorkspace [0] 0
     , className =? "Zathura" --> moveToWorkspace [1] 2
     , className =? "feh" --> moveToWorkspace [1] 2
