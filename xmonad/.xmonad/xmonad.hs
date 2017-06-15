@@ -97,7 +97,6 @@ defaults = def
     , layoutHook = smartBorders $ avoidStruts $ myLayoutHook
     , focusFollowsMouse = myFocusFollowsMouse
     , focusedBorderColor = myFocusedBorderColor
-    -- , manageHook = manageDocks <+> myManageHooks  <+> manageHook def
     -- To make Java applications behave normally...
     , startupHook = setWMName "LG3D" <+> setDefaultCursor xC_left_ptr <+> docksStartupHook
     , modMask = mod4Mask
@@ -266,20 +265,22 @@ myWorkspaces :: [WorkspaceId]
 myWorkspaces = ["1 <fn=1>\xf269</fn>", "2 <fn=1>\xf120</fn>", "3 <fn=1>\xf02d</fn>", "4 <fn=1>\xf121</fn>", "5 <fn=1>\xf11b</fn>", "6 <fn=1>\xf1fc</fn>"] ++ map show [7..9]
 
 myManageHooks :: ScreenId -> ManageHook
-myManageHooks screenNumber = composeAll
-    [ className =? "URxvt" --> moveToWorkspace 1 1
-    , className =? "Firefox" --> moveToWorkspace 0 0
-    , className =? "Zathura" --> moveToWorkspace 1 2
-    , className =? "jetbrains-idea" --> moveToWorkspace 1 3
-    , className =? "Easytag" --> moveToWorkspace 1 4
-    , className =? "MPlayer" --> moveToWorkspace 1 4
-    , className =? "mpv" --> moveToWorkspace 1 4
-    , className =? "feh" --> moveToWorkspace 1 4
+myManageHooks screenNumber = composeAll $
+    [ className =? "Firefox" --> moveToWorkspace [0] 0
+    , className =? "Chromium-browser" --> moveToWorkspace [0] 0
+    , className =? "Zathura" --> moveToWorkspace [1] 2
+    , className =? "feh" --> moveToWorkspace [1] 2
+    , className =? "jetbrains-idea" --> moveToWorkspace [1] 3
+    , className =? "Easytag" --> moveToWorkspace [1] 4
+    , className =? "MPlayer" --> moveToWorkspace [1] 4
+    , className =? "mpv" --> moveToWorkspace [1] 4
     , className =? "Firefox" <&&> resource =? "Dialog" --> doFloat
-    , className =? "krita" --> moveToWorkspace 1 5
+    , className =? "krita" --> moveToWorkspace [1] 5
+    , className =? "Wireshark" --> moveToWorkspace [1] 0
     ]
-        where moveToWorkspace :: ScreenId -> Int -> ManageHook
-              moveToWorkspace screenId workspaceNumber = if screenId < screenNumber 
-                                                             then doShift $ marshall screenId (chooseWorkspace workspaceNumber)
-                                                             else doShift $ marshall 0 (chooseWorkspace workspaceNumber)
+        where moveToWorkspace :: [ScreenId] -> Int -> ManageHook
+              moveToWorkspace [] workspaceNumber = doShift $ marshall 0 (chooseWorkspace workspaceNumber)
+              moveToWorkspace (screenId:screenIds) workspaceNumber
+                 | screenId < screenNumber = doShift $ marshall screenId (chooseWorkspace workspaceNumber)
+                 | otherwise = moveToWorkspace screenIds workspaceNumber
               chooseWorkspace = (!!) myWorkspaces

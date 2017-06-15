@@ -19,6 +19,9 @@ HISTCONTROL=ignoreboth:erasedups
 # append to the history file, don't overwrite it
 shopt -s histappend
 
+# Cycling autocomplete when pressing tab
+bind TAB:menu-complete
+
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
 HISTSIZE=1000
 HISTFILESIZE=2000
