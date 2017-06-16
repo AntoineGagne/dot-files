@@ -1,3 +1,4 @@
+-- vim: foldmethod=marker
 import XMonad
 import XMonad.Actions.CycleWS
 import XMonad.Actions.PhysicalScreens ( viewScreen
@@ -70,7 +71,7 @@ myWallpaperSetterHook screenNumber = wallpaperSetter defWallpaperConf
     { wallpapers = WallpaperList $ zip marshalledWorkspaces $ replicate (length myWorkspaces) (WallpaperDir "~/.wallpapers/")
     , wallpaperBaseDir = "~/.wallpapers/"
     }
-        where marshalledWorkspaces = [marshall id marshalledWorkspace | marshalledWorkspace <- myWorkspaces, id <- [0..screenNumber]]
+        where marshalledWorkspaces = [marshall id marshalledWorkspace | marshalledWorkspace <- myWorkspaces, id <- [0..screenNumber - 1]]
 
 xmobarCommand :: ScreenId -> String
 xmobarCommand (S screenNumber) = unwords [ myStatusBar
