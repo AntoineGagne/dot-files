@@ -65,10 +65,12 @@ main = do
         }
 
 -- TODO: Find a way to make it work with the multi-head setup
-myWallpaperSetterHook :: X ()
-myWallpaperSetterHook = wallpaperSetter defWallpaperConf 
-    { wallpapers = WallpaperList $ zip (workspaces' defaults) $ replicate (length myWorkspaces) (WallpaperDir "~/.wallpapers")
+myWallpaperSetterHook :: ScreenId -> X ()
+myWallpaperSetterHook screenNumber = wallpaperSetter defWallpaperConf
+    { wallpapers = WallpaperList $ zip marshalledWorkspaces $ replicate (length myWorkspaces) (WallpaperDir "~/.wallpapers/")
+    , wallpaperBaseDir = "~/.wallpapers/"
     }
+        where marshalledWorkspaces = [marshall id marshalledWorkspace | marshalledWorkspace <- myWorkspaces, id <- [0..screenNumber]]
 
 xmobarCommand :: ScreenId -> String
 xmobarCommand (S screenNumber) = unwords [ myStatusBar
