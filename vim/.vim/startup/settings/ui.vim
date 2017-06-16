@@ -19,6 +19,8 @@ endif
 set cole=2
 let g:tex_conceal='adgms'
 
+" Set transparent background
+highlight Normal guibg=none
 
 " {{{1 Top Panels
 
