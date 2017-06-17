@@ -249,8 +249,10 @@ if type "create-gitignore" > /dev/null 2>&1; then
     eval "$(create-gitignore --bash-completion-script create-gitignore)"
 fi
 
-if [ -f "${HOME}/.bash/fix_colors.sh" ]; then
+if { [ -f "${HOME}/.bash/fix_colors.sh" ] && [ -n "$TMUX" ]; } then
     source "${HOME}/.bash/fix_colors.sh"
+else
+    export TERM="rxvt-unicode-256color"
 fi
 
 if [ -d "${HOME}/.local/bin" ]; then
