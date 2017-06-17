@@ -9,6 +9,9 @@ import XMonad.Hooks.FadeInactive ( fadeInactiveCurrentWSLogHook )
 import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.ManageHelpers
 import XMonad.Hooks.SetWMName
+import XMonad.Hooks.UrgencyHook ( withUrgencyHook
+                                , NoUrgencyHook (..)
+                                )
 import XMonad.Layout.Fullscreen
 import XMonad.Layout.IndependentScreens ( withScreens
                                         , countScreens
@@ -59,7 +62,7 @@ main = do
     screenNumber <- countScreens
     hs <- mapM (spawnPipe . xmobarCommand) [0..screenNumber - 1]
     spawn "display-screens"
-    xmonad $ defaults
+    xmonad $ withUrgencyHook NoUrgencyHook $ defaults
         { workspaces = withScreens screenNumber myWorkspaces
         , manageHook = manageDocks <+> myManageHooks screenNumber <+> manageHook def
         , logHook = fadeInactiveCurrentWSLogHook 0.8 <+> (mapM_ dynamicLogWithPP $ zipWith myBarPrettyPrinter hs [0..screenNumber])
@@ -84,13 +87,13 @@ xmobarCommand (S screenNumber) = unwords [ myStatusBar
     where additionalCommands = "-C '[Run PipeReader \"N/A:/$HOME/.volume-" ++ show screenNumber ++ "\" \"vol\", Run PipeReader \"Nothing Playing:$HOME/.song-information-" ++ show screenNumber ++ "\" \"song\"]'"
 
 
-myBarPrettyPrinter handle screenNumber = marshallPP screenNumber def 
-    { ppVisible           = color "white"
-    , ppUrgent            = color "red"
+myBarPrettyPrinter handle screenNumber = marshallPP screenNumber def
+    { ppVisible           = color "ebdbb2"
+    , ppUrgent            = color "#fb4934"
     , ppOrder             = \(wss:layout:title:_) -> [wss, layout, title]
     , ppOutput            = hPutStrLn handle
-    , ppTitle = xmobarColor xmobarTitleColor "" . shorten 40 
-    , ppCurrent = xmobarColor xmobarCurrentWorkspaceColor "" 
+    , ppTitle = xmobarColor xmobarTitleColor "" . shorten 40
+    , ppCurrent = xmobarColor xmobarCurrentWorkspaceColor ""
     , ppSep = "  "
     , ppLayout = myLayoutPrinter
     }
