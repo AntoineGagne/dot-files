@@ -62,7 +62,7 @@ main = do
     screenNumber <- countScreens
     hs <- mapM (spawnPipe . xmobarCommand) [0..screenNumber - 1]
     spawn "display-screens"
-    xmonad $ withUrgencyHook NoUrgencyHook $ defaults
+    xmonad $ defaults
         { workspaces = withScreens screenNumber myWorkspaces
         , manageHook = manageDocks <+> myManageHooks screenNumber <+> manageHook def
         , logHook = fadeInactiveCurrentWSLogHook 0.8 <+> (mapM_ dynamicLogWithPP $ zipWith myBarPrettyPrinter hs [0..screenNumber])
@@ -88,7 +88,7 @@ xmobarCommand (S screenNumber) = unwords [ myStatusBar
 
 
 myBarPrettyPrinter handle screenNumber = marshallPP screenNumber def
-    { ppVisible           = color "ebdbb2"
+    { ppVisible           = color "white"
     , ppUrgent            = color "#fb4934"
     , ppOrder             = \(wss:layout:title:_) -> [wss, layout, title]
     , ppOutput            = hPutStrLn handle
