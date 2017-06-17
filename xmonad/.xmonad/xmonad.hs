@@ -1,4 +1,19 @@
 -- vim: foldmethod=marker
+
+import Graphics.X11.Types ( xK_Print )
+import Graphics.X11.ExtraTypes.XF86 ( xF86XK_AudioLowerVolume
+                                    , xF86XK_AudioMute
+                                    , xF86XK_AudioRaiseVolume
+                                    , xF86XK_AudioPlay
+                                    , xF86XK_AudioStop
+                                    , xF86XK_AudioPrev
+                                    , xF86XK_AudioNext
+                                    , xF86XK_MonBrightnessUp
+                                    , xF86XK_MonBrightnessDown
+                                    )
+import System.Exit ( exitWith
+                   , ExitCode (..)
+                   )
 import XMonad
 import XMonad.Actions.CycleWS
 import XMonad.Actions.PhysicalScreens ( viewScreen
@@ -6,12 +21,22 @@ import XMonad.Actions.PhysicalScreens ( viewScreen
                                       )
 import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.FadeInactive ( fadeInactiveCurrentWSLogHook )
+import XMonad.Hooks.EwmhDesktops ( ewmh 
+                                 , ewmhDesktopsStartup
+                                 )
 import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.ManageHelpers
-import XMonad.Hooks.SetWMName
+import XMonad.Hooks.SetWMName ( setWMName )
 import XMonad.Hooks.UrgencyHook ( withUrgencyHook
                                 , NoUrgencyHook (..)
                                 )
+import XMonad.Hooks.WallpaperSetter ( defWallpaperConf
+                                    , defWPNames
+                                    , wallpaperSetter
+                                    , WallpaperConf (..)
+                                    , Wallpaper ( WallpaperDir )
+                                    , WallpaperList (..)
+                                    )
 import XMonad.Layout.Fullscreen
 import XMonad.Layout.IndependentScreens ( withScreens
                                         , countScreens
@@ -28,31 +53,9 @@ import XMonad.Layout.ThreeColumns
 import XMonad.Util.Cursor (setDefaultCursor)
 import XMonad.Util.EZConfig (additionalKeys)
 import XMonad.Util.Run (spawnPipe, hPutStrLn)
-import XMonad.Hooks.WallpaperSetter ( defWallpaperConf
-                                    , defWPNames
-                                    , wallpaperSetter
-                                    , WallpaperConf (..)
-                                    , Wallpaper ( WallpaperDir )
-                                    , WallpaperList (..)
-                                    )
 import qualified XMonad.Prompt         as Prompt
 import qualified XMonad.Actions.Submap as Submap
 import qualified XMonad.Actions.Search as Search
-import Graphics.X11.Types ( xK_Print )
-import Graphics.X11.ExtraTypes.XF86 ( xF86XK_AudioLowerVolume
-                                    , xF86XK_AudioMute
-                                    , xF86XK_AudioRaiseVolume
-                                    , xF86XK_AudioPlay
-                                    , xF86XK_AudioStop
-                                    , xF86XK_AudioPrev
-                                    , xF86XK_AudioNext
-                                    , xF86XK_MonBrightnessUp
-                                    , xF86XK_MonBrightnessDown
-                                    )
-
-import System.Exit ( exitWith
-                   , ExitCode (..)
-                   )
 
 import qualified XMonad.StackSet as W
 import qualified Data.Map as Map
@@ -62,7 +65,7 @@ main = do
     screenNumber <- countScreens
     hs <- mapM (spawnPipe . xmobarCommand) [0..screenNumber - 1]
     spawn "display-screens"
-    xmonad $ withUrgencyHook NoUrgencyHook $ defaults
+    xmonad $ ewmh $ withUrgencyHook NoUrgencyHook $ defaults
         { workspaces = withScreens screenNumber myWorkspaces
         , manageHook = manageDocks <+> myManageHooks screenNumber <+> manageHook def
         , logHook = fadeInactiveCurrentWSLogHook 0.8 <+> (mapM_ dynamicLogWithPP $ zipWith myBarPrettyPrinter hs [0..screenNumber])
@@ -105,7 +108,7 @@ defaults = def
     , focusFollowsMouse = myFocusFollowsMouse
     , focusedBorderColor = myFocusedBorderColor
     -- To make Java applications behave normally...
-    , startupHook = setWMName "LG3D" <+> setDefaultCursor xC_left_ptr <+> docksStartupHook
+    , startupHook = ewmhDesktopsStartup >> setWMName "LG3D" <+> setDefaultCursor xC_left_ptr <+> docksStartupHook
     , modMask = mod4Mask
     , mouseBindings = myMouseBindings
     , normalBorderColor  = myNormalBorderColor
@@ -225,6 +228,7 @@ myKeys conf = let m = modMask conf in Map.fromList $
     -- {{{2 Search Engines
     , ((myModMask, xK_s), Submap.submap $ searchEngineMap $ Search.promptSearch myPrompt)
     , ((myModMask .|. shiftMask, xK_s), Submap.submap $ searchEngineMap $ Search.selectSearch)
+    , ((myModMask, xK_o), Submap.submap applicationsSpawn)
     ] ++
     [ ((m .|. e .|. i, key), windows (onCurrentScreen f workspace)) 
       | (key, workspace) <- zip [xK_1..xK_9] (workspaces' conf)
@@ -246,6 +250,11 @@ myKeys conf = let m = modMask conf in Map.fromList $
                   , ((0, xK_w), method Search.wikipedia)
                   , ((0, xK_y), method Search.youtube)
                   , ((0, xK_g), method Search.google)
+                  ]
+              applicationsSpawn = Map.fromList $
+                  [ ((0, xK_e), spawn "urxvtc -title mutt -e mutt")
+                  , ((0, xK_c), spawn "urxvtc -title weechat -e weechat")
+                  , ((0, xK_m), spawn "urxvtc -title cmus -e cmus")
                   ]
 
 myPrompt = Prompt.def { Prompt.font = "xft:xft:Source Code Pro:style=Bold:size=9:antialias=true"
@@ -269,12 +278,11 @@ myMouseBindings (XConfig {XMonad.modMask = modMask}) = Map.fromList $
     ]
 
 myWorkspaces :: [WorkspaceId]
-myWorkspaces = ["1 <fn=1>\xf269</fn>", "2 <fn=1>\xf120</fn>", "3 <fn=1>\xf02d</fn>", "4 <fn=1>\xf121</fn>", "5 <fn=1>\xf11b</fn>", "6 <fn=1>\xf1fc</fn>", "7 <fn=1>\xf27a</fn>"] ++ map show [8..9]
+myWorkspaces = ["1 <fn=1>\xf269</fn>", "2 <fn=1>\xf120</fn>", "3 <fn=1>\xf02d</fn>", "4 <fn=1>\xf121</fn>", "5 <fn=1>\xf11b</fn>", "6 <fn=1>\xf1fc</fn>", "7 <fn=1>\xf27a</fn>", "8 <fn=1>\xf0e0</fn>"] ++ map show [9..9]
 
 myManageHooks :: ScreenId -> ManageHook
 myManageHooks screenNumber = composeAll $
-    [ className =? "URxvt" --> moveToWorkspace [1] 1
-    , className =? "Firefox" --> moveToWorkspace [0] 0
+    [ className =? "Firefox" --> moveToWorkspace [0] 0
     , className =? "Chromium-browser" --> moveToWorkspace [0] 0
     , className =? "Zathura" --> moveToWorkspace [1] 2
     , className =? "feh" --> moveToWorkspace [1] 2
@@ -285,6 +293,10 @@ myManageHooks screenNumber = composeAll $
     , className =? "Firefox" <&&> resource =? "Dialog" --> doFloat
     , className =? "krita" --> moveToWorkspace [1] 5
     , className =? "Wireshark" --> moveToWorkspace [1] 0
+    , name =? "mutt" --> moveToWorkspace [1] 7
+    , name =? "cmus" --> moveToWorkspace [1] 4
+    , name =? "weechat" --> moveToWorkspace [1] 6
+    , className =? "URxvt" --> moveToWorkspace [1] 1
     ]
         where moveToWorkspace :: [ScreenId] -> Int -> ManageHook
               moveToWorkspace [] workspaceNumber = doShift $ marshall 0 (chooseWorkspace workspaceNumber)
@@ -292,3 +304,4 @@ myManageHooks screenNumber = composeAll $
                  | screenId < screenNumber = doShift $ marshall screenId (chooseWorkspace workspaceNumber)
                  | otherwise = moveToWorkspace screenIds workspaceNumber
               chooseWorkspace = (!!) myWorkspaces
+              name = stringProperty "WM_NAME"
