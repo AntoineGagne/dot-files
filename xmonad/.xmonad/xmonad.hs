@@ -112,7 +112,7 @@ defaults = def
     }
 
 myLayoutPrinter :: String -> String
-myLayoutPrinter "Full" = "<icon=.icons/layout/full_screen_layout.xpm/>"
+myLayoutPrinter "Full" = "<icon=.icons/layout/alternate_full_screen_layout.xpm/>"
 myLayoutPrinter "Tall" = "<icon=.icons/layout/vertical_layout.xpm/>"
 myLayoutPrinter "Mirror Tall" = "<icon=.icons/layout/horizontal_layout.xpm/>"
 myLayoutPrinter "Grid" = "<icon=.icons/layout/grid_layout.xpm/>"
