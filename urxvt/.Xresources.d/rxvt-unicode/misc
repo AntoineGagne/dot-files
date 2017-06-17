@@ -1,6 +1,8 @@
+! vim: ft=xdefaults
 urxvt.title: Terminal
 urxvt.termName:rxvt-unicode
 urxvt.iconName: string
+urxvt.urgentOnBell: true
 
 urxvt.skipBuiltinGlyphs: false
 
