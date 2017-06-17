@@ -1,2 +1,3 @@
+urxvt.url-launcher: /usr/bin/xdg-open
 urxvt.urlLauncher: firefox
 urxvt.matcher.button: 1
