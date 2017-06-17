@@ -62,7 +62,7 @@ main = do
     screenNumber <- countScreens
     hs <- mapM (spawnPipe . xmobarCommand) [0..screenNumber - 1]
     spawn "display-screens"
-    xmonad $ defaults
+    xmonad $ withUrgencyHook NoUrgencyHook $ defaults
         { workspaces = withScreens screenNumber myWorkspaces
         , manageHook = manageDocks <+> myManageHooks screenNumber <+> manageHook def
         , logHook = fadeInactiveCurrentWSLogHook 0.8 <+> (mapM_ dynamicLogWithPP $ zipWith myBarPrettyPrinter hs [0..screenNumber])
@@ -269,7 +269,7 @@ myMouseBindings (XConfig {XMonad.modMask = modMask}) = Map.fromList $
     ]
 
 myWorkspaces :: [WorkspaceId]
-myWorkspaces = ["1 <fn=1>\xf269</fn>", "2 <fn=1>\xf120</fn>", "3 <fn=1>\xf02d</fn>", "4 <fn=1>\xf121</fn>", "5 <fn=1>\xf11b</fn>", "6 <fn=1>\xf1fc</fn>"] ++ map show [7..9]
+myWorkspaces = ["1 <fn=1>\xf269</fn>", "2 <fn=1>\xf120</fn>", "3 <fn=1>\xf02d</fn>", "4 <fn=1>\xf121</fn>", "5 <fn=1>\xf11b</fn>", "6 <fn=1>\xf1fc</fn>", "7 <fn=1>\xf27a</fn>"] ++ map show [8..9]
 
 myManageHooks :: ScreenId -> ManageHook
 myManageHooks screenNumber = composeAll $
