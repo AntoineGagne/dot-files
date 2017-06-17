@@ -1,6 +1,6 @@
 ! vim: ft=xdefaults
 urxvt.title: Terminal
-urxvt.termName:rxvt-unicode
+urxvt.termName: rxvt-unicode-256color
 urxvt.iconName: string
 urxvt.urgentOnBell: true
 
