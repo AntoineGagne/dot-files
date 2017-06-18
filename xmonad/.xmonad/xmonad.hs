@@ -255,6 +255,9 @@ myKeys conf = let m = modMask conf in Map.fromList $
                   [ ((0, xK_e), spawn "urxvtc -title mutt -e mutt")
                   , ((0, xK_c), spawn "urxvtc -title weechat -e weechat")
                   , ((0, xK_m), spawn "urxvtc -title cmus -e cmus")
+                  , ((0, xK_b), spawn "firefox")
+                  , ((0, xK_v), spawn "zathura")
+                  , ((0, xK_i), spawn "krita")
                   ]
 
 myPrompt = Prompt.def { Prompt.font = "xft:xft:Source Code Pro:style=Bold:size=9:antialias=true"
