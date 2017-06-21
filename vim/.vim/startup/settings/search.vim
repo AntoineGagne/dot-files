@@ -8,3 +8,7 @@ set smartcase
 set incsearch
 " Highlight matches
 set hlsearch
+
+" {{{1 Substitutions
+" Shows the effects of a command incrementally, as you type
+set inccommand=nosplit
