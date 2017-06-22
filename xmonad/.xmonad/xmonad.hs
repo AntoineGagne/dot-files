@@ -281,7 +281,16 @@ myMouseBindings (XConfig {XMonad.modMask = modMask}) = Map.fromList $
     ]
 
 myWorkspaces :: [WorkspaceId]
-myWorkspaces = ["1 <fn=1>\xf269</fn>", "2 <fn=1>\xf120</fn>", "3 <fn=1>\xf02d</fn>", "4 <fn=1>\xf121</fn>", "5 <fn=1>\xf11b</fn>", "6 <fn=1>\xf1fc</fn>", "7 <fn=1>\xf27a</fn>", "8 <fn=1>\xf0e0</fn>"] ++ map show [9..9]
+myWorkspaces = [ "1 <fn=1>\xf269</fn>"
+               , "2 <fn=1>\xf120</fn>"
+               , "3 <fn=1>\xf02d</fn>"
+               , "4 <fn=1>\xf121</fn>"
+               , "5 <fn=1>\xf11b</fn>"
+               , "6 <fn=1>\xf1fc</fn>"
+               , "7 <fn=1>\xf27a</fn>"
+               , "8 <fn=1>\xf0e0</fn>"
+               , "9 <fn=1>\xf15b</fn>"
+               ]
 
 myManageHooks :: ScreenId -> ManageHook
 myManageHooks screenNumber = composeAll $
