@@ -262,3 +262,7 @@ fi
 if type "nvim" >/dev/null 2>&1; then
     export EDITOR=nvim
 fi
+
+if type "mutt" >/dev/null 2>&1; then
+    export COLORFGBG="default;default"
+fi

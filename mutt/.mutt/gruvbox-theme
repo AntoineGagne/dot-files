@@ -1,16 +1,16 @@
 # vim: filetype=muttrc
 
 # basic colors ---------------------------------------------------------
-color normal color223 color235
-color error color167 color235
-color tilde color175 color235
-color message color108 color235
-color markers color72 color235
-color attachment color254 color235
-color search color108 color235
+color normal color223 default
+color error color167 default
+color tilde color175 default
+color message color108 default
+color markers color72 default
+color attachment color254 default
+color search color108 default
 color status color245 color234
 color indicator color223 color237
-color tree color142 color235 # arrow in threads
+color tree color142 default # arrow in threads
 
 # basic monocolor screen
 mono bold bold
@@ -24,51 +24,51 @@ mono error bold
 color sidebar_highlight color250 color237
 
 # Color of the divider separating the Sidebar from Mutt panels
-color sidebar_divider color246 color235
+color sidebar_divider color246 default
 
 # Color to give mailboxes containing flagged mail
-color sidebar_flagged color167 color235
+color sidebar_flagged color167 default
 # Color to give mailboxes containing new mail
-color sidebar_new color108 color235
+color sidebar_new color108 default
 
 # index ----------------------------------------------------------------
 
 #color index color160 default "~D(!~p|~p)" # deleted
-#color index color235 default ~F # flagged
+#color index default default ~F # flagged
 #color index color166 default ~= # duplicate messages
 #color index color240 default "~A!~N!~T!~p!~Q!~F!~D!~P" # the rest
 #color index J_base default "~A~N!~T!~p!~Q!~F!~D" # the rest, new
-color index color250 color235 "~A" # all messages
-color index color246 color235 "~E" # expired messages
-color index color229 color235 "~N" # new messages
-color index color246 color235 "~O" # old messages
-color index color246 color235 "~Q" # messages that have been replied to
-color index color246 color235 "~R" # read messages
-color index color108 color235 "~U" # unread messages
-color index color108 color235 "~U~$" # unread, unreferenced messages
-color index color254 color235 "~v" # messages part of a collapsed thread
-color index color254 color235 "~P" # messages from me
-color index color172 color235 "~p!~F" # messages to me
-color index color172 color235 "~N~p!~F" # new messages to me
-color index color172 color235 "~U~p!~F" # unread messages to me
-color index color240 color235 "~R~p!~F" # messages to me
-color index color160 color235 "~F" # flagged messages
-color index color160 color235 "~F~p" # flagged messages to me
-color index color160 color235 "~N~F" # new flagged messages
-color index color160 color235 "~N~F~p" # new flagged messages to me
-color index color160 color235 "~U~F~p" # new flagged messages to me
-color index color245 color235 "~D" # deleted messages
-color index color245 color235 "~v~(!~N)" # collapsed thread with no unread
-color index color136 color235 "~v~(~N)" # collapsed thread with some unread
-color index color142 color235 "~N~v~(~N)" # collapsed thread with unread parent
+color index color250 default "~A" # all messages
+color index color246 default "~E" # expired messages
+color index color229 default "~N" # new messages
+color index color246 default "~O" # old messages
+color index color246 default "~Q" # messages that have been replied to
+color index color246 default "~R" # read messages
+color index color108 default "~U" # unread messages
+color index color108 default "~U~$" # unread, unreferenced messages
+color index color254 default "~v" # messages part of a collapsed thread
+color index color254 default "~P" # messages from me
+color index color172 default "~p!~F" # messages to me
+color index color172 default "~N~p!~F" # new messages to me
+color index color172 default "~U~p!~F" # unread messages to me
+color index color240 default "~R~p!~F" # messages to me
+color index color160 default "~F" # flagged messages
+color index color160 default "~F~p" # flagged messages to me
+color index color160 default "~N~F" # new flagged messages
+color index color160 default "~N~F~p" # new flagged messages to me
+color index color160 default "~U~F~p" # new flagged messages to me
+color index color245 default "~D" # deleted messages
+color index color245 default "~v~(!~N)" # collapsed thread with no unread
+color index color136 default "~v~(~N)" # collapsed thread with some unread
+color index color142 default "~N~v~(~N)" # collapsed thread with unread parent
 # statusbg used to indicated flagged when foreground color shows other status
 # for collapsed thread
-color index color160 color235 "~v~(~F)!~N" # collapsed thread with flagged, no unread
-color index color136 color235 "~v~(~F~N)" # collapsed thread with some unread & flagged
-color index color64 color235 "~N~v~(~F~N)" # collapsed thread with unread parent & flagged
-color index color64 color235 "~N~v~(~F)" # collapsed thread with unread parent, no unread inside, but some flagged
-color index color37 color235 "~v~(~p)" # collapsed thread with unread parent, no unread inside, some to me directly
-color index color136 color235 "~v~(~D)" # thread with deleted (doesn't differentiate between all or partial)
+color index color160 default "~v~(~F)!~N" # collapsed thread with flagged, no unread
+color index color136 default "~v~(~F~N)" # collapsed thread with some unread & flagged
+color index color64 default "~N~v~(~F~N)" # collapsed thread with unread parent & flagged
+color index color64 default "~N~v~(~F)" # collapsed thread with unread parent, no unread inside, but some flagged
+color index color37 default "~v~(~p)" # collapsed thread with unread parent, no unread inside, some to me directly
+color index color136 default "~v~(~D)" # thread with deleted (doesn't differentiate between all or partial)
 #color index color136 default "~(~N)" # messages in threads with some unread
 #color index color64 default "~S" # superseded messages
 #color index color160 default "~T" # tagged messages
@@ -76,44 +76,44 @@ color index color136 color235 "~v~(~D)" # thread with deleted (doesn't different
 
 # message headers ------------------------------------------------------
 
-color header color240 color235 "^"
-color hdrdefault color240 color235
-color header color254 color235 "^(From)"
-color header color33 color235 "^(Subject)"
+color header color240 default "^"
+color hdrdefault color240 default
+color header color254 default "^(From)"
+color header color33 default "^(Subject)"
 
 # body -----------------------------------------------------------------
 
-color quoted color33 color235
-color quoted1 color37 color235
-color quoted2 color136 color235
-color quoted3 color160 color235
-color quoted4 color166 color235
+color quoted color33 default
+color quoted1 color37 default
+color quoted2 color136 default
+color quoted3 color160 default
+color quoted4 color166 default
 
-color signature color240 color235
-color bold color243 color235
-color underline color235 color235
-color normal color244 color235
+color signature color240 default
+color bold color243 default
+color underline default color235
+color normal color244 default
 #
-color body color245 color235 "[;:][-o][)/(|]" # emoticons
-color body color245 color235 "[;:][)(|]" # emoticons
-color body color245 color235 "[*]?((N)?ACK|CU|LOL|SCNR|BRB|BTW|CWYL|\
+color body color245 default "[;:][-o][)/(|]" # emoticons
+color body color245 default "[;:][)(|]" # emoticons
+color body color245 default "[*]?((N)?ACK|CU|LOL|SCNR|BRB|BTW|CWYL|\
  |FWIW|vbg|GD&R|HTH|HTHBE|IMHO|IMNSHO|\
  |IRL|RTFM|ROTFL|ROFL|YMMV)[*]?"
-color body color245 color235 "[ ][*][^*]*[*][ ]?" # more emoticon?
-color body color245 color235 "[ ]?[*][^*]*[*][ ]" # more emoticon?
+color body color245 default "[ ][*][^*]*[*][ ]?" # more emoticon?
+color body color245 default "[ ]?[*][^*]*[*][ ]" # more emoticon?
 
 ## pgp
 
-color body color167 color235 "(BAD signature)"
-color body color142 color235 "(Good signature)"
-color body color254 color235 "^gpg: Good signature .*"
-color body color254 color235 "^gpg: "
-color body color254 color235 "^gpg: BAD signature from.*"
+color body color167 default "(BAD signature)"
+color body color142 default "(Good signature)"
+color body color254 default "^gpg: Good signature .*"
+color body color254 default "^gpg: "
+color body color254 default "^gpg: BAD signature from.*"
 mono body bold "^gpg: Good signature"
 mono body bold "^gpg: BAD signature from.*"
 
 # yes, an insance URL regex
-color body color167 color235 "([a-z][a-z0-9+-]*://(((([a-z0-9_.!~*'();:&=+$,-]|%[0-9a-f][0-9a-f])*@)?((([a-z0-9]([a-z0-9-]*[a-z0-9])?)\\.)*([a-z]([a-z0-9-]*[a-z0-9])?)\\.?|[0-9]+\\.[0-9]+\\.[0-9]+\\.[0-9]+)(:[0-9]+)?)|([a-z0-9_.!~*'()$,;:@&=+-]|%[0-9a-f][0-9a-f])+)(/([a-z0-9_.!~*'():@&=+$,-]|%[0-9a-f][0-9a-f])*(;([a-z0-9_.!~*'():@&=+$,-]|%[0-9a-f][0-9a-f])*)*(/([a-z0-9_.!~*'():@&=+$,-]|%[0-9a-f][0-9a-f])*(;([a-z0-9_.!~*'():@&=+$,-]|%[0-9a-f][0-9a-f])*)*)*)?(\\?([a-z0-9_.!~*'();/?:@&=+$,-]|%[0-9a-f][0-9a-f])*)?(#([a-z0-9_.!~*'();/?:@&=+$,-]|%[0-9a-f][0-9a-f])*)?|(www|ftp)\\.(([a-z0-9]([a-z0-9-]*[a-z0-9])?)\\.)*([a-z]([a-z0-9-]*[a-z0-9])?)\\.?(:[0-9]+)?(/([-a-z0-9_.!~*'():@&=+$,]|%[0-9a-f][0-9a-f])*(;([-a-z0-9_.!~*'():@&=+$,]|%[0-9a-f][0-9a-f])*)*(/([-a-z0-9_.!~*'():@&=+$,]|%[0-9a-f][0-9a-f])*(;([-a-z0-9_.!~*'():@&=+$,]|%[0-9a-f][0-9a-f])*)*)*)?(\\?([-a-z0-9_.!~*'();/?:@&=+$,]|%[0-9a-f][0-9a-f])*)?(#([-a-z0-9_.!~*'();/?:@&=+$,]|%[0-9a-f][0-9a-f])*)?)[^].,:;!)? \t\r\n<>\"]"
+color body color167 default "([a-z][a-z0-9+-]*://(((([a-z0-9_.!~*'();:&=+$,-]|%[0-9a-f][0-9a-f])*@)?((([a-z0-9]([a-z0-9-]*[a-z0-9])?)\\.)*([a-z]([a-z0-9-]*[a-z0-9])?)\\.?|[0-9]+\\.[0-9]+\\.[0-9]+\\.[0-9]+)(:[0-9]+)?)|([a-z0-9_.!~*'()$,;:@&=+-]|%[0-9a-f][0-9a-f])+)(/([a-z0-9_.!~*'():@&=+$,-]|%[0-9a-f][0-9a-f])*(;([a-z0-9_.!~*'():@&=+$,-]|%[0-9a-f][0-9a-f])*)*(/([a-z0-9_.!~*'():@&=+$,-]|%[0-9a-f][0-9a-f])*(;([a-z0-9_.!~*'():@&=+$,-]|%[0-9a-f][0-9a-f])*)*)*)?(\\?([a-z0-9_.!~*'();/?:@&=+$,-]|%[0-9a-f][0-9a-f])*)?(#([a-z0-9_.!~*'();/?:@&=+$,-]|%[0-9a-f][0-9a-f])*)?|(www|ftp)\\.(([a-z0-9]([a-z0-9-]*[a-z0-9])?)\\.)*([a-z]([a-z0-9-]*[a-z0-9])?)\\.?(:[0-9]+)?(/([-a-z0-9_.!~*'():@&=+$,]|%[0-9a-f][0-9a-f])*(;([-a-z0-9_.!~*'():@&=+$,]|%[0-9a-f][0-9a-f])*)*(/([-a-z0-9_.!~*'():@&=+$,]|%[0-9a-f][0-9a-f])*(;([-a-z0-9_.!~*'():@&=+$,]|%[0-9a-f][0-9a-f])*)*)*)?(\\?([-a-z0-9_.!~*'();/?:@&=+$,]|%[0-9a-f][0-9a-f])*)?(#([-a-z0-9_.!~*'();/?:@&=+$,]|%[0-9a-f][0-9a-f])*)?)[^].,:;!)? \t\r\n<>\"]"
 # and a heavy handed email regex
 #color body J_magent default "((@(([0-9a-z-]+\\.)*[0-9a-z-]+\\.?|#[0-9]+|\\[[0-9]?[0-9]?[0-9]\\.[0-9]?[0-9]?[0-9]\\.[0-9]?[0-9]?[0-9]\\.[0-9]?[0-9]?[0-9]\\]),)*@(([0-9a-z-]+\\.)*[0-9a-z-]+\\.?|#[0-9]+|\\[[0-9]?[0-9]?[0-9]\\.[0-9]?[0-9]?[0-9]\\.[0-9]?[0-9]?[0-9]\\.[0-9]?[0-9]?[0-9]\\]):)?[0-9a-z_.+%$-]+@(([0-9a-z-]+\\.)*[0-9a-z-]+\\.?|#[0-9]+|\\[[0-2]?[0-9]?[0-9]\\.[0-2]?[0-9]?[0-9]\\.[0-2]?[0-9]?[0-9]\\.[0-2]?[0-9]?[0-9]\\])"
 
