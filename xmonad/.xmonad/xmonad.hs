@@ -309,6 +309,7 @@ myWorkspaces = [ "1 <fn=1>\xf269</fn>"
 myManageHooks :: ScreenId -> ManageHook
 myManageHooks screenNumber = composeAll $
     [ className =? "Firefox" --> moveToWorkspace [0] 0
+    , className =? "Firefox" <&&> resource =? "Dialog" --> doCenterFloat
     , className =? "Chromium-browser" --> moveToWorkspace [0] 0
     , className =? "Zathura" --> moveToWorkspace [1] 2
     , className =? "feh" --> moveToWorkspace [1] 2
@@ -316,7 +317,6 @@ myManageHooks screenNumber = composeAll $
     , className =? "Easytag" --> moveToWorkspace [1] 4
     , className =? "MPlayer" --> moveToWorkspace [1] 4
     , className =? "mpv" --> moveToWorkspace [1] 4
-    , className =? "Firefox" <&&> resource =? "Dialog" --> doFloat
     , className =? "krita" --> moveToWorkspace [1] 5
     , className =? "Wireshark" --> moveToWorkspace [1] 0
     , name =? "mutt" --> moveToWorkspace [1] 7
