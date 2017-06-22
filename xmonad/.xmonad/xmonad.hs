@@ -28,7 +28,17 @@ import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.ManageHelpers
 import XMonad.Hooks.SetWMName ( setWMName )
 import XMonad.Hooks.UrgencyHook ( withUrgencyHook
+                                , withUrgencyHookC
                                 , NoUrgencyHook (..)
+                                , focusUrgent
+                                , clearUrgents
+                                , borderUrgencyHook
+                                , BorderUrgencyHook (..)
+                                , urgencyConfig
+                                , RemindWhen (..)
+                                , SuppressWhen (..)
+                                , minutes
+                                , UrgencyConfig (..)
                                 )
 import XMonad.Hooks.WallpaperSetter ( defWallpaperConf
                                     , defWPNames
@@ -65,7 +75,7 @@ main = do
     screenNumber <- countScreens
     hs <- mapM (spawnPipe . xmobarCommand) [0..screenNumber - 1]
     spawn "display-screens"
-    xmonad $ ewmh $ withUrgencyHook NoUrgencyHook $ defaults
+    xmonad $ ewmh $ withUrgencyHookC BorderUrgencyHook { urgencyBorderColor = "#fb4934" } urgencyConfig { suppressWhen = Focused, remindWhen = Every (minutes 5.0 )} $ defaults
         { workspaces = withScreens screenNumber myWorkspaces
         , manageHook = manageDocks <+> myManageHooks screenNumber <+> manageHook def
         , logHook = fadeInactiveCurrentWSLogHook 0.8 <+> (mapM_ dynamicLogWithPP $ zipWith myBarPrettyPrinter hs [0..screenNumber])
@@ -228,7 +238,11 @@ myKeys conf = let m = modMask conf in Map.fromList $
     -- {{{2 Search Engines
     , ((myModMask, xK_s), Submap.submap $ searchEngineMap $ Search.promptSearch myPrompt)
     , ((myModMask .|. shiftMask, xK_s), Submap.submap $ searchEngineMap $ Search.selectSearch)
+    -- {{{2 Applications
     , ((myModMask, xK_o), Submap.submap applicationsSpawn)
+    -- {{{2 Urgency Hooks
+    , ((myModMask, xK_u), focusUrgent)
+    , ((myModMask, xK_U), clearUrgents)
     ] ++
     [ ((m .|. e .|. i, key), windows (onCurrentScreen f workspace)) 
       | (key, workspace) <- zip [xK_1..xK_9] (workspaces' conf)
