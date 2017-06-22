@@ -242,7 +242,7 @@ myKeys conf = let m = modMask conf in Map.fromList $
     , ((myModMask, xK_o), Submap.submap applicationsSpawn)
     -- {{{2 Urgency Hooks
     , ((myModMask, xK_u), focusUrgent)
-    , ((myModMask, xK_U), clearUrgents)
+    , ((myModMask .|. shiftMask, xK_u), clearUrgents)
     ] ++
     [ ((m .|. e .|. i, key), windows (onCurrentScreen f workspace)) 
       | (key, workspace) <- zip [xK_1..xK_9] (workspaces' conf)
