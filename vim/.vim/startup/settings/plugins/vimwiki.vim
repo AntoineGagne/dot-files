@@ -17,7 +17,8 @@ let wiki.nested_syntaxes = {
             \'rust': 'rust',
             \'sql': 'sql',
             \'tex': 'plaintex',
-            \'viml': 'vim'
+            \'viml': 'vim',
+            \'xml': 'xml'
             \}
 
 let g:vimwiki_list = [wiki]
