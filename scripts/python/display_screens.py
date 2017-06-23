@@ -4,6 +4,7 @@
    number of screens.
 """
 
+import logging
 import re
 import subprocess
 
@@ -33,6 +34,10 @@ def build_program_string(screens):
 
 
 if __name__ == '__main__':
-    XRANDR_OUTPUT = subprocess.check_output(['xrandr']).decode('utf-8')
-    SCREENS = fetch_screens(XRANDR_OUTPUT)
-    subprocess.run(build_program_string(SCREENS), shell=True)
+    try:
+        XRANDR_OUTPUT = subprocess.check_output(['xrandr']).decode('utf-8')
+        SCREENS = fetch_screens(XRANDR_OUTPUT)
+        subprocess.run(build_program_string(SCREENS), shell=True)
+    except subprocess.CalledProcessError as exception:
+        logging.basicConfig(filename='display-screens.log', level=logging.WARNING)
+        logging.error('Program {0} exited with: {1}. The exception was: {2}.'.format(exception.cmd, exception.returncode, exception.output))
