@@ -74,7 +74,6 @@ import qualified Data.Map as Map
 main = do
     screenNumber <- countScreens
     hs <- mapM (spawnPipe . xmobarCommand) [0..screenNumber - 1]
-    spawn "display-screens"
     xmonad $ ewmh $ withUrgencyHookC BorderUrgencyHook { urgencyBorderColor = "#fb4934" } urgencyConfig { suppressWhen = Focused, remindWhen = Every (minutes 5.0 )} $ defaults
         { workspaces = withScreens screenNumber myWorkspaces
         , manageHook = manageDocks <+> myManageHooks screenNumber <+> manageHook def
