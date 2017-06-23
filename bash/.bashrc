@@ -19,12 +19,15 @@ HISTCONTROL=ignoreboth:erasedups
 # append to the history file, don't overwrite it
 shopt -s histappend
 
+# for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
+HISTSIZE=20000
+HISTFILESIZE=20000
+
+# After each command, append to the history file and reread it
+export PROMPT_COMMAND="${PROMPT_COMMAND:+$PROMPT_COMMAND$'\n'}history -a; history -c; history -r"
+
 # Cycling autocomplete when pressing tab
 bind TAB:menu-complete
-
-# for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
-HISTSIZE=1000
-HISTFILESIZE=2000
 
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
@@ -51,6 +54,14 @@ shopt -s cdspell
 # word completion if the directory name initially supplied does not
 # exist.
 shopt -s dirspell
+
+# If set, bash attempts to save all lines of a multiple-line command in the 
+# same history entry.  This allows easy re-editing of multi-line commands.
+shopt -s cmdhist
+
+# If set, bash includes filenames beginning with a `.' in the results of 
+# pathname expansion.
+shopt -s dotglob
 
 # make less more friendly for non-text input files, see lesspipe(1)
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
