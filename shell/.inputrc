@@ -91,7 +91,7 @@ set show-mode-in-prompt on
 # escape sequences is available. Use the ‘\1’ and ‘\2’ escapes to begin 
 # and end sequences of non-printing characters, which can be used to embed a 
 # terminal control sequence into the mode string. The default is ‘(cmd)’. 
-set vi-cmd-mode-string \1\e[30;45m\2 NORMAL \1\e[0m\2 \1\e[0m\2
+set vi-cmd-mode-string \1\e7\2\1\e[1A\2  [\1\e[35m\2   NORMAL   \1\e[0m\2] \1\e[0m\2\1\e8\2
 
 # This string is displayed immediately before the last line of the primary prompt 
 # when vi editing mode is active and in insertion mode. The value is expanded 
@@ -100,7 +100,7 @@ set vi-cmd-mode-string \1\e[30;45m\2 NORMAL \1\e[0m\2 \1\e[0m\2
 # to begin and end sequences of non-printing characters, which can be used to 
 # embed a terminal control sequence into the mode string. The default is 
 # ‘(ins)’. 
-set vi-ins-mode-string \1\e[30;46m\2 INSERT \1\e[0m\2 \1\e[0m\2
+set vi-ins-mode-string \1\e7\2\1\e[1A\2  [\1\e[36m\2── INSERT ──\1\e[0m\2] \1\e[0m\2\1\e8\2
 
 # If set to ‘on’, a character denoting a file’s type is appended to the 
 # filename when listing possible completions. The default is ‘off’. 

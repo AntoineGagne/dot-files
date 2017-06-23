@@ -98,10 +98,14 @@ if [ -f /usr/share/git/completion/git-prompt.sh ]; then
 fi
 
 if [ "$color_prompt" = yes ]; then
-    PS1='${debian_chroot:+($debian_chroot)}'
-    PS1=$PS1'\[\033[01;32m\]\u@\h\[\033[00m\]'
-    PS1=$PS1':\[\033[01;34m\]\w\[\033[00m\]'
-    PS1=$PS1'$(__git_ps1)\nλ '
+    PS1='┌─$(if [ $? -eq 0 ]; then echo [\[\e[32m\]✔\[\e[0m\]]; else echo [\[\e[31m\]✘\[\e[0m\]]; fi)'
+    # PS1=$PS1'${debian_chroot:+($debian_chroot)} '
+    PS1=$PS1'──[\[\033[01;32m\]\u@\h\[\033[00m\]]'
+    PS1=$PS1'──[\[\033[01;34m\]\w\[\033[00m\]]'
+    PS1=$PS1'──[$(ls | wc -l) files, $(ls -lah | awk '\''/total/ {print $2}'\'')]'
+    PS1=$PS1'$(__git_ps1)'
+    PS1=$PS1'\n'
+    PS1=$PS1'\n└─▶ λ '
 else
     PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
 fi
