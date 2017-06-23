@@ -65,7 +65,7 @@ if type "xbindkeys" >/dev/null 2>&1 && ! pidof -x "xbindkeys" >/dev/null 2>&1; t
 fi
 
 if type "compton" >/dev/null 2>&1; then
-    compton --daemon
+    compton -b
 fi
 
 # Launch XMonad
