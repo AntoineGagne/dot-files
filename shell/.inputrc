@@ -1,18 +1,111 @@
-set editing-mode vi
-set keymap vi-command
+# Controls what happens when Readline wants to ring the terminal bell. If set to 
+# ‘none’, Readline never rings the bell. If set to ‘visible’, Readline 
+# uses a visible bell if one is available. If set to ‘audible’ (the default), 
+# Readline attempts to ring the terminal’s bell. 
+set bell-style none
+
+# If set to ‘on’, Readline attempts to briefly move the cursor to an opening 
+# parenthesis when a closing parenthesis is inserted. The default is ‘off’. 
 set blink-matching-paren on
+
+# If set to ‘on’, Readline performs filename matching and completion in a 
+# case-insensitive fashion. The default value is ‘off’. 
+set completion-ignore-case on
+
+# If set to ‘on’, when listing completions, Readline displays the common 
+# prefix of the set of possible completions using a different color. The color 
+# definitions are taken from the value of the LS_COLORS environment variable. The 
+# default is ‘off’. 
+set colored-completion-prefix on
+
+# If set to ‘on’, Readline displays possible completions using different 
+# colors to indicate their file type. The color definitions are taken from the 
+# value of the LS_COLORS environment variable. The default is ‘off’. 
+set colored-stats on
+
+# The number of possible completions that determines when the user is asked 
+# whether the list of possibilities should be displayed. If the number of 
+# possible completions is greater than this value, Readline will ask the user 
+# whether or not he wishes to view them; otherwise, they are simply listed. This 
+# variable must be set to an integer value greater than or equal to 0. A negative 
+# value means Readline should never ask. The default limit is 100. 
+set completion-query-items on
+
+# The editing-mode variable controls which default set of key bindings is used. 
+# By default, Readline starts up in Emacs editing mode, where the keystrokes are 
+# most similar to Emacs. This variable can be set to either ‘emacs’ or 
+# ‘vi’.
+set editing-mode vi
+
+# Sets Readline’s idea of the current keymap for key binding commands. 
+# Acceptable keymap names are emacs, emacs-standard, emacs-meta, emacs-ctlx, vi, 
+# vi-move, vi-command, and vi-insert. vi is equivalent to vi-command (vi-move is 
+# also a synonym); emacs is equivalent to emacs-standard. The default value is 
+# emacs. The value of the editing-mode variable also affects the default keymap. 
+set keymap vi-insert
+
+# Specifies the duration Readline will wait for a character when reading an 
+# ambiguous key sequence (one that can form a complete key sequence using the 
+# input read so far, or can take additional input to complete a longer key 
+# sequence). If no input is received within the timeout, Readline will use the 
+# shorter but complete key sequence. Readline uses this value to determine 
+# whether or not input is available on the current input source (rl_instream by 
+# default). The value is specified in milliseconds, so a value of 1000 means that 
+# Readline will wait one second for additional input. If this variable is set to 
+# a value less than or equal to zero, or to a non-numeric value, Readline will 
+# wait until another key is pressed to decide which key sequence to complete. The 
+# default value is 500.
+set keyseq-timeout 250
+
+# If set to ‘on’, completed directory names have a slash appended. The 
+# default is ‘on’.
+set mark-directories on
+
+# If set to ‘on’, completed names which are symbolic links to directories 
+# have a slash appended (subject to the value of mark-directories). The default 
+# is ‘off’. 
+set mark-symlinked-directories on
+
+# This variable, when set to ‘on’, causes Readline to match files whose names 
+# begin with a ‘.’ (hidden files) when performing filename completion. If set 
+# to ‘off’, the leading ‘.’ must be supplied by the user in the filename 
+# to be completed. This variable is ‘on’ by default. 
+set match-hidden-files on
+
+# If set to ‘on’, menu completion displays the common prefix of the list of 
+# possible completions (which may be empty) before cycling through the list. The 
+# default is ‘off’. 
+set menu-complete-display-prefix on
+
+# If set to ‘on’, add a character to the beginning of the prompt indicating 
+# the editing mode: emacs, vi command, or vi insertion. The mode strings are 
+# user-settable. The default value is ‘off’. 
+set show-mode-in-prompt on
+
+# This string is displayed immediately before the last line of the primary prompt 
+# when vi editing mode is active and in command mode. The value is expanded like 
+# a key binding, so the standard set of meta- and control prefixes and backslash 
+# escape sequences is available. Use the ‘\1’ and ‘\2’ escapes to begin 
+# and end sequences of non-printing characters, which can be used to embed a 
+# terminal control sequence into the mode string. The default is ‘(cmd)’. 
+set vi-cmd-mode-string \1\e[35m\2(cmd)\1\e[0m\2
+
+# This string is displayed immediately before the last line of the primary prompt 
+# when vi editing mode is active and in insertion mode. The value is expanded 
+# like a key binding, so the standard set of meta- and control prefixes and 
+# backslash escape sequences is available. Use the ‘\1’ and ‘\2’ escapes 
+# to begin and end sequences of non-printing characters, which can be used to 
+# embed a terminal control sequence into the mode string. The default is 
+# ‘(ins)’. 
+set vi-ins-mode-string \1\e[36m\2(ins)\1\e[0m\2
+
+# If set to ‘on’, a character denoting a file’s type is appended to the 
+# filename when listing possible completions. The default is ‘off’. 
+set visible-stats on
+
 # `complete` for standard autocompletion (default)
 # `menu-complete` for cycling autocompletion
+"\C-i": complete
 Tab: menu-complete
 "\e\t": menu-complete-backward
 "\e[Z": menu-complete-backward
-set completion-ignore-case on
-set colored-completion-prefix on
-set colored-stats on
-set completion-query-items on
-set keyseq-timeout 250
-set mark-directories on
-set mark-symlinked-directories on
-set match-hidden-files on
-set menu-complete-display-prefix on
-set bell-style none

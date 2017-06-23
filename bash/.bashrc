@@ -28,7 +28,7 @@ HISTFILESIZE=20000
 export PROMPT_COMMAND="${PROMPT_COMMAND:+$PROMPT_COMMAND$'\n'}history -a; history -c; history -r"
 
 # Cycling autocomplete when pressing tab
-bind TAB:menu-complete
+# bind TAB:menu-complete
 
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
