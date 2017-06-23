@@ -68,5 +68,9 @@ if type "compton" >/dev/null 2>&1; then
     compton -b
 fi
 
+if type "create-tmux-session" >/dev/null 2>&1; then
+    create-tmux-session "code"
+fi
+
 # Launch XMonad
 exec xmonad

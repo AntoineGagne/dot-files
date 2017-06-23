@@ -8,7 +8,9 @@ SCRIPTS = bash/cmus-status.bash \
 		  bash/fix-systemd-user-units.sh \
 		  bash/control-brightness.bash \
 		  bash/unmount-device.sh \
-		  python/display_screens.py
+		  python/display_screens.py \
+		  bash/create-tmux-session.bash \
+		  bash/create-tmux-sessions.bash
 INSTALL_SCRIPTS := $(SCRIPTS:%=install-%)
 
 .PHONY: all
