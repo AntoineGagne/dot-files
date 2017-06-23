@@ -24,6 +24,7 @@ HISTSIZE=20000
 HISTFILESIZE=20000
 
 # After each command, append to the history file and reread it
+# Taken from: https://unix.stackexchange.com/questions/1288/preserve-bash-history-in-multiple-terminal-windows (Fri Jun 23 11:13:43 EDT 2017)
 export PROMPT_COMMAND="${PROMPT_COMMAND:+$PROMPT_COMMAND$'\n'}history -a; history -c; history -r"
 
 # Cycling autocomplete when pressing tab
