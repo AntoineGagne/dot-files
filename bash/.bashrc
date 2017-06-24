@@ -97,6 +97,20 @@ if [ -f /usr/share/git/completion/git-prompt.sh ]; then
     source /usr/share/git/completion/git-prompt.sh
 fi
 
+function virtualenv_info(){
+    if [[ -n "$VIRTUAL_ENV" ]]; then
+        # Strip out the path and just leave the environment's name
+        venv="${VIRTUAL_ENV##*/}"
+    else
+        venv=''
+    fi
+    [[ -n "$venv" ]] && echo "──[$venv]"
+}
+
+# Disable the default virtualenv prompt change
+export VIRTUAL_ENV_DISABLE_PROMPT=1
+# VENV="$(virtualenv_info)";
+
 if [ "$color_prompt" = yes ]; then
     PS1='┌─$(if [ $? -eq 0 ]; then echo [\[\e[32m\]✔\[\e[0m\]]; else echo [\[\e[31m\]✘\[\e[0m\]]; fi)'
     # PS1=$PS1'${debian_chroot:+($debian_chroot)} '
@@ -105,6 +119,8 @@ if [ "$color_prompt" = yes ]; then
     PS1=$PS1'──[$(ls | wc -l) files, $(ls -lah | awk '\''/total/ {print $2}'\'')]'
     PS1=$PS1'$(__git_ps1)'
     PS1=$PS1'\n'
+    PS1=$PS1'                '
+    PS1=$PS1'$(virtualenv_info)'
     PS1=$PS1'\n└─▶ λ '
 else
     PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
