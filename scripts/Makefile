@@ -10,7 +10,8 @@ SCRIPTS = bash/cmus-status.bash \
 		  bash/unmount-device.sh \
 		  python/display_screens.py \
 		  bash/create-tmux-session.bash \
-		  bash/create-tmux-sessions.bash
+		  bash/create-tmux-sessions.bash \
+		  bash/recompile-xmonad.sh
 INSTALL_SCRIPTS := $(SCRIPTS:%=install-%)
 
 .PHONY: all
