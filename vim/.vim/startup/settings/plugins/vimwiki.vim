@@ -20,5 +20,9 @@ let wiki.nested_syntaxes = {
             \'viml': 'vim',
             \'xml': 'xml'
             \}
+let wiki.syntax = 'markdown'
+let wiki.ext = '.md'
+let wiki.automatic_nested_syntaxes = 1
+let wiki.auto_toc = 1
 
 let g:vimwiki_list = [wiki]
