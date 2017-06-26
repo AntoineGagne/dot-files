@@ -273,7 +273,7 @@ myKeys conf = let m = modMask conf in Map.fromList $
                   , ((0, xK_i), spawn "krita")
                   ]
 
-myPrompt = Prompt.def { Prompt.font = "xft:xft:Source Code Pro:style=Bold:size=9:antialias=true"
+myPrompt = Prompt.def { Prompt.font = "xft:Source Code Pro:style=Regular:size=9:antialias=true"
                       , Prompt.bgColor = "#282828"
                       , Prompt.fgColor = "#d5c4a1"
                       , Prompt.fgHLight = "#b8bb26"
