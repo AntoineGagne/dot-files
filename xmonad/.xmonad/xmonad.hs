@@ -302,7 +302,7 @@ myWorkspaces = [ "1 <fn=1>\xf269</fn>"
                , "6 <fn=1>\xf1fc</fn>"
                , "7 <fn=1>\xf27a</fn>"
                , "8 <fn=1>\xf0e0</fn>"
-               , "9 <fn=1>\xf15b</fn>"
+               , "9 <fn=1>\xf07c</fn>"
                ]
 
 myManageHooks :: ScreenId -> ManageHook

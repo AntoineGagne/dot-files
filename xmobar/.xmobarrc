@@ -11,7 +11,7 @@ Config { font =         "xft:Source Code Pro:style=Regular:size=9:antialias=true
        -- layout
        , sepChar =  "%"   -- delineator between plugin names and straight text
        , alignSep = "}{"  -- separator between left-right alignment
-       , template = "%StdinReader% } %date% { %song%<icon=.icons/volume/volume_3.xpm/>%vol% %wlo1wi%%bright%%CYQB% %battery% "
+       , template = "%StdinReader% }{ <fn=1></fn> %song% <fn=1></fn> %vol% <fn=1></fn> %wlo1wi% <fn=1></fn> %bright% <fn=1></fn> %CYQB% %date% %battery% "
 
        -- general behavior
        , lowerOnStart =     True    -- send to bottom of window stack on start
@@ -42,16 +42,16 @@ Config { font =         "xft:Source Code Pro:style=Regular:size=9:antialias=true
                              ] 36000
 
         -- network activity monitor (dynamic interface resolution)
-        , Run DynNetwork     [ "--template" , "<dev>: <tx>kB/s|<rx>kB/s"
+        , Run DynNetwork     [ "--template" , "<dev>: <fn=1></fn> <tx>kB/s <fn=1></fn><rx>kB/s"
                              , "--Low"      , "1000"       -- units: B/s
                              , "--High"     , "5000"       -- units: B/s
                              , "--low"      , "darkgreen"
                              , "--normal"   , "darkorange"
                              , "--high"     , "darkred"
                              ] 10
-        , Run Wireless "wlo1" [ "--template" , "<qualityipat>"
+        , Run Wireless "wlo1" [ "--template" , "<quality>%"
                               , "--"
-                              , "--quality-icon-pattern", "<icon=.icons/wifi/second_alternative_wifi_%%.xpm/>"
+                              -- , "--quality-icon-pattern", "<icon=.icons/wifi/second_alternative_wifi_%%.xpm/>"
                               ] 20
 
         -- cpu activity monitor
@@ -98,16 +98,16 @@ Config { font =         "xft:Source Code Pro:style=Regular:size=9:antialias=true
                                        , "-i", "<fn=1>\xf1e6</fn>"
                              , "--on-icon-pattern", "<icon=.icons/battery/charging_battery_%%.xpm/>"
                              ] 50
-        , Run Brightness ["--template", "<ipat>"
+        , Run Brightness ["--template", "<percent>%"
 
                          , "--"
                          , "-D", "intel_backlight"
-                         , "--brightness-icon-pattern", "<icon=.icons/luminosity/luminosity_%%.xpm/>"
-                         ] 30
+                         -- , "--brightness-icon-pattern", "<icon=.icons/luminosity/luminosity_%%.xpm/>"
+                         ] 10
 
         -- time and date indicator
         --   (%F = y-m-d date, %a = day of week, %T = h:m:s time)
-        , Run Date           "<fn=1>\xf073</fn> <fc=#ebdbb2>%a %b %d %T</fc>" "date" 10
+        , Run Date           "<fn=1></fn> <fc=#ebdbb2>%a %b %d %T</fc>" "date" 10
 
         -- keyboard layout indicator
         , Run Kbd            [ ("ca", "<fc=#8B0000>FR</fc>")
