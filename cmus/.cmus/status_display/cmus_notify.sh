@@ -5,5 +5,5 @@ if type "cmus_notify" > /dev/null; then
 fi
 
 if type "cmus-status" > /dev/null; then
-    cmus-status '▶ {title} by {artist}' "$*" &
+    cmus-status '<fn=1></fn> {title} by {artist}' "$*" &
 fi

@@ -24,8 +24,8 @@ FIELDS = (
     'duration'
 )
 DISPLAY_BY_STATUS = {
-    'Stopped': '■ Stopped',
-    'Paused': '▍▍Paused'
+    'Stopped': '<fn=1></fn> Stopped',
+    'Paused': '<fn=1></fn> Paused'
 }
 
 

@@ -11,7 +11,7 @@ Config { font =         "xft:Source Code Pro:style=Regular:size=9:antialias=true
        -- layout
        , sepChar =  "%"   -- delineator between plugin names and straight text
        , alignSep = "}{"  -- separator between left-right alignment
-       , template = "%StdinReader% }{ <fn=1></fn> %song% <fn=1></fn> %vol% <fn=1></fn> %wlo1wi% <fn=1></fn> %bright% <fn=1></fn> %CYQB% %date% %battery% "
+       , template = "%StdinReader% }{ %song% <fn=1></fn> %vol% <fn=1></fn> %wlo1wi% <fn=1></fn> %bright% <fn=1></fn> %CYQB% %date% %battery% "
 
        -- general behavior
        , lowerOnStart =     True    -- send to bottom of window stack on start
