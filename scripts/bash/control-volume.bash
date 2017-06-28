@@ -57,5 +57,6 @@ case "$1" in
         ;;
     *)
         echo "Could not parse $1 option."
+        exit 1
         ;;
 esac

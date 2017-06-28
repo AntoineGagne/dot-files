@@ -10,6 +10,6 @@ if type "tmux" >/dev/null 2>&1; then
     tmux start-server
 
     for session in ${sessions}; do
-        create-tmux-session "${session}"
+        create-tmux-session -c "${session}"
     done
 fi

@@ -16,4 +16,16 @@ run-command-in-first-window-of-given-session() {
     fi
 }
 
-create-session "${1}"
+case "${1}" in
+    -c|--create-session)
+        create-session "${2}"
+        ;;
+    -r|--run-command)
+        create-session "${2}"
+        run-command-in-first-window-of-given-session "${2}"
+        ;;
+    *)
+        echo "Could not parse $1 option."
+        exit 1
+        ;;
+esac
