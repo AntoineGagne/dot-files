@@ -119,9 +119,7 @@ if [ "$color_prompt" = yes ]; then
     PS1=$PS1'──[\[\033[01;34m\]\w\[\033[00m\]]'
     PS1=$PS1'──[$(ls | wc -l) files, $(ls -lah | awk '\''/total/ {print $2}'\'')]'
     PS1=$PS1'$(__git_ps1)'
-    PS1=$PS1'\n'
-    PS1=$PS1'                '
-    PS1=$PS1'\n└─▶ λ '
+    PS1=$PS1'\n λ '
 else
     PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
 fi
