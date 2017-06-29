@@ -4,14 +4,20 @@
 scriptencoding utf-8
 " Set the encoding to utf-8
 set encoding=utf-8
-" Instead of failing a command because of unsaved changes, instead raise a 
+" Instead of failing a command because of unsaved changes, instead raise a
 " dialogue asking if you wish to save changed files
 set confirm
 " Reload file when there is no local changes and the file has been changed
 " externally
 set autoread
-" Set the default filetype
-set fileformats=unix
+" Set the default file mode
+set fileformat=unix
+" Fallback file mode
+set fileformats=unix,dos,mac
+
+" {{{1 Formatting
+" See :help formatoptions and :help fo-table
+set formatoptions=tcroqnj
 
 
 " {{{1 Tags
