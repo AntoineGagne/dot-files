@@ -10,5 +10,7 @@ set incsearch
 set hlsearch
 
 " {{{1 Substitutions
-" Shows the effects of a command incrementally, as you type
-set inccommand=nosplit
+if has('nvim')
+    " Shows the effects of a command incrementally, as you type
+    set inccommand=nosplit
+endif
