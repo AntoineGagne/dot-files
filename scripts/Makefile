@@ -11,7 +11,8 @@ SCRIPTS = bash/cmus-status.bash \
 		  python/display_screens.py \
 		  bash/create-tmux-session.bash \
 		  bash/create-tmux-sessions.bash \
-		  bash/recompile-xmonad.sh
+		  bash/recompile-xmonad.sh \
+		  bash/spawn-rtv.sh
 INSTALL_SCRIPTS := $(SCRIPTS:%=install-%)
 
 .PHONY: all
