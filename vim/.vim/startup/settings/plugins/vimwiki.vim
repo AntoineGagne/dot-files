@@ -15,6 +15,7 @@ let wiki.nested_syntaxes = {
             \'python': 'python',
             \'ruby': 'ruby',
             \'rust': 'rust',
+            \'sh': 'sh',
             \'sql': 'sql',
             \'tex': 'plaintex',
             \'viml': 'vim',
