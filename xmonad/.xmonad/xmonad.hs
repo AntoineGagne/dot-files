@@ -297,8 +297,8 @@ myMouseBindings (XConfig {XMonad.modMask = modMask}) = Map.fromList $
 myWorkspaces :: [WorkspaceId]
 myWorkspaces = [ "1 <fn=1>\xf269</fn>"
                , "2 <fn=1>\xf120</fn>"
-               , "3 <fn=1>\xf02d</fn>"
-               , "4 <fn=1>\xf121</fn>"
+               , "3 <fn=1>\xf121</fn>"
+               , "4 <fn=1>\xf02d</fn>"
                , "5 <fn=1>\xf001</fn>"
                , "6 <fn=1>\xf1fc</fn>"
                , "7 <fn=1>\xf27a</fn>"
@@ -311,9 +311,9 @@ myManageHooks screenNumber = composeAll $
     [ className =? "Firefox" --> moveToWorkspace [0] 0
     , className =? "Firefox" <&&> resource =? "Dialog" --> doCenterFloat
     , className =? "Chromium-browser" --> moveToWorkspace [0] 0
-    , className =? "Zathura" --> moveToWorkspace [1] 2
-    , className =? "feh" --> moveToWorkspace [1] 2
-    , className =? "jetbrains-idea" --> moveToWorkspace [1] 3
+    , className =? "Zathura" --> moveToWorkspace [1] 3
+    , className =? "feh" --> moveToWorkspace [1] 3
+    , className =? "jetbrains-idea" --> moveToWorkspace [1] 2
     , className =? "Easytag" --> moveToWorkspace [1] 4
     , className =? "MPlayer" --> moveToWorkspace [1] 4
     , className =? "mpv" --> moveToWorkspace [1] 4
