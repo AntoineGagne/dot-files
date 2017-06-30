@@ -30,7 +30,8 @@ SOFTWARE_DIRS := bash \
 	feh \
 	icons \
 	weechat \
-	compton
+	compton \
+	rtv
 INSTALL_DIRS := $(SOFTWARE_DIRS:%=install-%)
 
 YOUCOMPLETEME_DIR := ${HOME}/.vim/bundle/YouCompleteMe
