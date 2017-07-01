@@ -8,6 +8,7 @@ let wiki.nested_syntaxes = {
             \'html': 'html',
             \'java': 'java',
             \'javascript': 'javascript',
+            \'json': 'json',
             \'lua': 'lua',
             \'markdown': 'markdown',
             \'perl': 'perl',
