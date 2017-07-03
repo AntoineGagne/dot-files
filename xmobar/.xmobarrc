@@ -95,7 +95,7 @@ Config { font =         "xft:Source Code Pro:style=Regular:size=9:antialias=true
                                        -- AC "on" status
                                        , "-O", "<left>%"
                                        -- charged status
-                                       , "-i", "<fn=1>\xf1e6</fn>"
+                                       , "-i", "<fc=#a89984><fn=1>\xf1e6</fn></fc>"
                              , "--on-icon-pattern", "<icon=.icons/battery/charging_battery_%%.xpm/>"
                              ] 50
         , Run Brightness ["--template", "<percent>%"
