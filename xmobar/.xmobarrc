@@ -11,7 +11,7 @@ Config { font =         "xft:Source Code Pro:style=Regular:size=9:antialias=true
        -- layout
        , sepChar =  "%"   -- delineator between plugin names and straight text
        , alignSep = "}{"  -- separator between left-right alignment
-       , template = "%StdinReader% }{ %song% <fn=1></fn> %vol% <fn=1></fn> %wlo1wi% <fn=1></fn> %bright% <fn=1></fn> %CYQB% %date% %battery% "
+       , template = "%StdinReader% }{ <fc=#98971a>%song%</fc> <fc=#689d6a><fn=1></fn> %vol%</fc> <fc=#b16286><fn=1></fn> %wlo1wi%</fc> <fc=#d79921><fn=1></fn> %bright%</fc> <fc=#83a598><fn=1></fn> %CYQB%</fc> <fc=#8ec07c>%date%</fc> %battery% "
 
        -- general behavior
        , lowerOnStart =     True    -- send to bottom of window stack on start
@@ -99,7 +99,6 @@ Config { font =         "xft:Source Code Pro:style=Regular:size=9:antialias=true
                              , "--on-icon-pattern", "<icon=.icons/battery/charging_battery_%%.xpm/>"
                              ] 50
         , Run Brightness ["--template", "<percent>%"
-
                          , "--"
                          , "-D", "intel_backlight"
                          -- , "--brightness-icon-pattern", "<icon=.icons/luminosity/luminosity_%%.xpm/>"
@@ -107,7 +106,7 @@ Config { font =         "xft:Source Code Pro:style=Regular:size=9:antialias=true
 
         -- time and date indicator
         --   (%F = y-m-d date, %a = day of week, %T = h:m:s time)
-        , Run Date           "<fn=1></fn> <fc=#ebdbb2>%a %b %d %T</fc>" "date" 10
+        , Run Date           "<fn=1></fn> %a %b %d %T" "date" 10
 
         -- keyboard layout indicator
         , Run Kbd            [ ("ca", "<fc=#8B0000>FR</fc>")
