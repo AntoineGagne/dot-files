@@ -195,6 +195,10 @@ vimwiki_html
 **/.vim/spell/**
 !**/.vim/spell/*.add
 **/.netrwhist
+**/.undo
+**/.swap
+**/.tmp
+**/.bookmarks
 
 # Weechat dotfiles
 **/.weechat/*

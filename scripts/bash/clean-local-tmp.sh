@@ -1,6 +1,6 @@
 #! /bin/sh
 
-directories="${HOME}/.tmp ${HOME}/.undo ${HOME}/.swap"
+directories="${HOME}/.vim/.tmp ${HOME}/.vim/.undo ${HOME}/.vim/.swap"
 
 for directory in $directories; do
     if [ -d "${directory}" ]; then
