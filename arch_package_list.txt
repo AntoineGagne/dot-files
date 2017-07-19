@@ -98,8 +98,6 @@ texlive-core
 texlive-fontsextra
 texlive-formatsextra
 texlive-games
-texlive-genericextra
-texlive-htmlxml
 texlive-humanities
 texlive-langchinese
 texlive-langcyrillic
@@ -110,7 +108,6 @@ texlive-langkorean
 texlive-latexextra
 texlive-music
 texlive-pictures
-texlive-plainextra
 texlive-pstricks
 texlive-publishers
 texlive-science
