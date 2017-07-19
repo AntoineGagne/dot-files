@@ -72,5 +72,10 @@ if type "create-tmux-session" >/dev/null 2>&1; then
     create-tmux-session --create-session "code"
 fi
 
+# Remove annoying bell sound
+if type "xset" >/dev/null 2>&1; then
+    xset -b
+fi
+
 # Launch XMonad
 exec xmonad
