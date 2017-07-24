@@ -220,3 +220,4 @@ vimwiki_html
 
 # Newsbeuter
 **/.newsbeuter/private
+**/.newsbeuter/urls
