@@ -12,7 +12,8 @@ SCRIPTS = bash/cmus-status.bash \
 		  bash/create-tmux-session.bash \
 		  bash/create-tmux-sessions.bash \
 		  bash/recompile-xmonad.sh \
-		  bash/spawn-rtv.sh
+		  bash/spawn-rtv.sh \
+		  bash/merge-rss-urls.bash
 INSTALL_SCRIPTS := $(SCRIPTS:%=install-%)
 
 .PHONY: all
