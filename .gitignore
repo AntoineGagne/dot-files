@@ -219,5 +219,7 @@ vimwiki_html
 !**/.weechat/python
 
 # Newsbeuter
-**/.newsbeuter/private
-**/.newsbeuter/urls
+**/.newsbeuter/*
+**/.newsbeuter/**
+!**/.newsbeuter/public
+!**/.newsbeuter/config

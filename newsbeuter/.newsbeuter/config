@@ -1,0 +1,23 @@
+auto-reload yes
+browser firefox
+cleanup-on-quit yes
+notify-always yes
+notify-xterm yes
+notify-screen yes
+refresh-on-startup yes
+# show-read-feeds no
+reload-time 20
+reload-threads 2
+feed-sort-order title-dec
+
+bind-key j next
+bind-key k prev
+bind-key j down article
+bind-key k up article
+
+color background color223 default
+color listnormal color223 default
+color listfocus color223 color241
+color info color109 default
+color listfocus_unread color223 color241
+color listnormal_unread color175 default

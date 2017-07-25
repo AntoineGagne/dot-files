@@ -77,7 +77,7 @@ main = do
     xmonad $ ewmh $ withUrgencyHookC BorderUrgencyHook { urgencyBorderColor = "#fb4934" } urgencyConfig { suppressWhen = Focused, remindWhen = Every (minutes 5.0 )} $ defaults
         { workspaces = withScreens screenNumber myWorkspaces
         , manageHook = manageDocks <+> myManageHooks screenNumber <+> manageHook def
-        , logHook = fadeInactiveCurrentWSLogHook 0.8 <+> (mapM_ dynamicLogWithPP $ zipWith myBarPrettyPrinter hs [0..screenNumber])
+        , logHook = fadeInactiveCurrentWSLogHook 0.8 <+> mapM_ dynamicLogWithPP (zipWith myBarPrettyPrinter hs [0..screenNumber])
         }
 
 -- TODO: Find a way to make it work with the multi-head setup
@@ -113,7 +113,7 @@ myBarPrettyPrinter handle screenNumber = marshallPP screenNumber def
 
 defaults = def
     { borderWidth = myBorderWidth
-    , layoutHook = smartBorders $ avoidStruts $ myLayoutHook
+    , layoutHook = smartBorders $ avoidStruts myLayoutHook
     , focusFollowsMouse = myFocusFollowsMouse
     , focusedBorderColor = myFocusedBorderColor
     -- To make Java applications behave normally...
@@ -237,7 +237,7 @@ myKeys conf = let m = modMask conf in Map.fromList $
     , ((myModMask .|. shiftMask, xK_Right), shiftNextScreen)
     -- {{{2 Search Engines
     , ((myModMask, xK_s), Submap.submap $ searchEngineMap $ Search.promptSearch myPrompt)
-    , ((myModMask .|. shiftMask, xK_s), Submap.submap $ searchEngineMap $ Search.selectSearch)
+    , ((myModMask .|. shiftMask, xK_s), Submap.submap $ searchEngineMap Search.selectSearch)
     -- {{{2 Applications
     , ((myModMask, xK_o), Submap.submap applicationsSpawn)
     -- {{{2 Urgency Hooks
@@ -255,7 +255,7 @@ myKeys conf = let m = modMask conf in Map.fromList $
     ]
         where viewShift i = W.view i . W.shift i
               withScreen screen f = screenWorkspace screen >>= flip whenJust (windows . f)
-              searchEngineMap method = Map.fromList $
+              searchEngineMap method = Map.fromList
                   [ ((0, xK_a), method Search.amazon)
                   , ((0, xK_h), method Search.hoogle)
                   , ((0, xK_i), method Search.images)
@@ -265,8 +265,9 @@ myKeys conf = let m = modMask conf in Map.fromList $
                   , ((0, xK_y), method Search.youtube)
                   , ((0, xK_g), method Search.google)
                   ]
-              applicationsSpawn = Map.fromList $
+              applicationsSpawn = Map.fromList
                   [ ((0, xK_e), spawn "urxvtc -title mutt -e mutt")
+                  , ((0, xK_n), spawn "urxvtc -title newsbeuter -e newsbeuter")
                   , ((0, xK_c), spawn "urxvtc -title weechat -e weechat")
                   , ((0, xK_m), spawn "urxvtc -title cmus -e cmus")
                   , ((0, xK_b), spawn "firefox")
@@ -284,13 +285,13 @@ myPrompt = Prompt.def { Prompt.font = "xft:Source Code Pro:style=Regular:size=9:
                       }
 
 myMouseBindings :: (XConfig Layout -> Map.Map (ButtonMask, Button) (Window -> X ()))
-myMouseBindings (XConfig {XMonad.modMask = modMask}) = Map.fromList $
+myMouseBindings XConfig {XMonad.modMask = modMask} = Map.fromList
     [ -- mod-button1, Set the window to floating mode and move by dragging
-      ((modMask, button1), (\w -> focus w >> mouseMoveWindow w))
+      ((modMask, button1), \w -> focus w >> mouseMoveWindow w)
     -- mod-button2, Raise the window to the top of the stack
-    , ((modMask, button2), (\w -> focus w >> windows W.swapMaster))
+    , ((modMask, button2), \w -> focus w >> windows W.swapMaster)
     -- mod-button3, Set the window to floating mode and resize by dragging
-    , ((modMask, button3), (\w -> focus w >> mouseResizeWindow w))
+    , ((modMask, button3), \w -> focus w >> mouseResizeWindow w)
     -- you may also bind events to the mouse scroll wheel (button4 and button5)
     ]
 
@@ -307,7 +308,7 @@ myWorkspaces = [ "1 <fn=1>\xf269</fn>"
                ]
 
 myManageHooks :: ScreenId -> ManageHook
-myManageHooks screenNumber = composeAll $
+myManageHooks screenNumber = composeAll
     [ className =? "Firefox" --> moveToWorkspace [0] 0
     , className =? "Firefox" <&&> resource =? "Dialog" --> doCenterFloat
     , className =? "Chromium-browser" --> moveToWorkspace [0] 0
@@ -322,6 +323,7 @@ myManageHooks screenNumber = composeAll $
     , name =? "mutt" --> moveToWorkspace [1] 7
     , name =? "cmus" --> moveToWorkspace [1] 4
     , name =? "weechat" --> moveToWorkspace [1] 6
+    , name =? "newsbeuter" --> moveToWorkspace [1] 3
     , className =? "URxvt" --> moveToWorkspace [1] 1
     ]
         where moveToWorkspace :: [ScreenId] -> Int -> ManageHook
