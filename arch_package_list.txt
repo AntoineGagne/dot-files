@@ -35,6 +35,7 @@ gettext
 ghc-static
 git
 glibc
+graphviz
 grep
 grub
 gzip
@@ -115,6 +116,7 @@ texlive-pstricks
 texlive-publishers
 texlive-science
 tmux
+tree
 udisks2
 ufw
 unzip
