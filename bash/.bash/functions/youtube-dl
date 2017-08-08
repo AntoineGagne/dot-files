@@ -1,4 +1,34 @@
 # vim: ft=sh
+
+parallel_download() {
+    parallel youtube-dl -o "\%\(title\)s.\%\(ext\)s" -x :::: "${1}"
+}
+
+download_playlist() {
+    youtube-dl -o '%(playlist)s/%(playlist_index)s - %(title)s.%(ext)s' -x "${1}"
+}
+
+download_playlists() {
+    export -f download_playlist
+    
+    if parallel download_playlist :::: "${1}"; then
+        rm "${1}"
+    else
+        echo "ERROR: Could not download the playlists. Exiting."
+        return 1
+    fi
+}
+
+download_video_playlist() {
+    youtube-dl  --prefer-free-formats --all-subs -o '%(playlist)s/%(playlist_index)s - %(title)s.%(ext)s' "${1}"
+}
+
+download_video_playlists() {
+    export -f download_video_playlist
+    parallel download_video_playlist :::: "${1}"
+    rm "${1}"
+}
+
 playlist_to_links() {
     if [[ -z "$1" ]];
     then
@@ -7,7 +37,7 @@ playlist_to_links() {
     fi
     URL="https://www.youtube.com/playlist?list=$1"
 
-    TMPFILE=`mktemp /tmp/${tempfoo}.XXXXXX` || {
+    TMPFILE=$(mktemp /tmp/${tempfoo}.XXXXXX) || {
         echo "Temporary file creation failed" 1>&2
         exit 1
     }
@@ -48,28 +78,3 @@ playlist_to_links() {
 
     rm -f ${TMPFILE}*
 }
-
-parallel_download() {
-    parallel youtube-dl -o "\%\(title\)s.\%\(ext\)s" -x :::: "${1}"
-}
-
-download_playlist() {
-    youtube-dl -o '%(playlist)s/%(playlist_index)s - %(title)s.%(ext)s' -x "${1}"
-}
-
-download_playlists() {
-    export -f download_playlist
-    parallel download_playlist :::: "${1}"
-    rm "${1}"
-}
-
-download_video_playlist() {
-    youtube-dl  --prefer-free-formats --all-subs -o '%(playlist)s/%(playlist_index)s - %(title)s.%(ext)s' "${1}"
-}
-
-download_video_playlists() {
-    export -f download_video_playlist
-    parallel download_video_playlist :::: "${1}"
-    rm "${1}"
-}
-
