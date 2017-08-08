@@ -17,6 +17,7 @@ if has("autocmd")
         autocmd BufNewFile,BufRead,BufReadPre,BufReadPost *.tex setfiletype plaintex
         autocmd BufNewFile,BufRead,BufReadPre,BufReadPost *.tikz setfiletype plaintex
         autocmd BufNewFile,BufRead,BufReadPre,BufReadPost *.bib setfiletype plaintex
+        autocmd BufNewFile *.tex 0r ~/.vim/templates/skeleton.tex
     augroup END
 
     augroup shell
