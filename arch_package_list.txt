@@ -32,6 +32,7 @@ flex
 gawk
 gcc-libs
 gettext
+ghc-static
 git
 glibc
 grep
@@ -61,10 +62,12 @@ namcap
 nano
 neovim
 netctl
+newsbeuter
 ntfs-3g
 openssh
 opusfile
 pacman
+parallel
 patch
 pciutils
 pcmciautils
