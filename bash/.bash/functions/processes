@@ -1,6 +1,6 @@
 # vim: ft=sh
 # Run the process in background
 rb() {
-    "$@" &>/dev/null &
+    nohup "$@" &>/dev/null &
 }
 complete -F _command rb
