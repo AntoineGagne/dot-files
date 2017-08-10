@@ -1,3 +1,4 @@
+. ~/.bash/functions/audio
 . ~/.bash/functions/editing
 . ~/.bash/functions/file
 . ~/.bash/functions/misc
