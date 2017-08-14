@@ -1,9 +1,11 @@
 adobe-source-code-pro-fonts
 alsa-utils
+asunder
 autoconf
 automake
 bash
 bash-completion
+biber
 bison
 bitlbee
 bzip2
@@ -124,6 +126,7 @@ urxvt-perls
 usbutils
 util-linux
 vi
+vorbis-tools
 weechat
 wget
 which
