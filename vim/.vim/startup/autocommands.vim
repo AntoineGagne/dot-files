@@ -5,7 +5,7 @@ if has("autocmd")
         autocmd BufEnter *.hs set formatprg=pointfree
 
         " {{{2 neco-ghc
-        autocmd BufWritePost *.hs GhcModCheckAndLintAsync
+        " autocmd BufWritePost *.hs GhcModCheckAndLintAsync
         autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc
     augroup END
 
