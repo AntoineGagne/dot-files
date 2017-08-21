@@ -40,7 +40,9 @@ glibc
 graphviz
 grep
 grub
+gtk3-print-backends
 gzip
+hplip
 imagemagick
 inetutils
 intel-ucode
