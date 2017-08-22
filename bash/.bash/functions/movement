@@ -6,7 +6,8 @@ jump() {
 }
 
 mark() {
-    mkdir -p "${MARKPATH}"; ln -s "$(pwd)" "${MARKPATH}/${1}"
+    mkdir -p "${MARKPATH}"
+    ln -s "$(pwd)" "${MARKPATH}/${1}"
 }
 
 unmark() {
@@ -18,8 +19,8 @@ marks() {
 }
 
 _completemarks() {
-    local curw=${COMP_WORDS[COMP_CWORD]}
-    local wordlist=$(find $MARKPATH -type l -printf "%f\n")
+    local -r curw=${COMP_WORDS[COMP_CWORD]}
+    local -r wordlist=$(find $MARKPATH -type l -printf "%f\n")
     COMPREPLY=($(compgen -W '${wordlist[@]}' -- "$curw"))
     return 0
 }
