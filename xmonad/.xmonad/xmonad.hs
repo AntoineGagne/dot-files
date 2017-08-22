@@ -138,7 +138,7 @@ myLayoutHook = layoutHook def ||| Grid
 myModMask = mod4Mask
 
 myBorderWidth :: Dimension
-myBorderWidth = 1
+myBorderWidth = 2
 
 myStatusBar :: String
 myStatusBar = "xmobar"
