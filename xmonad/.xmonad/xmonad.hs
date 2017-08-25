@@ -147,7 +147,7 @@ myTerminal :: String
 myTerminal = "urxvtc"
 
 myLauncher :: String
-myLauncher = "dmenu_run"
+myLauncher = "dmenu_run -i -l 15 -p '➤' -nb '#282828' -nf '#ebdbb2' -sb '#8ec07c' -sf '#282828'"
 
 myFocusFollowsMouse :: Bool
 myFocusFollowsMouse = True
