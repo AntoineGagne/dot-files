@@ -1,9 +1,8 @@
-#! /bin/sh
+#! /usr/bin/env bash
 
 if type "cmus_notify" > /dev/null; then
-    cmus_notify "$*" &
-fi
-
-if type "cmus-status" > /dev/null; then
-    cmus-status '<fn=1></fn> {title} by {artist}' "$*" &
+    output="$(cmus_notify --configuration_file ~/.cmus-notify "$*")"
+    for pipe in "${HOME}/.song-information"*; do
+        echo "${output}" > "${pipe}" &
+    done
 fi
