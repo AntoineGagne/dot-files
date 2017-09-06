@@ -102,3 +102,7 @@
     path = "fonts/.fonts/powerline-patched-fonts"
     url = https://github.com/powerline/fonts.git
     ignore = dirty
+[submodule "weechat/.weechat/python/wee-slack"]
+    path = "weechat/.weechat/python/wee-slack"
+    url = https://github.com/wee-slack/wee-slack.git
+    ignore = dirty
