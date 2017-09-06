@@ -86,6 +86,7 @@ pulseaudio-alsa
 python
 python-pip
 python2-neovim
+python2-websocket-client
 redshift
 reiserfsprogs
 rsync
