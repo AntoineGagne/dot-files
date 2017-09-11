@@ -321,10 +321,11 @@ myManageHooks screenNumber = composeAll
     , className =? "krita" --> moveToWorkspace [1] 5
     , className =? "Wireshark" --> moveToWorkspace [1] 0
     , className =? "Asunder" --> moveToWorkspace [0] 4
+    , className =? "Godot" --> moveToWorkspace [1] 3
     , name =? "mutt" --> moveToWorkspace [1] 7
     , name =? "cmus" --> moveToWorkspace [1] 4
     , name =? "weechat" --> moveToWorkspace [1] 6
-    , name =? "newsbeuter" --> moveToWorkspace [1] 3
+    , name =? "newsbeuter" --> moveToWorkspace [0] 3
     , className =? "URxvt" --> moveToWorkspace [1] 1
     ]
         where moveToWorkspace :: [ScreenId] -> Int -> ManageHook
