@@ -315,6 +315,7 @@ myManageHooks screenNumber = composeAll
     , className =? "Zathura" --> moveToWorkspace [1] 3
     , className =? "feh" --> moveToWorkspace [1] 3
     , className =? "jetbrains-idea" --> moveToWorkspace [1] 2
+    , className =? "jetbrains-idea" <&&> resource =? "Dialog" --> moveToWorkspace [1] 2
     , className =? "Easytag" --> moveToWorkspace [1] 4
     , className =? "MPlayer" --> moveToWorkspace [1] 4
     , className =? "mpv" --> moveToWorkspace [1] 4
