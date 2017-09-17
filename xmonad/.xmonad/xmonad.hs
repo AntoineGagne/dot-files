@@ -323,6 +323,8 @@ myManageHooks screenNumber = composeAll
     , className =? "Wireshark" --> moveToWorkspace [1] 0
     , className =? "Asunder" --> moveToWorkspace [0] 4
     , className =? "Godot" --> moveToWorkspace [1] 3
+    , className =? "VirtualBox" --> moveToWorkspace [1] 8
+    , className =? "VirtualBox" <&&> resource =? "Dialog" --> doCenterFloat
     , name =? "mutt" --> moveToWorkspace [1] 7
     , name =? "cmus" --> moveToWorkspace [1] 4
     , name =? "weechat" --> moveToWorkspace [1] 6
