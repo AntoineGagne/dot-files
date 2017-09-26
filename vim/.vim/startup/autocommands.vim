@@ -29,4 +29,9 @@ if has("autocmd")
         autocmd!
         autocmd BufNewFile *.bash 0r ~/.vim/templates/skeleton.bash
     augroup END
+
+    augroup python
+        autocmd!
+        autocmd BufRead *.py set foldmethod=indent
+    augroup END
 endif

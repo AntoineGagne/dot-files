@@ -15,4 +15,4 @@ set foldnestmax=10
 " {{{1 Method
 
 " Fold based on indent level
-set foldmethod=indent
+set foldmethod=syntax
