@@ -106,3 +106,11 @@
     path = "weechat/.weechat/python/wee-slack"
     url = https://github.com/wee-slack/wee-slack.git
     ignore = dirty
+[submodule "vim/.vim/bundle/LanguageClient-neovim"]
+    path = "vim/.vim/bundle/LanguageClient-neovim"
+    url = https://github.com/autozimu/LanguageClient-neovim.git
+    ignore = dirty
+[submodule "vim/.vim/bundle/deoplete.nvim"]
+    path = "vim/.vim/bundle/deoplete.nvim"
+    url = https://github.com/Shougo/deoplete.nvim.git
+    ignore = dirty
