@@ -27,18 +27,6 @@ set tags+=./.git/tags
 set tags+=./tags
 
 
-" {{{1 Python Hosts
-
-if has('nvim')
-    if isdirectory(expand('~') . '/.virtualenvs/neovim2/bin/python')
-        let g:python_host_prog = expand('~') . '/.virtualenvs/neovim2/bin/python'
-    endif
-    if isdirectory(expand('~') . '/.virtualenvs/neovim3/bin/python')
-        let g:python3_host_prog = expand('~') . '/.virtualenvs/neovim3/bin/python'
-    endif
-endif
-
-
 " {{{1 Backups
 
 " Put the backup files in the temporary folder

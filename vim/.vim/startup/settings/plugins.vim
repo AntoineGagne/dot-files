@@ -1,6 +1,7 @@
 " {{{1 Autocompleters
 
-source ~/.vim/startup/settings/plugins/YouCompleteMe.vim
+" source ~/.vim/startup/settings/plugins/YouCompleteMe.vim
+source ~/.vim/startup/settings/plugins/deoplete.vim
 
 
 " {{{1 Languages
