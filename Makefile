@@ -42,7 +42,6 @@ YOUCOMPLETEME_FLAGS := --tern-completer \
 
 .PHONY: all
 all: $(SOFTWARE_DIRS) \
-	 setup_youcompleteme \
 	 setup_virtual_environments \
 	 install-scripts
 
@@ -69,7 +68,7 @@ setup_youcompleteme: setup_vim_plugins
 
 .PHONY: install_virtual_environment
 install_virtual_environment:
-	@pip3 install virtualenv virtualenvwrapper
+	@pip install --user virtualenv virtualenvwrapper
 
 .PHONY: setup_virtual_environments
 setup_virtual_environments: install_virtual_environment
@@ -80,6 +79,11 @@ setup_virtual_environments: install_virtual_environment
 	@pip install neovim
 	@deactivate
 
+.PHONY: install-language-servers
+install-language-servers: install-python-language-server
+
+install-python-language-server:
+	@pip install --user python-language-server pyls-mypy
 
 .PHONY: create-user-systemd-units-folder
 create-user-systemd-units-folder:
