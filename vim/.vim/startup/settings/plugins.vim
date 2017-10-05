@@ -2,6 +2,7 @@
 
 " source ~/.vim/startup/settings/plugins/YouCompleteMe.vim
 source ~/.vim/startup/settings/plugins/deoplete.vim
+source ~/.vim/startup/settings/plugins/LanguageClient-neovim.vim
 
 
 " {{{1 Languages
