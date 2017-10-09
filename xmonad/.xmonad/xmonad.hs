@@ -16,9 +16,11 @@ import System.Exit ( exitWith
                    )
 import XMonad
 import XMonad.Actions.CycleWS
+import XMonad.Actions.FlexibleResize ( mouseResizeEdgeWindow )
 import XMonad.Actions.PhysicalScreens ( viewScreen
                                       , sendToScreen
                                       )
+import XMonad.Actions.Search ( (!>) )
 import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.FadeInactive ( fadeInactiveCurrentWSLogHook )
 import XMonad.Hooks.EwmhDesktops ( ewmh 
@@ -55,8 +57,10 @@ import XMonad.Layout.IndependentScreens ( withScreens
                                         , onCurrentScreen
                                         , workspaces'
                                         )
+import XMonad.Layout.Column ( Column (..) )
 import XMonad.Layout.NoBorders
 import XMonad.Layout.Grid
+import XMonad.Layout.OneBig ( OneBig (..) )
 import XMonad.Layout.Spiral
 import XMonad.Layout.Tabbed
 import XMonad.Layout.ThreeColumns
@@ -117,7 +121,7 @@ defaults = def
     , focusFollowsMouse = myFocusFollowsMouse
     , focusedBorderColor = myFocusedBorderColor
     -- To make Java applications behave normally...
-    , startupHook = ewmhDesktopsStartup >> setWMName "LG3D" <+> setDefaultCursor xC_left_ptr <+> docksStartupHook
+    , startupHook = setWMName "LG3D" <+> setDefaultCursor xC_left_ptr <+> docksStartupHook
     , modMask = mod4Mask
     , mouseBindings = myMouseBindings
     , normalBorderColor  = myNormalBorderColor
@@ -131,9 +135,14 @@ myLayoutPrinter "Full" = "<icon=.icons/layout/alternate_full_screen_layout.xpm/>
 myLayoutPrinter "Tall" = "<icon=.icons/layout/vertical_layout.xpm/>"
 myLayoutPrinter "Mirror Tall" = "<icon=.icons/layout/horizontal_layout.xpm/>"
 myLayoutPrinter "Grid" = "<icon=.icons/layout/grid_layout.xpm/>"
+myLayoutPrinter "One Big" = "<icon=.icons/layout/one_big_layout.xpm/>"
+myLayoutPrinter "Column" = "<icon=.icons/layout/column_layout.xpm/>"
 myLayoutPrinter x = x
 
-myLayoutHook = layoutHook def ||| Grid
+myLayoutHook = layoutHook def
+            ||| Grid
+            ||| OneBig (3/4) (3/4)
+            ||| Column 1.6
 
 myModMask = mod4Mask
 
@@ -263,7 +272,7 @@ myKeys conf = let m = modMask conf in Map.fromList $
                   , ((0, xK_s), method Search.stackage)
                   , ((0, xK_w), method Search.wikipedia)
                   , ((0, xK_y), method Search.youtube)
-                  , ((0, xK_g), method Search.google)
+                  , ((0, xK_g), method Search.multi)
                   ]
               applicationsSpawn = Map.fromList
                   [ ((0, xK_e), spawn "urxvtc -title mutt -e mutt")
@@ -291,7 +300,7 @@ myMouseBindings XConfig {XMonad.modMask = modMask} = Map.fromList
     -- mod-button2, Raise the window to the top of the stack
     , ((modMask, button2), \w -> focus w >> windows W.swapMaster)
     -- mod-button3, Set the window to floating mode and resize by dragging
-    , ((modMask, button3), \w -> focus w >> mouseResizeWindow w)
+    , ((modMask, button3), \w -> focus w >> mouseResizeEdgeWindow 10 w)
     -- you may also bind events to the mouse scroll wheel (button4 and button5)
     ]
 
