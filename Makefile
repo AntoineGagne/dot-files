@@ -93,6 +93,10 @@ create-user-systemd-units-folder:
 install-systemd-units: create-user-systemd-units-folder
 	@$(shell fix-systemd-user-units $(SYSTEMD_UNITS))
 
+.PHONY: install-themes
+install-themes:
+	@stow gtk -t ~
+
 .PHONY: fonts
 fonts:
 	@stow fonts -t ~
