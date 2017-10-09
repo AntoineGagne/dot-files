@@ -1,5 +1,7 @@
 adobe-source-code-pro-fonts
 alsa-utils
+arc-gtk-theme
+arc-icon-theme
 asunder
 autoconf
 automake
@@ -36,6 +38,7 @@ gcc-libs
 gettext
 ghc-static
 git
+glances
 glibc
 graphviz
 grep
