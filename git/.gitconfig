@@ -1,6 +1,23 @@
 [user]
     email = gagnantoine@gmail.com
     name = Antoine Gagné
+[merge]
+	tool = vimdiff
+    conflictstyle = diff3
+[mergetool]
+    prompt = false
+[mergetool "vimdiff"]
+    path = nvim
+    # See https://github.com/neovim/neovim/issues/2377 (Mon Oct  9 19:51:26 EDT 2017)
+    cmd = nvim -d $BASE $LOCAL $REMOTE $MERGED -c '$wincmd w' -c 'wincmd J'
+[diff]
+    algorithm = patience
+    tool = vimdiff
+[difftool]
+    prompt = false
+[difftool "vimdiff"]
+    path = nvim
+    cmd = "nvim -d \"$LOCAL\" \"$REMOTE\""
 [init]
     templatedir = ~/.git.d/git_templates
 [push]
@@ -12,8 +29,6 @@
 [core]
     excludesfile = ~/.git.d/global_gitignore
     editor = nvim
-[diff]
-    algorithm = patience
 [web]
     browser = firefox
 [rerere]
