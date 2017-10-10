@@ -135,8 +135,8 @@ myLayoutPrinter "Full" = "<icon=.icons/layout/alternate_full_screen_layout.xpm/>
 myLayoutPrinter "Tall" = "<icon=.icons/layout/vertical_layout.xpm/>"
 myLayoutPrinter "Mirror Tall" = "<icon=.icons/layout/horizontal_layout.xpm/>"
 myLayoutPrinter "Grid" = "<icon=.icons/layout/grid_layout.xpm/>"
-myLayoutPrinter "One Big" = "<icon=.icons/layout/one_big_layout.xpm/>"
-myLayoutPrinter "Column" = "<icon=.icons/layout/column_layout.xpm/>"
+myLayoutPrinter "One Big 0.75 0.75" = "<icon=.icons/layout/one_big_layout.xpm/>"
+myLayoutPrinter "Column 1.6" = "<icon=.icons/layout/column_layout.xpm/>"
 myLayoutPrinter x = x
 
 myLayoutHook = layoutHook def
