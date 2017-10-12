@@ -1,5 +1,6 @@
 let g:LanguageClient_serverCommands = {
-            \ 'python': ['pyls']
+            \ 'python': ['pyls'],
+            \ 'javascript': ['javascript-typescript-stdio']
             \ }
 
 " Automatically start language servers.
