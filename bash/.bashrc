@@ -292,6 +292,11 @@ if [ -d "${HOME}/.local/bin" ]; then
     export PATH=$PATH:"${HOME}/.local/bin"
 fi
 
+if [ -d "${HOME}/.node_modules/bin" ]; then
+    export PATH=$PATH:"${HOME}/.node_modules/bin"
+    export npm_config_prefix="${HOME}/.node_modules"
+fi
+
 if type "nvim" >/dev/null 2>&1; then
     export EDITOR=nvim
 fi
