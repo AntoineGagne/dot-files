@@ -10,6 +10,11 @@ if has("autocmd")
         autocmd FileType haskell set foldmethod=indent
     augroup END
 
+    augroup html
+        autocmd!
+        autocmd BufNewFile *.html 0r ~/.vim/templates/skeleton.html
+    augroup END
+
     " {{{1 LaTeX & TeX
     augroup latex
         autocmd!
