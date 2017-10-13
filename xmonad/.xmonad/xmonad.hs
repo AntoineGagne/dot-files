@@ -135,7 +135,7 @@ myLayoutPrinter "Full" = "<icon=.icons/layout/alternate_full_screen_layout.xpm/>
 myLayoutPrinter "Tall" = "<icon=.icons/layout/vertical_layout.xpm/>"
 myLayoutPrinter "Mirror Tall" = "<icon=.icons/layout/horizontal_layout.xpm/>"
 myLayoutPrinter "Grid" = "<icon=.icons/layout/grid_layout.xpm/>"
-myLayoutPrinter ('O':'n':'e':' ':'B':'i':'g':_) = "<icon=.icons/layout/one_big_layout.xpm/>"
+myLayoutPrinter ('O':'n':'e':'B':'i':'g':_) = "<icon=.icons/layout/one_big_layout.xpm/>"
 myLayoutPrinter ('C':'o':'l':'u':'m':'n':_) = "<icon=.icons/layout/column_layout.xpm/>"
 myLayoutPrinter x = x
 
