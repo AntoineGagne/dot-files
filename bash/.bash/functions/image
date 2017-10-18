@@ -1,0 +1,19 @@
+# vim: ft=sh
+
+convert-svg-to-favicon() {
+    local -r input_file="${1}"
+    local -r output_favicon="${2}"
+    local color="${3}"
+
+    if [ -z "${color}" ]; then
+        color="#EBDBB2"
+    fi
+
+    convert -density 256x256 \
+            -background transparent \
+            -fill "${color}" \
+            -colorize 100 "${input_file}" \
+            -define icon:auto-resize \
+            -colors 256 \
+            "${output_favicon}"
+}

@@ -1,3 +1,5 @@
+# vim: ft=sh
+
 . ~/.bash/aliases/date
 . ~/.bash/aliases/editing
 . ~/.bash/aliases/movement
