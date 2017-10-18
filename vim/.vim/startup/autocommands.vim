@@ -7,8 +7,13 @@ if has("autocmd")
         " {{{2 neco-ghc
         " autocmd BufWritePost *.hs GhcModCheckAndLintAsync
         autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc
-        autocmd FileType haskell set foldmethod=indent
+        " autocmd FileType haskell set foldmethod=indent
     augroup END
+
+    augroup javascript
+        autocmd!
+        " autocmd FileType javascript set foldmethod=syntax
+    augroup end
 
     augroup html
         autocmd!
@@ -38,6 +43,16 @@ if has("autocmd")
 
     augroup python
         autocmd!
-        autocmd FileType python set foldmethod=indent
+        " autocmd FileType python set foldmethod=indent
+    augroup END
+
+    augroup cpp
+        autocmd!
+        autocmd FileType cpp set foldmethod=syntax
+    augroup END
+
+    augroup clang
+        autocmd!
+        autocmd FileType c set foldmethod=syntax
     augroup END
 endif
