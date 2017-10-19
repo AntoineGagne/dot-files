@@ -321,6 +321,9 @@ myManageHooks screenNumber = composeAll
     [ className =? "Firefox" --> moveToWorkspace [0] 0
     , className =? "Firefox" <&&> resource =? "Dialog" --> doCenterFloat
     , className =? "Chromium-browser" --> moveToWorkspace [0] 0
+    , className =? "Chromium-browser" <&&> resource =? "Dialog" --> doCenterFloat
+    , className =? "Chromium" --> moveToWorkspace [0] 0
+    , className =? "Chromium" <&&> resource =? "Dialog" --> doCenterFloat
     , className =? "Zathura" --> moveToWorkspace [1] 3
     , className =? "feh" --> moveToWorkspace [1] 3
     , className =? "jetbrains-idea" --> moveToWorkspace [1] 2
