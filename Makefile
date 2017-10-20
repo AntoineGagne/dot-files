@@ -32,7 +32,8 @@ SOFTWARE_DIRS := bash \
 	weechat \
 	compton \
 	rtv \
-	newsbeuter
+	newsbeuter \
+	alacritty
 INSTALL_DIRS := $(SOFTWARE_DIRS:%=install-%)
 
 YOUCOMPLETEME_DIR := ${HOME}/.vim/bundle/YouCompleteMe
