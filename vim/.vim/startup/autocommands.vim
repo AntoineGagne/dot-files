@@ -1,4 +1,9 @@
 if has("autocmd")
+    augroup graphviz
+        autocmd!
+        autocmd! BufEnter *.gv set filetype=dot
+    augroup END
+
     " {{{1 Haskell
     augroup haskell
         autocmd!
