@@ -276,7 +276,7 @@ myKeys conf = let m = modMask conf in Map.fromList $
                   ]
               applicationsSpawn = Map.fromList
                   [ ((0, xK_e), spawn "urxvtc -title mutt -e mutt")
-                  , ((0, xK_n), spawn "urxvtc -title newsbeuter -e newsbeuter")
+                  , ((0, xK_n), spawn "urxvtc -title newsboat -e newsboat")
                   , ((0, xK_c), spawn "urxvtc -title weechat -e weechat")
                   , ((0, xK_m), spawn "urxvtc -title cmus -e cmus")
                   , ((0, xK_b), spawn "firefox")
@@ -340,7 +340,7 @@ myManageHooks screenNumber = composeAll
     , name =? "mutt" --> moveToWorkspace [1] 7
     , name =? "cmus" --> moveToWorkspace [1] 4
     , name =? "weechat" --> moveToWorkspace [1] 6
-    , name =? "newsbeuter" --> moveToWorkspace [0] 3
+    , name =? "newsboat" --> moveToWorkspace [0] 3
     , className =? "URxvt" --> moveToWorkspace [1] 1
     ]
         where moveToWorkspace :: [ScreenId] -> Int -> ManageHook

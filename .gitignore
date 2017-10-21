@@ -224,4 +224,10 @@ vimwiki_html
 !**/.newsbeuter/public
 !**/.newsbeuter/config
 
+# Newsboat
+**/.newsboat/*
+**/.newsboat/**
+!**/.newsboat/public
+!**/.newsboat/config
+
 .mypy_cache/

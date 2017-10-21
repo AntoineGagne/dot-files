@@ -32,7 +32,7 @@ SOFTWARE_DIRS := bash \
 	weechat \
 	compton \
 	rtv \
-	newsbeuter \
+	newsboat \
 	alacritty
 INSTALL_DIRS := $(SOFTWARE_DIRS:%=install-%)
 
