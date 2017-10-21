@@ -342,6 +342,7 @@ myManageHooks screenNumber = composeAll
     , name =? "weechat" --> moveToWorkspace [1] 6
     , name =? "newsboat" --> moveToWorkspace [0] 3
     , className =? "URxvt" --> moveToWorkspace [1] 1
+    , className =? "Alacritty" --> moveToWorkspace [1] 1
     ]
         where moveToWorkspace :: [ScreenId] -> Int -> ManageHook
               moveToWorkspace [] workspaceNumber = doShift $ marshall 0 (chooseWorkspace workspaceNumber)
