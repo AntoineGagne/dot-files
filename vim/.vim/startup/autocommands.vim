@@ -1,4 +1,9 @@
 if has("autocmd")
+    augroup markdown
+        autocmd!
+        autocmd! BufEnter *.md set filetype=pandoc
+    augroup END
+
     augroup graphviz
         autocmd!
         autocmd! BufEnter *.gv set filetype=dot
