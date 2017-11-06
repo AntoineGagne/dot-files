@@ -33,6 +33,8 @@ if has("autocmd")
     " {{{1 LaTeX & TeX
     augroup latex
         autocmd!
+        autocmd FileType plaintex set foldmethod=syntax
+        autocmd FileType tex set foldmethod=syntax
         autocmd BufNewFile,BufRead,BufReadPre,BufReadPost *.sty setfiletype plaintex
         autocmd BufNewFile,BufRead,BufReadPre,BufReadPost *.cls setfiletype plaintex
         autocmd BufNewFile,BufRead,BufReadPre,BufReadPost *.tex setfiletype plaintex
