@@ -1,13 +1,14 @@
-urxvt.font: xft:Fira Code Medium:style=Medium:size=10:antialias=true,xft:Source Code Pro:style=Regular:size=10:antialias=true,xft:FontAwesome:style=Regular:size=11,xft:DejaVu Sans Mono:style=Book:size=10:antialias=true
-urxvt.boldFont: xft:Fira Code:style=Bold:size=10:antialias=true,xft:Source Code Pro:style=Bold:size=10:antialias=true,xft:DejaVu Sans Mono:style=Bold:size=10:antialias=true
-urxvt.italicFont: xft:Fira Code Light:style=Regular:size=10:antialias=true,xft:Source Code Pro:style=Italic:size=10:antialias=true,xft:DejaVu Sans Mono:style=Oblique:size=10:antialias=true
-urxvt.boldItalicFont: xft:Fira Code:style=Bold:size=10:antialias=true,xft:Source Code Pro:style=Bold Italic:size=10:antialias=true,xft:DejaVu Sans Mono:style=Bold Oblique:size=10:antialias=true
-!urxvt.font: xft:Roboto Mono for Powerline:style=Regular:size=10:antialias=true,xft:Inconsolata\ for\ Powerline:pixelsize=12
-!urxvt.boldFont: xft:Roboto Mono for Powerline:style=Bold:size=10:antialias=true
-!urxvt.italicFont: xft:Roboto Mono for Powerline:style=Italic:size=10:antialias=true
-!urxvt.boldItalicFont: xft:Roboto Mono for Powerline:style=Bold Italic:size=10:antialias=true
-urxvt.letterSpace: 0
+urxvt.font: xft:Fira Code Medium:style=Medium:size=11,xft:Source Code Pro:style=Regular:size=10,xft:FontAwesome:style=Regular:size=11,xft:DejaVu Sans Mono:style=Book:size=10
+urxvt.boldFont: xft:Fira Code:style=Bold:size=11,xft:Source Code Pro:style=Bold:size=10,xft:DejaVu Sans Mono:style=Bold:size=10
+urxvt.italicFont: xft:Fira Code Light:style=Regular:size=11,xft:Source Code Pro:style=Italic:size=10,xft:DejaVu Sans Mono:style=Oblique:size=10
+urxvt.boldItalicFont: xft:Fira Code:style=Bold:size=11,xft:Source Code Pro:style=Bold Italic:size=10,xft:DejaVu Sans Mono:style=Bold Oblique:size=10
 
-urxvt.xftAutoHint: true
+urxvt.letterSpace: 0
+xft.autohint: 0
+xft.lcdfilter: lcddefault
+xft.hintstyle: hintslight
+xft.hinting: 1
+xft.antialias: 1
+xft.rgba: rgb
 
 ! vim: ft=xdefaults
