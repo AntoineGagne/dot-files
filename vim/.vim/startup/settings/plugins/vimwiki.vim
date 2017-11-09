@@ -1,5 +1,14 @@
 let wiki = {}
+
 let wiki.path = '~/vimwiki/'
+if executable('pandoc')
+    let wiki.custom_wiki2html = expand('~/.vim/vimwiki/pandoc-convert.bash')
+    let wiki.template_path = '~/.vim/vimwiki/templates/pandoc/html/'
+    let wiki.template_default = 'notes'
+    let wiki.template_ext = '.html'
+    let wiki.css_name = 'style.css'
+endif
+
 let wiki.nested_syntaxes = {
             \'c++': 'cpp',
             \'css': 'css',
