@@ -8,6 +8,7 @@ to_html() {
     local -r output_directory="${4}"
     local -r input_file="${5}"
     local -r css_file="light-responsive/css/$(basename ${6})"
+    local -r javascript_file="${HOME}/.vim/vimwiki/templates/pandoc/html/common/scripts/menu.js"
     local -r template_path="${7}"
     local -r template_name="${8}"
     local -r template_extension="${9}"
@@ -26,6 +27,7 @@ to_html() {
            --variable="lang: ${LANG:-en-ca}" \
            --variable="otherlangs: fr" \
            --variable="title: $(basename "${input_file%.${wiki_file_extension}}")" \
+           --variable="javascript: ${javascript_file}" \
            "${input_file}" \
            --output="${output_directory}$(basename "${input_file%.${wiki_file_extension}}")${template_extension}"
 }

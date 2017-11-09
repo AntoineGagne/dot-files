@@ -40,7 +40,9 @@
         $for(header-includes)$
             $header-includes$
         $endfor$
-        <script src="./light-responsive/scripts/menu.js"></script>
+        $for(javascript)$
+        <script src="$javascript$"></script>
+        $endfor$
     </head>
     <body>
         $for(include-before)$
