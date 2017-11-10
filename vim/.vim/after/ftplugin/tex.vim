@@ -1,11 +1,11 @@
 " Enable the french spell checker
-setlocal spelllang = fr
+setlocal spelllang=fr
 
 " Enable syntax folding
-let g:tex_fold_enabled = 1
+let g:tex_fold_enabled=1
 
 " Open file in LaTeX mode by default
-let g:tex_flavor = "latex"
+let g:tex_flavor="latex"
 
 " a = accents/ligatures
 " d = delimiters
