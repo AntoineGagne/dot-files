@@ -59,4 +59,9 @@ if has("autocmd")
         autocmd!
         autocmd FileType c set foldmethod=syntax
     augroup END
+
+    augroup octave
+        autocmd!
+        autocmd BufRead,BufNewFile *.m,*.oct set filetype=octave
+    augroup END
 endif
