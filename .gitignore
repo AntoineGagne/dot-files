@@ -231,3 +231,6 @@ vimwiki_html
 !**/.newsboat/config
 
 .mypy_cache/
+
+# Generated Pandoc templates
+pandoc/.pandoc/templates/html/notes.html

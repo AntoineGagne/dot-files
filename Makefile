@@ -33,7 +33,8 @@ SOFTWARE_DIRS := bash \
 	compton \
 	rtv \
 	newsboat \
-	alacritty
+	alacritty \
+	pandoc
 INSTALL_DIRS := $(SOFTWARE_DIRS:%=install-%)
 
 YOUCOMPLETEME_DIR := ${HOME}/.vim/bundle/YouCompleteMe

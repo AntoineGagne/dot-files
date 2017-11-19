@@ -1,3 +1,9 @@
+#! /usr/bin/env bash
+
+create-template() {
+    local -r template="${HOME}/.pandoc/templates/html/notes.html"
+
+    tee "${template}" << 'EOF'
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="$lang$" xml:lang="$lang$"$if(dir)$ dir="$dir$"$endif$>
     <head>
@@ -80,4 +86,12 @@
             $include-after$
         $endfor$
     </body>
+EOF
+
+    tee -a "${template}" << EOF
+    <script src="${HOME}/.pandoc/templates/html/common/scripts/menu.js"></script>
 </html>
+EOF
+}
+
+create-template &>/dev/null
