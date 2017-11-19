@@ -299,4 +299,8 @@ if type "mutt" >/dev/null 2>&1; then
     export COLORFGBG="default;default"
 fi
 
+if type "pandoc" >/dev/null 2>&1; then
+    eval "$(pandoc --bash-completion)"
+fi
+
 export PATH=$PATH:"${HOME}/.cargo/bin"
