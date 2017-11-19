@@ -263,6 +263,8 @@ export LESS_TERMCAP_so=$(printf '\e[01;33m') # enter standout mode – yellow
 export LESS_TERMCAP_ue=$(printf '\e[0m')     # leave underline mode
 export LESS_TERMCAP_us=$(printf '\e[04;36m') # enter underline mode – cyan
 
+export TERM=tmux-256color
+
 ### Added by the Heroku Toolbelt
 if [ -d "/usr/local/heroku" ]; then
     export PATH="/usr/local/heroku/bin:$PATH"

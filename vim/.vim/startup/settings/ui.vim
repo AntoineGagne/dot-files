@@ -13,9 +13,6 @@ set visualbell
 " Enable syntax processing
 syntax enable
 set termguicolors
-if $COLORTERM == 'gnome-terminal'
-    set t_Co=256
-endif
 set cole=2
 let g:tex_conceal='adgms'
 
@@ -49,22 +46,9 @@ set showmatch
 " Highlight current line
 set cursorline
 " Use a bar-shaped cursor for insert mode, even through tmux.
-if has('nvim')
-    let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
-    let $NVIM_TUI_ENABLE_TRUE_COLOR=1
-    let $NVIM_TUI_ENABLE_SHELL_CURSOR=1
-    set guicursor=n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50
-      \,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor
-      \,sm:block-blinkwait175-blinkoff150-blinkon175
-elseif empty($TMUX)
-    let &t_SI = "\<Esc>]50;CursorShape=1\x7"
-    let &t_EI = "\<Esc>]50;CursorShape=0\x7"
-    let &t_SR = "\<Esc>]50;CursorShape=2\x7"
-else
-    let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
-    let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
-    let &t_SR = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=2\x7\<Esc>\\"
-endif
+set guicursor=n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50
+  \,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor
+  \,sm:block-blinkwait175-blinkoff150-blinkon175
 " Set the number of screen lines above and below the cursor
 set scrolloff=4
 
