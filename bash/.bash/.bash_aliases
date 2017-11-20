@@ -2,6 +2,7 @@
 
 . ~/.bash/aliases/date
 . ~/.bash/aliases/editing
+. ~/.bash/aliases/file
 . ~/.bash/aliases/movement
 . ~/.bash/aliases/network
 . ~/.bash/aliases/programs
