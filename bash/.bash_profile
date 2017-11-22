@@ -2,5 +2,10 @@
 # ~/.bash_profile
 #
 
-[[ -f ~/.profile ]] && . ~/.profile
-[[ -f ~/.bashrc ]] && . ~/.bashrc
+if [[ -f ~/.profile ]]; then 
+    source ~/.profile
+fi
+
+if [[ -f ~/.bashrc ]]; then
+    . ~/.bashrc
+fi
