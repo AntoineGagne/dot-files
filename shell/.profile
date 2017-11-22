@@ -63,7 +63,7 @@ if [ -f "${HOME}/.pythonrc.py" ]; then
 fi
 
 # Add autocompletion to the custom Haskell scripts
-if type "create-gitignore" > /dev/null 2>&1; then
+if type -f "create-gitignore" > /dev/null 2>&1; then
     eval "$(create-gitignore --bash-completion-script create-gitignore)"
 fi
 
@@ -76,20 +76,20 @@ if [ -d "${HOME}/.node_modules/bin" ]; then
     export npm_config_prefix="${HOME}/.node_modules"
 fi
 
-if type "nvim" >/dev/null 2>&1; then
+if type -f "nvim" >/dev/null 2>&1; then
     export EDITOR=nvim
 fi
 
-if type "mutt" >/dev/null 2>&1; then
+if type -f "mutt" >/dev/null 2>&1; then
     export COLORFGBG="default;default"
 fi
 
-if type "pandoc" >/dev/null 2>&1; then
+if type -f "pandoc" >/dev/null 2>&1; then
     eval "$(pandoc --bash-completion)"
 fi
 
 # Set Stack autocompletion on tab
-if type "stack" >/dev/null 2>&1; then
+if type -f "stack" >/dev/null 2>&1; then
     eval "$(stack --bash-completion-script stack)"
 fi
 
