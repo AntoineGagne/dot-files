@@ -9,8 +9,8 @@ TARGETS := $(addprefix $(BUILD_DIR)/, report.pdf)
 COMPILE_TEX := latexmk -output-directory=$(BUILD_DIR)
 
 .SUFFIXES: .bib .pdf .tex
-.PHONY: all create_build_dir clean check compile_pdf
 
+.PHONY: all
 all: $(TARGETS)
 
 $(BUILD_DIR)/%.pdf: %.tex
@@ -18,15 +18,18 @@ $(BUILD_DIR)/%.pdf: %.tex
 
 $(TARGETS): | $(BUILD_DIR)
 
+.PHONY: watch
 watch: | $(BUILD_DIR)
 	@$(COMPILE_TEX) -pvc $(wildcard "*.tex")
 
 $(BUILD_DIR):
 	@mkdir -p $(BUILD_DIR)
 
+.PHONY: check
 check: | $(BUILD_DIR)
-	@find . -name *.tex -exec chktex {} \; | tee "$(BUILD_DIR)/lint.out"
+	@find . -name '*.tex' -exec chktex {} \; | tee "$(BUILD_DIR)/lint.out"
 
+.PHONY: release
 release: $(TARGETS) | $(RELEASE)
 	@cp "$(TARGETS)" "$(RELEASE)/"
 	@python -m zipfile -c "$(RELEASE).zip" "$(RELEASE)"
@@ -34,9 +37,11 @@ release: $(TARGETS) | $(RELEASE)
 $(RELEASE):
 	@mkdir -p $(RELEASE)
 
+.PHONY: clean-release
 clean-release: | $(RELEASE)
 	@rm -f $(RELEASE).zip
 	@rm -rf $(RELEASE)
 
+.PHONY: clean
 clean: clean-release
 	@rm -rf $(BUILD_DIR)
