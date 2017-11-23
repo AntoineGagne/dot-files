@@ -275,10 +275,10 @@ myKeys conf = let m = modMask conf in Map.fromList $
                   , ((0, xK_g), method Search.multi)
                   ]
               applicationsSpawn = Map.fromList
-                  [ ((0, xK_e), spawn "urxvtc -title mutt -e mutt")
-                  , ((0, xK_n), spawn "urxvtc -title newsboat -e newsboat")
-                  , ((0, xK_c), spawn "urxvtc -title weechat -e weechat")
-                  , ((0, xK_m), spawn "urxvtc -title cmus -e cmus")
+                  [ ((0, xK_e), spawn "urxvtc -title mutt -e bash -c 'tmux -2 attach-session -t email'")
+                  , ((0, xK_n), spawn "urxvtc -title newsboat -e bash -c 'tmux -2 attach-session -t news'")
+                  , ((0, xK_c), spawn "urxvtc -title weechat -e bash -c 'tmux -2 attach-session -t chat'")
+                  , ((0, xK_m), spawn "urxvtc -title cmus -e bash -c 'tmux -2 attach-session -t music'")
                   , ((0, xK_b), spawn "firefox")
                   , ((0, xK_v), spawn "zathura")
                   , ((0, xK_i), spawn "krita")

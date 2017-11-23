@@ -1,0 +1,32 @@
+session_name: code
+start_directory: ${HOME}
+global_options:
+    default-shell: /bin/bash
+    default-command: /bin/bash
+windows:
+- layout: c95d,211x57,0,0,0
+  options:
+    automatic-rename: 'off'
+  panes:
+  - focus: 'true'
+    shell_command: vim +':VimwikiIndex'
+  window_name: notes
+- layout: c95e,211x57,0,0,1
+  options:
+    automatic-rename: 'off'
+  panes:
+  - focus: 'true'
+  window_name: edit
+- layout: c95f,211x57,0,0,2
+  options:
+    automatic-rename: 'off'
+  panes:
+  - focus: 'true'
+  window_name: build
+- focus: 'true'
+  layout: c960,211x57,0,0,3
+  options:
+    automatic-rename: 'off'
+  panes:
+  - pane
+  window_name: others

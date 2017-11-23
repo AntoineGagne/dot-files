@@ -1,0 +1,13 @@
+session_name: news
+start_directory: ${HOME}
+global_options:
+    default-shell: /bin/bash
+    default-command: /bin/bash
+windows:
+- layout: c95d,211x57,0,0,0
+  options:
+    automatic-rename: 'off'
+  panes:
+  - focus: 'true'
+    shell_command: newsboat
+  window_name: newsboat

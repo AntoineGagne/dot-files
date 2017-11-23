@@ -34,7 +34,8 @@ SOFTWARE_DIRS := bash \
 	rtv \
 	newsboat \
 	alacritty \
-	pandoc
+	pandoc \
+	tmuxp
 INSTALL_DIRS := $(SOFTWARE_DIRS:%=install-%)
 
 YOUCOMPLETEME_DIR := ${HOME}/.vim/bundle/YouCompleteMe
