@@ -62,3 +62,15 @@ md-to-html() {
            "${input_file}" \
            --output="${output_file}"
 }
+
+upload-to-link() {
+    local -r _filename="${1}"
+    local -r _link="$(curl -F"file=@${_filename}" https://0x0.st)"
+    echo "${_link}" | xclip -selection clipboard
+    echo "${_link}"
+}
+
+weather() {
+    local -r _region="${1:-Québec}"
+    curl "wttr.in/~${_region}"
+}
