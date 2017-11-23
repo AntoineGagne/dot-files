@@ -22,7 +22,7 @@ to_html() {
            --section-divs \
            --email-obfuscation=references \
            --css="${template_path}${css_file}" \
-           --mathml \
+           --mathjax \
            --variable="lang: ${LANG:-en-ca}" \
            --variable="otherlangs: fr" \
            --variable="title: $(basename "${input_file%.${wiki_file_extension}}")" \
