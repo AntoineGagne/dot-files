@@ -1,0 +1,59 @@
+%!TEX encoding = UTF-8 Unicode
+
+% `lof` is to add the list of figures
+% `lot` is to add the list of tables
+% `lol` is to add the list of programs
+\documentclass[12pt,lof,lot]{customreport}
+
+\usepackage[utf8]{inputenc}
+\usepackage{microtype}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage[perpage]{footmisc}
+\usepackage[acronym,nomain,nonumberlist,numberedsection=autolabel,section=chapter]{glossaries}
+% If you want to put a citation at the beginning of a chapter with the
+% `\epigraph{}{}` command
+\usepackage{epigraph}
+\usepackage{csquotes}
+\usepackage{xparse}
+\usepackage{import}
+\usepackage{enumitem}
+\usepackage{pgffor}
+\usepackage{physics}
+\usepackage{amsthm}
+\usepackage{float}
+\usepackage{siunitx}
+\usepackage{booktabs}
+\usepackage{subcaption}
+\usepackage{xfrac}
+\usepackage{adjustbox}
+\usepackage{placeins}
+\usepackage[htt]{hyphenat}
+
+% The different parameters to set the title page
+\author{%
+    \textsc{Smith}, John \\%
+}
+\title{Report's title}
+\recipient{Teacher's name}
+\classnumber{Course's code}
+\def\thesubject{Subject}
+\newtheorem*{hypothesis}{Hypothèse}
+
+\addbibresource{bibliographie.bib}
+\loadglsentries{src/acronymes.tex}
+\makeglossaries%
+
+\makeatletter
+\@addtoreset{chapter}{part}
+\makeatother
+
+\begin{document}
+    \appendix%
+    \printacronyms[title={Sigles et acronymes}]
+    \renewcommand*{\thepage}{\thechapter\arabic{page}}
+
+    \printbibliography[heading=bibintoc]%
+    \pagenumbering{gobble}
+\end{document}

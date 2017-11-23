@@ -1,0 +1,33 @@
+# LaTeX files
+*.cls merge=text diff=tex    eol=lf
+*.sty merge=text diff=tex    eol=lf
+*.bib merge=text diff=bibtex eol=lf
+*.tex merge=text diff=tex    eol=lf
+
+# Scripts
+*.sh   merge=text diff eol=lf
+*.bash merge=text diff eol=lf
+*.bat  merge=text diff eol=crlf
+*.ps1  merge=text diff eol=crlf
+
+# Documents
+*.txt merge=text diff eol=lf
+*.md  merge=text diff eol=lf
+*.rst merge=text diff eol=lf
+
+# Text assets
+*.svg merge=text diff eol=lf
+*.dot merge=text diff eol=lf
+*.gv  merge=text diff eol=lf
+
+# Binary files
+*.png  binary
+*.jpg  binary
+*.jpeg binary
+*.gif  binary
+*.tif  binary
+*.tiff binary
+*.ico  binary
+*.pdf  binary
+*.bmp  binary
+fig/*  binary
