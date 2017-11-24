@@ -72,8 +72,6 @@ if ! type "tmuxp" >/dev/null 2>&1; then
     if type "create-tmux-session" >/dev/null 2>&1; then
         create-tmux-session --create-session "code"
     fi
-else
-    tmuxp load ~/.tmuxp/chat.yaml ~/.tmuxp/email.yaml ~/.tmuxp/music.yaml ~/.tmuxp/news.yaml ~/.tmuxp/code.yaml
 fi
 
 # Remove annoying bell sound
