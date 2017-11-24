@@ -40,37 +40,3 @@ gitstasharchive() {
     stash_name=$(git stash create)
     git archive --format=tar -o "${1}" "${stash_name}"
 }
-
-md-to-html() {
-    local -r input_file="${1}"
-    local -r output_file="${2}"
-    local -r theme="${3:-light}"
-    pandoc --from="markdown" \
-           --to="html" \
-           --standalone \
-           --template="${HOME}/.pandoc/templates/html/notes.html" \
-           --self-contained \
-           --wrap=auto \
-           --table-of-contents \
-           --highlight-style=haddock \
-           --section-divs \
-           --email-obfuscation=references \
-           --css="${HOME}/.pandoc/templates/html/themes/${theme}/css/style.css" \
-           --mathml \
-           --variable="lang: ${LANG:-en-ca}" \
-           --variable="otherlangs: fr" \
-           "${input_file}" \
-           --output="${output_file}"
-}
-
-upload-to-link() {
-    local -r _filename="${1}"
-    local -r _link="$(curl -F"file=@${_filename}" https://0x0.st)"
-    echo "${_link}" | xclip -selection clipboard
-    echo "${_link}"
-}
-
-weather() {
-    local -r _region="${1:-Québec}"
-    curl "wttr.in/~${_region}"
-}
