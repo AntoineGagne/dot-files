@@ -49,7 +49,7 @@ upload-to-link() {
 }
 
 weather() {
-    local -r _region="${1:-Québec}"
+    local -r _region="${1:-Ville de Québec}"
     curl "wttr.in/~${_region}"
 }
 
