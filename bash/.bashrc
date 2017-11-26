@@ -72,6 +72,27 @@ case "$TERM" in
     xterm-color|*-256color) color_prompt=yes;;
 esac
 
+if [ -f /usr/local/bin/virtualenvwrapper.sh ]; then
+    source /usr/local/bin/virtualenvwrapper.sh
+elif [ -f /usr/bin/virtualenvwrapper.sh ]; then
+    source /usr/bin/virtualenvwrapper.sh
+fi
+
+if type -f "pandoc" >/dev/null 2>&1; then
+    eval "$(pandoc --bash-completion)"
+fi
+
+# Set Stack autocompletion on tab
+if type -f "stack" >/dev/null 2>&1; then
+    eval "$(stack --bash-completion-script stack)"
+fi
+
+# Add autocompletion to the custom Haskell scripts
+if type -f "create-gitignore" > /dev/null 2>&1; then
+    eval "$(create-gitignore --bash-completion-script create-gitignore)"
+fi
+
+
 # Alias definitions.
 # You may want to put all your additions into a separate file like
 # ~/.bash_aliases, instead of adding them here directly.

@@ -25,12 +25,6 @@ if [ -d "${HOME}/.virtualenvs" ]; then
     export WORKON_HOME=$HOME/.virtualenvs
 fi
 
-if [ -f /usr/local/bin/virtualenvwrapper.sh ]; then
-    . /usr/local/bin/virtualenvwrapper.sh
-elif [ -f /usr/bin/virtualenvwrapper.sh ]; then
-    . /usr/bin/virtualenvwrapper.sh
-fi
-
 # Colorful manpages
 export LESS='-R '
 # enter blinking mode – red
@@ -62,11 +56,6 @@ if [ -f "${HOME}/.pythonrc.py" ]; then
     export PYTHONSTARTUP="${HOME}/.pythonrc.py"
 fi
 
-# Add autocompletion to the custom Haskell scripts
-if type -f "create-gitignore" > /dev/null 2>&1; then
-    eval "$(create-gitignore --bash-completion-script create-gitignore)"
-fi
-
 if [ -d "${HOME}/.local/bin" ]; then
     export PATH=$PATH:"${HOME}/.local/bin"
 fi
@@ -82,15 +71,6 @@ fi
 
 if type -f "mutt" >/dev/null 2>&1; then
     export COLORFGBG="default;default"
-fi
-
-if type -f "pandoc" >/dev/null 2>&1; then
-    eval "$(pandoc --bash-completion)"
-fi
-
-# Set Stack autocompletion on tab
-if type -f "stack" >/dev/null 2>&1; then
-    eval "$(stack --bash-completion-script stack)"
 fi
 
 export PATH=$PATH:"${HOME}/.cargo/bin"
