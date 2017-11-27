@@ -43,7 +43,7 @@ md-to-html() {
 
 upload-to-link() {
     local -r _filename="${1}"
-    local -r _link="$(curl -F"file=@${_filename}" https://0x0.st)"
+    local -r _link="$(curl --compressed -F"file=@${_filename}" https://0x0.st)"
     echo "${_link}" | xclip -selection clipboard
     echo "${_link}"
 }
