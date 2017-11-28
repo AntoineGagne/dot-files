@@ -75,14 +75,19 @@ img {
 
 body {
     color: #333;
-    font: 16px/1.6 'Source Serif Pro', serif;    
-    text-align: justify;
-    font-size: 18px;
-    width: 90%;
-    max-width: 600px;
-    margin-right: auto;
-    margin-left: auto;
+    font: 'Source Sans Pro', sans-serif;
+    max-width: 15em;
+    margin: 0 auto;
     padding: 0;
+    font-size: 1em;
+    line-height: 1.6;
+    max-width: 15em;
+    text-align: justify;
+    text-rendering: optimizeLegibility;
+    hyphens: auto;
+    -ms-hyphens: auto;
+    -moz-hyphens: auto;
+    -webkit-hyphens: auto;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -280,9 +285,13 @@ pre {
         right: 0;
         padding: 0 15px;
         -webkit-overflow-scrolling: touch;
-        margin-right: auto;
-        margin-left: auto;
+        margin: 0 auto;
         position: absolute;
+        text-rendering: optimizeLegibility;
+        hyphens: auto;
+        -ms-hyphens: auto;
+        -moz-hyphens: auto;
+        -webkit-hyphens: auto;
     }
     
     #TOC {
