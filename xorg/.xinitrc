@@ -79,5 +79,9 @@ if type "xset" >/dev/null 2>&1; then
     xset -b
 fi
 
+if type "xscreensaver" >/dev/null 2>&1; then
+    xscreensaver -nosplash &
+fi
+
 # Launch XMonad
 exec xmonad
