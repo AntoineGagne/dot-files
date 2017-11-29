@@ -31,7 +31,6 @@ $pdf_mode = 1;
 # Another use of the same variable is to add certain options to the command
 # line for the program, e.g.,
 #
-# $pdflatex = "pdflatex --shell-escape %O %S";
 $pdflatex = 'pdflatex --shell-escape %O %S';
 
 # Switch(es) for the pdflatex program (specified in the variable $pdflatex when silent mode is on.
@@ -45,14 +44,20 @@ $latex_silent_switch = "-interaction=batchmode -c-style-errors";
 # method is appropriate to the operating system). But sometimes letting latexmk
 # do the detaching is not appropriate (for a variety of non-trivial reasons), so
 # you should put the "start " bit in yourself, whenever it is needed.
-$pdf_previewer = "start zathura %O %S";
+my %application_chooser_command_by_operating_system_name = (
+    'linux' => 'xdg-open',
+    'MSWin32' => 'explorer',
+    'darwin' => 'open'
+);
+
+$pdf_previewer = sprintf("start %s %%O %%S", $application_chooser_command_by_operating_system_name{"$^O"});
 $pdf_update_method = 0;
 
 # Whether to run silently. Setting $silent to 1 has the same effect as the
 # -quiet of -silent options on the command line.
 $silent = 1;
 
-$sleep_time = 10;
+$sleep_time = 5;
 
 # Taken from: http://ctan.mirror.rafal.ca/support/latexmk/example_rcfiles/pdflatexmkrc
 # (Thu Nov 23 16:55:27 EST 2017)
@@ -73,10 +78,10 @@ sub makeglo2gls {
 # produces a .acr files and makeindex then is used to convert the .acr file to
 # a .acn file which is then ... . This dependency assumes the glossaries
 # package.
-# add_cus_dep( 'acn', 'acr', 0, 'makeacn2acr' );
-# sub makeacn2acr {
-#     system( "makeindex -s \"$_[0].ist\" -t \"$_[0].alg\" -o \"$_[0].acr\" \"$_[0].acn\"" );
-# }
+add_cus_dep( 'acn', 'acr', 0, 'makeacn2acr' );
+sub makeacn2acr {
+    system( "makeindex -s \"$_[0].ist\" -t \"$_[0].alg\" -o \"$_[0].acr\" \"$_[0].acn\"" );
+}
 # for glossary package (Sigh...) --- they can co-exist!		
 # add_cus_dep( 'acr', 'acn', 0, 'makeacr2acn' );
 # sub makeacr2acn {
