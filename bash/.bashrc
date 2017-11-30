@@ -92,6 +92,9 @@ if type -f "create-gitignore" > /dev/null 2>&1; then
     eval "$(create-gitignore --bash-completion-script create-gitignore)"
 fi
 
+if type -f "pinfo" > /dev/null 2>&1; then
+    alias info='pinfo'
+fi
 
 # Alias definitions.
 # You may want to put all your additions into a separate file like
