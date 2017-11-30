@@ -65,3 +65,13 @@ ZZ      quit
 \mu     echo-area-abort
 ^v      echo-area-quoted-insert
 \mX     echo-area-kill-word
+
+#var
+link-style=yellow
+active-link-style=yellow,bold
+match-style=underline,bold,nocolour
+automatic-tiling=on
+mouse=normal-tracking
+visible-bell=on
+automatic-footnotes=on
+errors-ring-bell=off
