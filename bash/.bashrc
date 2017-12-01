@@ -96,6 +96,10 @@ if type -f "pinfo" > /dev/null 2>&1; then
     alias info='pinfo'
 fi
 
+if type -f "beet" > /dev/null 2>&1; then
+    source ~/.bash/completions/beet-completion.bash
+fi
+
 # Alias definitions.
 # You may want to put all your additions into a separate file like
 # ~/.bash_aliases, instead of adding them here directly.
