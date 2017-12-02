@@ -1,0 +1,15 @@
+directory: ~/Music
+library: ~/Music/library.db
+plugins: mbsync chroma
+art_filename: cover
+import:
+    move: yes
+    write: yes
+    log: beets.log
+ui:
+    color: yes
+threaded: yes
+paths:
+    default: $genre/$albumartist/$album/$track $title
+    singleton: Singleton/$artist - $title
+    albumtype:soundtrack: Sountracks/$album/$track $artist _ $title
