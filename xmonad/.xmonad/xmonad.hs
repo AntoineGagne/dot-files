@@ -272,7 +272,7 @@ myKeys conf = let m = modMask conf in Map.fromList $
                   , ((0, xK_s), method Search.stackage)
                   , ((0, xK_w), method Search.wikipedia)
                   , ((0, xK_y), method Search.youtube)
-                  , ((0, xK_g), method Search.multi)
+                  , ((0, xK_g), method (Search.intelligent Search.wikipedia !> Search.hoogle !> Search.stackage !> Search.youtube !> Search.prefixAware Search.duckduckgo))
                   ]
               applicationsSpawn = Map.fromList
                   [ ((0, xK_e), spawn "urxvtc -title mutt -e bash -c 'tmux -q has-session -t email && tmux -2 attach-session -t email || mutt'")
