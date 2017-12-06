@@ -238,4 +238,4 @@ pandoc/.pandoc/templates/html/notes.html
 # Useless MPD files
 mpd/.config/mpd/*
 mpd/.config/mpd/**
-!mpd/.config/mpd/.mpdconf
+!mpd/.config/mpd/.mpd.conf
