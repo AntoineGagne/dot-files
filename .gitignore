@@ -234,3 +234,8 @@ vimwiki_html
 
 # Generated Pandoc templates
 pandoc/.pandoc/templates/html/notes.html
+
+# Useless MPD files
+mpd/.config/mpd/*
+mpd/.config/mpd/**
+!mpd/.config/mpd/.mpdconf

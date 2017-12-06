@@ -1,6 +1,6 @@
 directory: ~/Music
 library: ~/Music/library.db
-plugins: mbsync chroma
+plugins: mbsync chroma mpdupdate smartplaylist mpdstats embedart
 art_filename: cover
 import:
     move: yes
@@ -13,3 +13,21 @@ paths:
     default: $genre/$albumartist/$album/$track $title
     singleton: Singleton/$artist - $title
     albumtype:soundtrack: Sountracks/$album/$track $artist _ $title
+
+mpd:
+    host: localhost
+    port: 6600
+
+smartplaylist:
+    playlist_dir: ~/.config/mpd/playlists
+    playlists:
+        - name: already_listened.m3u
+          query: 'play_count:1..'
+        - name: movies_and_games.m3u
+          query: 'genre::(Game|Soundtrack|Soundtracks)'
+        - name: movies_games_and_post_rock.m3u
+          query: 'genre::(Game|Soundtrack|Soundtracks|Post-Rock|post-rock)'
+
+embedart:
+    auto: yes
+    compare_threshold: 95
