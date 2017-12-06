@@ -80,7 +80,7 @@ visualizer_sync_interval = 30
 #
 ## Available values: spectrum, wave, wave_filled, ellipse.
 ##
-visualizer_type = wave
+visualizer_type = wave_filled
 #
 visualizer_look = ●▮
 #
@@ -282,7 +282,7 @@ visualizer_color = blue, cyan, green, yellow, magenta, red
 #
 #playlist_show_mpd_host = no
 #
-#playlist_show_remaining_time = no
+playlist_show_remaining_time = yes
 #
 #playlist_shorten_total_times = no
 #
@@ -317,7 +317,7 @@ visualizer_color = blue, cyan, green, yellow, magenta, red
 ## Note: You can specify third character which will be used to build 'empty'
 ## part of progressbar.
 ##
-#progressbar_look = =>
+progressbar_look ■ ■▶ □
 #
 ## Available values: database, playlist.
 ##
@@ -331,7 +331,7 @@ visualizer_color = blue, cyan, green, yellow, magenta, red
 #
 ## Available values: artist, album_artist, date, genre, composer, performer.
 ##
-#media_library_primary_tag = artist
+media_library_primary_tag = artist
 #
 #media_library_albums_split_by_date = yes
 #
@@ -413,15 +413,15 @@ visualizer_color = blue, cyan, green, yellow, magenta, red
 #
 #jump_to_now_playing_song_at_start = yes
 #
-#ask_before_clearing_playlists = yes
+ask_before_clearing_playlists = yes
 #
 #clock_display_seconds = no
 #
-#display_volume_level = yes
+display_volume_level = yes
 #
-#display_bitrate = no
+display_bitrate = yes
 #
-#display_remaining_time = no
+display_remaining_time = yes
 #
 ## Available values: none, basic, extended, perl.
 ##
@@ -454,7 +454,7 @@ visualizer_color = blue, cyan, green, yellow, magenta, red
 #
 #media_library_sort_by_mtime = no
 #
-#enable_window_title = yes
+enable_window_title = yes
 #
 ##
 ## Note: You can choose default search mode for search engine. Available modes
@@ -472,11 +472,11 @@ visualizer_color = blue, cyan, green, yellow, magenta, red
 #
 #search_engine_default_search_mode = 1
 #
-#external_editor = nano
+external_editor = nvim
 #
 ## Note: set to yes if external editor is a console application.
 ##
-#use_console_editor = yes
+use_console_editor = yes
 #
 ##### colors definitions #####
 ##
@@ -508,37 +508,37 @@ visualizer_color = blue, cyan, green, yellow, magenta, red
 ## are used there is a possibility that you'll be able to use only colors with
 ## transparent background.
 #
-#colors_enabled = yes
+colors_enabled = yes
 #
-#empty_tag_color = cyan
+empty_tag_color = cyan
 #
-#header_window_color = default
+header_window_color = default
 #
-#volume_color = default
+volume_color = default
 #
-#state_line_color = default
+state_line_color = default
 #
-#state_flags_color = default:b
+state_flags_color = default:b
 #
-#main_window_color = yellow
+main_window_color = yellow
 #
-#color1 = white
+color1 = white
 #
-#color2 = green
+color2 = green
 #
-#progressbar_color = black:b
+progressbar_color = black:b
 #
-#progressbar_elapsed_color = green:b
+progressbar_elapsed_color = green:b
 #
-#statusbar_color = default
+statusbar_color = default
 #
-#statusbar_time_color = default:b
+statusbar_time_color = default:b
 #
-#player_state_color = default:b
+player_state_color = default:b
 #
-#alternative_ui_separator_color = black:b
+alternative_ui_separator_color = black:b
 #
-#window_border_color = green
+window_border_color = green
 #
-#active_window_border = red
+active_window_border = red
 #
