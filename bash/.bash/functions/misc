@@ -54,5 +54,5 @@ weather() {
 }
 
 start-tmux-sessions() {
-    tmuxp load ~/.tmuxp/chat.yaml ~/.tmuxp/email.yaml ~/.tmuxp/music.yaml ~/.tmuxp/news.yaml ~/.tmuxp/code.yaml
+    tmuxp load ~/.tmuxp/chat.yaml ~/.tmuxp/email.yaml ~/.tmuxp/news.yaml ~/.tmuxp/code.yaml
 }

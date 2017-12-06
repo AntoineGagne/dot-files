@@ -100,7 +100,7 @@ xmobarCommand (S screenNumber) = unwords [ myStatusBar
                                          , "-i"
                                          , "~"
                                          ]
-    where additionalCommands = "-C '[Run PipeReader \"N/A:/$HOME/.volume-" ++ show screenNumber ++ "\" \"vol\", Run PipeReader \"Nothing Playing:$HOME/.song-information-" ++ show screenNumber ++ "\" \"song\"]'"
+    where additionalCommands = "-C '[Run PipeReader \"N/A:/$HOME/.volume-" ++ show screenNumber ++ "\" \"vol\"]'"
 
 
 myBarPrettyPrinter handle screenNumber = marshallPP screenNumber def
@@ -278,7 +278,7 @@ myKeys conf = let m = modMask conf in Map.fromList $
                   [ ((0, xK_e), spawn "urxvtc -title mutt -e bash -c 'tmux -q has-session -t email && tmux -2 attach-session -t email || mutt'")
                   , ((0, xK_n), spawn "urxvtc -title newsboat -e bash -c 'tmux -q has-session -t news && tmux -2 attach-session -t news || newsboat'")
                   , ((0, xK_c), spawn "urxvtc -title weechat -e bash -c 'tmux -q has-session -t chat && tmux -2 attach-session -t chat || weechat'")
-                  , ((0, xK_m), spawn "urxvtc -title cmus -e bash -c 'tmux -q has-session -t music && tmux -2 attach-session -t music || cmus'")
+                  , ((0, xK_m), spawn "urxvtc -title ncmpcpp -e ncmpcpp")
                   , ((0, xK_b), spawn "firefox")
                   , ((0, xK_v), spawn "zathura")
                   , ((0, xK_i), spawn "krita")
@@ -343,6 +343,7 @@ myManageHooks screenNumber = composeAll
     , className =? "Postman" --> moveToWorkspace [1] 0
     , name =? "mutt" --> moveToWorkspace [1] 7
     , name =? "cmus" --> moveToWorkspace [1] 4
+    , name =? "ncmpcpp" --> moveToWorkspace [1] 4
     , name =? "weechat" --> moveToWorkspace [1] 6
     , name =? "newsboat" --> moveToWorkspace [0] 3
     , className =? "URxvt" --> moveToWorkspace [1] 1
