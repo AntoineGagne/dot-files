@@ -48,7 +48,6 @@ if type "create-named-pipe" >/dev/null 2>&1; then
     screen_number=$(xrandr | grep -c 'connected')
     for number in $(seq 0 "$((screen_number - 1))"); do
         create-named-pipe "${HOME}/.volume-${number}" "$(control-volume -v)"
-        create-named-pipe "$HOME/.song-information-${number}" "Nothing playing"
     done
 fi
 
