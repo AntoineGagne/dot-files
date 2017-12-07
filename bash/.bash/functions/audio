@@ -11,3 +11,27 @@
 split-audio-file() {
     awk -F- -v input_file="${2}" '{printf("ffmpeg -i %s -vn -acodec copy -ss %s -to %s \"%s\";", input_file, $1, $2, $3)}' "${1}" | sh
 }
+
+convert-audio-file() {
+    local -r _input_file="${1}"
+    local -r _name="${2}"
+    local -r _output_extension="${3}"
+    local -r _temporary_file="$(mktemp --suffix="${_output_extension}")"
+
+    if ! ffmpeg -hide_banner -i "${_input_file}" -crf 0 -y "${_temporary_file}"; then
+        rm "${_temporary_file}"
+        exit 1
+    fi
+
+    mv "${_temporary_file}" "${_name}${_output_extension}"
+}
+export -f convert-audio-file
+
+batch-convert-audio-file() {
+    local -r _path="${1}"
+    local -r _input_extension="${2}"
+    local -r _output_extension=${3:-.opus}
+
+    local -r _audio_files="$(find "${_path}" -name "${_input_extension}" -type f -print)"
+    parallel --bar --noswap convert-audio-file {} {.} "${_output_extension}" ::: "${_audio_files}"
+}
