@@ -12,7 +12,6 @@ threaded: yes
 paths:
     default: $genre/$albumartist/$album/$track $title
     singleton: Singleton/$artist - $title
-    albumtype:soundtrack: Sountracks/$album/$track $artist _ $title
 
 mpd:
     host: localhost
