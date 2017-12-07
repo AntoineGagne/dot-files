@@ -1,6 +1,6 @@
 -- vim: ft=haskell
-Config { font =         "xft:Source Code Pro:style=Regular:size=9:antialias=true"
-       , additionalFonts = ["xft:FontAwesome:style=Regular:size=10", "xft:DejaVu Sans:style=Book:size=10"]
+Config { font =         "xft:Fira Code Medium:style=Medium:size=10:antialias=true"
+       , additionalFonts = ["xft:FontAwesome:style=Regular:size=10", "xft:Source Code Pro:style=Regular:size=9:antialias=true", "xft:DejaVu Sans:style=Book:size=11"]
        , bgColor =      "#1d2021"
        , fgColor =      "#ebdbb2"
        , alpha   =      200
@@ -11,7 +11,7 @@ Config { font =         "xft:Source Code Pro:style=Regular:size=9:antialias=true
        -- layout
        , sepChar =  "%"   -- delineator between plugin names and straight text
        , alignSep = "}{"  -- separator between left-right alignment
-       , template = "%StdinReader% }{ <fc=#98971a>%mpd%</fc> <fc=#689d6a><fn=1></fn> %vol%</fc> <fc=#b16286><fn=1></fn> %wlo1wi%</fc> <fc=#d79921><fn=1></fn> %bright%</fc> <fc=#83a598><fn=1></fn> %CYQB%</fc> <fc=#8ec07c>%date%</fc> %battery% "
+       , template = "%StdinReader% }{ <fc=#98971a>%mpd%</fc> <fc=#689d6a><fn=1></fn> %vol%</fc> <fc=#b16286><fn=1></fn> %wlo1wi%</fc> <fc=#d79921><fn=1></fn> %bright%</fc> <fc=#8ec07c>%date%</fc> %battery% "
 
        -- general behavior
        , lowerOnStart =     True    -- send to bottom of window stack on start
@@ -38,8 +38,8 @@ Config { font =         "xft:Source Code Pro:style=Regular:size=9:antialias=true
        , commands = 
 
         -- weather monitor
-        [ Run Weather "CYQB" [ "--template", "<fc=#458588><tempC></fc>°C <skyCondition>"
-                             ] 36000
+        -- [ Run Weather "CYQB" [ "--template", "<fc=#458588><tempC></fc>°C <skyCondition>"
+        --                      ] 36000
 
         -- network activity monitor (dynamic interface resolution)
         -- , Run DynNetwork     [ "--template" , "<dev>: <fn=1></fn> <tx>kB/s <fn=1></fn><rx>kB/s"
@@ -49,7 +49,7 @@ Config { font =         "xft:Source Code Pro:style=Regular:size=9:antialias=true
         --                      , "--normal"   , "darkorange"
         --                      , "--high"     , "darkred"
         --                      ] 10
-        , Run Wireless "wlo1" [ "--template" , "<quality>%"
+        [ Run Wireless "wlo1" [ "--template" , "<quality>%"
                               , "--"
                               -- , "--quality-icon-pattern", "<icon=.icons/wifi/second_alternative_wifi_%%.xpm/>"
                               ] 20
@@ -112,8 +112,8 @@ Config { font =         "xft:Source Code Pro:style=Regular:size=9:antialias=true
         -- , Run Kbd            [ ("ca", "<fc=#8B0000>FR</fc>")
         --                      ]
         , Run MPD [ "-t",
-                    "<composer> <title> (<album>) <track>/<plength> <statei> [<flags>]",
-                    "--", "-P", ">>", "-Z", "|", "-S", "><"
+                    "<statei> <fn=3><title> by <artist></fn> (<ppos>/<plength>)",
+                    "--", "-P", "<fn=1></fn>", "-Z", "<fn=1></fn>", "-S", "<fn=1></fn>"
                   ] 10
 
         -- volume indicator
