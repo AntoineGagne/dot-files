@@ -232,10 +232,10 @@ myKeys conf = let m = modMask conf in Map.fromList $
     , ((0, xF86XK_AudioLowerVolume), spawn "control-volume -c -5%")
     , ((0, xF86XK_AudioRaiseVolume), spawn "control-volume -c +5%")
     -- {{{2 Music Controls
-    , ((0, xF86XK_AudioNext), spawn "cmus-remote -n")
-    , ((0, xF86XK_AudioPrev), spawn "cmus-remote -r")
-    , ((0, xF86XK_AudioStop), spawn "cmus-remote -s")
-    , ((0, xF86XK_AudioPlay), spawn "cmus-remote -u")
+    , ((0, xF86XK_AudioNext), spawn "mpc next")
+    , ((0, xF86XK_AudioPrev), spawn "mpc prev")
+    , ((0, xF86XK_AudioStop), spawn "mpc stop")
+    , ((0, xF86XK_AudioPlay), spawn "mpc toggle")
     -- {{{2 Brightness Controls
     , ((0, xF86XK_MonBrightnessDown), spawn "control-brightness -5")
     , ((0, xF86XK_MonBrightnessUp), spawn "control-brightness 5")
