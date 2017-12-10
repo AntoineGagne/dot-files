@@ -5,7 +5,7 @@ parallel_download() {
 }
 
 download_playlist() {
-    youtube-dl -o '%(playlist)s/%(playlist_index)s - %(title)s.%(ext)s' -x "${1}"
+    youtube-dl --audio-format 'flac' --audio-quality 0 -o '%(playlist)s/%(playlist_index)s - %(title)s.%(ext)s' --extract-audio "${1}"
 }
 
 download_playlists() {
