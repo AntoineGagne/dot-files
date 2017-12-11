@@ -186,7 +186,7 @@ visualizer_color = blue, cyan, green, yellow, magenta, red
 #
 #song_status_format = {{%a{ "%b"{ (%y)}} - }{%t}}|{%f}
 #
-song_library_format = {%n}|{} {%t}|{%f}
+song_library_format = {%n} {%t}
 #
 #alternative_header_first_line_format = $b$1$aqqu$/a$9 {%t}|{%f} $1$atqq$/a$9$/b
 #
@@ -215,7 +215,7 @@ song_library_format = {%n}|{} {%t}|{%f}
 ##
 ## Note: attributes are not supported for the following variables.
 ##
-song_window_title_format = {%n} {%t}|{%f}
+song_window_title_format = {%n} {%t}
 ##
 ## Note: Below variables are used for sorting songs in browser.  The sort mode
 ## determines how songs are sorted, and can be used in combination with a sort
@@ -309,9 +309,9 @@ playlist_editor_display_mode = columns
 #
 #volume_change_step = 2
 #
-#autocenter_mode = no
+autocenter_mode = no
 #
-#centered_cursor = no
+centered_cursor = yes
 #
 ##
 ## Note: You can specify third character which will be used to build 'empty'
@@ -411,7 +411,7 @@ startup_screen = playlist
 #
 #ask_for_locked_screen_width_part = yes
 #
-#jump_to_now_playing_song_at_start = yes
+jump_to_now_playing_song_at_start = yes
 #
 ask_before_clearing_playlists = yes
 #
@@ -442,17 +442,17 @@ regular_expressions = perl
 #
 #block_search_constraints_change_if_items_found = yes
 #
-#mouse_support = yes
+mouse_support = no
 #
-#mouse_list_scroll_whole_page = yes
+mouse_list_scroll_whole_page = no
 #
 empty_tag_marker = <empty>
 #
 tags_separator = " · "
 #
-#tag_editor_extended_numeration = no
+tag_editor_extended_numeration = no
 #
-#media_library_sort_by_mtime = no
+media_library_sort_by_mtime = no
 #
 enable_window_title = yes
 #
@@ -470,7 +470,7 @@ enable_window_title = yes
 ##       database and local one for searching in current playlist)
 ##
 #
-#search_engine_default_search_mode = 1
+search_engine_default_search_mode = 2
 #
 external_editor = nvim
 #
