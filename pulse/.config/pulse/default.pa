@@ -1,0 +1,7 @@
+.nofail
+.include /etc/pulse/default.pa
+
+.ifexists module-ladspa-sink
+load-module module-ladspa-sink  sink_name=ladspa_sink  plugin=dyson_compress_1403  label=dysonCompress  control=0,1,0.5,0.99
+load-module module-ladspa-sink  sink_name=ladspa_normalized  sink_master=ladspa_sink  plugin=fast_lookahead_limiter_1913  label=fastLookaheadLimiter  control=10,0,0.8
+.endif
