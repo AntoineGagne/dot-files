@@ -1,6 +1,6 @@
 directory: ~/Music
 library: ~/Music/library.db
-plugins: mbsync chroma mpdupdate smartplaylist mpdstats embedart inline
+plugins: mbsync chroma mpdupdate smartplaylist mpdstats embedart inline missing zero
 art_filename: cover
 import:
     move: yes
@@ -33,3 +33,13 @@ smartplaylist:
 embedart:
     auto: yes
     compare_threshold: 95
+
+zero:
+    fields: comments
+    comments: [EAC, LAME, from.+collection, '([Rr]ipped|[Ee]ncoded)\sby']
+    update_dabase: true
+
+missing:
+    format: $albumartist - $album - $title
+    count: yes
+    total: yes
