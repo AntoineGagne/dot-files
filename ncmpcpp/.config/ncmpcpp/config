@@ -82,7 +82,7 @@ visualizer_sync_interval = 30
 ##
 visualizer_type = wave_filled
 #
-visualizer_look = ●▆
+visualizer_look = ●▕
 #
 visualizer_color = blue, cyan, green, yellow, magenta, red
 #
@@ -186,7 +186,7 @@ visualizer_color = blue, cyan, green, yellow, magenta, red
 #
 #song_status_format = {{%a{ "%b"{ (%y)}} - }{%t}}|{%f}
 #
-#song_library_format = {%n - }{%t}|{%f}
+song_library_format = {%n}|{} {%t}|{%f}
 #
 #alternative_header_first_line_format = $b$1$aqqu$/a$9 {%t}|{%f} $1$atqq$/a$9$/b
 #
@@ -215,7 +215,7 @@ visualizer_color = blue, cyan, green, yellow, magenta, red
 ##
 ## Note: attributes are not supported for the following variables.
 ##
-#song_window_title_format = {%a - }{%t}|{%f}
+song_window_title_format = {%n} {%t}|{%f}
 ##
 ## Note: Below variables are used for sorting songs in browser.  The sort mode
 ## determines how songs are sorted, and can be used in combination with a sort
@@ -223,9 +223,9 @@ visualizer_color = blue, cyan, green, yellow, magenta, red
 ## browser_sort_mode are "name", "mtime", "format" and "noop".
 ##
 #
-#browser_sort_mode = name
+browser_sort_mode = format
 #
-#browser_sort_format = {%a - }{%t}|{%f} {(%l)}
+browser_sort_format = {%n} {%t} {(%l)}
 #
 ##### columns settings #####
 ##
@@ -262,7 +262,7 @@ visualizer_color = blue, cyan, green, yellow, magenta, red
 ##   available.
 ##
 #
-#song_columns_list_format = (20)[]{a} (6f)[green]{NE} (50)[white]{t|f:Title} (20)[cyan]{b} (7f)[magenta]{l}
+song_columns_list_format = (20)[]{a} (6f)[green]{NE} (50)[white]{t|f:Title} (20)[cyan]{b} (7f)[magenta]{l}
 #
 ##### various settings #####
 #
@@ -286,18 +286,18 @@ playlist_show_remaining_time = yes
 #
 #playlist_shorten_total_times = no
 #
-#playlist_separate_albums = no
+playlist_separate_albums = yes
 #
 ##
 ## Note: Possible display modes: classic, columns.
 ##
-#playlist_display_mode = columns
+playlist_display_mode = columns
 #
-#browser_display_mode = classic
+browser_display_mode = columns
 #
-#search_engine_display_mode = classic
+search_engine_display_mode = columns
 #
-#playlist_editor_display_mode = classic
+playlist_editor_display_mode = columns
 #
 #discard_colors_if_item_is_selected = yes
 #
@@ -325,7 +325,7 @@ progressbar_look = ─╼
 #
 ## Available values: classic, alternative.
 ##
-#user_interface = classic
+user_interface = classic
 #
 #data_fetching_delay = yes
 #
@@ -341,13 +341,13 @@ media_library_primary_tag = artist
 #
 #default_tag_editor_pattern = %n - %t
 #
-#header_visibility = yes
+header_visibility = yes
 #
-#statusbar_visibility = yes
+statusbar_visibility = yes
 #
-#titles_visibility = yes
+titles_visibility = yes
 #
-#header_text_scrolling = yes
+header_text_scrolling = yes
 #
 #cyclic_scrolling = no
 #
@@ -393,7 +393,7 @@ media_library_primary_tag = artist
 ##
 ## Note: You can define startup screen by choosing screen from the list above.
 ##
-#startup_screen = playlist
+startup_screen = playlist
 #
 ##
 ## Note: You can define startup slave screen by choosing screen from the list
@@ -425,7 +425,7 @@ display_remaining_time = yes
 #
 ## Available values: none, basic, extended, perl.
 ##
-#regular_expressions = perl
+regular_expressions = perl
 #
 ##
 ## Note: if below is enabled, ncmpcpp will ignore leading "The" word while
@@ -446,9 +446,9 @@ display_remaining_time = yes
 #
 #mouse_list_scroll_whole_page = yes
 #
-#empty_tag_marker = <empty>
+empty_tag_marker = <empty>
 #
-#tags_separator = " | "
+tags_separator = " · "
 #
 #tag_editor_extended_numeration = no
 #
@@ -509,36 +509,19 @@ use_console_editor = yes
 ## transparent background.
 #
 colors_enabled = yes
-#
 empty_tag_color = cyan
-#
-header_window_color = default
-#
-volume_color = default
-#
-state_line_color = default
-#
-state_flags_color = default:b
-#
-main_window_color = yellow
-#
+header_window_color = white
+volume_color = white:b
+state_line_color = white
+state_flags_color = white:b
+main_window_color = white
 color1 = white
-#
-color2 = green
-#
+color2 = black
 progressbar_color = black:b
-#
-progressbar_elapsed_color = green:b
-#
-statusbar_color = default
-#
-statusbar_time_color = default:b
-#
-player_state_color = default:b
-#
+progressbar_elapsed_color = magenta:b
+statusbar_color = white
+statusbar_time_color = white:b
+player_state_color = white:b
 alternative_ui_separator_color = black:b
-#
-window_border_color = green
-#
+window_border_color = white
 active_window_border = red
-#
