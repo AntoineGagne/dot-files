@@ -1,6 +1,6 @@
 directory: ~/Music
 library: ~/Music/library.db
-plugins: mbsync chroma mpdupdate smartplaylist mpdstats embedart
+plugins: mbsync chroma mpdupdate smartplaylist mpdstats embedart inline
 art_filename: cover
 import:
     move: yes
@@ -10,8 +10,11 @@ ui:
     color: yes
 threaded: yes
 paths:
-    default: $genre/$albumartist/$album/$track $title
+    default: $genre/$albumartist/$album%aunique{}/%if{$multidisc,CD$disc/}/$track $title
     singleton: Singleton/$artist - $title
+
+item_fields:
+    multidisc: 1 if disctotal > 1 else 0
 
 mpd:
     host: localhost
