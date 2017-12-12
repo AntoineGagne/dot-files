@@ -5,9 +5,10 @@ UNITS := clean-local-tmp.service \
 		 mpdstats.service
 SYSTEMD_UNITS := $(addprefix $(SYSTEMD_CONFIG_DIR)/, $(UNITS))
 
-NEOVIM_2 := "$(HOME)/.virtualenvs/neovim2"
+VIRTUALENVS_DIR := $(HOME)/.virtualenvs
+NEOVIM_2 := $(HOME)/.virtualenvs/neovim2
 PYTHON_2 := $(shell command -v python2 2>/dev/null)
-NEOVIM_3 := "$(HOME)/.virtualenvs/neovim3"
+NEOVIM_3 := $(HOME)/.virtualenvs/neovim3
 PYTHON_3 := $(shell command -v python3 2>/dev/null)
 
 SOFTWARE_DIRS := bash \
@@ -72,28 +73,24 @@ setup-vim-plugins: install-vim
 	@$(MAKE) -C $(HOME)/.vim/bundle/vimproc.vim
 
 .PHONY: setup-virtual-environments
-setup-virtual-environments: $(NEOVIM_2)
+setup-virtual-environments: $(NEOVIM_2) $(NEOVIM_3)
 
-$(NEOVIM_3): install-virtual-environment-wrapper
-ifdef
-	@mkvirtualenv neovim3 -p /usr/bin/python3
-	@pip install neovim
-	@deactivate
+$(NEOVIM_2): | install-virtual-environment-wrapper
+ifdef PYTHON_2
+	@virtualenv -p /usr/bin/python2 $(VIRTUALENVS_DIR)/neovim2 && pip install neovim
 endif
 
-$(NEOVIM_2): install-virtual-environment-wrapper
-ifdef PYTHON_2
-	@mkvirtualenv neovim2 -p /usr/bin/python2
-	@pip install neovim
+$(NEOVIM_3): | install-virtual-environment-wrapper
+ifdef PYTHON_3
+	@virtualenv -p /usr/bin/python3 $(VIRTUALENVS_DIR)/neovim3 && pip install neovim
 endif
 
 .PHONY: install-virtual-environment-wrapper
-install-virtual-environment-wrapper:  create-virtualenvs-directory
+install-virtual-environment-wrapper:  $(VIRTUALENVS_DIR)
 	@pip install --user virtualenv virtualenvwrapper
 
-.PHONY: create-virtualenvs-directory
-create-virtualenvs-directory:
-	@mkdir -p ~/.virtualenvs
+$(VIRTUALENVS_DIR):
+	@mkdir -p $(VIRTUALENVS_DIR)
 
 .PHONY: install-language-servers
 install-language-servers: install-python-language-server
