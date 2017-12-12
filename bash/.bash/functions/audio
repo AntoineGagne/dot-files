@@ -25,7 +25,6 @@ convert-audio-file() {
 
     mv "${_temporary_file}" "${_name}${_output_extension}"
 }
-export -f convert-audio-file
 
 batch-convert-audio-file() {
     local -r _path="${1}"
@@ -33,5 +32,6 @@ batch-convert-audio-file() {
     local -r _output_extension=${3:-.opus}
 
     local -r _audio_files="$(find "${_path}" -name "${_input_extension}" -type f -print)"
+    export -f convert-audio-file
     parallel --bar --noswap convert-audio-file {} {.} "${_output_extension}" ::: "${_audio_files}"
 }
