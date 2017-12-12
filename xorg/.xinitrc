@@ -63,6 +63,10 @@ if type "xbindkeys" >/dev/null 2>&1 && ! pidof -x "xbindkeys" >/dev/null 2>&1; t
     fi
 fi
 
+if type "corsair-keyboard" >/dev/null 2>&1; then
+    corsair-keyboard
+fi
+
 if type "compton" >/dev/null 2>&1; then
     compton -b
 fi
