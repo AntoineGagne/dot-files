@@ -64,4 +64,9 @@ if has("autocmd")
         autocmd!
         autocmd BufRead,BufNewFile *.m,*.oct set filetype=octave
     augroup END
+
+    augroup systemd
+        autocmd!
+        autocmd! BufEnter *.service set filetype=systemd
+    augroup END
 endif

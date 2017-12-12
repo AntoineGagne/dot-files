@@ -1,5 +1,5 @@
 [Unit]
-Description=Clean the `tmp` folder in `$HOME` every month.
+Description=Clean the folders in `%h/.vim/` every month.
 
 [Timer]
 OnCalendar=monthly

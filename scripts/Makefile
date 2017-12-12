@@ -5,7 +5,6 @@ SCRIPTS = bash/cmus-status.bash \
 		  bash/printscreen.bash \
 		  python/cmus_parse.py \
 		  bash/clean-local-tmp.sh \
-		  bash/fix-systemd-user-units.sh \
 		  bash/control-brightness.bash \
 		  bash/unmount-device.sh \
 		  python/display_screens.py \

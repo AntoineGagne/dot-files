@@ -1,0 +1,13 @@
+[Unit]
+Description=Beet Music Player Daemon Stats Plugin
+BindsTo=mpd.service
+After=mpd.service
+ConditionPathIsSymbolicLink=%h/Music
+ConditionPathExists=%h/Music
+
+[Service]
+ExecStart=/usr/bin/beet mpdstats
+Type=simple
+
+[Install]
+WantedBy=default.target
