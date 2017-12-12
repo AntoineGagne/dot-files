@@ -8,6 +8,9 @@ ConditionPathExists=%h/Music
 [Service]
 ExecStart=/usr/bin/beet mpdstats
 Type=simple
+StandardInput=null
+StandardOutput=null
+StandardError=syslog+console
 
 [Install]
 WantedBy=default.target
