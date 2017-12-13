@@ -10,7 +10,7 @@ ExecStart=/usr/bin/beet mpdstats
 Type=simple
 StandardInput=null
 StandardOutput=null
-StandardError=syslog+console
+StandardError=null
 
 [Install]
 WantedBy=default.target
