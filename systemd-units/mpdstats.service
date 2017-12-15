@@ -6,6 +6,7 @@ After=mpd.service
 [Service]
 ExecStart=/usr/bin/beet mpdstats
 Type=simple
+Restart=on-failure
 StandardInput=null
 StandardOutput=null
 StandardError=null
