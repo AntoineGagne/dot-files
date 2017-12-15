@@ -1,7 +1,7 @@
 # vim: ft=sh
 
 parallel_download() {
-    parallel youtube-dl -o "\%\(title\)s.\%\(ext\)s" -x :::: "${1}"
+    parallel youtube-dl -o "%(title)s.%(ext)s" -x :::: "${1}"
 }
 
 download_playlist() {
