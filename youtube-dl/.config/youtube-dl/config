@@ -1,0 +1,3 @@
+--prefer-free-formats
+--retries 2
+--skip-unavailable-fragments
