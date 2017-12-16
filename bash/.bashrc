@@ -181,11 +181,28 @@ display_prompt() {
         echo -n "[$(with_bold with_color 2 echo -n "${USER}@${HOSTNAME}")]"
     }
 
+    current_working_directory() {
+        local -r _maximum_path_length="$(("$(tput cols)" / 3))"
+        local -r _abbreviated_path_symbol='[…]'
+        local _current_path="${PWD/${HOME}/'~'}"
+        local -ri _current_path_length="$(echo -n "${_current_path}" | wc -c | tr -d " ")"
+
+        if [[ "${_current_path_length}" -gt "${_maximum_path_length}" ]]; then
+            _current_path="$(echo -n "${_current_path}" \
+                | awk -F'/' -v abbreviated_path_symbol="${_abbreviated_path_symbol}" '{
+                    print $1 "/" $2 "/" abbreviated_path_symbol "/" $(NF - 1) "/" $(NF)
+                  }'
+            )"
+        fi
+
+        echo -n "[$(with_bold with_color 4 echo -n "${_current_path}")]"
+    }
+
     current_directory_information() {
         local -r _files_information="$(ls -lah)"
         local -r _total_space="$(echo "${_files_information}" | awk '''/total/ {print $2}''')"
         local -r _files_number="$(echo "${_files_information}" | wc -l) files"
-        echo -n "${_files_number}, ${_total_space}"
+        echo -n "[${_files_number}, ${_total_space}]"
     }
 
     # Disable the default virtualenv prompt change
@@ -195,8 +212,8 @@ display_prompt() {
         PS1='┌─$(last_command_exit_status "${?}")'
         PS1=$PS1'$(virtualenv_info)'
         PS1=$PS1'──$(machine_information)'
-        PS1=$PS1'──[\[\033[01;34m\]\w\[\033[00m\]]'
-        PS1=$PS1'──[$(current_directory_information)]'
+        PS1=$PS1'──$(current_working_directory)'
+        PS1=$PS1'──$(current_directory_information)'
         PS1=$PS1'$(__git_ps1)'
         PS1=$PS1'\n λ '
     else
