@@ -199,10 +199,15 @@ display_prompt() {
     }
 
     current_directory_information() {
-        local -r _files_information="$(ls -lah)"
-        local -r _total_space="$(echo "${_files_information}" | awk '''/total/ {print $2}''')"
-        local -r _files_number="$(echo "${_files_information}" | wc -l) files"
-        echo -n "[${_files_number}, ${_total_space}]"
+        local -r _current_directory_information="$(ls -lah \
+            | awk '/total/ {
+                total_space=$2
+              }
+              END {
+                print NR " files, " total_space
+              }'
+        )"
+        echo -n "[${_current_directory_information}]"
     }
 
     # Disable the default virtualenv prompt change
