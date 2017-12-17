@@ -220,7 +220,7 @@ display_prompt() {
         PS1=$PS1'──$(current_working_directory)'
         PS1=$PS1'──$(current_directory_information)'
         PS1=$PS1'$(__git_ps1)'
-        PS1=$PS1'\n λ '
+        PS1=$PS1'\n└─╼ λ '
     else
         PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
     fi
