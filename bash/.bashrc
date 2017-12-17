@@ -210,17 +210,24 @@ display_prompt() {
         echo -n "[${_current_directory_information}]"
     }
 
+    prompt() {
+        local -r _last_command_exit_status="$(last_command_exit_status "${1}")"
+        local -r _virtualenv_info="$(virtualenv_info)"
+        local -r _current_working_directory="$(current_working_directory)"
+        local -r _current_directory_information="$(current_directory_information)"
+        local -r _git_workspace="$(__git_ps1)"
+
+        cat << EOF
+┌─${_last_command_exit_status}${_virtualenv_info}──$(machine_information)──${_current_working_directory}──${_current_directory_information} ${_git_workspace}
+└─╼ λ 
+EOF
+    }
+
     # Disable the default virtualenv prompt change
     export VIRTUAL_ENV_DISABLE_PROMPT=1
 
     if [ "$color_prompt" = yes ]; then
-        PS1='┌─$(last_command_exit_status "${?}")'
-        PS1=$PS1'$(virtualenv_info)'
-        PS1=$PS1'──$(machine_information)'
-        PS1=$PS1'──$(current_working_directory)'
-        PS1=$PS1'──$(current_directory_information)'
-        PS1=$PS1'$(__git_ps1)'
-        PS1=$PS1'\n└─╼ λ '
+        PS1='$(prompt "${?}")'
     else
         PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
     fi
