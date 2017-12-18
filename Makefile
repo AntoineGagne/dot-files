@@ -47,7 +47,8 @@ SOFTWARE_DIRS := bash \
 	tmuxp \
 	beets \
 	mpd \
-	ncmpcpp
+	ncmpcpp \
+	kitty
 INSTALL_DIRS := $(SOFTWARE_DIRS:%=install-%)
 
 .PHONY: all
