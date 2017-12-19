@@ -1,5 +1,7 @@
 -- vim: foldmethod=marker
 
+{-# LANGUAGE RecordWildCards #-}
+
 import Graphics.X11.Types ( xK_Print )
 import Graphics.X11.ExtraTypes.XF86 ( xF86XK_AudioLowerVolume
                                     , xF86XK_AudioMute
@@ -125,7 +127,7 @@ defaults = def
     , modMask = mod4Mask
     , mouseBindings = myMouseBindings
     , normalBorderColor  = myNormalBorderColor
-    , terminal = myTerminal
+    , terminal = show myTerminal
     , keys = myKeys
     , handleEventHook = docksEventHook
     }
@@ -152,8 +154,23 @@ myBorderWidth = 2
 myStatusBar :: String
 myStatusBar = "xmobar"
 
-myTerminal :: String
-myTerminal = "urxvtc"
+data TerminalEmulator = TerminalEmulator
+    { terminalName :: String
+    , terminalDaemonName :: String
+    , terminalTitleOption :: String
+    , terminalExecutionOption :: String
+    }
+
+instance Show TerminalEmulator where
+    show TerminalEmulator { terminalDaemonName = terminalDaemonName' } = terminalDaemonName'
+
+myTerminal :: TerminalEmulator
+myTerminal = TerminalEmulator
+    { terminalName = "kitty"
+    , terminalDaemonName = "kitty --single-instance"
+    , terminalTitleOption = "--class="
+    , terminalExecutionOption = " "
+    }
 
 myLauncher :: String
 myLauncher = "dmenu_run -i -l 15 -p '➤' -nb '#282828' -nf '#ebdbb2' -sb '#8ec07c' -sf '#282828'"
@@ -188,7 +205,7 @@ myKeys :: (XConfig Layout -> Map.Map (ButtonMask, KeySym) (X ()))
 myKeys conf = let m = modMask conf in Map.fromList $
     -- {{{2 Programs
     [ ((myModMask, xK_p), spawn myLauncher)
-    , ((myModMask .|. shiftMask, xK_Return), spawn myTerminal)
+    , ((myModMask .|. shiftMask, xK_Return), spawn (show myTerminal))
     , ((myModMask .|. shiftMask, xK_c), kill)
     -- {{{2 XMonad
     , ((myModMask, xK_q), restart "xmonad" True)
@@ -275,14 +292,49 @@ myKeys conf = let m = modMask conf in Map.fromList $
                   , ((0, xK_g), method (Search.intelligent Search.wikipedia !> Search.hoogle !> Search.stackage !> Search.youtube !> Search.prefixAware Search.duckduckgo))
                   ]
               applicationsSpawn = Map.fromList
-                  [ ((0, xK_e), spawn "urxvtc -title mutt -e bash -c 'tmux -q has-session -t email && tmux -2 attach-session -t email || mutt'")
-                  , ((0, xK_n), spawn "urxvtc -title newsboat -e bash -c 'tmux -q has-session -t news && tmux -2 attach-session -t news || newsboat'")
-                  , ((0, xK_c), spawn "urxvtc -title weechat -e bash -c 'tmux -q has-session -t chat && tmux -2 attach-session -t chat || weechat'")
-                  , ((0, xK_m), spawn "urxvtc -title ncmpcpp -e ncmpcpp")
+                  [ ((0, xK_e), spawn (launchApp myTerminal muttProgram))
+                  , ((0, xK_n), spawn (launchApp myTerminal newsboatProgram))
+                  , ((0, xK_c), spawn (launchApp myTerminal weechatProgram))
+                  , ((0, xK_m), spawn ((terminalDaemonName myTerminal) ++ " " ++ terminalTitleOption myTerminal ++ "'ncmpcpp'" ++ terminalExecutionOption myTerminal ++ " ncmpcpp"))
                   , ((0, xK_b), spawn "firefox")
                   , ((0, xK_v), spawn "zathura")
                   , ((0, xK_i), spawn "krita")
                   ]
+
+data Program = Program
+    { programName :: String
+    , programTitle :: String
+    , programCommand :: String
+    , programType :: String
+    }
+
+muttProgram :: Program
+muttProgram = Program
+    { programName = "mutt"
+    , programTitle = "mutt"
+    , programCommand = "mutt"
+    , programType = "email"
+    }
+
+newsboatProgram :: Program
+newsboatProgram = Program
+    { programName = "newsboat"
+    , programTitle = "newsboat"
+    , programCommand = "newsboat"
+    , programType = "news"
+    }
+
+weechatProgram :: Program
+weechatProgram = Program
+    { programName = "weechat"
+    , programTitle = "weechat"
+    , programCommand = "weechat"
+    , programType = "chat"
+    }
+
+launchApp :: TerminalEmulator -> Program -> String
+launchApp TerminalEmulator {..} Program {..} = terminalDaemonName ++ " " ++ terminalTitleOption ++ "'" ++ programTitle ++ "' " ++ terminalExecutionOption ++ " " ++ launchCommand
+    where launchCommand = "bash -c 'tmux -q has-session -t " ++ programType ++ " && tmux -2 attach-session -t " ++ programType ++ " || " ++ programName ++ "'"
 
 myPrompt = Prompt.def { Prompt.font = "xft:Source Code Pro:style=Regular:size=9:antialias=true"
                       , Prompt.bgColor = "#282828"
@@ -346,8 +398,14 @@ myManageHooks screenNumber = composeAll
     , name =? "ncmpcpp" --> moveToWorkspace [1] 4
     , name =? "weechat" --> moveToWorkspace [1] 6
     , name =? "newsboat" --> moveToWorkspace [0] 3
+    , className =? "mutt" --> moveToWorkspace [1] 7
+    , className =? "cmus" --> moveToWorkspace [1] 4
+    , className =? "ncmpcpp" --> moveToWorkspace [1] 4
+    , className =? "weechat" --> moveToWorkspace [1] 6
+    , className =? "newsboat" --> moveToWorkspace [0] 3
     , className =? "URxvt" --> moveToWorkspace [1] 1
     , className =? "Alacritty" --> moveToWorkspace [1] 1
+    , className =? "kitty" --> moveToWorkspace [1] 1
     ]
         where moveToWorkspace :: [ScreenId] -> Int -> ManageHook
               moveToWorkspace [] workspaceNumber = doShift $ marshall 0 (chooseWorkspace workspaceNumber)
