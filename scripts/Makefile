@@ -13,7 +13,8 @@ SCRIPTS = bash/cmus-status.bash \
 		  bash/recompile-xmonad.sh \
 		  bash/spawn-rtv.sh \
 		  bash/merge-rss-urls.bash \
-		  bash/corsair-keyboard.bash
+		  bash/corsair-keyboard.bash \
+		  bash/display-album-cover.bash
 INSTALL_SCRIPTS := $(SCRIPTS:%=install-%)
 
 .PHONY: all

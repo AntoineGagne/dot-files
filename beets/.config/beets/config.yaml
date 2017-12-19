@@ -1,6 +1,6 @@
 directory: ~/Music
 library: ~/Music/library.db
-plugins: mbsync chroma mpdupdate smartplaylist mpdstats embedart inline missing zero
+plugins: mbsync chroma mpdupdate smartplaylist mpdstats embedart fetchart inline missing zero
 art_filename: cover
 import:
     move: yes
@@ -33,6 +33,9 @@ smartplaylist:
 embedart:
     auto: yes
     compare_threshold: 95
+
+fetchart:
+    auto: yes
 
 zero:
     fields: comments
