@@ -1,7 +1,8 @@
 directory: ~/Music
 library: ~/Music/library.db
-plugins: mbsync chroma mpdupdate smartplaylist mpdstats embedart fetchart inline missing zero
+plugins: mbsync chroma mpdupdate smartplaylist mpdstats embedart fetchart inline missing zero replaygain
 art_filename: cover
+ascify_paths: no
 import:
     move: yes
     write: yes
@@ -30,12 +31,18 @@ smartplaylist:
         - name: movies_games_and_post_rock.m3u
           query: 'genre::(Game|Soundtrack|Soundtracks|Post-Rock|post-rock)'
 
+replaygain:
+    auto: yes
+    backend: gstreamer
+
 embedart:
     auto: yes
     compare_threshold: 95
 
 fetchart:
     auto: yes
+    sources: filesystem coverart albumart wikipedia
+    store_source: yes
 
 zero:
     fields: comments
