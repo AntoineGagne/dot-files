@@ -1,6 +1,6 @@
 directory: ~/Music
 library: ~/Music/library.db
-plugins: mbsync chroma mpdupdate smartplaylist mpdstats embedart fetchart inline missing zero replaygain
+plugins: mbsync chroma mpdupdate smartplaylist mpdstats embedart fetchart inline missing zero replaygain acousticbrainz
 art_filename: cover
 ascify_paths: no
 import:
@@ -20,6 +20,9 @@ item_fields:
 mpd:
     host: localhost
     port: 6600
+
+acousticbrainz:
+    auto: yes
 
 smartplaylist:
     playlist_dir: ~/.config/mpd/playlists
