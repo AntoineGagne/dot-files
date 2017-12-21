@@ -176,12 +176,26 @@ instance Show TerminalEmulator where
     show TerminalEmulator { terminalDaemonName = terminalDaemonName' } = terminalDaemonName'
 
 myTerminal :: TerminalEmulator
-myTerminal = TerminalEmulator
+myTerminal = urxvtTerminal
+
+
+urxvtTerminal :: TerminalEmulator
+urxvtTerminal = TerminalEmulator
+    { terminalName = "urxvt"
+    , terminalDaemonName = "urxvtc"
+    , terminalTitleOption = "-title "
+    , terminalExecutionOption = "-e"
+    }
+
+
+kittyTerminal :: TerminalEmulator
+kittyTerminal = TerminalEmulator
     { terminalName = "kitty"
     , terminalDaemonName = "kitty --single-instance"
     , terminalTitleOption = "--class="
     , terminalExecutionOption = " "
     }
+
 
 myLauncher :: String
 myLauncher = "dmenu_run -i -l 15 -p '➤' -nb '#282828' -nf '#ebdbb2' -sb '#8ec07c' -sf '#282828'"
@@ -306,7 +320,7 @@ myKeys conf = let m = modMask conf in Map.fromList $
                   [ ((0, xK_e), spawn (launchApp myTerminal muttProgram))
                   , ((0, xK_n), spawn (launchApp myTerminal newsboatProgram))
                   , ((0, xK_c), spawn (launchApp myTerminal weechatProgram))
-                  , ((0, xK_m), spawn ((terminalDaemonName myTerminal) ++ " " ++ terminalTitleOption myTerminal ++ "'ncmpcpp'" ++ terminalExecutionOption myTerminal ++ " ncmpcpp"))
+                  , ((0, xK_m), spawn (launchApp myTerminal ncmpcppProgram))
                   , ((0, xK_b), spawn "firefox")
                   , ((0, xK_v), spawn "zathura")
                   , ((0, xK_i), spawn "krita")
@@ -317,6 +331,14 @@ data Program = Program
     , programTitle :: String
     , programCommand :: String
     , programType :: String
+    }
+
+ncmpcppProgram :: Program
+ncmpcppProgram = Program
+    { programName = "ncmpcpp"
+    , programTitle = "ncmpcpp"
+    , programCommand = "ncmpcpp"
+    , programType = "music"
     }
 
 muttProgram :: Program

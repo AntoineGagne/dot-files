@@ -39,10 +39,10 @@ fi
 # Set the keyboard layout to french canadian
 setxkbmap -layout ca -variant fr
 # Start urxvt daemon
-# urxvtd -q -f -o
+urxvtd -q -f -o
 # Spawn a urxvt terminal
-# urxvtc &
-kitty --single-instance &
+urxvtc &
+# kitty --single-instance &
 
 # Create the song indicator pipe and put a default value
 if type "create-named-pipe" >/dev/null 2>&1; then
