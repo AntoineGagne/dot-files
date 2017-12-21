@@ -1,35 +1,62 @@
 #!/bin/bash
 
-# Mostly taken from: https://bbs.archlinux.org/viewtopic.php?id=134972 (Wed May 24 20:21:45 EDT 2017)
+declare -r base_directory="/sys/class/backlight"
+declare -r handler="${base_directory}/$(ls ${base_directory})"
+declare -r max_brightness=$(cat "${handler}/max_brightness")
+declare -r current_brightness=$(cat "${handler}/brightness")
+declare -r application_name="$(basename ${0})"
+declare -ri expire_time=200
 
-# base directory for backlight class
-basedir="/sys/class/backlight"
+calculate_new_brightness() {
+    local -r _brightness_percentage_change="${1}"
+    local -r _current_brightness_percentage=$(( 100 * current_brightness / max_brightness ))
+    local -r _new_brightness_percentage=$((_current_brightness_percentage + _brightness_percentage_change))
+    echo $(( max_brightness * _new_brightness_percentage / 100 ))
+}
 
-# get the backlight handler
-handler="$basedir/$(ls $basedir)"
+main() {
+    local -r _brightness_percentage_change="${1}"
+    local -r _new_brightness="$(calculate_new_brightness "${_brightness_percentage_change}")"
+    local -r _adjusted_brightness="$(adjust_new_brightness "${_new_brightness}")"
 
-# get current brightness
-current_brightness=$(cat "$handler/brightness")
+    set_brightness "${_adjusted_brightness}" "${handler}/brightness"
+    send_brightness_level_as_notification "${_adjusted_brightness}"
+}
 
-# get max brightness
-max_brightness=$(cat "$handler/max_brightness")
+set_brightness() {
+    local -r _new_brightness="${1}"
+    local -r _brightness_file="${2}"
 
-# get current brightness %
-current_brightness_percentage=$(( 100 * current_brightness / max_brightness ))
+    echo "${_new_brightness}" | sudo tee "${_brightness_file}"
+}
 
-# calculate new brightness %
-new_brightness_percentage=$((current_brightness_percentage + $1))
+adjust_new_brightness() {
+    local -r _new_brightness="${1}"
+    local _adjusted_brightness
 
-# calculate new brightness value
-new_brightness=$(( max_brightness * new_brightness_percentage / 100 ))
+    if [ "${_new_brightness}" -le "${max_brightness}" ] && [ "${_new_brightness}" -ge 0 ]; then
+        _adjusted_brightness="${_new_brightness}"
+    elif [ "${_new_brightness}" -lt 0 ]; then
+        _adjusted_brightness="0"
+    else
+        _adjusted_brightness="${max_brightness}"
+    fi
 
-if [ $new_brightness -le "$max_brightness" ] && [ $new_brightness -ge 0 ]; then
-    # set the new brightness value
-    echo "$new_brightness" | sudo tee "$handler/brightness"
-elif [ $new_brightness -lt 0 ]; then
-    # If it is lower than the minimum brightness, set its value to 0%
-    echo "0" | sudo tee "$handler/brightness"
-else
-    # If it is higher than the maximum brightness, set its value to 100%
-    echo "$max_brightness" | sudo tee "$handler/brightness"
-fi
+    echo "${_adjusted_brightness}"
+}
+
+send_brightness_level_as_notification() {
+    local -r _new_brightness="${1}"
+    local -r _new_brightness_percentage=$(( _new_brightness * 100 / max_brightness ))
+
+    if ! type "notify-send" 2>/dev/null || [[ "$(pgrep -c 'dunst')" -lt 1 ]]; then
+        return 1
+    fi
+
+    notify-send --urgency=low \
+                --expire-time=${expire_time} \
+                --app-name="${application_name}" \
+                --hint="int:value:${_new_brightness_percentage}" "Brightness"
+}
+
+main "${@}"

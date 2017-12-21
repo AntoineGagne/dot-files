@@ -35,16 +35,13 @@ write_volume_to_named_pipes() {
 }
 
 send_volume_level_as_notification() {
-    if ! type "notify-send" 2>/dev/null; then
-        return 1
-    fi
-
-    if [[ "$(pgrep -c 'dunst')" -lt 1 ]]; then
-        return 1
-    fi
-
     local -r _volume_level="${1}"
     local -r _is_muted="${2}"
+
+    if ! type "notify-send" 2>/dev/null || [[ "$(pgrep -c 'dunst')" -lt 1 ]]; then
+        return 1
+    fi
+
     if [ "${_is_muted}" = "no" ]; then
         notify-send --urgency=low \
                     --expire-time=${expire_time} \
