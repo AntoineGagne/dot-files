@@ -12,7 +12,13 @@ if has("autocmd")
     " {{{1 Haskell
     augroup haskell
         autocmd!
-        autocmd BufEnter *.hs set formatprg=pointfree
+        if executable("pointfree")
+            autocmd BufEnter *.hs set formatprg=pointfree
+        endif
+
+        if executable("haskellman")
+            autocmd FileType haskell set keywordprg=haskellman
+        endif
 
         " {{{2 neco-ghc
         autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc
@@ -21,11 +27,27 @@ if has("autocmd")
     augroup javascript
         autocmd!
         " autocmd FileType javascript set foldmethod=syntax
+
+        if executable("webman")
+            autocmd FileType javascript  set keywordprg=webman\ -t\ js\ -s
+        endif
     augroup end
 
     augroup html
         autocmd!
         autocmd BufNewFile *.html 0r ~/.vim/templates/skeleton.html
+
+        if executable("webman")
+            autocmd FileType html set keywordprg=webman\ -t\ html\ -s
+        endif
+    augroup END
+
+    augroup css
+        autocmd!
+
+        if executable("webman")
+            autocmd FileType html set keywordprg=webman\ -t\ css\ -s
+        endif
     augroup END
 
     " {{{1 LaTeX & TeX
@@ -53,6 +75,10 @@ if has("autocmd")
     augroup cpp
         autocmd!
         autocmd FileType cpp set foldmethod=syntax
+
+        if (executable("cppman"))
+            autocmd FileType cpp set keywordprg=cppman
+        endif
     augroup END
 
     augroup clang
