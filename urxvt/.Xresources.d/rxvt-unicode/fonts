@@ -1,4 +1,4 @@
-urxvt.font: xft:Fira Code Medium:style=Medium:size=11,xft:Source Code Pro:style=Regular:size=10,xft:FontAwesome:style=Regular:size=11,xft:DejaVu Sans Mono:style=Book:size=10
+urxvt.font: xft:Fira Code Medium:style=Medium:size=11,xft:Source Code Pro:style=Regular:size=10,xft:FontAwesome:style=Regular:size=11,xft:DejaVu Sans Mono:style=Book:size=10:Source Han Sans JP Normal:style=Regular:size=11
 urxvt.boldFont: xft:Fira Code:style=Bold:size=11,xft:Source Code Pro:style=Bold:size=10,xft:DejaVu Sans Mono:style=Bold:size=10
 urxvt.italicFont: xft:Fira Code Light:style=Regular:size=11,xft:Source Code Pro:style=Italic:size=10,xft:DejaVu Sans Mono:style=Oblique:size=10
 urxvt.boldItalicFont: xft:Fira Code:style=Bold:size=11,xft:Source Code Pro:style=Bold Italic:size=10,xft:DejaVu Sans Mono:style=Bold Oblique:size=10
