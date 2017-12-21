@@ -102,7 +102,10 @@ else
     call plug#begin('~/.vim/bundle')
         " {{{2 Autocompletion plugin
         " Plug 'Valloric/YouCompleteMe'
-        Plug 'autozimu/LanguageClient-neovim', { 'do': ':UpdateRemotePlugins' }
+        Plug 'autozimu/LanguageClient-neovim', {
+                    \    'branch': 'next',
+                    \    'do': './install.sh'
+                    \ }
         Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 
         " {{{2 Surrounding Text Objects
