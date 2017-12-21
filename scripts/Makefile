@@ -14,10 +14,10 @@ SCRIPTS = bash/cmus-status.bash \
 		  bash/spawn-rtv.sh \
 		  bash/merge-rss-urls.bash \
 		  bash/corsair-keyboard.bash \
-		  bash/display-album-cover.bash \
 		  bash/webman.bash \
 		  bash/cppman.bash \
-		  bash/haskellman.bash
+		  bash/haskellman.bash \
+		  bash/display-song-information.bash
 INSTALL_SCRIPTS := $(SCRIPTS:%=install-%)
 
 .PHONY: all

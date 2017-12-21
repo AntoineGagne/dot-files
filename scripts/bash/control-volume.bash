@@ -2,7 +2,7 @@
 
 declare -r named_volume_pipes="${HOME}/.volume*"
 declare -ri expire_time=200
-declare -r application_name="Pulseaudio"
+declare -r application_name="$(basename "${0}")"
 
 toggle_sound() {
     pactl set-sink-mute @DEFAULT_SINK@ toggle
@@ -38,7 +38,7 @@ send_volume_level_as_notification() {
     local -r _volume_level="${1}"
     local -r _is_muted="${2}"
 
-    if ! type "notify-send" 2>/dev/null || [[ "$(pgrep -c 'dunst')" -lt 1 ]]; then
+    if ! type "notify-send" &>/dev/null || [[ "$(pgrep -c 'dunst')" -lt 1 ]]; then
         return 1
     fi
 
