@@ -39,6 +39,7 @@ import XMonad.Hooks.UrgencyHook ( withUrgencyHook
                                 , borderUrgencyHook
                                 , BorderUrgencyHook (..)
                                 , urgencyConfig
+                                , UrgencyHook (..)
                                 , RemindWhen (..)
                                 , SuppressWhen (..)
                                 , minutes
@@ -68,7 +69,8 @@ import XMonad.Layout.Tabbed
 import XMonad.Layout.ThreeColumns
 import XMonad.Util.Cursor (setDefaultCursor)
 import XMonad.Util.EZConfig (additionalKeys)
-import XMonad.Util.Run (spawnPipe, hPutStrLn)
+import XMonad.Util.Run (safeSpawn, spawnPipe, hPutStrLn)
+import XMonad.Util.NamedWindows (getName)
 import qualified XMonad.Prompt         as Prompt
 import qualified XMonad.Actions.Submap as Submap
 import qualified XMonad.Actions.Search as Search
@@ -80,11 +82,20 @@ import qualified Data.Map as Map
 main = do
     screenNumber <- countScreens
     hs <- mapM (spawnPipe . xmobarCommand) [0..screenNumber - 1]
-    xmonad $ ewmh $ withUrgencyHookC BorderUrgencyHook { urgencyBorderColor = "#fb4934" } urgencyConfig { suppressWhen = Focused, remindWhen = Every (minutes 5.0 )} $ defaults
+    xmonad $ ewmh $ withUrgencyHookC LibNotifyUrgencyHook urgencyConfig { suppressWhen = Visible, remindWhen = Every (minutes 5.0 )} $ defaults
         { workspaces = withScreens screenNumber myWorkspaces
         , manageHook = manageDocks <+> myManageHooks screenNumber <+> manageHook def
         , logHook = fadeInactiveCurrentWSLogHook 0.8 <+> mapM_ dynamicLogWithPP (zipWith myBarPrettyPrinter hs [0..screenNumber])
         }
+
+data LibNotifyUrgencyHook = LibNotifyUrgencyHook
+    deriving (Read, Show)
+
+instance UrgencyHook LibNotifyUrgencyHook where
+    urgencyHook LibNotifyUrgencyHook window = do
+        name <- getName window
+        Just workspaceId <- W.findTag window <$> gets windowset
+        safeSpawn "notify-send" [show name, "workspace " ++ workspaceId]
 
 -- TODO: Find a way to make it work with the multi-head setup
 myWallpaperSetterHook :: ScreenId -> X ()
