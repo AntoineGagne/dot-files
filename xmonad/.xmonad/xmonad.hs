@@ -426,6 +426,7 @@ myManageHooks screenNumber = composeAll
     , className =? "VirtualBox" <&&> resource =? "Dialog" --> doCenterFloat
     , className =? "VirtualBox Manager" <&&> resource =? "Dialog" --> doCenterFloat
     , className =? "Postman" --> moveToWorkspace [1] 0
+    , className =? "Dunst" --> doFloat
     , name =? "mutt" --> moveToWorkspace [1] 7
     , name =? "cmus" --> moveToWorkspace [1] 4
     , name =? "ncmpcpp" --> moveToWorkspace [1] 4

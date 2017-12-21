@@ -1,6 +1,6 @@
 -- vim: ft=haskell
-Config { font =         "xft:Fira Code Medium:style=Medium:size=10:antialias=true,Source Code Pro:style=Regular:size=10,DejaVu Sans Mono:style=Book:size=10,DejaVu Sans:style=Book,Source Han Sans JP Normal:style=Regular:size=11"
-       , additionalFonts = ["xft:FontAwesome:style=Regular:size=10", "xft:Source Code Pro:style=Regular:size=9:antialias=true", "xft:DejaVu Sans Mono:style=Book:size=10"]
+Config { font =         "xft:Fira Code Medium:style=Medium:size=10:antialias=true,Source Code Pro:style=Regular:size=10,DejaVu Sans Mono:style=Book:size=10,DejaVu Sans:style=Book,Source Han Sans JP Normal:style=Regular:size=11:xft:FontAwesome:style=Regular:size=11"
+       , additionalFonts = ["xft:FontAwesome:style=Regular:size=11", "xft:Source Code Pro:style=Regular:size=9:antialias=true", "xft:DejaVu Sans Mono:style=Book:size=10"]
        , bgColor =      "#1d2021"
        , fgColor =      "#ebdbb2"
        , alpha   =      200

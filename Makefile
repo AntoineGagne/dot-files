@@ -48,7 +48,8 @@ SOFTWARE_DIRS := bash \
 	beets \
 	mpd \
 	ncmpcpp \
-	kitty
+	kitty \
+	dunst
 INSTALL_DIRS := $(SOFTWARE_DIRS:%=install-%)
 
 .PHONY: all
