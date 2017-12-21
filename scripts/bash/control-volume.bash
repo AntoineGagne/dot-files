@@ -1,6 +1,8 @@
 #!/usr/bin/bash
 
-named_volume_pipes="${HOME}/.volume*"
+declare -r named_volume_pipes="${HOME}/.volume*"
+declare -ri expire_time=200
+declare -r application_name="Pulseaudio"
 
 toggle_sound() {
     pactl set-sink-mute @DEFAULT_SINK@ toggle
@@ -14,13 +16,46 @@ control_volume() {
 }
 
 write_volume_status() {
+    local -r _volume_level="$(get_volume_level)"
+    local -r _is_muted="$(is_muted)"
+    write_volume_to_named_pipes "${_volume_level}" "${_is_muted}"
+    send_volume_level_as_notification "${_volume_level}" "${_is_muted}"
+}
+
+write_volume_to_named_pipes() {
+    local -r _volume_level="${1}"
+    local -r _is_muted="${2}"
     for named_volume_pipe in $named_volume_pipes; do
-        if [ "$(is_muted)" = "no" ]; then
-            get_volume_level >"${named_volume_pipe}" &
+        if [ "${_is_muted}" = "no" ]; then
+            echo "${_volume_level}" >"${named_volume_pipe}" &
         else
             echo "Muted" >"${named_volume_pipe}" &
         fi
     done
+}
+
+send_volume_level_as_notification() {
+    if ! type "notify-send" 2>/dev/null; then
+        return 1
+    fi
+
+    if [[ "$(pgrep -c 'dunst')" -lt 1 ]]; then
+        return 1
+    fi
+
+    local -r _volume_level="${1}"
+    local -r _is_muted="${2}"
+    if [ "${_is_muted}" = "no" ]; then
+        notify-send --urgency=low \
+                    --expire-time=${expire_time} \
+                    --app-name="${application_name}" \
+                    --hint="int:value:${_volume_level}" "Volume"
+    else
+        notify-send --urgency=low \
+                    --expire-time=${expire_time} \
+                    --app-name="${application_name} [Muted]" \
+                    "Volume"
+    fi
 }
 
 is_muted() {
