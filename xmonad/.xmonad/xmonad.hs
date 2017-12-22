@@ -84,6 +84,9 @@ import XMonad.Programs.Terminals ( urxvt
                                  , weechat
                                  , TerminalEmulator (..)
                                  )
+import XMonad.Themes.Fonts ( urxvtResourceFontString )
+import XMonad.Themes.Gruvbox ( gruvboxTheme )
+import XMonad.Themes.Themes ( Theme (..) )
 
 
 main = do
