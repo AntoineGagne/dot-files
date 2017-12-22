@@ -188,8 +188,8 @@ patched-src
 vimwiki_html
 
 **/.xmonad/*
-**/.xmonad/**
 !**/.xmonad/*.hs
+!**/.xmonad/lib
 
 **/.vim/spell/*
 **/.vim/spell/**

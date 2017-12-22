@@ -1,7 +1,5 @@
 -- vim: foldmethod=marker
 
-{-# LANGUAGE RecordWildCards #-}
-
 import Graphics.X11.Types ( xK_Print )
 import Graphics.X11.ExtraTypes.XF86 ( xF86XK_AudioLowerVolume
                                     , xF86XK_AudioMute
@@ -77,6 +75,15 @@ import qualified XMonad.Actions.Search as Search
 
 import qualified XMonad.StackSet as W
 import qualified Data.Map as Map
+
+import XMonad.Programs.Terminals ( urxvt
+                                 , launchApp
+                                 , mutt
+                                 , ncmpcpp
+                                 , newsboat
+                                 , weechat
+                                 , TerminalEmulator (..)
+                                 )
 
 
 main = do
@@ -165,37 +172,8 @@ myBorderWidth = 2
 myStatusBar :: String
 myStatusBar = "xmobar"
 
-data TerminalEmulator = TerminalEmulator
-    { terminalName :: String
-    , terminalDaemonName :: String
-    , terminalTitleOption :: String
-    , terminalExecutionOption :: String
-    }
-
-instance Show TerminalEmulator where
-    show TerminalEmulator { terminalDaemonName = terminalDaemonName' } = terminalDaemonName'
-
 myTerminal :: TerminalEmulator
-myTerminal = urxvtTerminal
-
-
-urxvtTerminal :: TerminalEmulator
-urxvtTerminal = TerminalEmulator
-    { terminalName = "urxvt"
-    , terminalDaemonName = "urxvtc"
-    , terminalTitleOption = "-title "
-    , terminalExecutionOption = "-e"
-    }
-
-
-kittyTerminal :: TerminalEmulator
-kittyTerminal = TerminalEmulator
-    { terminalName = "kitty"
-    , terminalDaemonName = "kitty --single-instance"
-    , terminalTitleOption = "--class="
-    , terminalExecutionOption = " "
-    }
-
+myTerminal = urxvt
 
 myLauncher :: String
 myLauncher = "dmenu_run -i -l 15 -p '➤' -nb '#282828' -nf '#ebdbb2' -sb '#8ec07c' -sf '#282828'"
@@ -317,57 +295,14 @@ myKeys conf = let m = modMask conf in Map.fromList $
                   , ((0, xK_g), method (Search.intelligent Search.wikipedia !> Search.hoogle !> Search.stackage !> Search.youtube !> Search.prefixAware Search.duckduckgo))
                   ]
               applicationsSpawn = Map.fromList
-                  [ ((0, xK_e), spawn (launchApp myTerminal muttProgram))
-                  , ((0, xK_n), spawn (launchApp myTerminal newsboatProgram))
-                  , ((0, xK_c), spawn (launchApp myTerminal weechatProgram))
-                  , ((0, xK_m), spawn (launchApp myTerminal ncmpcppProgram))
+                  [ ((0, xK_e), spawn (launchApp myTerminal mutt))
+                  , ((0, xK_n), spawn (launchApp myTerminal newsboat))
+                  , ((0, xK_c), spawn (launchApp myTerminal weechat))
+                  , ((0, xK_m), spawn (launchApp myTerminal ncmpcpp))
                   , ((0, xK_b), spawn "firefox")
                   , ((0, xK_v), spawn "zathura")
                   , ((0, xK_i), spawn "krita")
                   ]
-
-data Program = Program
-    { programName :: String
-    , programTitle :: String
-    , programCommand :: String
-    , programType :: String
-    }
-
-ncmpcppProgram :: Program
-ncmpcppProgram = Program
-    { programName = "ncmpcpp"
-    , programTitle = "ncmpcpp"
-    , programCommand = "ncmpcpp"
-    , programType = "music"
-    }
-
-muttProgram :: Program
-muttProgram = Program
-    { programName = "mutt"
-    , programTitle = "mutt"
-    , programCommand = "mutt"
-    , programType = "email"
-    }
-
-newsboatProgram :: Program
-newsboatProgram = Program
-    { programName = "newsboat"
-    , programTitle = "newsboat"
-    , programCommand = "newsboat"
-    , programType = "news"
-    }
-
-weechatProgram :: Program
-weechatProgram = Program
-    { programName = "weechat"
-    , programTitle = "weechat"
-    , programCommand = "weechat"
-    , programType = "chat"
-    }
-
-launchApp :: TerminalEmulator -> Program -> String
-launchApp TerminalEmulator {..} Program {..} = terminalDaemonName ++ " " ++ terminalTitleOption ++ "'" ++ programTitle ++ "' " ++ terminalExecutionOption ++ " " ++ launchCommand
-    where launchCommand = "bash -c 'tmux -q has-session -t " ++ programType ++ " && tmux -2 attach-session -t " ++ programType ++ " || " ++ programName ++ "'"
 
 myPrompt = Prompt.def { Prompt.font = "xft:Source Code Pro:style=Regular:size=9:antialias=true"
                       , Prompt.bgColor = "#282828"
