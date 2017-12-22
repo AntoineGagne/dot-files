@@ -47,7 +47,8 @@ gruvboxPalette = Palette
 gruvboxFont :: Font
 gruvboxFont = Font
     { format = OpenType
-    , fontName = "Fira Code"
+    , fontName = "Fira Code Medium"
     , fontSize = 10
     , antialias = True
+    , fontStyle = Other "Medium"
     }

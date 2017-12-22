@@ -11,6 +11,8 @@ display_album() {
     local -r _file="${music_directory}/$(mpc --format %file% current)"
     local -r _temporary_file="${temporary_directory}/$(uuidgen --random).png"
 
+    rm -f "${cover}"
+
     if [[ ! -a "${_file}" ]]; then
         exit 1
     fi

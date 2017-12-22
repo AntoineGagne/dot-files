@@ -9,4 +9,4 @@ makeHexColor :: String -> Color
 makeHexColor hexCode = HexColor $ '#' : hexCode
 
 instance Show Color where
-    show (HexColor color) = show color
+    show (HexColor color) = color

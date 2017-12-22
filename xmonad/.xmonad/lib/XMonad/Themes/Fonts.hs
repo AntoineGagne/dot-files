@@ -24,13 +24,14 @@ instance Show FontStyle where
     show Italic = "Italic"
     show Bold = "Bold"
     show BoldItalic = "Bold Italic"
-    show (Other other) = show other
+    show (Other other) = other
 
 data Font = Font
     { format :: FontType
     , fontName :: String
     , antialias :: Bool
     , fontSize :: Integer
+    , fontStyle :: FontStyle
     }
 
 urxvtResourceFontString :: Font -> String
@@ -38,6 +39,8 @@ urxvtResourceFontString Font {..} = concat
     [ show format
     , ":"
     , fontName
+    , ":style="
+    , show fontStyle
     , ":size="
     , show fontSize
     , ":antialias="

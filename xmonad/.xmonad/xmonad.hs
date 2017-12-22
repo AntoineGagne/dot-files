@@ -86,6 +86,7 @@ import XMonad.Programs.Terminals ( urxvt
                                  )
 import XMonad.Themes.Fonts ( urxvtResourceFontString )
 import XMonad.Themes.Gruvbox ( gruvboxTheme )
+import XMonad.Themes.Palettes ( Palette (..) )
 import XMonad.Themes.Themes ( Theme (..) )
 
 
@@ -127,16 +128,25 @@ xmobarCommand (S screenNumber) = unwords [ myStatusBar
 
 
 myBarPrettyPrinter handle screenNumber = marshallPP screenNumber def
-    { ppVisible           = color "white"
-    , ppUrgent            = color "#fb4934"
-    , ppOrder             = \(wss:layout:title:_) -> [wss, layout]
-    , ppOutput            = hPutStrLn handle
+    { ppVisible = color . show . foreground . palette $ gruvboxTheme
+    , ppUrgent = color . show . color9 . palette $ gruvboxTheme
+    , ppOrder = \(wss:layout:title:_) -> [wss, layout]
+    , ppOutput = hPutStrLn handle
     , ppTitle = xmobarColor xmobarTitleColor "" . shorten 40
     , ppCurrent = xmobarColor xmobarCurrentWorkspaceColor ""
     , ppSep = "  "
     , ppLayout = myLayoutPrinter
     }
     where color colorName = xmobarColor colorName ""
+
+-- Color of current window title in xmobar.
+xmobarTitleColor :: String
+xmobarTitleColor = show . foreground . palette $ gruvboxTheme
+
+-- Color of current workspace in xmobar.
+xmobarCurrentWorkspaceColor :: String
+xmobarCurrentWorkspaceColor = show . color10 . palette $ gruvboxTheme
+
 
 defaults = def
     { borderWidth = myBorderWidth
@@ -154,12 +164,12 @@ defaults = def
     }
 
 myLayoutPrinter :: String -> String
-myLayoutPrinter "Full" = "<icon=.icons/layout/alternate_full_screen_layout.xpm/>"
-myLayoutPrinter "Tall" = "<icon=.icons/layout/vertical_layout.xpm/>"
-myLayoutPrinter "Mirror Tall" = "<icon=.icons/layout/horizontal_layout.xpm/>"
-myLayoutPrinter "Grid" = "<icon=.icons/layout/grid_layout.xpm/>"
-myLayoutPrinter ('O':'n':'e':'B':'i':'g':_) = "<icon=.icons/layout/one_big_layout.xpm/>"
-myLayoutPrinter ('C':'o':'l':'u':'m':'n':_) = "<icon=.icons/layout/column_layout.xpm/>"
+myLayoutPrinter "Full" = "<icon=~/.icons/layout/alternate_full_screen_layout.xpm/>"
+myLayoutPrinter "Tall" = "<icon=~/.icons/layout/vertical_layout.xpm/>"
+myLayoutPrinter "Mirror Tall" = "<icon=~/.icons/layout/horizontal_layout.xpm/>"
+myLayoutPrinter "Grid" = "<icon=~/.icons/layout/grid_layout.xpm/>"
+myLayoutPrinter ('O':'n':'e':'B':'i':'g':_) = "<icon=~/.icons/layout/one_big_layout.xpm/>"
+myLayoutPrinter ('C':'o':'l':'u':'m':'n':_) = "<icon=~/.icons/layout/column_layout.xpm/>"
 myLayoutPrinter x = x
 
 myLayoutHook = layoutHook def
@@ -185,26 +195,20 @@ myFocusFollowsMouse :: Bool
 myFocusFollowsMouse = True
 
 myNormalBorderColor :: String
-myNormalBorderColor  = "#928374"
+myNormalBorderColor  = show . color8 . palette $ gruvboxTheme
 
 myFocusedBorderColor :: String
-myFocusedBorderColor = "#8ec07c"
+myFocusedBorderColor = show . color14 . palette $ gruvboxTheme
 
 -- Colors for text and backgrounds of each tab when in "Tabbed" layout.
-tabConfig = def {
-    activeBorderColor = "#7C7C7C",
-    activeTextColor = "#CEFFAC",
-    activeColor = "#000000",
-    inactiveBorderColor = "#7C7C7C",
-    inactiveTextColor = "#EEEEEE",
-    inactiveColor = "#000000"
-}
--- Color of current window title in xmobar.
-xmobarTitleColor :: String
-xmobarTitleColor = "#d79921"
--- Color of current workspace in xmobar.
-xmobarCurrentWorkspaceColor :: String
-xmobarCurrentWorkspaceColor = "#b8bb26"
+tabConfig = def
+    { activeBorderColor = show . color7 . palette $ gruvboxTheme
+    , activeTextColor = show . foreground . palette $ gruvboxTheme
+    , activeColor = show . color6 . palette $ gruvboxTheme
+    , inactiveBorderColor = show . color7 . palette $ gruvboxTheme
+    , inactiveTextColor = show . foreground . palette $ gruvboxTheme
+    , inactiveColor = show . background . palette $ gruvboxTheme
+    }
 
 -- {{{1 Keybindings
 myKeys :: (XConfig Layout -> Map.Map (ButtonMask, KeySym) (X ()))
@@ -307,13 +311,13 @@ myKeys conf = let m = modMask conf in Map.fromList $
                   , ((0, xK_i), spawn "krita")
                   ]
 
-myPrompt = Prompt.def { Prompt.font = "xft:Source Code Pro:style=Regular:size=9:antialias=true"
-                      , Prompt.bgColor = "#282828"
-                      , Prompt.fgColor = "#d5c4a1"
-                      , Prompt.fgHLight = "#b8bb26"
-                      , Prompt.bgHLight = "#282828"
+myPrompt = Prompt.def { Prompt.font = urxvtResourceFontString . font $ gruvboxTheme
+                      , Prompt.bgColor = show . background . palette $ gruvboxTheme 
+                      , Prompt.fgColor = show . foreground . palette $ gruvboxTheme
+                      , Prompt.fgHLight = show . color10 . palette $ gruvboxTheme
+                      , Prompt.bgHLight = show . background . palette $ gruvboxTheme
                       , Prompt.promptBorderWidth = 1
-                      , Prompt.borderColor = "#3c3836"
+                      , Prompt.borderColor = show . color7 . palette $ gruvboxTheme
                       }
 
 myMouseBindings :: (XConfig Layout -> Map.Map (ButtonMask, Button) (Window -> X ()))
