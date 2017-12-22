@@ -79,6 +79,7 @@ import qualified Data.Map as Map
 import XMonad.Hooks.ManageHooks ( myManageHooks
                                 , myWorkspaces
                                 )
+import XMonad.Hooks.Notifications ( LibNotifyUrgencyHook (..) )
 import XMonad.Programs.Terminals ( urxvt
                                  , launchApp
                                  , mutt
@@ -87,6 +88,11 @@ import XMonad.Programs.Terminals ( urxvt
                                  , weechat
                                  , TerminalEmulator (..)
                                  )
+import XMonad.Bindings.Keybindings ( myKeys
+                                   , myLauncher
+                                   , myTerminal
+                                   , myModMask
+                                   )
 import XMonad.Themes.Fonts ( urxvtResourceFontString )
 import XMonad.Themes.Gruvbox ( gruvboxTheme )
 import XMonad.Themes.Palettes ( Palette (..) )
@@ -101,15 +107,6 @@ main = do
         , manageHook = manageDocks <+> myManageHooks screenNumber <+> manageHook def
         , logHook = fadeInactiveCurrentWSLogHook 0.8 <+> mapM_ dynamicLogWithPP (zipWith myBarPrettyPrinter hs [0..screenNumber])
         }
-
-data LibNotifyUrgencyHook = LibNotifyUrgencyHook
-    deriving (Read, Show)
-
-instance UrgencyHook LibNotifyUrgencyHook where
-    urgencyHook LibNotifyUrgencyHook window = do
-        name <- getName window
-        Just workspaceId <- W.findTag window <$> gets windowset
-        safeSpawn "notify-send" [show name, "workspace " ++ workspaceId]
 
 -- TODO: Find a way to make it work with the multi-head setup
 myWallpaperSetterHook :: ScreenId -> X ()
@@ -135,20 +132,20 @@ myBarPrettyPrinter handle screenNumber = marshallPP screenNumber def
     , ppUrgent = color . show . color9 . palette $ gruvboxTheme
     , ppOrder = \(wss:layout:title:_) -> [wss, layout]
     , ppOutput = hPutStrLn handle
-    , ppTitle = xmobarColor xmobarTitleColor "" . shorten 40
-    , ppCurrent = xmobarColor xmobarCurrentWorkspaceColor ""
+    , ppTitle = xmobarColor barTitleColor "" . shorten 40
+    , ppCurrent = xmobarColor barCurrentWorkspaceColor ""
     , ppSep = "  "
     , ppLayout = myLayoutPrinter
     }
     where color colorName = xmobarColor colorName ""
 
 -- Color of current window title in xmobar.
-xmobarTitleColor :: String
-xmobarTitleColor = show . foreground . palette $ gruvboxTheme
+barTitleColor :: String
+barTitleColor = show . foreground . palette $ gruvboxTheme
 
 -- Color of current workspace in xmobar.
-xmobarCurrentWorkspaceColor :: String
-xmobarCurrentWorkspaceColor = show . color10 . palette $ gruvboxTheme
+barCurrentWorkspaceColor :: String
+barCurrentWorkspaceColor = show . color10 . palette $ gruvboxTheme
 
 
 defaults = def
@@ -167,12 +164,12 @@ defaults = def
     }
 
 myLayoutPrinter :: String -> String
-myLayoutPrinter "Full" = "<icon=~/.icons/layout/alternate_full_screen_layout.xpm/>"
-myLayoutPrinter "Tall" = "<icon=~/.icons/layout/vertical_layout.xpm/>"
-myLayoutPrinter "Mirror Tall" = "<icon=~/.icons/layout/horizontal_layout.xpm/>"
-myLayoutPrinter "Grid" = "<icon=~/.icons/layout/grid_layout.xpm/>"
-myLayoutPrinter ('O':'n':'e':'B':'i':'g':_) = "<icon=~/.icons/layout/one_big_layout.xpm/>"
-myLayoutPrinter ('C':'o':'l':'u':'m':'n':_) = "<icon=~/.icons/layout/column_layout.xpm/>"
+myLayoutPrinter "Full" = "<icon=.icons/layout/alternate_full_screen_layout.xpm/>"
+myLayoutPrinter "Tall" = "<icon=.icons/layout/vertical_layout.xpm/>"
+myLayoutPrinter "Mirror Tall" = "<icon=.icons/layout/horizontal_layout.xpm/>"
+myLayoutPrinter "Grid" = "<icon=.icons/layout/grid_layout.xpm/>"
+myLayoutPrinter ('O':'n':'e':'B':'i':'g':_) = "<icon=.icons/layout/one_big_layout.xpm/>"
+myLayoutPrinter ('C':'o':'l':'u':'m':'n':_) = "<icon=.icons/layout/column_layout.xpm/>"
 myLayoutPrinter x = x
 
 myLayoutHook = layoutHook def
@@ -180,19 +177,11 @@ myLayoutHook = layoutHook def
             ||| OneBig (3/4) (3/4)
             ||| Column 1.6
 
-myModMask = mod4Mask
-
 myBorderWidth :: Dimension
 myBorderWidth = 2
 
 myStatusBar :: String
 myStatusBar = "xmobar"
-
-myTerminal :: TerminalEmulator
-myTerminal = urxvt
-
-myLauncher :: String
-myLauncher = "dmenu_run -i -l 15 -p '➤' -nb '#282828' -nf '#ebdbb2' -sb '#8ec07c' -sf '#282828'"
 
 myFocusFollowsMouse :: Bool
 myFocusFollowsMouse = True
@@ -212,116 +201,6 @@ tabConfig = def
     , inactiveTextColor = show . foreground . palette $ gruvboxTheme
     , inactiveColor = show . background . palette $ gruvboxTheme
     }
-
--- {{{1 Keybindings
-myKeys :: (XConfig Layout -> Map.Map (ButtonMask, KeySym) (X ()))
-myKeys conf = let m = modMask conf in Map.fromList $
-    -- {{{2 Programs
-    [ ((myModMask, xK_p), spawn myLauncher)
-    , ((myModMask .|. shiftMask, xK_Return), spawn (show myTerminal))
-    , ((myModMask .|. shiftMask, xK_c), kill)
-    -- {{{2 XMonad
-    , ((myModMask, xK_q), restart "xmonad" True)
-    , ((myModMask .|. shiftMask, xK_q), io (exitWith ExitSuccess))
-    -- {{{2 Layouts
-    , ((myModMask, xK_space), sendMessage NextLayout)
-    -- Reset the layouts on the current workspace
-    , ((myModMask .|. shiftMask, xK_space), setLayout $ XMonad.layoutHook conf)
-    -- {{{2 Focus
-    -- Move focus to the next window
-    , ((myModMask, xK_Tab), windows W.focusDown)
-    , ((myModMask, xK_j), windows W.focusDown)
-    , ((myModMask, xK_k), windows W.focusUp)
-    , ((myModMask, xK_m), windows W.focusMaster)
-    -- Swap the focused window with the next window
-    , ((myModMask .|. shiftMask, xK_j), windows W.swapDown)
-    -- Swap the focused window with the previous window
-    , ((myModMask .|. shiftMask, xK_k), windows W.swapUp)
-    -- Swap the focused window and the master window
-    , ((myModMask, xK_Return), windows W.swapMaster)
-    -- {{{2 Sizing
-    -- Increment the number of windows in the master area
-    , ((myModMask, xK_comma), sendMessage (IncMasterN 1))
-    -- Deincrement the number of windows in the master area
-    , ((myModMask, xK_period), sendMessage (IncMasterN (-1)))
-    -- Resize viewed windows to the correct size
-    , ((myModMask, xK_n), refresh)
-    -- Shrink the master area
-    , ((myModMask, xK_h), sendMessage Shrink)
-    -- Expand the master area
-    , ((myModMask, xK_l), sendMessage Expand)
-    -- Push window back into tiling
-    , ((myModMask, xK_t), withFocused $ windows . W.sink)
-    , ((myModMask, xK_b), sendMessage ToggleStruts)
-    -- {{{2 Screenshots
-    , ((0, xK_Print), spawn "printscreen -a")
-    , ((myModMask, xK_Print), spawn "printscreen -s")
-    , ((myModMask .|. shiftMask, xK_Print), spawn "printscreen -c")
-    -- {{{2 Audio Controls
-    , ((0, xF86XK_AudioMute), spawn "control-volume -t")
-    , ((0, xF86XK_AudioLowerVolume), spawn "control-volume -c -5%")
-    , ((0, xF86XK_AudioRaiseVolume), spawn "control-volume -c +5%")
-    -- {{{2 Music Controls
-    , ((0, xF86XK_AudioNext), spawn "mpc next")
-    , ((0, xF86XK_AudioPrev), spawn "mpc prev")
-    , ((0, xF86XK_AudioStop), spawn "mpc stop")
-    , ((0, xF86XK_AudioPlay), spawn "mpc toggle")
-    -- {{{2 Brightness Controls
-    , ((0, xF86XK_MonBrightnessDown), spawn "control-brightness -5")
-    , ((0, xF86XK_MonBrightnessUp), spawn "control-brightness 5")
-    -- {{{2 Screens Related
-    , ((myModMask, xK_Left), prevScreen)
-    , ((myModMask .|. shiftMask, xK_Left), shiftPrevScreen)
-    , ((myModMask, xK_Right),  nextScreen)
-    , ((myModMask .|. shiftMask, xK_Right), shiftNextScreen)
-    -- {{{2 Search Engines
-    , ((myModMask, xK_s), Submap.submap $ searchEngineMap $ Search.promptSearch myPrompt)
-    , ((myModMask .|. shiftMask, xK_s), Submap.submap $ searchEngineMap Search.selectSearch)
-    -- {{{2 Applications
-    , ((myModMask, xK_o), Submap.submap applicationsSpawn)
-    -- {{{2 Urgency Hooks
-    , ((myModMask, xK_u), focusUrgent)
-    , ((myModMask .|. shiftMask, xK_u), clearUrgents)
-    ] ++
-    [ ((m .|. e .|. i, key), windows (onCurrentScreen f workspace)) 
-      | (key, workspace) <- zip [xK_1..xK_9] (workspaces' conf)
-      , (e, f)           <- [(0, W.view), (shiftMask, viewShift)]
-    , i                  <- [0, controlMask, myModMask, controlMask .|. myModMask]
-    ] ++
-    [ ((myModMask .|. mask, key), f sc)
-    | (key, sc) <- zip [xK_w, xK_e, xK_r] [0..]
-    , (f, mask) <- [(viewScreen, 0), (sendToScreen, shiftMask)]
-    ]
-        where viewShift i = W.view i . W.shift i
-              withScreen screen f = screenWorkspace screen >>= flip whenJust (windows . f)
-              searchEngineMap method = Map.fromList
-                  [ ((0, xK_a), method Search.amazon)
-                  , ((0, xK_h), method Search.hoogle)
-                  , ((0, xK_i), method Search.images)
-                  , ((0, xK_m), method Search.imdb)
-                  , ((0, xK_s), method Search.stackage)
-                  , ((0, xK_w), method Search.wikipedia)
-                  , ((0, xK_y), method Search.youtube)
-                  , ((0, xK_g), method (Search.intelligent Search.wikipedia !> Search.hoogle !> Search.stackage !> Search.youtube !> Search.prefixAware Search.duckduckgo))
-                  ]
-              applicationsSpawn = Map.fromList
-                  [ ((0, xK_e), spawn (launchApp myTerminal mutt))
-                  , ((0, xK_n), spawn (launchApp myTerminal newsboat))
-                  , ((0, xK_c), spawn (launchApp myTerminal weechat))
-                  , ((0, xK_m), spawn (launchApp myTerminal ncmpcpp))
-                  , ((0, xK_b), spawn "firefox")
-                  , ((0, xK_v), spawn "zathura")
-                  , ((0, xK_i), spawn "krita")
-                  ]
-
-myPrompt = Prompt.def { Prompt.font = urxvtResourceFontString . font $ gruvboxTheme
-                      , Prompt.bgColor = show . background . palette $ gruvboxTheme 
-                      , Prompt.fgColor = show . foreground . palette $ gruvboxTheme
-                      , Prompt.fgHLight = show . color10 . palette $ gruvboxTheme
-                      , Prompt.bgHLight = show . background . palette $ gruvboxTheme
-                      , Prompt.promptBorderWidth = 1
-                      , Prompt.borderColor = show . color7 . palette $ gruvboxTheme
-                      }
 
 myMouseBindings :: (XConfig Layout -> Map.Map (ButtonMask, Button) (Window -> X ()))
 myMouseBindings XConfig {XMonad.modMask = modMask} = Map.fromList
