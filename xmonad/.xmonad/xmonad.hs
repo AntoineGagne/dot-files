@@ -93,6 +93,7 @@ import XMonad.Bindings.Keybindings ( myKeys
                                    , myTerminal
                                    , myModMask
                                    )
+import XMonad.Bindings.MouseBindings ( myMouseBindings )
 import XMonad.Themes.Fonts ( urxvtResourceFontString )
 import XMonad.Themes.Gruvbox ( gruvboxTheme )
 import XMonad.Themes.Palettes ( Palette (..) )
@@ -201,14 +202,3 @@ tabConfig = def
     , inactiveTextColor = show . foreground . palette $ gruvboxTheme
     , inactiveColor = show . background . palette $ gruvboxTheme
     }
-
-myMouseBindings :: (XConfig Layout -> Map.Map (ButtonMask, Button) (Window -> X ()))
-myMouseBindings XConfig {XMonad.modMask = modMask} = Map.fromList
-    [ -- mod-button1, Set the window to floating mode and move by dragging
-      ((modMask, button1), \w -> focus w >> mouseMoveWindow w)
-    -- mod-button2, Raise the window to the top of the stack
-    , ((modMask, button2), \w -> focus w >> windows W.swapMaster)
-    -- mod-button3, Set the window to floating mode and resize by dragging
-    , ((modMask, button3), \w -> focus w >> mouseResizeEdgeWindow 10 w)
-    -- you may also bind events to the mouse scroll wheel (button4 and button5)
-    ]
