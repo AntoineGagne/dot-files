@@ -3,6 +3,7 @@
 declare -r named_volume_pipes="${HOME}/.volume*"
 declare -ri expire_time=200
 declare -r application_name="$(basename "${0}")"
+declare -rxi sink_number=$(get_default_sink_number)
 
 toggle_sound() {
     pactl set-sink-mute @DEFAULT_SINK@ toggle
@@ -56,14 +57,10 @@ send_volume_level_as_notification() {
 }
 
 is_muted() {
-    export sink_number
-    sink_number="$(get_default_sink_number)"
     pactl list sinks | perl -000ne 'if(/#$ENV{'sink_number'}/){/(Mute:\s*(.*)\s*)/; print "$2\n"}'
 }
 
 get_volume_level() {
-    export sink_number
-    sink_number="$(get_default_sink_number)"
     pactl list sinks | perl -000ne 'if(/#$ENV{'sink_number'}/){/Volume:\s*front-left:.*\/\s*(\d+)%.*front-right:.*\/\s*(\d+)%.*/; print "$1 $2\n"}' | awk '{print ($1 + $2) / 2 "%"}'
 }
 
