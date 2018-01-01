@@ -49,7 +49,8 @@ SOFTWARE_DIRS := bash \
 	mpd \
 	ncmpcpp \
 	kitty \
-	dunst
+	dunst \
+	zsh
 INSTALL_DIRS := $(SOFTWARE_DIRS:%=install-%)
 
 .PHONY: all
