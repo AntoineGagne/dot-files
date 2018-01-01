@@ -1,4 +1,4 @@
-#!/usr/bin/bash
+#!/usr/bin/env bash
 
 declare -r named_volume_pipes="${HOME}/.volume*"
 declare -ri expire_time=200

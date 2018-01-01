@@ -1,4 +1,4 @@
-#!/usr/bin/bash
+#!/usr/bin/env bash
 
 PIPE_PATH="$1"
 DEFAULT_VALUE="$2"

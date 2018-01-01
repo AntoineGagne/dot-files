@@ -1,4 +1,4 @@
-#!/usr/bin/bash
+#!/usr/bin/env bash
 
 if [ -z "${printscreen_directory}" ]; then
     declare -rx printscreen_directory="$HOME/Pictures"

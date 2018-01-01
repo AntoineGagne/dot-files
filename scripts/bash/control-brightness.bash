@@ -1,4 +1,4 @@
-#!/bin/bash
+#! /usr/bin/env bash
 
 declare -r base_directory="/sys/class/backlight"
 declare -r handler="${base_directory}/$(ls ${base_directory})"
