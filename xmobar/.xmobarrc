@@ -13,7 +13,6 @@ Config { font =         "xft:Fira Code Medium:style=Medium:size=10:antialias=tru
        , alignSep = "}{"  -- separator between left-right alignment
        , template = "%StdinReader% }{ <fc=#98971a>%mpd%</fc> <fc=#689d6a><fn=1></fn> %vol%</fc> <fc=#b16286><fn=1></fn> %wlo1wi%</fc> <fc=#d79921><fn=1></fn> %bright%</fc> <fc=#8ec07c>%date%</fc> %battery% "
 
-       -- general behavior
        , lowerOnStart =     True    -- send to bottom of window stack on start
        , hideOnStart =      False   -- start with window unmapped (hidden)
        , allDesktops =      True    -- show on all desktops
@@ -36,52 +35,10 @@ Config { font =         "xft:Fira Code Medium:style=Medium:size=10:antialias=tru
        --   color can be set by enclosing in <fc></fc> tags. For more details
        --   see http://projects.haskell.org/xmobar/#system-monitor-plugins.
        , commands = 
-
-        -- weather monitor
-        -- [ Run Weather "CYQB" [ "--template", "<fc=#458588><tempC></fc>°C <skyCondition>"
-        --                      ] 36000
-
-        -- network activity monitor (dynamic interface resolution)
-        -- , Run DynNetwork     [ "--template" , "<dev>: <fn=1></fn> <tx>kB/s <fn=1></fn><rx>kB/s"
-        --                      , "--Low"      , "1000"       -- units: B/s
-        --                      , "--High"     , "5000"       -- units: B/s
-        --                      , "--low"      , "darkgreen"
-        --                      , "--normal"   , "darkorange"
-        --                      , "--high"     , "darkred"
-        --                      ] 10
         [ Run Wireless "wlo1" [ "--template" , "<quality>%"
                               , "--"
                               -- , "--quality-icon-pattern", "<icon=.icons/wifi/second_alternative_wifi_%%.xpm/>"
                               ] 20
-
-        -- cpu activity monitor
-        -- , Run MultiCpu       [ "--template" , "CPU: <total0>%|<total1>%"
-        --                      , "--Low"      , "50"         -- units: %
-        --                      , "--High"     , "85"         -- units: %
-        --                      , "--low"      , "darkgreen"
-        --                      , "--normal"   , "darkorange"
-        --                      , "--high"     , "darkred"
-        --                      ] 10
-
-        -- cpu core temperature monitor
-        -- , Run CoreTemp       [ "--template" , "Temp: <core0>°C|<core1>°C"
-        --                      , "--Low"      , "70"        -- units: °C
-        --                      , "--High"     , "80"        -- units: °C
-        --                      , "--low"      , "darkgreen"
-        --                      , "--normal"   , "darkorange"
-        --                      , "--high"     , "darkred"
-        --                      ] 50
-
-        -- memory usage monitor
-        -- , Run Memory         [ "--template" ,"Mem: <usedratio>%"
-        --                      , "--Low"      , "20"        -- units: %
-        --                      , "--High"     , "90"        -- units: %
-        --                      , "--low"      , "darkgreen"
-        --                      , "--normal"   , "darkorange"
-        --                      , "--high"     , "darkred"
-        --                      ] 10
-
-        -- battery monitor
         , Run Battery        [ "--template" , "<leftipat><acstatus>"
                              , "--Low"      , "10"        -- units: %
                              , "--High"     , "80"        -- units: %
@@ -104,24 +61,11 @@ Config { font =         "xft:Fira Code Medium:style=Medium:size=10:antialias=tru
                          -- , "--brightness-icon-pattern", "<icon=.icons/luminosity/luminosity_%%.xpm/>"
                          ] 10
 
-        -- time and date indicator
-        --   (%F = y-m-d date, %a = day of week, %T = h:m:s time)
         , Run Date           "<fn=1></fn> %a %b %d %T" "date" 10
-
-        -- keyboard layout indicator
-        -- , Run Kbd            [ ("ca", "<fc=#8B0000>FR</fc>")
-        --                      ]
         , Run MPD [ "-t",
                     "<statei> <title> by <artist> (<ppos>/<plength>)",
                     "--", "-P", "<fn=1></fn>", "-Z", "<fn=1></fn>", "-S", "<fn=1></fn>"
                   ] 10
-
-        -- volume indicator
-        --, Run PipeReader "N/A:/$HOME/.volume" "vol"
-        
-        -- song indicator
-        -- , Run PipeReader "Nothing playing:/$HOME/.song-information" "song"
-
         , Run StdinReader
         ]
 }
