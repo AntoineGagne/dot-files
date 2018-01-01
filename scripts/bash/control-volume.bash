@@ -47,12 +47,10 @@ send_volume_level_as_notification() {
         notify-send --urgency=low \
                     --expire-time=${expire_time} \
                     --app-name="${application_name}" \
-                    --icon="${HOME}/.icons/volume/volume-medium.png" \
                     --hint="int:value:${_volume_level}" "Volume"
     else
         notify-send --urgency=low \
                     --expire-time=${expire_time} \
-                    --icon="${HOME}/.icons/volume/volume-muted.png" \
                     --app-name="${application_name} [Muted]" \
                     "Volume"
     fi
