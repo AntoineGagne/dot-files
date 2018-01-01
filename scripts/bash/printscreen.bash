@@ -1,26 +1,44 @@
 #!/usr/bin/bash
 
-if [ -z "$PRINTSCREEN_DIRECTORY" ]; then
-    export PRINTSCREEN_DIRECTORY="$HOME/Pictures"
+if [ -z "${printscreen_directory}" ]; then
+    declare -rx printscreen_directory="$HOME/Pictures"
 fi
 
+declare -r screenshot_name="${printscreen_directory}/screenshot_$(date '+%Y-%m-%d-%H:%M:%S').png"
+declare -ri expire_time=200
+declare -r application_name="$(basename "${0}")"
+
 take_full_screen_picture() {
-    mkdir -p "$PRINTSCREEN_DIRECTORY"
-    import -window root "$(generate_screenshot_name)"
+    mkdir -p "${printscreen_directory}"
+    import -window root "${screenshot_name}"
+
+    send_printscreen_as_notification
 }
 
 take_selected_region_picture() {
-    mkdir -p "$PRINTSCREEN_DIRECTORY"
-    import "$(generate_screenshot_name)"
+    mkdir -p "${printscreen_directory}"
+    import "${screenshot_name}"
+
+    send_printscreen_as_notification
 }
 
 take_current_screen_picture() {
     active_window_id="$(xprop -root | awk '/^_NET_ACTIVE_WINDOW\(WINDOW\)/ {print $5}')"
-    import -window "${active_window_id}" "$(generate_screenshot_name)"
+    import -window "${active_window_id}" "${screenshot_name}"
+
+    send_printscreen_as_notification
 }
 
-generate_screenshot_name() {
-    echo "$PRINTSCREEN_DIRECTORY/screenshot_$(date '+%Y-%m-%d-%H:%M:%S').png"
+send_printscreen_as_notification() {
+    if ! type "notify-send" &>/dev/null || [[ "$(pgrep -c 'dunst')" -lt 1 ]]; then
+        return 1
+    fi
+
+    notify-send --urgency=low \
+                --expire-time=${expire_time} \
+                --app-name="${application_name}" \
+                --icon="${screenshot_name}" \
+                "Capture"
 }
 
 case "$1" in
