@@ -1,6 +1,9 @@
 -- vim: ft=haskell
-Config { font =         "xft:Fira Code Medium:style=Medium:size=10:antialias=true,Source Code Pro:style=Regular:size=10,DejaVu Sans Mono:style=Book:size=10,DejaVu Sans:style=Book,Source Han Sans JP Normal:style=Regular:size=11:xft:FontAwesome:style=Regular:size=11"
-       , additionalFonts = ["xft:FontAwesome:style=Regular:size=11", "xft:Source Code Pro:style=Regular:size=9:antialias=true", "xft:DejaVu Sans Mono:style=Book:size=10"]
+Config { font = "xft:Fira Code Medium:style=Medium:size=10:antialias=true,Source Code Pro:style=Regular:size=10,DejaVu Sans Mono:style=Book:size=10,DejaVu Sans:style=Book,Source Han Sans JP Normal:style=Regular:size=11:xft:FontAwesome:style=Regular:size=11"
+       , additionalFonts = [ "xft:FontAwesome:style=Regular:size=11"
+                           , "xft:Source Code Pro:style=Regular:size=9:antialias=true"
+                           , "xft:DejaVu Sans Mono:style=Book:size=10"
+                           ]
        , bgColor =      "#1d2021"
        , fgColor =      "#ebdbb2"
        , alpha   =      200
@@ -9,63 +12,55 @@ Config { font =         "xft:Fira Code Medium:style=Medium:size=10:antialias=tru
        , borderColor =  "#1d2021"
 
        -- layout
-       , sepChar =  "%"   -- delineator between plugin names and straight text
-       , alignSep = "}{"  -- separator between left-right alignment
+       -- delimiter between plugin names and straight text
+       , sepChar =  "%"
+       -- separator between left-right alignment
+       , alignSep = "}{"
        , template = "%StdinReader% }{ <fc=#98971a>%mpd%</fc> <fc=#689d6a><fn=1></fn> %vol%</fc> <fc=#b16286><fn=1></fn> %wlo1wi%</fc> <fc=#d79921><fn=1></fn> %bright%</fc> <fc=#8ec07c>%date%</fc> %battery% "
 
-       , lowerOnStart =     True    -- send to bottom of window stack on start
-       , hideOnStart =      False   -- start with window unmapped (hidden)
-       , allDesktops =      True    -- show on all desktops
-       , overrideRedirect = True    -- set the Override Redirect flag (Xlib)
-       , pickBroadest =     False   -- choose widest display (multi-monitor)
-       , persistent =       False    -- enable/disable hiding (True = disabled)
+       -- Send to bottom of window stack on start
+       , lowerOnStart = True
+       -- Start with window unmapped (hidden)
+       , hideOnStart = False
+       -- Show on all desktops
+       , allDesktops = True
+       -- Set the Override Redirect flag (Xlib)
+       , overrideRedirect = True
+       -- Choose widest display (multi-monitor)
+       , pickBroadest = False
+       -- Enable/disable hiding (True = disabled)
+       , persistent = False
 
-       -- plugins
-       --   Numbers can be automatically colored according to their value. xmobar
-       --   decides color based on a three-tier/two-cutoff system, controlled by
-       --   command options:
-       --     --Low sets the low cutoff
-       --     --High sets the high cutoff
-       --
-       --     --low sets the color below --Low cutoff
-       --     --normal sets the color between --Low and --High cutoffs
-       --     --High sets the color above --High cutoff
-       --
-       --   The --template option controls how the plugin is displayed. Text
-       --   color can be set by enclosing in <fc></fc> tags. For more details
-       --   see http://projects.haskell.org/xmobar/#system-monitor-plugins.
-       , commands = 
-        [ Run Wireless "wlo1" [ "--template" , "<quality>%"
+       , commands = [ Run Wireless "wlo1" [ "--template" , "<quality>%"
+                                          , "--"
+                                          ] 20
+                    , Run Battery [ "--template" , "<leftipat><acstatus>"
+                                  , "--Low", "10"
+                                  , "--High", "80"
+                                  , "--low", "#fb4934"
+                                  , "--normal", "#fabd2f"
+                                  , "--high", "#b8bb26"
+                                  , "--" -- battery specific options
+                                  -- discharging status
+                                  , "-o", "<left>% (<timeleft>)"
+                                  -- AC "on" status
+                                  , "-O", "<left>%"
+                                  -- charged status
+                                  , "-i", "<fc=#a89984><fn=1>\xf1e6</fn></fc>"
+                                  , "--on-icon-pattern", "<icon=.icons/battery/charging_battery_%%.xpm/>"
+                                  ] 50
+                    , Run Brightness ["--template", "<percent>%"
+                                     , "--"
+                                     , "-D", "intel_backlight"
+                                     ] 10
+                    , Run Date "<fn=1></fn> %a %b %d %T" "date" 10
+                    , Run MPD [ "-t"
+                              , "<statei> <title> by <artist> (<ppos>/<plength>)"
                               , "--"
-                              -- , "--quality-icon-pattern", "<icon=.icons/wifi/second_alternative_wifi_%%.xpm/>"
-                              ] 20
-        , Run Battery        [ "--template" , "<leftipat><acstatus>"
-                             , "--Low"      , "10"        -- units: %
-                             , "--High"     , "80"        -- units: %
-                             , "--low"      , "#fb4934"
-                             , "--normal"   , "#fabd2f"
-                             , "--high"     , "#b8bb26"
-
-                             , "--" -- battery specific options
-                                       -- discharging status
-                                       , "-o", "<left>% (<timeleft>)"
-                                       -- AC "on" status
-                                       , "-O", "<left>%"
-                                       -- charged status
-                                       , "-i", "<fc=#a89984><fn=1>\xf1e6</fn></fc>"
-                             , "--on-icon-pattern", "<icon=.icons/battery/charging_battery_%%.xpm/>"
-                             ] 50
-        , Run Brightness ["--template", "<percent>%"
-                         , "--"
-                         , "-D", "intel_backlight"
-                         -- , "--brightness-icon-pattern", "<icon=.icons/luminosity/luminosity_%%.xpm/>"
-                         ] 10
-
-        , Run Date           "<fn=1></fn> %a %b %d %T" "date" 10
-        , Run MPD [ "-t",
-                    "<statei> <title> by <artist> (<ppos>/<plength>)",
-                    "--", "-P", "<fn=1></fn>", "-Z", "<fn=1></fn>", "-S", "<fn=1></fn>"
-                  ] 10
-        , Run StdinReader
-        ]
+                              , "-P", "<fn=1></fn>"
+                              , "-Z", "<fn=1></fn>"
+                              , "-S", "<fn=1></fn>"
+                              ] 10
+                    , Run StdinReader
+                    ]
 }
