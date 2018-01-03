@@ -1,6 +1,10 @@
 #!/usr/bin/env bash
 
-declare -r named_volume_pipes="${HOME}/.volume*"
+get_default_sink_number() {
+    pacmd list-sinks | perl -000ne 'if (/\*\s*index/){/(\*\s*index:\s*(\d+))/; print "$2\n"}'
+}
+
+declare -r named_volume_pipes="$(find "${HOME}" -maxdepth 1 -name '.volume-*' -type p -print)"
 declare -ri expire_time=200
 declare -r application_name="$(basename "${0}")"
 declare -rxi sink_number=$(get_default_sink_number)
@@ -62,10 +66,6 @@ is_muted() {
 
 get_volume_level() {
     pactl list sinks | perl -000ne 'if(/#$ENV{'sink_number'}/){/Volume:\s*front-left:.*\/\s*(\d+)%.*front-right:.*\/\s*(\d+)%.*/; print "$1 $2\n"}' | awk '{print ($1 + $2) / 2 "%"}'
-}
-
-get_default_sink_number() {
-    pacmd list-sinks | perl -000ne 'if (/\*\s*index/){/(\*\s*index:\s*(\d+))/; print "$2\n"}'
 }
 
 case "$1" in
