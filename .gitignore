@@ -240,4 +240,6 @@ mpd/.config/mpd/*
 mpd/.config/mpd/**
 !mpd/.config/mpd/.mpd.conf
 
-**/.zsh/histfile
+**/.zsh/*
+!**/.zsh/.zprofile
+!**/.zsh/.zshrc
