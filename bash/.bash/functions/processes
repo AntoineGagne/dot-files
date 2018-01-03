@@ -3,4 +3,3 @@
 rb() {
     nohup "$@" &>/dev/null &
 }
-complete -F _command rb

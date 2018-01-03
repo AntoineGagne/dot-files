@@ -35,7 +35,6 @@ EOF
         echo "- unknown archive method" ;;
     esac
 }
-complete -o default extract
 
 gitstasharchive() {
     stash_name=$(git stash create)
