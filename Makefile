@@ -49,8 +49,7 @@ SOFTWARE_DIRS := bash \
 	mpd \
 	ncmpcpp \
 	kitty \
-	dunst \
-	zsh
+	dunst
 INSTALL_DIRS := $(SOFTWARE_DIRS:%=install-%)
 
 .PHONY: all
@@ -58,6 +57,12 @@ all: $(SOFTWARE_DIRS) \
 	 setup-virtual-environments \
 	 install-scripts \
 	 install-systemd-units
+
+.PHONY: install-zsh
+install-zsh:
+	@mkdir -p zsh/.zsh
+	@touch zsh/.zsh/histfile
+	@stow zsh -t ~
 
 .PHONY: install-scripts
 install-scripts:
