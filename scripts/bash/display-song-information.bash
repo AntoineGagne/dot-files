@@ -39,26 +39,22 @@ display_current_mpd_status() {
     local -r _has_album_cover="$(display_album)"
 
     if [[ "${_has_album_cover}" -ne 1 ]]; then
-        notify-send --urgency=low \
-                    --expire-time=${expire_time} \
-                    --icon="${cover}" \
-                    --app-name="${application_name} - ${_player_status~}" \
-                    "${_album_information}" \
-                    "${_song_information}"
+        notification-send --urgency=low \
+                          --expire-time=${expire_time} \
+                          --icon="${cover}" \
+                          --app-name="${application_name} - ${_player_status~}" \
+                          "${_album_information}" \
+                          "${_song_information}"
     else
-        notify-send --urgency=low \
-                    --expire-time=${expire_time} \
-                    --app-name="${application_name} - ${_player_status~}" \
-                    "${_album_information}" \
-                    "${_song_information}"
+        notification-send --urgency=low \
+                          --expire-time=${expire_time} \
+                          --app-name="${application_name} - ${_player_status~}" \
+                          "${_album_information}" \
+                          "${_song_information}"
     fi
 }
 
 main() {
-    if ! type "notify-send" &>/dev/null || [[ "$(pgrep -c 'dunst')" -lt 1 ]]; then
-        exit 1
-    fi
-
     display_current_mpd_status
 }
 

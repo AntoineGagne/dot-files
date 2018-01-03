@@ -17,7 +17,8 @@ SCRIPTS = bash/cmus-status.bash \
 		  bash/webman.bash \
 		  bash/cppman.bash \
 		  bash/haskellman.bash \
-		  bash/display-song-information.bash
+		  bash/display-song-information.bash \
+		  bash/notification-send.bash
 INSTALL_SCRIPTS := $(SCRIPTS:%=install-%)
 
 .PHONY: all

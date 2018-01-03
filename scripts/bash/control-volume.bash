@@ -43,20 +43,16 @@ send_volume_level_as_notification() {
     local -r _volume_level="${1}"
     local -r _is_muted="${2}"
 
-    if ! type "notify-send" &>/dev/null || [[ "$(pgrep -c 'dunst')" -lt 1 ]]; then
-        return 1
-    fi
-
     if [ "${_is_muted}" = "no" ]; then
-        notify-send --urgency=low \
-                    --expire-time=${expire_time} \
-                    --app-name="${application_name}" \
-                    --hint="int:value:${_volume_level}" "Volume"
+        notification-send --urgency=low \
+                          --expire-time=${expire_time} \
+                          --app-name="${application_name}" \
+                          --hint="int:value:${_volume_level}" "Volume"
     else
-        notify-send --urgency=low \
-                    --expire-time=${expire_time} \
-                    --app-name="${application_name} [Muted]" \
-                    "Volume"
+        notification-send --urgency=low \
+                          --expire-time=${expire_time} \
+                          --app-name="${application_name} [Muted]" \
+                          "Volume"
     fi
 }
 

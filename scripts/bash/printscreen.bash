@@ -30,15 +30,11 @@ take_current_screen_picture() {
 }
 
 send_printscreen_as_notification() {
-    if ! type "notify-send" &>/dev/null || [[ "$(pgrep -c 'dunst')" -lt 1 ]]; then
-        return 1
-    fi
-
-    notify-send --urgency=low \
-                --expire-time=${expire_time} \
-                --app-name="${application_name}" \
-                --icon="${screenshot_name}" \
-                "Capture"
+    notification-send --urgency=low \
+                      --expire-time=${expire_time} \
+                      --app-name="${application_name}" \
+                      --icon="${screenshot_name}" \
+                      "Capture"
 }
 
 case "$1" in

@@ -49,14 +49,10 @@ send_brightness_level_as_notification() {
     local -r _new_brightness="${1}"
     local -r _new_brightness_percentage=$(( _new_brightness * 100 / max_brightness ))
 
-    if ! type "notify-send" 2>/dev/null || [[ "$(pgrep -c 'dunst')" -lt 1 ]]; then
-        return 1
-    fi
-
-    notify-send --urgency=low \
-                --expire-time=${expire_time} \
-                --app-name="${application_name}" \
-                --hint="int:value:${_new_brightness_percentage}" "Brightness"
+    notification-send --urgency=low \
+                      --expire-time=${expire_time} \
+                      --app-name="${application_name}" \
+                      --hint="int:value:${_new_brightness_percentage}" "Brightness"
 }
 
 main "${@}"
