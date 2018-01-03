@@ -130,110 +130,35 @@ if ! shopt -oq posix; then
   fi
 fi
 
-display_prompt() {
-    # set variable identifying the chroot you work in (used in the prompt below)
-    if [ -z "${debian_chroot:-}" ] && [ -r /etc/debian_chroot ]; then
-        debian_chroot=$(cat /etc/debian_chroot)
-    fi
+source "${HOME}/.prompt"
 
-    # uncomment for a colored prompt, if the terminal has the capability; turned
-    # off by default to not distract the user: the focus in a terminal window
-    # should be on the output of commands, not on the prompt
-    force_color_prompt=yes
+current_working_directory() {
+    local -r _maximum_path_length="$(("$(tput cols)" / 3))"
+    local -r _abbreviated_path_symbol='[…]'
+    local _current_path="${PWD/${HOME}/'~'}"
+    local -ri _current_path_length="$(echo -n "${_current_path}" | wc -c | tr -d " ")"
 
-    if [ -n "$force_color_prompt" ]; then
-        if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
-        # We have color support; assume it's compliant with Ecma-48
-        # (ISO/IEC-6429). (Lack of such support is extremely rare, and such
-        # a case would tend to support setf rather than setaf.)
-        color_prompt=yes
-        else
-        color_prompt=
-        fi
-    fi
-
-    if [ -f /usr/share/git/completion/git-prompt.sh ]; then
-        source /usr/share/git/completion/git-prompt.sh
-    fi
-
-    source "${HOME}/.bash/functions/colors"
-
-    virtualenv_info() {
-        if [[ -n "$VIRTUAL_ENV" ]]; then
-            # Strip out the path and just leave the environment's name
-            venv="${VIRTUAL_ENV##*/}"
-        else
-            venv=''
-        fi
-        [[ -n "$venv" ]] && echo "──[$venv]"
-    }
-
-    last_command_exit_status() {
-        local -ri _exit_code="${1}"
-        local -i _code_color=${GREEN}
-        local _code_symbol="✔"
-        if [ "${_exit_code}" -ne 0 ]; then
-            _code_color=1
-            _code_symbol="✘"
-        fi
-        echo -n "[$(with_bold with_color ${_code_color} echo -n "${_code_symbol}")]"
-    }
-
-    machine_information() {
-        echo -n "[$(with_bold with_color 2 echo -n "${USER}@${HOSTNAME}")]"
-    }
-
-    current_working_directory() {
-        local -r _maximum_path_length="$(("$(tput cols)" / 3))"
-        local -r _abbreviated_path_symbol='[…]'
-        local _current_path="${PWD/${HOME}/'~'}"
-        local -ri _current_path_length="$(echo -n "${_current_path}" | wc -c | tr -d " ")"
-
-        if [[ "${_current_path_length}" -gt "${_maximum_path_length}" ]]; then
-            _current_path="$(echo -n "${_current_path}" \
-                | awk -F'/' -v abbreviated_path_symbol="${_abbreviated_path_symbol}" '{
-                    print $1 "/" $2 "/" abbreviated_path_symbol "/" $(NF - 1) "/" $(NF)
-                  }'
-            )"
-        fi
-
-        echo -n "[$(with_bold with_color 4 echo -n "${_current_path}")]"
-    }
-
-    current_directory_information() {
-        local -r _current_directory_information="$(ls -lah \
-            | awk '/total/ {
-                total_space=$2
-              }
-              END {
-                print NR " files, " total_space
+    if [[ "${_current_path_length}" -gt "${_maximum_path_length}" ]]; then
+        _current_path="$(echo -n "${_current_path}" \
+            | awk -F'/' -v abbreviated_path_symbol="${_abbreviated_path_symbol}" '{
+                print $1 "/" $2 "/" abbreviated_path_symbol "/" $(NF - 1) "/" $(NF)
               }'
         )"
-        echo -n "[${_current_directory_information}]"
-    }
-
-    prompt() {
-        local -r _last_command_exit_status="$(last_command_exit_status "${1}")"
-        local -r _virtualenv_info="$(virtualenv_info)"
-        local -r _current_working_directory="$(current_working_directory)"
-        local -r _current_directory_information="$(current_directory_information)"
-        local -r _git_workspace="$(__git_ps1)"
-
-        cat << EOF
-┌─${_last_command_exit_status}${_virtualenv_info}──$(machine_information)──${_current_working_directory}──${_current_directory_information} ${_git_workspace}
-└─╼ λ 
-EOF
-    }
-
-    # Disable the default virtualenv prompt change
-    export VIRTUAL_ENV_DISABLE_PROMPT=1
-
-    if [ "$color_prompt" = yes ]; then
-        PS1='$(prompt "${?}")'
-    else
-        PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
     fi
-    unset color_prompt force_color_prompt
+
+    echo -n "[$(with_bold with_color 4 echo -n "${_current_path}")]"
 }
 
-display_prompt
+prompt() {
+    local -r _last_command_exit_status="$(last_command_exit_status "${1}")"
+    local -r _virtualenv_info="$(virtualenv_info)"
+    local -r _current_working_directory="$(current_working_directory)"
+    local -r _current_directory_information="$(current_directory_information)"
+    local -r _git_workspace="$(__git_ps1)"
+
+    cat << EOF
+┌─${_last_command_exit_status}${_virtualenv_info}──$(machine_information)──${_current_working_directory}──${_current_directory_information}${_git_workspace}
+└─╼ λ 
+EOF
+}
+PS1='$(prompt "${?}")'
