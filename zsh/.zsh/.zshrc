@@ -3,7 +3,10 @@ HISTSIZE=50000
 SAVEHIST=50000
 
 setopt COMPLETE_ALIASES
-setopt appendhistory autocd extendedglob nomatch notify
+setopt autocd
+setopt extendedglob
+setopt nomatch
+setopt notify
 setopt promptsubst
 bindkey -v
 zstyle :compinstall filename '/home/twain/.zshrc'
