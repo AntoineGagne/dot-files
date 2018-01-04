@@ -8,6 +8,10 @@ setopt extendedglob
 setopt nomatch
 setopt notify
 setopt promptsubst
+setopt hist_ignore_dups
+setopt hist_ignore_space
+setopt interactivecomments
+
 bindkey -e
 zstyle :compinstall filename '/home/twain/.zshrc'
 
@@ -26,6 +30,8 @@ autoload zkbd
 autoload -Uz up-line-or-beginning-search down-line-or-beginning-search
 zle -N up-line-or-beginning-search
 zle -N down-line-or-beginning-search
+[[ -n "$key[Up]"   ]] && bindkey -- "$key[Up]"   up-line-or-beginning-search
+[[ -n "$key[Down]" ]] && bindkey -- "$key[Down]" down-line-or-beginning-search
 
 zle-keymap-select () {
     case $KEYMAP in
@@ -41,9 +47,6 @@ echo -n '\e[5 q'
 
 zle -N zle-keymap-select
 
-[[ -n "$key[Up]"   ]] && bindkey -- "$key[Up]"   up-line-or-beginning-search
-[[ -n "$key[Down]" ]] && bindkey -- "$key[Down]" down-line-or-beginning-search
-
 source "${HOME}/.bash/functions/colors"
 source "${HOME}/.bash/.bash_aliases"
 source "${HOME}/.bash/.bash_functions"
@@ -55,6 +58,10 @@ compctl -K _completemarks jump
 compctl -K _completemarks j
 compctl -K _completemarks unmark
 compctl -K _completemarks um
+
+if [ -f /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]; then
+    source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+fi
 
 if [ -f /usr/local/bin/virtualenvwrapper.sh ]; then
     source /usr/local/bin/virtualenvwrapper.sh
