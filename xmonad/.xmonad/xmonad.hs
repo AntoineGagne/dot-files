@@ -1,26 +1,20 @@
 -- vim: foldmethod=marker
 
+import GHC.IO.Handle.Types ( Handle )
 import XMonad
 import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.FadeInactive ( fadeInactiveCurrentWSLogHook )
 import XMonad.Hooks.EwmhDesktops ( ewmh )
 import XMonad.Hooks.ManageDocks
-import XMonad.Hooks.ManageHelpers
 import XMonad.Hooks.SetWMName ( setWMName )
-import XMonad.Layout.Fullscreen
 import XMonad.Layout.IndependentScreens ( withScreens
                                         , countScreens
                                         , marshallPP
-                                        , onCurrentScreen
-                                        , workspaces'
                                         )
 import XMonad.Layout.Column ( Column (..) )
 import XMonad.Layout.NoBorders
 import XMonad.Layout.Grid
 import XMonad.Layout.OneBig ( OneBig (..) )
-import XMonad.Layout.Spiral
-import XMonad.Layout.Tabbed
-import XMonad.Layout.ThreeColumns
 import XMonad.Util.Cursor ( setDefaultCursor )
 import XMonad.Util.Run ( spawnPipe
                        , hPutStrLn
@@ -33,18 +27,13 @@ import Hooks.ManageHooks ( myManageHooks
                          , myWorkspaces
                          )
 import Hooks.Notifications ( myUrgencyHook )
-import Bindings.Keybindings ( myKeys
-                            , myLauncher
-                            , myModMask
-                            )
+import Bindings.Keybindings ( myKeys )
 import Bindings.MouseBindings ( myMouseBindings )
-import Themes.Fonts ( urxvtResourceFontString )
 import Themes.Gruvbox ( myTheme )
 import Themes.Palettes ( Palette (..) )
-import Themes.Themes ( Theme (..)
-                     , showColor
-                     )
+import Themes.Themes ( showColor )
 
+main :: IO ()
 main = do
     screenNumber <- countScreens
     hs <- mapM (spawnPipe . xmobarCommand) [0..screenNumber - 1]
@@ -64,10 +53,11 @@ xmobarCommand (S screenNumber) = unwords [ myStatusBar
                                          ]
     where additionalCommands = "-C '[Run PipeReader \"N/A:/$HOME/.volume-" ++ show screenNumber ++ "\" \"vol\"]'"
 
+myBarPrettyPrinter :: Handle -> ScreenId -> PP
 myBarPrettyPrinter handle screenNumber = marshallPP screenNumber def
     { ppVisible = showMyThemeColor foreground
     , ppUrgent = showMyThemeColor color9
-    , ppOrder = \(wss:layout:title:_) -> [wss, layout]
+    , ppOrder = \(wss:layout:_:_) -> [wss, layout]
     , ppOutput = hPutStrLn handle
     , ppTitle = xmobarColor barTitleColor "" . shorten 40
     , ppCurrent = xmobarColor barCurrentWorkspaceColor ""
@@ -84,7 +74,6 @@ barTitleColor = showColor foreground myTheme
 -- Color of current workspace in xmobar.
 barCurrentWorkspaceColor :: String
 barCurrentWorkspaceColor = showColor color10 myTheme
-
 
 defaults = def
     { borderWidth = myBorderWidth

@@ -2,9 +2,7 @@ module Themes.Palettes
     ( Palette (..)
     ) where
 
-import Themes.Colors ( Color
-                     , makeHexColor
-                     )
+import Themes.Colors ( Color )
 
 data Palette = Palette
     { background :: Color

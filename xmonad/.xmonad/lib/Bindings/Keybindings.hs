@@ -28,10 +28,7 @@ import XMonad.Actions.PhysicalScreens ( viewScreen
                                       , sendToScreen
                                       )
 import XMonad.Actions.Search ( (!>) )
-import XMonad.Layout.IndependentScreens ( withScreens
-                                        , countScreens
-                                        , marshallPP
-                                        , onCurrentScreen
+import XMonad.Layout.IndependentScreens ( onCurrentScreen
                                         , workspaces'
                                         )
 import XMonad.Hooks.ManageDocks ( ToggleStruts (..) )
@@ -140,7 +137,6 @@ myKeys conf = let m = modMask conf in Map.fromList $
     , (f, mask) <- [(viewScreen, 0), (sendToScreen, shiftMask)]
     ]
         where viewShift i = StackSet.view i . StackSet.shift i
-              withScreen screen f = screenWorkspace screen >>= flip whenJust (windows . f)
               searchEngineMap method = Map.fromList
                   [ ((0, xK_a), method Search.amazon)
                   , ((0, xK_h), method Search.hoogle)

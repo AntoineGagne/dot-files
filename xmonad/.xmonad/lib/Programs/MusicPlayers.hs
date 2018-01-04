@@ -10,7 +10,6 @@ import Network.MPD ( withMPD
                    , Response
                    )
 import Network.MPD.Applicative ( runCommand )
-import Network.MPD.Core ( MonadMPD (..) )
 import XMonad ( MonadIO (..) )
 
 import Programs.Commands ( Command

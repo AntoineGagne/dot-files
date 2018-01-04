@@ -13,7 +13,6 @@ import DBus.Notify ( blankNote
                    , connectSession
                    , notify
                    , Body (..)
-                   , Client
                    , Note (..)
                    , Hint ( Urgency )
                    , UrgencyLevel ( Low )
@@ -40,7 +39,7 @@ import XMonad.Hooks.UrgencyHook ( UrgencyHook (..)
                                 )
 import XMonad.StackSet ( findTag )
 import XMonad.Util.NamedWindows ( getName
-                                , NamedWindow (..)
+                                , NamedWindow
                                 )
 
 myUrgencyHook :: LayoutClass l Window => XConfig l -> XConfig l

@@ -3,9 +3,7 @@ module Themes.Gruvbox
     , myTheme
     ) where
 
-import Themes.Colors ( Color
-                     , makeHexColor
-                     )
+import Themes.Colors ( makeHexColor )
 import Themes.Fonts ( Font (..)
                     , FontStyle (..)
                     , FontType (..)
