@@ -5,8 +5,7 @@ module XMonad.Themes.Themes
 
 import XMonad.Themes.Colors ( Color )
 import XMonad.Themes.Fonts ( Font )
-import XMonad.Themes.Palettes ( Palette
-                              )
+import XMonad.Themes.Palettes ( Palette )
 
 data Theme = Theme
     { name :: String

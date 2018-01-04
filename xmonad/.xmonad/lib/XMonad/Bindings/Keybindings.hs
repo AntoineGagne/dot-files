@@ -51,6 +51,9 @@ import XMonad.Programs.Terminals ( muttCommand
                                  , weechatCommand
                                  , myTerminalCommand
                                  )
+import XMonad.Programs.MusicPlayers ( MusicPlayerControls (..)
+                                    , myMusicPlayer
+                                    )
 import XMonad.Prompts.SearchPrompts ( myPrompt )
 
 myModMask = mod4Mask
@@ -106,10 +109,10 @@ myKeys conf = let m = modMask conf in Map.fromList $
     , ((0, xF86XK_AudioLowerVolume), spawn "control-volume -c -5%")
     , ((0, xF86XK_AudioRaiseVolume), spawn "control-volume -c +5%")
     -- {{{2 Music Controls
-    , ((0, xF86XK_AudioNext), spawn "mpc next")
-    , ((0, xF86XK_AudioPrev), spawn "mpc prev")
-    , ((0, xF86XK_AudioStop), spawn "mpc stop")
-    , ((0, xF86XK_AudioPlay), spawn "mpc toggle")
+    , ((0, xF86XK_AudioNext), runCommand . nextSong $ myMusicPlayer)
+    , ((0, xF86XK_AudioPrev), runCommand . previousSong $ myMusicPlayer)
+    , ((0, xF86XK_AudioStop), runCommand . stop $ myMusicPlayer)
+    , ((0, xF86XK_AudioPlay), runCommand . toggle $ myMusicPlayer)
     -- {{{2 Brightness Controls
     , ((0, xF86XK_MonBrightnessDown), spawn "control-brightness -5")
     , ((0, xF86XK_MonBrightnessUp), spawn "control-brightness 5")
