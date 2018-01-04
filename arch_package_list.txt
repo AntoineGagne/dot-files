@@ -1,4 +1,5 @@
 adobe-source-code-pro-fonts
+adobe-source-han-sans-jp-fonts
 adobe-source-sans-pro-fonts
 adobe-source-serif-pro-fonts
 alsa-utils
@@ -13,11 +14,11 @@ beets
 biber
 bison
 bitlbee
+bs1770gain
 bzip2
 cabal-install
 clang-tools-extra
 cmake
-cmus
 compton
 coreutils
 cryptsetup
@@ -28,6 +29,7 @@ diffutils
 dmenu
 dmidecode
 dos2unix
+dunst
 e2fsprogs
 easytag
 efibootmgr
@@ -38,6 +40,8 @@ filesystem
 findutils
 firefox
 flex
+foomatic-db
+foomatic-db-ppds
 gawk
 gcc-libs
 gettext
@@ -48,9 +52,12 @@ glibc
 graphviz
 grep
 grub
+gst-libav
+gst-plugins-good
+gst-python
 gtk-engine-murrine
+gutenprint
 gzip
-hplip
 imagemagick
 inetutils
 inkscape
@@ -64,6 +71,7 @@ jq
 krita
 kvantum-theme-arc
 less
+lesspipe
 licenses
 linux
 logrotate
@@ -73,17 +81,22 @@ make
 man-db
 man-pages
 mdadm
+mpc
+mpd
 mpv
 mutt
 namcap
 nano
+ncmpcpp
 neovim
 netctl
 newsboat
 nodejs
+noto-fonts-emoji
 npm
 ntfs-3g
 openssh
+opus-tools
 opusfile
 p7zip
 pacman
@@ -103,7 +116,10 @@ psmisc
 pulseaudio
 pulseaudio-alsa
 python
+python-mpd2
 python-pip
+python-pyacoustid
+python-requests
 python2-neovim
 python2-websocket-client
 redshift
@@ -118,7 +134,9 @@ shellcheck
 stack
 stow
 sudo
+swh-plugins
 sysfsutils
+system-config-printer
 systemd-sysvcompat
 tar
 texinfo
@@ -143,6 +161,7 @@ texlive-science
 tmux
 tree
 ttf-hack
+ttf-symbola
 udisks2
 ufw
 unzip
@@ -171,3 +190,6 @@ xscreensaver
 youtube-dl
 zathura
 zathura-pdf-mupdf
+zsh
+zsh-completions
+zsh-syntax-highlighting
