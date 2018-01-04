@@ -8,7 +8,7 @@ setopt extendedglob
 setopt nomatch
 setopt notify
 setopt promptsubst
-bindkey -v
+bindkey -e
 zstyle :compinstall filename '/home/twain/.zshrc'
 
 autoload -Uz compinit
@@ -16,6 +16,33 @@ compinit
 
 autoload -Uz promptinit
 promptinit
+
+autoload -Uz run-help
+unalias run-help
+alias help=run-help
+
+autoload zkbd
+
+autoload -Uz up-line-or-beginning-search down-line-or-beginning-search
+zle -N up-line-or-beginning-search
+zle -N down-line-or-beginning-search
+
+zle-keymap-select () {
+    case $KEYMAP in
+        vicmd)
+            echo -n '\e[1 q'
+            ;;
+        viins|main)
+            echo -n '\e[5 q'
+            ;;
+    esac
+}
+echo -n '\e[5 q'
+
+zle -N zle-keymap-select
+
+[[ -n "$key[Up]"   ]] && bindkey -- "$key[Up]"   up-line-or-beginning-search
+[[ -n "$key[Down]" ]] && bindkey -- "$key[Down]" down-line-or-beginning-search
 
 source "${HOME}/.bash/functions/colors"
 source "${HOME}/.bash/.bash_aliases"
