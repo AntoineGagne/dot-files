@@ -58,6 +58,7 @@ gst-python
 gtk-engine-murrine
 gutenprint
 gzip
+haskell-fdo-notify
 imagemagick
 inetutils
 inkscape
