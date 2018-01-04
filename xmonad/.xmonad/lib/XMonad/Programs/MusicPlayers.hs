@@ -19,6 +19,7 @@ import XMonad.Programs.Commands ( Command
 
 import qualified Network.MPD.Applicative as MPDApplicative
 import qualified Network.MPD.Applicative.PlaybackControl as PlaybackControl
+import qualified Network.MPD.Commands.Extensions as MPDExtensions
 
 data MusicPlayerControls m = MusicPlayerControls
     { toggle :: Command m
@@ -32,7 +33,7 @@ myMusicPlayer = mpd
 
 mpd :: MonadIO m => MusicPlayerControls m
 mpd = MusicPlayerControls
-    { toggle = runMPDCommand $ PlaybackControl.pause True
+    { toggle = createCommand . liftMPD_ $ MPDExtensions.toggle
     , stop = runMPDCommand PlaybackControl.stop
     , nextSong = runMPDCommand PlaybackControl.next
     , previousSong = runMPDCommand PlaybackControl.previous
