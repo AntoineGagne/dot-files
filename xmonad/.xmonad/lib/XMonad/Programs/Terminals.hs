@@ -7,6 +7,7 @@ module XMonad.Programs.Terminals
     , mutt
     , muttCommand
     , myTerminal
+    , myTerminalCommand
     , ncmpcpp
     , ncmpcppCommand
     , newsboat
@@ -29,11 +30,11 @@ data TerminalEmulator = TerminalEmulator
     , terminalExecutionOption :: String
     }
 
-instance Show TerminalEmulator where
-    show TerminalEmulator { terminalDaemonName = terminalDaemonName' } = terminalDaemonName'
-
 myTerminal :: TerminalEmulator
 myTerminal = urxvt
+
+myTerminalCommand :: MonadIO m => Command m
+myTerminalCommand = createCommand . spawn . terminalDaemonName $ myTerminal
 
 kitty :: TerminalEmulator
 kitty = TerminalEmulator

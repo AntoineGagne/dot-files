@@ -76,13 +76,15 @@ import qualified XMonad.Actions.Search as Search
 import qualified XMonad.StackSet as W
 import qualified Data.Map as Map
 
+import XMonad.Programs.Terminals ( TerminalEmulator ( terminalDaemonName )
+                                 , myTerminal
+                                 )
 import XMonad.Hooks.ManageHooks ( myManageHooks
                                 , myWorkspaces
                                 )
 import XMonad.Hooks.Notifications ( LibNotifyUrgencyHook (..) )
 import XMonad.Bindings.Keybindings ( myKeys
                                    , myLauncher
-                                   , myTerminal
                                    , myModMask
                                    )
 import XMonad.Bindings.MouseBindings ( myMouseBindings )
@@ -151,7 +153,7 @@ defaults = def
     , modMask = mod4Mask
     , mouseBindings = myMouseBindings
     , normalBorderColor  = myNormalBorderColor
-    , terminal = show myTerminal
+    , terminal = terminalDaemonName myTerminal
     , keys = myKeys
     , handleEventHook = docksEventHook
     }

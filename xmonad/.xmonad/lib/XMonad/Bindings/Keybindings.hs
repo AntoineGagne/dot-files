@@ -1,7 +1,6 @@
 module XMonad.Bindings.Keybindings
     ( myKeys
     , myLauncher
-    , myTerminal
     , myModMask
     ) where
 
@@ -50,7 +49,7 @@ import XMonad.Programs.Terminals ( muttCommand
                                  , ncmpcppCommand
                                  , newsboatCommand
                                  , weechatCommand
-                                 , myTerminal
+                                 , myTerminalCommand
                                  )
 import XMonad.Prompts.SearchPrompts ( myPrompt )
 
@@ -63,7 +62,7 @@ myKeys :: (XConfig Layout -> Map.Map (ButtonMask, KeySym) (X ()))
 myKeys conf = let m = modMask conf in Map.fromList $
     -- {{{2 Programs
     [ ((myModMask, xK_p), spawn myLauncher)
-    , ((myModMask .|. shiftMask, xK_Return), spawn (show myTerminal))
+    , ((myModMask .|. shiftMask, xK_Return), runCommand myTerminalCommand)
     , ((myModMask .|. shiftMask, xK_c), kill)
     -- {{{2 XMonad
     , ((myModMask, xK_q), restart "xmonad" True)
