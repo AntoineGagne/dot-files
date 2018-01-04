@@ -7,4 +7,5 @@ path=(~/bin \
       /usr/bin/vendor_perl \
       ~/.node_modules/bin \
       ~/.cargo/bin \
+      ~/.local/bin \
       $path[@])
