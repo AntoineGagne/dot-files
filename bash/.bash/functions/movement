@@ -15,7 +15,7 @@ unmark() {
 }
 
 marks() {
-    ls -l "$MARKPATH" | sed 's/  / /g' | cut -d' ' -f9- | sed 's/ -/\t-/g' | column -t && echo
+    ls -l "$MARKPATH" | sed 's/  / /g' | cut -d' ' -f9- | sed 's/->/@/g' | column -t -s @
 }
 
 _completemarks() {
