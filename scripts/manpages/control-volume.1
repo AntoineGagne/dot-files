@@ -1,0 +1,38 @@
+.Dd January 3, 2018
+.Dt CONTROL-VOLUME 1
+.Os
+.Sh NAME
+.Nm control-volume
+.Nd control system volume
+.Sh SYNOPSIS
+.Nm
+.Op Fl -c Ar VOLUME_LEVEL | Fl --control Ar VOLUME_LEVEL
+.Op Fl -d | --default-sink
+.Op Fl -t | --toggle
+.Op Fl -v | --volume
+.Sh DESCRIPTION
+.Nm
+allows the user to view and control audio settings such as the volume level.
+.Sh OPTIONS
+.Bl -tag -width indent
+.It Fl -v , --volume
+Display the current volume level.
+.It Fl -d , --default-sink
+Display the default sink number.
+.It Fl -m , --muted
+Display whether the audio is muted or not.
+.It Fl -t , --toggle
+Toggle the volume between muted/unmuted.
+.It Fl -c Ar VOLUME_LEVEL , Fl --control Ar VOLUME_LEVEL
+Add/remove
+.I VOLUME_LEVEL
+to the current volume level.
+.El
+.Sh EXAMPLES
+This section contains some examples of how to use the program.
+.Pp
+This command will raise the volume by 5%:
+.nf
+.RS
+control-volume --control "+5%"
+.RE
