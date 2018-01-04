@@ -89,9 +89,11 @@ import XMonad.Bindings.Keybindings ( myKeys
                                    )
 import XMonad.Bindings.MouseBindings ( myMouseBindings )
 import XMonad.Themes.Fonts ( urxvtResourceFontString )
-import XMonad.Themes.Gruvbox ( gruvboxTheme )
+import XMonad.Themes.Gruvbox ( myTheme )
 import XMonad.Themes.Palettes ( Palette (..) )
-import XMonad.Themes.Themes ( Theme (..) )
+import XMonad.Themes.Themes ( Theme (..)
+                            , showColor
+                            )
 
 
 main = do
@@ -121,10 +123,9 @@ xmobarCommand (S screenNumber) = unwords [ myStatusBar
                                          ]
     where additionalCommands = "-C '[Run PipeReader \"N/A:/$HOME/.volume-" ++ show screenNumber ++ "\" \"vol\"]'"
 
-
 myBarPrettyPrinter handle screenNumber = marshallPP screenNumber def
-    { ppVisible = color . show . foreground . palette $ gruvboxTheme
-    , ppUrgent = color . show . color9 . palette $ gruvboxTheme
+    { ppVisible = showMyThemeColor foreground
+    , ppUrgent = showMyThemeColor color9
     , ppOrder = \(wss:layout:title:_) -> [wss, layout]
     , ppOutput = hPutStrLn handle
     , ppTitle = xmobarColor barTitleColor "" . shorten 40
@@ -133,14 +134,15 @@ myBarPrettyPrinter handle screenNumber = marshallPP screenNumber def
     , ppLayout = myLayoutPrinter
     }
     where color colorName = xmobarColor colorName ""
+          showMyThemeColor color' = color . showColor color' $ myTheme
 
 -- Color of current window title in xmobar.
 barTitleColor :: String
-barTitleColor = show . foreground . palette $ gruvboxTheme
+barTitleColor = showColor foreground myTheme
 
 -- Color of current workspace in xmobar.
 barCurrentWorkspaceColor :: String
-barCurrentWorkspaceColor = show . color10 . palette $ gruvboxTheme
+barCurrentWorkspaceColor = showColor color10 myTheme
 
 
 defaults = def
@@ -182,7 +184,7 @@ myFocusFollowsMouse :: Bool
 myFocusFollowsMouse = True
 
 myNormalBorderColor :: String
-myNormalBorderColor  = show . color8 . palette $ gruvboxTheme
+myNormalBorderColor  = showColor color8 myTheme
 
 myFocusedBorderColor :: String
-myFocusedBorderColor = show . color14 . palette $ gruvboxTheme
+myFocusedBorderColor = showColor color14 myTheme

@@ -1,5 +1,6 @@
 module XMonad.Themes.Gruvbox
     ( gruvboxTheme
+    , myTheme
     ) where
 
 import XMonad.Themes.Colors ( Color
@@ -12,6 +13,9 @@ import XMonad.Themes.Fonts ( Font (..)
 
 import XMonad.Themes.Palettes ( Palette (..) )
 import XMonad.Themes.Themes ( Theme (..) )
+
+myTheme :: Theme
+myTheme = gruvboxTheme
 
 gruvboxTheme :: Theme
 gruvboxTheme = Theme
