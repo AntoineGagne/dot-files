@@ -21,7 +21,7 @@ SCRIPTS = bash/cmus-status.bash \
 		  bash/notification-send.bash
 INSTALL_SCRIPTS := $(SCRIPTS:%=install-%)
 MANPAGES_DIR := $(HOME)/.local/share/man/man1
-MANPAGES := $(patsubst %, $(MANPAGES_DIR)/%.1, control-brightness control-volume)
+MANPAGES := $(patsubst %, $(MANPAGES_DIR)/%.1.gz, control-brightness control-volume)
 
 .PHONY: all
 all: $(INSTALL_SCRIPTS) manpages
@@ -38,8 +38,8 @@ $(INSTALL_DIR):
 .PHONY: manpages
 manpages: $(MANPAGES) | $(MANPAGES_DIR)
 
-$(MANPAGES_DIR)/%.1: manpages/%.1 | $(MANPAGES_DIR)
-	cp $< $@
+$(MANPAGES_DIR)/%.1.gz: manpages/%.1 | $(MANPAGES_DIR)
+	gzip $< > $@
 
 .PHONY: $(MANPAGES_DIR)
 $(MANPAGES_DIR):
