@@ -1,11 +1,11 @@
-module XMonad.Themes.Themes
+module Themes.Themes
     ( Theme (..)
     , showColor
     ) where
 
-import XMonad.Themes.Colors ( Color )
-import XMonad.Themes.Fonts ( Font )
-import XMonad.Themes.Palettes ( Palette )
+import Themes.Colors ( Color )
+import Themes.Fonts ( Font )
+import Themes.Palettes ( Palette )
 
 data Theme = Theme
     { name :: String

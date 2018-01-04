@@ -1,6 +1,6 @@
 {-# LANGUAGE RecordWildCards #-}
 
-module XMonad.Programs.Terminals
+module Programs.Terminals
     ( TerminalEmulator (..)
     , kitty
     , urxvt
@@ -19,9 +19,9 @@ module XMonad.Programs.Terminals
 import XMonad ( MonadIO )
 import XMonad.Core ( spawn )
 
-import XMonad.Programs.Commands ( Command
-                                , createCommand
-                                )
+import Programs.Commands ( Command
+                         , createCommand
+                         )
 
 data TerminalEmulator = TerminalEmulator
     { terminalName :: String

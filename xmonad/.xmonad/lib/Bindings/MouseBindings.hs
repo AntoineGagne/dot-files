@@ -1,4 +1,4 @@
-module XMonad.Bindings.MouseBindings
+module Bindings.MouseBindings
     ( myMouseBindings
     ) where
 

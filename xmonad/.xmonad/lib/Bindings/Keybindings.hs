@@ -1,4 +1,4 @@
-module XMonad.Bindings.Keybindings
+module Bindings.Keybindings
     ( myKeys
     , myLauncher
     , myModMask
@@ -44,17 +44,17 @@ import qualified XMonad.Actions.Submap as Submap
 import qualified XMonad.Actions.Search as Search
 import qualified XMonad.StackSet as StackSet
 
-import XMonad.Programs.Commands ( runCommand )
-import XMonad.Programs.Terminals ( muttCommand
-                                 , ncmpcppCommand
-                                 , newsboatCommand
-                                 , weechatCommand
-                                 , myTerminalCommand
-                                 )
-import XMonad.Programs.MusicPlayers ( MusicPlayerControls (..)
-                                    , myMusicPlayer
-                                    )
-import XMonad.Prompts.SearchPrompts ( myPrompt )
+import Programs.Commands ( runCommand )
+import Programs.Terminals ( muttCommand
+                          , ncmpcppCommand
+                          , newsboatCommand
+                          , weechatCommand
+                          , myTerminalCommand
+                          )
+import Programs.MusicPlayers ( MusicPlayerControls (..)
+                             , myMusicPlayer
+                             )
+import Prompts.SearchPrompts ( myPrompt )
 
 myModMask = mod4Mask
 

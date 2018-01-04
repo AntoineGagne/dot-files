@@ -1,4 +1,4 @@
-module XMonad.Hooks.Wallpapers
+module Hooks.Wallpapers
     ( myWallpaperSetterHook
     ) where
 

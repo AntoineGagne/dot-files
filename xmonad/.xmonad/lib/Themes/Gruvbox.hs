@@ -1,18 +1,18 @@
-module XMonad.Themes.Gruvbox
+module Themes.Gruvbox
     ( gruvboxTheme
     , myTheme
     ) where
 
-import XMonad.Themes.Colors ( Color
-                            , makeHexColor
-                            )
-import XMonad.Themes.Fonts ( Font (..)
-                           , FontStyle (..)
-                           , FontType (..)
-                           )
+import Themes.Colors ( Color
+                     , makeHexColor
+                     )
+import Themes.Fonts ( Font (..)
+                    , FontStyle (..)
+                    , FontType (..)
+                    )
 
-import XMonad.Themes.Palettes ( Palette (..) )
-import XMonad.Themes.Themes ( Theme (..) )
+import Themes.Palettes ( Palette (..) )
+import Themes.Themes ( Theme (..) )
 
 myTheme :: Theme
 myTheme = gruvboxTheme

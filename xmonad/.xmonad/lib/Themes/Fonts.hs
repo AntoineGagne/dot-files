@@ -1,6 +1,6 @@
 {-# LANGUAGE RecordWildCards #-}
 
-module XMonad.Themes.Fonts
+module Themes.Fonts
     ( FontType (..)
     , Font (..)
     , FontStyle (..)

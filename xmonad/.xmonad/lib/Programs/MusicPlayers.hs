@@ -1,4 +1,4 @@
-module XMonad.Programs.MusicPlayers
+module Programs.MusicPlayers
     ( myMusicPlayer
     , mpd
     , MusicPlayerControls (..)
@@ -13,9 +13,9 @@ import Network.MPD.Applicative ( runCommand )
 import Network.MPD.Core ( MonadMPD (..) )
 import XMonad ( MonadIO (..) )
 
-import XMonad.Programs.Commands ( Command
-                                , createCommand
-                                )
+import Programs.Commands ( Command
+                         , createCommand
+                         )
 
 import qualified Network.MPD.Applicative as MPDApplicative
 import qualified Network.MPD.Applicative.PlaybackControl as PlaybackControl

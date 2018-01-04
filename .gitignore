@@ -19,7 +19,6 @@ dist/
 downloads/
 eggs/
 .eggs/
-lib/
 lib64/
 parts/
 sdist/
@@ -186,10 +185,6 @@ patched-src
 # End of https://www.gitignore.io/api/dotfilessh
 
 vimwiki_html
-
-**/.xmonad/*
-!**/.xmonad/*.hs
-!**/.xmonad/lib
 
 **/.vim/spell/*
 **/.vim/spell/**

@@ -1,6 +1,6 @@
 {-# LANGUAGE FlexibleContexts #-}
 
-module XMonad.Hooks.Notifications
+module Hooks.Notifications
     ( LibNotifyUrgencyHook (..)
     , myUrgencyHook
     ) where

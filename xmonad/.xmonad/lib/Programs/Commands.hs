@@ -1,4 +1,4 @@
-module XMonad.Programs.Commands
+module Programs.Commands
     ( Command
     , createCommand
     , runCommand

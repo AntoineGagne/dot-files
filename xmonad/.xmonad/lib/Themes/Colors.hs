@@ -1,4 +1,4 @@
-module XMonad.Themes.Colors
+module Themes.Colors
     ( Color
     , makeHexColor
     ) where

@@ -1,10 +1,10 @@
-module XMonad.Themes.Palettes
+module Themes.Palettes
     ( Palette (..)
     ) where
 
-import XMonad.Themes.Colors ( Color
-                            , makeHexColor
-                            )
+import Themes.Colors ( Color
+                     , makeHexColor
+                     )
 
 data Palette = Palette
     { background :: Color

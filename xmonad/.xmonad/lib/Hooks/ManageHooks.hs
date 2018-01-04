@@ -1,4 +1,4 @@
-module XMonad.Hooks.ManageHooks
+module Hooks.ManageHooks
     ( myManageHooks
     , myWorkspaces
     ) where

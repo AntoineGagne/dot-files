@@ -26,24 +26,24 @@ import XMonad.Util.Run ( spawnPipe
                        , hPutStrLn
                        )
 
-import XMonad.Programs.Terminals ( TerminalEmulator ( terminalDaemonName )
-                                 , myTerminal
-                                 )
-import XMonad.Hooks.ManageHooks ( myManageHooks
-                                , myWorkspaces
-                                )
-import XMonad.Hooks.Notifications ( myUrgencyHook )
-import XMonad.Bindings.Keybindings ( myKeys
-                                   , myLauncher
-                                   , myModMask
-                                   )
-import XMonad.Bindings.MouseBindings ( myMouseBindings )
-import XMonad.Themes.Fonts ( urxvtResourceFontString )
-import XMonad.Themes.Gruvbox ( myTheme )
-import XMonad.Themes.Palettes ( Palette (..) )
-import XMonad.Themes.Themes ( Theme (..)
-                            , showColor
+import Programs.Terminals ( TerminalEmulator ( terminalDaemonName )
+                          , myTerminal
+                          )
+import Hooks.ManageHooks ( myManageHooks
+                         , myWorkspaces
+                         )
+import Hooks.Notifications ( myUrgencyHook )
+import Bindings.Keybindings ( myKeys
+                            , myLauncher
+                            , myModMask
                             )
+import Bindings.MouseBindings ( myMouseBindings )
+import Themes.Fonts ( urxvtResourceFontString )
+import Themes.Gruvbox ( myTheme )
+import Themes.Palettes ( Palette (..) )
+import Themes.Themes ( Theme (..)
+                     , showColor
+                     )
 
 main = do
     screenNumber <- countScreens
