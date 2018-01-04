@@ -1,5 +1,8 @@
+{-# LANGUAGE FlexibleContexts #-}
+
 module XMonad.Hooks.Notifications
     ( LibNotifyUrgencyHook (..)
+    , myUrgencyHook
     ) where
 
 import Control.Monad ( void )
@@ -18,20 +21,33 @@ import DBus.Notify ( blankNote
 import XMonad ( gets
               , windowset
               , MonadIO (..)
+              , XConfig
+              , Window
               )
-import XMonad.Core ( catchIO )
+import XMonad.Core ( catchIO
+                   , LayoutClass
+                   )
 import XMonad.Hooks.DynamicLog ( dzenStrip
                                , xmobarStrip
                                )
-import XMonad.Hooks.UrgencyHook ( UrgencyHook (..) )
-import XMonad.Layout.IndependentScreens ( unmarshallS
-                                        , unmarshallW
-                                        )
+import XMonad.Hooks.UrgencyHook ( UrgencyHook (..)
+                                , UrgencyConfig (..)
+                                , withUrgencyHookC
+                                , urgencyConfig
+                                , minutes
+                                , SuppressWhen (..)
+                                , RemindWhen (..)
+                                )
 import XMonad.StackSet ( findTag )
 import XMonad.Util.NamedWindows ( getName
                                 , NamedWindow (..)
                                 )
-import XMonad.Util.Run ( safeSpawn )
+
+myUrgencyHook :: LayoutClass l Window => XConfig l -> XConfig l
+myUrgencyHook = withUrgencyHookC LibNotifyUrgencyHook
+    urgencyConfig { suppressWhen = Visible
+                  , remindWhen = Every (minutes 5.0 )
+                  }
 
 data LibNotifyUrgencyHook = LibNotifyUrgencyHook
     deriving (Read, Show)

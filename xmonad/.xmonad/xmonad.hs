@@ -1,60 +1,16 @@
 -- vim: foldmethod=marker
 
-import Graphics.X11.Types ( xK_Print )
-import Graphics.X11.ExtraTypes.XF86 ( xF86XK_AudioLowerVolume
-                                    , xF86XK_AudioMute
-                                    , xF86XK_AudioRaiseVolume
-                                    , xF86XK_AudioPlay
-                                    , xF86XK_AudioStop
-                                    , xF86XK_AudioPrev
-                                    , xF86XK_AudioNext
-                                    , xF86XK_MonBrightnessUp
-                                    , xF86XK_MonBrightnessDown
-                                    )
-import System.Exit ( exitWith
-                   , ExitCode (..)
-                   )
 import XMonad
-import XMonad.Actions.CycleWS
-import XMonad.Actions.FlexibleResize ( mouseResizeEdgeWindow )
-import XMonad.Actions.PhysicalScreens ( viewScreen
-                                      , sendToScreen
-                                      )
-import XMonad.Actions.Search ( (!>) )
 import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.FadeInactive ( fadeInactiveCurrentWSLogHook )
-import XMonad.Hooks.EwmhDesktops ( ewmh 
-                                 , ewmhDesktopsStartup
-                                 )
+import XMonad.Hooks.EwmhDesktops ( ewmh )
 import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.ManageHelpers
 import XMonad.Hooks.SetWMName ( setWMName )
-import XMonad.Hooks.UrgencyHook ( withUrgencyHook
-                                , withUrgencyHookC
-                                , NoUrgencyHook (..)
-                                , focusUrgent
-                                , clearUrgents
-                                , borderUrgencyHook
-                                , BorderUrgencyHook (..)
-                                , urgencyConfig
-                                , UrgencyHook (..)
-                                , RemindWhen (..)
-                                , SuppressWhen (..)
-                                , minutes
-                                , UrgencyConfig (..)
-                                )
-import XMonad.Hooks.WallpaperSetter ( defWallpaperConf
-                                    , defWPNames
-                                    , wallpaperSetter
-                                    , WallpaperConf (..)
-                                    , Wallpaper ( WallpaperDir )
-                                    , WallpaperList (..)
-                                    )
 import XMonad.Layout.Fullscreen
 import XMonad.Layout.IndependentScreens ( withScreens
                                         , countScreens
                                         , marshallPP
-                                        , marshall
                                         , onCurrentScreen
                                         , workspaces'
                                         )
@@ -65,16 +21,10 @@ import XMonad.Layout.OneBig ( OneBig (..) )
 import XMonad.Layout.Spiral
 import XMonad.Layout.Tabbed
 import XMonad.Layout.ThreeColumns
-import XMonad.Util.Cursor (setDefaultCursor)
-import XMonad.Util.EZConfig (additionalKeys)
-import XMonad.Util.Run (safeSpawn, spawnPipe, hPutStrLn)
-import XMonad.Util.NamedWindows (getName)
-import qualified XMonad.Prompt         as Prompt
-import qualified XMonad.Actions.Submap as Submap
-import qualified XMonad.Actions.Search as Search
-
-import qualified XMonad.StackSet as W
-import qualified Data.Map as Map
+import XMonad.Util.Cursor ( setDefaultCursor )
+import XMonad.Util.Run ( spawnPipe
+                       , hPutStrLn
+                       )
 
 import XMonad.Programs.Terminals ( TerminalEmulator ( terminalDaemonName )
                                  , myTerminal
@@ -82,7 +32,7 @@ import XMonad.Programs.Terminals ( TerminalEmulator ( terminalDaemonName )
 import XMonad.Hooks.ManageHooks ( myManageHooks
                                 , myWorkspaces
                                 )
-import XMonad.Hooks.Notifications ( LibNotifyUrgencyHook (..) )
+import XMonad.Hooks.Notifications ( myUrgencyHook )
 import XMonad.Bindings.Keybindings ( myKeys
                                    , myLauncher
                                    , myModMask
@@ -95,23 +45,14 @@ import XMonad.Themes.Themes ( Theme (..)
                             , showColor
                             )
 
-
 main = do
     screenNumber <- countScreens
     hs <- mapM (spawnPipe . xmobarCommand) [0..screenNumber - 1]
-    xmonad $ ewmh $ withUrgencyHookC LibNotifyUrgencyHook urgencyConfig { suppressWhen = Visible, remindWhen = Every (minutes 5.0 )} $ defaults
+    xmonad $ ewmh $ myUrgencyHook defaults
         { workspaces = withScreens screenNumber myWorkspaces
         , manageHook = manageDocks <+> myManageHooks screenNumber <+> manageHook def
         , logHook = fadeInactiveCurrentWSLogHook 0.8 <+> mapM_ dynamicLogWithPP (zipWith myBarPrettyPrinter hs [0..screenNumber])
         }
-
--- TODO: Find a way to make it work with the multi-head setup
-myWallpaperSetterHook :: ScreenId -> X ()
-myWallpaperSetterHook screenNumber = wallpaperSetter defWallpaperConf
-    { wallpapers = WallpaperList $ zip marshalledWorkspaces $ replicate (length myWorkspaces) (WallpaperDir "~/.wallpapers/")
-    , wallpaperBaseDir = "~/.wallpapers/"
-    }
-        where marshalledWorkspaces = [marshall id marshalledWorkspace | marshalledWorkspace <- myWorkspaces, id <- [0..screenNumber - 1]]
 
 xmobarCommand :: ScreenId -> String
 xmobarCommand (S screenNumber) = unwords [ myStatusBar
