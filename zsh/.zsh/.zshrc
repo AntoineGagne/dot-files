@@ -21,6 +21,14 @@ source "${HOME}/.bash/functions/colors"
 source "${HOME}/.bash/.bash_aliases"
 source "${HOME}/.bash/.bash_functions"
 
+_completemarks() {
+    reply=($(ls ${MARKPATH}))
+}
+compctl -K _completemarks jump
+compctl -K _completemarks j
+compctl -K _completemarks unmark
+compctl -K _completemarks um
+
 if [ -f /usr/local/bin/virtualenvwrapper.sh ]; then
     source /usr/local/bin/virtualenvwrapper.sh
 elif [ -f /usr/bin/virtualenvwrapper.sh ]; then
