@@ -184,13 +184,3 @@ myNormalBorderColor  = show . color8 . palette $ gruvboxTheme
 
 myFocusedBorderColor :: String
 myFocusedBorderColor = show . color14 . palette $ gruvboxTheme
-
--- Colors for text and backgrounds of each tab when in "Tabbed" layout.
-tabConfig = def
-    { activeBorderColor = show . color7 . palette $ gruvboxTheme
-    , activeTextColor = show . foreground . palette $ gruvboxTheme
-    , activeColor = show . color6 . palette $ gruvboxTheme
-    , inactiveBorderColor = show . color7 . palette $ gruvboxTheme
-    , inactiveTextColor = show . foreground . palette $ gruvboxTheme
-    , inactiveColor = show . background . palette $ gruvboxTheme
-    }
