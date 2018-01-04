@@ -45,20 +45,16 @@ import qualified XMonad.Actions.Submap as Submap
 import qualified XMonad.Actions.Search as Search
 import qualified XMonad.StackSet as StackSet
 
-import XMonad.Programs.Terminals ( urxvt
-                                 , launchApp
-                                 , mutt
-                                 , ncmpcpp
-                                 , newsboat
-                                 , weechat
-                                 , TerminalEmulator (..)
+import XMonad.Programs.Commands ( runCommand )
+import XMonad.Programs.Terminals ( muttCommand
+                                 , ncmpcppCommand
+                                 , newsboatCommand
+                                 , weechatCommand
+                                 , myTerminal
                                  )
 import XMonad.Prompts.SearchPrompts ( myPrompt )
 
 myModMask = mod4Mask
-
-myTerminal :: TerminalEmulator
-myTerminal = urxvt
 
 myLauncher :: String
 myLauncher = "dmenu_run -i -l 15 -p '➤' -nb '#282828' -nf '#ebdbb2' -sb '#8ec07c' -sf '#282828'"
@@ -154,10 +150,10 @@ myKeys conf = let m = modMask conf in Map.fromList $
                   , ((0, xK_g), method (Search.intelligent Search.wikipedia !> Search.hoogle !> Search.stackage !> Search.youtube !> Search.prefixAware Search.duckduckgo))
                   ]
               applicationsSpawn = Map.fromList
-                  [ ((0, xK_e), spawn (launchApp myTerminal mutt))
-                  , ((0, xK_n), spawn (launchApp myTerminal newsboat))
-                  , ((0, xK_c), spawn (launchApp myTerminal weechat))
-                  , ((0, xK_m), spawn (launchApp myTerminal ncmpcpp))
+                  [ ((0, xK_e), runCommand muttCommand)
+                  , ((0, xK_n), runCommand newsboatCommand)
+                  , ((0, xK_c), runCommand weechatCommand)
+                  , ((0, xK_m), runCommand ncmpcppCommand)
                   , ((0, xK_b), spawn "firefox")
                   , ((0, xK_v), spawn "zathura")
                   , ((0, xK_i), spawn "krita")

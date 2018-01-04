@@ -4,12 +4,23 @@ module XMonad.Programs.Terminals
     ( TerminalEmulator (..)
     , kitty
     , urxvt
-    , launchApp
     , mutt
+    , muttCommand
+    , myTerminal
     , ncmpcpp
+    , ncmpcppCommand
     , newsboat
+    , newsboatCommand
     , weechat
+    , weechatCommand
     ) where
+
+import XMonad ( MonadIO )
+import XMonad.Core ( spawn )
+
+import XMonad.Programs.Commands ( Command
+                                , createCommand
+                                )
 
 data TerminalEmulator = TerminalEmulator
     { terminalName :: String
@@ -20,6 +31,9 @@ data TerminalEmulator = TerminalEmulator
 
 instance Show TerminalEmulator where
     show TerminalEmulator { terminalDaemonName = terminalDaemonName' } = terminalDaemonName'
+
+myTerminal :: TerminalEmulator
+myTerminal = urxvt
 
 kitty :: TerminalEmulator
 kitty = TerminalEmulator
@@ -37,15 +51,62 @@ urxvt = TerminalEmulator
     , terminalExecutionOption = "-e"
     }
 
-data Program = Program
+data TerminalProgram = TerminalProgram
     { programName :: String
     , programTitle :: String
     , programCommand :: String
     , programType :: String
     }
 
-launchApp :: TerminalEmulator -> Program -> String
-launchApp TerminalEmulator {..} Program {..} = terminalDaemonName
+muttCommand :: MonadIO m => Command m
+muttCommand = createProgramCommand mutt
+
+ncmpcppCommand :: MonadIO m => Command m
+ncmpcppCommand = createProgramCommand ncmpcpp
+
+newsboatCommand :: MonadIO m => Command m
+newsboatCommand = createProgramCommand newsboat
+
+weechatCommand :: MonadIO m => Command m
+weechatCommand = createProgramCommand weechat
+
+createProgramCommand :: MonadIO m => TerminalProgram -> Command m
+createProgramCommand = createCommand . spawn . launchApp myTerminal
+
+mutt :: TerminalProgram
+mutt = TerminalProgram
+    { programName = "mutt"
+    , programTitle = "mutt"
+    , programCommand = "mutt"
+    , programType = "email"
+    }
+
+ncmpcpp :: TerminalProgram
+ncmpcpp = TerminalProgram
+    { programName = "ncmpcpp"
+    , programTitle = "ncmpcpp"
+    , programCommand = "ncmpcpp"
+    , programType = "music"
+    }
+
+newsboat :: TerminalProgram
+newsboat = TerminalProgram
+    { programName = "newsboat"
+    , programTitle = "newsboat"
+    , programCommand = "newsboat"
+    , programType = "news"
+    }
+
+weechat :: TerminalProgram
+weechat = TerminalProgram
+    { programName = "weechat"
+    , programTitle = "weechat"
+    , programCommand = "weechat"
+    , programType = "chat"
+    }
+
+launchApp :: TerminalEmulator -> TerminalProgram -> String
+launchApp TerminalEmulator {..} TerminalProgram {..} = terminalDaemonName
                                              ++ " "
                                              ++ terminalTitleOption
                                              ++ "'"
@@ -61,35 +122,3 @@ launchApp TerminalEmulator {..} Program {..} = terminalDaemonName
                         ++ " || "
                         ++ programName
                         ++ "'"
-
-mutt :: Program
-mutt = Program
-    { programName = "mutt"
-    , programTitle = "mutt"
-    , programCommand = "mutt"
-    , programType = "email"
-    }
-
-ncmpcpp :: Program
-ncmpcpp = Program
-    { programName = "ncmpcpp"
-    , programTitle = "ncmpcpp"
-    , programCommand = "ncmpcpp"
-    , programType = "music"
-    }
-
-newsboat :: Program
-newsboat = Program
-    { programName = "newsboat"
-    , programTitle = "newsboat"
-    , programCommand = "newsboat"
-    , programType = "news"
-    }
-
-weechat :: Program
-weechat = Program
-    { programName = "weechat"
-    , programTitle = "weechat"
-    , programCommand = "weechat"
-    , programType = "chat"
-    }

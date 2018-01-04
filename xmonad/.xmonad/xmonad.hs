@@ -80,14 +80,6 @@ import XMonad.Hooks.ManageHooks ( myManageHooks
                                 , myWorkspaces
                                 )
 import XMonad.Hooks.Notifications ( LibNotifyUrgencyHook (..) )
-import XMonad.Programs.Terminals ( urxvt
-                                 , launchApp
-                                 , mutt
-                                 , ncmpcpp
-                                 , newsboat
-                                 , weechat
-                                 , TerminalEmulator (..)
-                                 )
 import XMonad.Bindings.Keybindings ( myKeys
                                    , myLauncher
                                    , myTerminal
