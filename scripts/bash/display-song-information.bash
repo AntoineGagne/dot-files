@@ -3,13 +3,13 @@
 declare -r music_directory="${HOME}/Music"
 declare -r temporary_directory="/tmp"
 declare -r cover="${temporary_directory}/cover.png"
+declare -r temporary_file="${temporary_directory}/$(uuidgen --random).png"
 
 declare -r application_name="ncmpcpp"
 declare -ri expire_time=1000
 
 display_album() {
     local -r _file="${music_directory}/$(mpc --format %file% current)"
-    local -r _temporary_file="${temporary_directory}/$(uuidgen --random).png"
 
     rm -f "${cover}"
 
@@ -17,12 +17,12 @@ display_album() {
         exit 1
     fi
 
-    if ! ffmpeg -i "${_file}" -an -vcodec copy "${_temporary_file}" &>/dev/null; then
+    if ! ffmpeg -i "${_file}" -an -vcodec copy "${temporary_file}" &>/dev/null; then
         exit 1
     fi
 
     # resize the image's width to 300px 
-    if ! convert -quiet "${_temporary_file}" -resize 128x128 "${cover}" &>/dev/null; then
+    if ! convert -quiet "${temporary_file}" -resize 128x128 "${cover}" &>/dev/null; then
         exit 1
     fi
 
@@ -54,8 +54,13 @@ display_current_mpd_status() {
     fi
 }
 
+clean_up() {
+    rm "${temporary_file}"
+}
+
 main() {
     display_current_mpd_status
 }
 
 main
+trap 'clean_up' EXIT
