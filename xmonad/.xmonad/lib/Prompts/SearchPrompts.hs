@@ -11,6 +11,7 @@ import Themes.Themes ( Theme (..)
                      , showColor
                      )
 
+myPrompt :: Prompt.XPConfig
 myPrompt = Prompt.def { Prompt.font = urxvtResourceFontString . font $ myTheme
                       , Prompt.bgColor = showColor background myTheme 
                       , Prompt.fgColor = showColor foreground myTheme

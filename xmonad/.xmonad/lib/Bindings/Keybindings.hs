@@ -53,6 +53,7 @@ import Programs.MusicPlayers ( MusicPlayerControls (..)
                              )
 import Prompts.SearchPrompts ( myPrompt )
 
+myModMask :: KeyMask
 myModMask = mod4Mask
 
 myLauncher :: String
