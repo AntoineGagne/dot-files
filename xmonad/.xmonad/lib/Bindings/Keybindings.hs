@@ -19,6 +19,7 @@ import System.Exit ( exitWith
                    , ExitCode (..)
                    )
 import XMonad
+import XMonad.Core ( catchIO )
 import XMonad.Actions.CycleWS ( prevScreen
                               , nextScreen
                               , shiftPrevScreen
@@ -154,7 +155,7 @@ myKeys conf = let m = modMask conf in Map.fromList $
                   , ((0, xK_n), runCommand newsboatCommand)
                   , ((0, xK_c), runCommand weechatCommand)
                   , ((0, xK_m), runCommand ncmpcppCommand)
-                  , ((0, xK_b), safeSpawnProg "firefox")
-                  , ((0, xK_v), safeSpawnProg "zathura")
-                  , ((0, xK_i), safeSpawnProg "krita")
+                  , ((0, xK_b), catchIO . safeSpawnProg $ "firefox")
+                  , ((0, xK_v), catchIO . safeSpawnProg $ "zathura")
+                  , ((0, xK_i), catchIO . safeSpawnProg $ "krita")
                   ]
