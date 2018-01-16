@@ -35,6 +35,7 @@ import XMonad.Hooks.ManageDocks ( ToggleStruts (..) )
 import XMonad.Hooks.UrgencyHook ( clearUrgents
                                 , focusUrgent
                                 )
+import XMonad.Util.Run ( safeSpawnProg )
 
 import qualified Data.Map as Map
 import qualified XMonad.Actions.Submap as Submap
@@ -153,7 +154,7 @@ myKeys conf = let m = modMask conf in Map.fromList $
                   , ((0, xK_n), runCommand newsboatCommand)
                   , ((0, xK_c), runCommand weechatCommand)
                   , ((0, xK_m), runCommand ncmpcppCommand)
-                  , ((0, xK_b), spawn "firefox")
-                  , ((0, xK_v), spawn "zathura")
-                  , ((0, xK_i), spawn "krita")
+                  , ((0, xK_b), safeSpawnProg "firefox")
+                  , ((0, xK_v), safeSpawnProg "zathura")
+                  , ((0, xK_i), safeSpawnProg "krita")
                   ]
