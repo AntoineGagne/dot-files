@@ -55,7 +55,7 @@ display_current_mpd_status() {
 }
 
 clean_up() {
-    rm "${temporary_file}"
+    rm -f "${temporary_file}"
 }
 
 main() {
