@@ -13,7 +13,7 @@ setopt hist_ignore_space
 setopt interactivecomments
 
 bindkey -e
-zstyle :compinstall filename '/home/twain/.zshrc'
+zstyle :compinstall filename "${HOME}/.zshrc"
 
 autoload -Uz compinit
 compinit
