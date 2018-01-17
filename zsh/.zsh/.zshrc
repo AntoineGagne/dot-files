@@ -12,7 +12,7 @@ setopt hist_ignore_dups
 setopt hist_ignore_space
 setopt interactivecomments
 
-bindkey -e
+bindkey -v
 zstyle :compinstall filename "${HOME}/.zshrc"
 
 autoload -Uz compinit
