@@ -33,6 +33,18 @@ zle -N down-line-or-beginning-search
 [[ -n "$key[Up]"   ]] && bindkey -- "$key[Up]"   up-line-or-beginning-search
 [[ -n "$key[Down]" ]] && bindkey -- "$key[Down]" down-line-or-beginning-search
 
+_pip_completion() {
+    local words cword
+    read -Ac words
+    read -cn cword
+    reply=( $( COMP_WORDS="$words[*]" \
+        COMP_CWORD=$(( cword-1 )) \
+        PIP_AUTO_COMPLETE=1 $words[1] ) \
+    )
+}
+compctl -K _pip_completion pip
+
+
 zle-keymap-select () {
     case $KEYMAP in
         vicmd)
