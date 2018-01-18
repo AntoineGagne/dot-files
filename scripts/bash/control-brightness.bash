@@ -5,7 +5,7 @@ declare -r handler="${base_directory}/$(ls ${base_directory})"
 declare -r max_brightness=$(cat "${handler}/max_brightness")
 declare -r current_brightness=$(cat "${handler}/brightness")
 declare -r application_name="$(basename ${0})"
-declare -ri expire_time=200
+declare -ri expire_time=1000
 
 calculate_new_brightness() {
     local -r _brightness_percentage_change="${1}"

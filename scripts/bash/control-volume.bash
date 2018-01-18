@@ -5,7 +5,7 @@ get_default_sink_number() {
 }
 
 declare -r named_volume_pipes="$(find "${HOME}" -maxdepth 1 -name '.volume-*' -type p -print)"
-declare -ri expire_time=200
+declare -ri expire_time=1000
 declare -r application_name="$(basename "${0}")"
 declare -rxi sink_number=$(get_default_sink_number)
 

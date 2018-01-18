@@ -5,7 +5,7 @@ if [ -z "${printscreen_directory}" ]; then
 fi
 
 declare -r screenshot_name="${printscreen_directory}/screenshot_$(date '+%Y-%m-%d-%H:%M:%S').png"
-declare -ri expire_time=200
+declare -ri expire_time=1000
 declare -r application_name="$(basename "${0}")"
 
 take_full_screen_picture() {
