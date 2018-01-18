@@ -108,6 +108,8 @@ else
                     \ }
         Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 
+        Plug 'editorconfig/editorconfig-vim'
+
         " {{{2 Surrounding Text Objects
         Plug 'tpope/vim-surround'
 

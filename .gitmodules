@@ -114,3 +114,7 @@
 	path = vim/.vim/bundle/deoplete.nvim
 	url = https://github.com/Shougo/deoplete.nvim.git
     ignore = dirty
+[submodule "vim/.vim/bundle/editorconfig-vim"]
+    path = vim/.vim/bundle/editorconfig-vim
+    url = https://github.com/editorconfig/editorconfig-vim.git
+    ignore = dirty
