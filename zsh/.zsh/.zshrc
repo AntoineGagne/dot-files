@@ -191,6 +191,11 @@ zle -N rationalise-dot
 bindkey . rationalise-dot
 bindkey -M isearch . self-insert
 
+
+if [[ -f "${HOME}/.opam/opam-init/init.zsh" ]]; then
+    source "${HOME}/.opam/opam-init/init.zsh" > /dev/null 2> /dev/null || true
+fi
+
 source "${HOME}/.profile"
 source "${HOME}/.aliases/movement"
 source "${HOME}/.aliases/date"
