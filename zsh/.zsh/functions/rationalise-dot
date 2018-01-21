@@ -1,0 +1,6 @@
+# typing ... expands to ../.., .... to ../../.., etc.
+if [[ $LBUFFER = *.. ]]; then
+    LBUFFER+=/..
+else
+    LBUFFER+=.
+fi

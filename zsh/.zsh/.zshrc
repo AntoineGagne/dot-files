@@ -114,10 +114,31 @@ setopt sharehistory
 # be useful with terminals with other cut/paste methods.
 setopt transientrprompt
 
+fpath=("${HOME}/.zsh/functions/" $fpath)
 autoload -U colors && colors
-
-bindkey -v
-zstyle :compinstall filename "${HOME}/.zshrc"
+autoload batch-convert-audio-file
+autoload convert-audio-file
+autoload convert-svg-to-favicon
+autoload display-available-colors
+autoload download-playlists
+autoload download-video-playlist
+autoload download-video-playlists
+autoload extract
+autoload jump
+autoload mark
+autoload marks
+autoload md-to-html
+autoload parallel-download
+autoload rb
+autoload split-audio-file
+autoload start-tmux-sessions
+autoload tabs-to-space
+autoload top10
+autoload unmark
+autoload upload-to-link
+autoload weather
+autoload youtube-dl
+autoload rationalise-dot
 
 autoload -Uz compinit
 compinit
@@ -163,42 +184,12 @@ echo -n '\e[5 q'
 
 zle -N zle-keymap-select
 
-# typing ... expands to ../.., .... to ../../.., etc.
-rationalise-dot() {
-    if [[ $LBUFFER = *.. ]]; then
-        LBUFFER+=/..
-    else
-        LBUFFER+=.
-    fi
-}
+bindkey -v
+zstyle :compinstall filename "${HOME}/.zshrc"
+
 zle -N rationalise-dot
 bindkey . rationalise-dot
-# history search fix
 bindkey -M isearch . self-insert
-
-fpath=("${HOME}/.zsh/functions/" $fpath)
-autoload batch-convert-audio-file
-autoload convert-audio-file
-autoload convert-svg-to-favicon
-autoload display-available-colors
-autoload download-playlists
-autoload download-video-playlist
-autoload download-video-playlists
-autoload extract
-autoload jump
-autoload mark
-autoload marks
-autoload md-to-html
-autoload parallel-download
-autoload rb
-autoload split-audio-file
-autoload start-tmux-sessions
-autoload tabs-to-space
-autoload top10
-autoload unmark
-autoload upload-to-link
-autoload weather
-autoload youtube-dl
 
 source "${HOME}/.profile"
 source "${HOME}/.aliases/movement"
