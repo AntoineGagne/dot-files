@@ -22,6 +22,10 @@ source ~/.vim/startup/settings/plugins/ghcmod-vim.vim
 
 source ~/.vim/startup/settings/plugins/elm-vim.vim
 
+" {{{2 OCaml
+
+source ~/.vim/startup/settings/plugins/ocaml-merlin.vim
+
 
 " {{{1 UI
 
