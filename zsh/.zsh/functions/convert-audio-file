@@ -1,0 +1,13 @@
+# vim: ft=sh
+
+local -r _input_file="${1}"
+local -r _name="${2}"
+local -r _output_extension="${3}"
+local -r _temporary_file="$(mktemp --suffix="${_output_extension}")"
+
+if ! ffmpeg -hide_banner -i "${_input_file}" -crf 0 -y "${_temporary_file}"; then
+    rm "${_temporary_file}"
+    exit 1
+fi
+
+mv "${_temporary_file}" "${_name}${_output_extension}"

@@ -1,0 +1,9 @@
+if [ -z "${1}" ]; then
+    echo "You must enter a filename"
+else
+    if [ -f "${1}" ]; then
+        find . -name "${1}" ! -type d -exec bash -c 'expand -t 4 "$0" > /tmp/e && mv /tmp/e "$0"' {} \;
+    else
+        echo "${1} does not exist"
+    fi
+fi

@@ -1,0 +1,1 @@
+youtube-dl  --prefer-free-formats --all-subs -o '%(playlist)s/%(playlist_index)s - %(title)s.%(ext)s' "${1}"

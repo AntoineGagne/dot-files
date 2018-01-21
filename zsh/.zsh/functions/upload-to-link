@@ -1,0 +1,4 @@
+local -r _filename="${1}"
+local -r _link="$(curl --compressed -F"file=@${_filename}" https://0x0.st)"
+echo "${_link}" | xclip -selection clipboard
+echo "${_link}"

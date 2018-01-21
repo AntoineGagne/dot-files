@@ -238,3 +238,5 @@ mpd/.config/mpd/**
 **/.zsh/*
 !**/.zsh/.zprofile
 !**/.zsh/.zshrc
+!**/.zsh/functions
+*.zwc

@@ -1,0 +1,1 @@
+ls -l "$MARKPATH" | sed 's/  / /g' | cut -d' ' -f9- | sed 's/->/@/g' | column -t -s @

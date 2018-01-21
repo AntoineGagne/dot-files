@@ -1,0 +1,12 @@
+# vim: ft=sh
+
+# First parameter:
+# A filename with the following content:
+# <starting-time>-<ending-time>-<song-title>
+# For example,
+# 00:00:00-00:04:02-Test.ogg
+# 
+# Second parameter:
+# The audio file to split
+
+awk -F- -v input_file="${2}" '{printf("ffmpeg -i %s -vn -acodec copy -ss %s -to %s \"%s\";", input_file, $1, $2, $3)}' "${1}" | sh

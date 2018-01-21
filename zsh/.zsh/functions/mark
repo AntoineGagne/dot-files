@@ -1,0 +1,2 @@
+mkdir -p "${MARKPATH}"
+ln -s "$(pwd)" "${MARKPATH}/${1}"
