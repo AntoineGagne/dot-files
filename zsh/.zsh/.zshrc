@@ -2,7 +2,13 @@ HISTFILE=~/.zsh/histfile
 HISTSIZE=50000
 SAVEHIST=50000
 
-autoload -U colors && colors
+# If this is set, zsh sessions will append their history list to the history
+# file, rather than replace it. Thus, multiple parallel zsh sessions will all
+# have the new entries from their history lists added to the history file, in
+# the order that they exit. The file will still be periodically re-written to
+# trim it when the number of lines grows 20% beyond the value specified by
+# $SAVEHIST (see also the HIST_SAVE_BY_COPY option).
+setopt appendhistory
 
 # If a command is issued that can't be executed as a normal command, and the
 # command is the name of a directory, perform the `cd` command to that
@@ -17,56 +23,18 @@ setopt autolist
 # for completion purposes.
 setopt completealiases
 
-# This option works when `AUTO_LIST` or `BASH_AUTO_LIST` is also set. If there
-# is an unambiguous prefix to insert on the command line, that is done without
-# a completion list being displayed; in other words, auto-listing behaviour
-# only takes place when nothing would be inserted. In the case of
-# `BASH_AUTO_LIST`, this means that the list will be delayed to the third call
-# of the function.
-setopt listambiguous
-
-# When listing files that are possible completions, show the type of each file
-# with a trailing identifying mark. 
-setopt listtypes
-
-# On an ambiguous completion, instead of listing possibilities or beeping,
-# insert the first match immediately. Then when completion is requested again,
-# remove the first match and insert the second match, etc. When there are no
-# more matches, go back to the first one again. `reverse`-menu-complete may be
-# used to loop through the list in the other direction. This option overrides
-# `AUTO_MENU`.
-setopt menucomplete
-
-# If this is set, zsh sessions will append their history list to the history
-# file, rather than replace it. Thus, multiple parallel zsh sessions will all
-# have the new entries from their history lists added to the history file, in
-# the order that they exit. The file will still be periodically re-written to
-# trim it when the number of lines grows 20% beyond the value specified by
-# $SAVEHIST (see also the HIST_SAVE_BY_COPY option).
-setopt appendhistory
-
 # Treat the '#', '~' and '^' characters as part of patterns for filename
 # generation, etc. (An initial unquoted '~' always produces named directory
 # expansion.)
 setopt extendedglob
 
-# If a pattern for filename generation has no matches, print an error, instead
-# of leaving it unchanged in the argument list. This also applies to file
-# expansion of an initial '~' or '='.
-setopt nomatch
-
-# Report the status of background jobs immediately, rather than waiting until
-# just before printing a prompt.
-setopt notify
-
-# If set, parameter expansion, command substitution and arithmetic expansion
-# are performed in prompts. Substitutions within prompts do not affect the
-# command status.
-setopt promptsubst
-
-# Remove any right prompt from display when accepting a command line. This may
-# be useful with terminals with other cut/paste methods.
-setopt transientrprompt
+# Note the location of each command the first time it is executed. Subsequent
+# invocations of the same command will use the saved location, avoiding a path
+# search. If this option is unset, no path hashing is done at all. However,
+# when CORRECT is set, commands whose names do not appear in the functions or
+# aliases hash tables are hashed in order to avoid reporting them as spelling
+# errors.
+setopt hashcmds
 
 # If a new command line being added to the history list duplicates an older
 # one, the older command is removed from the list (even if it is not the
@@ -89,6 +57,43 @@ setopt histignorespace
 # list.
 setopt histreduceblanks
 
+# Allow comments even in interactive shells.
+setopt interactivecomments
+
+# This option works when `AUTO_LIST` or `BASH_AUTO_LIST` is also set. If there
+# is an unambiguous prefix to insert on the command line, that is done without
+# a completion list being displayed; in other words, auto-listing behaviour
+# only takes place when nothing would be inserted. In the case of
+# `BASH_AUTO_LIST`, this means that the list will be delayed to the third call
+# of the function.
+setopt listambiguous
+
+# When listing files that are possible completions, show the type of each file
+# with a trailing identifying mark. 
+setopt listtypes
+
+# On an ambiguous completion, instead of listing possibilities or beeping,
+# insert the first match immediately. Then when completion is requested again,
+# remove the first match and insert the second match, etc. When there are no
+# more matches, go back to the first one again. `reverse`-menu-complete may be
+# used to loop through the list in the other direction. This option overrides
+# `AUTO_MENU`.
+setopt menucomplete
+
+# If a pattern for filename generation has no matches, print an error, instead
+# of leaving it unchanged in the argument list. This also applies to file
+# expansion of an initial '~' or '='.
+setopt nomatch
+
+# Report the status of background jobs immediately, rather than waiting until
+# just before printing a prompt.
+setopt notify
+
+# If set, parameter expansion, command substitution and arithmetic expansion
+# are performed in prompts. Substitutions within prompts do not affect the
+# command status.
+setopt promptsubst
+
 # This option both imports new commands from the history file, and also causes
 # your typed commands to be appended to the history file (the latter is like
 # specifying INC_APPEND_HISTORY). The history lines are also output with
@@ -105,16 +110,11 @@ setopt histreduceblanks
 # import commands whenever you need them using 'fc -RI'.
 setopt sharehistory
 
-# Allow comments even in interactive shells.
-setopt interactivecomments
+# Remove any right prompt from display when accepting a command line. This may
+# be useful with terminals with other cut/paste methods.
+setopt transientrprompt
 
-# Note the location of each command the first time it is executed. Subsequent
-# invocations of the same command will use the saved location, avoiding a path
-# search. If this option is unset, no path hashing is done at all. However,
-# when CORRECT is set, commands whose names do not appear in the functions or
-# aliases hash tables are hashed in order to avoid reporting them as spelling
-# errors.
-setopt hashcmds
+autoload -U colors && colors
 
 bindkey -v
 zstyle :compinstall filename "${HOME}/.zshrc"
@@ -176,10 +176,38 @@ bindkey . rationalise-dot
 # history search fix
 bindkey -M isearch . self-insert
 
+fpath=("${HOME}/.zsh/functions/" $fpath)
+autoload batch-convert-audio-file
+autoload convert-audio-file
+autoload convert-svg-to-favicon
+autoload display-available-colors
+autoload download-playlists
+autoload download-video-playlist
+autoload download-video-playlists
+autoload extract
+autoload jump
+autoload mark
+autoload marks
+autoload md-to-html
+autoload parallel-download
+autoload rb
+autoload split-audio-file
+autoload start-tmux-sessions
+autoload tabs-to-space
+autoload top10
+autoload unmark
+autoload upload-to-link
+autoload weather
+autoload youtube-dl
+
 source "${HOME}/.profile"
-source "${HOME}/.bash/functions/colors"
-source "${HOME}/.bash/.bash_aliases"
-source "${HOME}/.bash/.bash_functions"
+source "${HOME}/.aliases/movement"
+source "${HOME}/.aliases/date"
+source "${HOME}/.aliases/system"
+source "${HOME}/.aliases/editing"
+source "${HOME}/.aliases/file"
+source "${HOME}/.aliases/programs"
+source "${HOME}/.aliases/network"
 
 _completemarks() {
     reply=($(ls ${MARKPATH}))
@@ -188,6 +216,8 @@ compctl -K _completemarks jump
 compctl -K _completemarks j
 compctl -K _completemarks unmark
 compctl -K _completemarks um
+
+compctl -GRFBm rb
 
 if [ -f /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]; then
     source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh

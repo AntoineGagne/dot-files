@@ -18,6 +18,7 @@ fi
 
 # set PATH so it includes user's private bin directories
 PATH="$HOME/bin:$HOME/.local/bin:$PATH"
+export MARKPATH=$HOME/.marks
 
 # virtualenvwrapper needed configuration
 if [ -d "${HOME}/.virtualenvs" ]; then

@@ -1,10 +1,99 @@
 # vim: ft=sh
-#
+
 if [ -f /usr/share/git/completion/git-prompt.sh ]; then
     source /usr/share/git/completion/git-prompt.sh
 fi
 
-source "${HOME}/.bash/functions/colors"
+declare -xi BLACK=0
+declare -xi RED=1
+declare -xi GREEN=2
+declare -xi YELLOW=3
+declare -xi BLUE=4
+declare -xi MAGENTA=5
+declare -xi CYAN=6
+declare -xi WHITE=7
+declare -xi RESET=9
+
+with_color() {
+    local -ri _color=${1}
+    local -r _function=${2}
+    shift 2
+    set_font_color_to "${_color}"
+    ${_function} "${@}"
+    reset_to_default
+}
+
+with_background_color() {
+    local -ri _color=${1}
+    local -r _function=${2}
+    shift 2
+    set_background_color_to "${_color}"
+    ${_function} "${@}"
+    reset_to_default
+}
+
+with_underline() {
+    local -r _function=${1}
+    shift 1
+    enter_underline
+    ${_function} "${@}"
+    exit_underline
+}
+
+with_bold() {
+    local -r _function=${1}
+    shift 1
+    set_bold
+    ${_function} "${@}"
+    reset_to_default
+}
+
+set_font_color_to() {
+    local -ri _color=${1}
+    tput setaf "${_color}"
+}
+
+set_background_color_to() {
+    local -ri _color=${1}
+    tput setab "${_color}"
+}
+
+reset_to_default() {
+    tput sgr0
+}
+
+set_bold() {
+    tput bold
+}
+
+set_half_bright() {
+    tput dim
+}
+
+enter_underline() {
+    tput smul
+}
+
+exit_underline() {
+    tput rmul
+}
+
+enter_standout() {
+    tput smso
+}
+
+exit_standout() {
+    tput rmso
+}
+
+display_available_colors() {
+    local x=$(tput op)
+    local y=$(printf %76s)
+    for i in {0..256}; do
+        o=00$i;
+        echo -e ${o:${#o}-3:3} "$(tput setaf $i;tput setab $i)${y// /=}$x"
+    done
+}
 
 virtualenv_info() {
     if [[ -n "$VIRTUAL_ENV" ]]; then
