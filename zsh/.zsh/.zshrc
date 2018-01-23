@@ -183,8 +183,6 @@ autoload -Uz select-word-match
 
 autoload -Uz zrecompile
 autoload -Uz vcs_info
-autoload -Uz predict-on
-predict-on
 
 autoload -Uz compinit
 compinit
@@ -315,6 +313,11 @@ compctl -GRFBm rb
 
 if [ -f /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]; then
     source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+fi
+
+if [ -f /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh ]; then
+    source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+    export ZSH_AUTOSUGGEST_USE_ASYNC=1
 fi
 
 if [ -f /usr/local/bin/virtualenvwrapper.sh ]; then
