@@ -183,7 +183,7 @@ autoload -Uz select-word-match
 
 autoload -Uz zrecompile
 autoload -Uz vcs_info
-autoload predict-on
+autoload -Uz predict-on
 predict-on
 
 autoload -Uz compinit
@@ -260,6 +260,9 @@ bindkey '^w' backward-kill-word
 
 # ctrl-r starts searching history backward
 bindkey '^r' history-incremental-search-backward
+
+# Delete everything from the cursor to the end of the line
+bindkey '^K' kill-line
 
 # Enable surround text-objects
 bindkey -a cs change-surround
