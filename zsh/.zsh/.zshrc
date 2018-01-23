@@ -114,6 +114,40 @@ setopt sharehistory
 # be useful with terminals with other cut/paste methods.
 setopt transientrprompt
 
+# The time the shell waits, in hundredths of seconds, for another key to be
+# pressed when reading bound multi-character sequences.
+export KEYTIMEOUT=10
+
+# If nonnegative, commands whose maximum resident set size (roughly speaking,
+# main memory usage) in megabytes is greater than this value have timing
+# statistics reported. The format used to output statistics is the value of the
+# TIMEFMT parameter, which is the same as for the REPORTTIME variable and the
+# time builtin; note that by default this does not output memory usage.
+# Appending " max RSS %M" to the value of TIMEFMT causes it to output the value
+# that triggered the report. If REPORTTIME is also in use, at most a single
+# report is printed for both triggers. This feature requires the getrusage()
+# system call, commonly supported by modern Unix-like systems.
+export REPORTMEMORY=1000
+
+# If nonnegative, commands whose combined user and system execution times
+# (measured in seconds) are greater than this value have timing statistics
+# printed for them. Output is suppressed for commands executed within the line
+# editor, including completion; commands explicitly marked with the time
+# keyword still cause the summary to be printed in this case.
+export REPORTTIME=1
+
+
+# If set, used to give the indentation between the right hand side of the right
+# prompt in the line editor as given by RPS1 or RPROMPT and the right hand side
+# of the screen. If not set, the value 1 is used.
+#
+# Typically this will be used to set the value to 0 so that the prompt appears
+# flush with the right hand side of the screen. This is not the default as many
+# terminals do not handle this correctly, in particular when the prompt appears
+# at the extreme bottom right of the screen. Recent virtual terminals are more
+# likely to handle this case correctly. Some experimentation is necessary.
+export ZLE_RPROMPT_INDENT=0
+
 fpath=("${HOME}/.zsh/functions/" $fpath)
 autoload -U colors && colors
 autoload batch-convert-audio-file
@@ -140,6 +174,18 @@ autoload weather
 autoload youtube-dl
 autoload rationalise-dot
 
+autoload -Uz up-line-or-beginning-search
+autoload -Uz down-line-or-beginning-search
+autoload -Uz select-quoted
+autoload -Uz select-bracketed
+autoload -Uz surround
+autoload -Uz select-word-match
+
+autoload -Uz zrecompile
+autoload -Uz vcs_info
+autoload predict-on
+predict-on
+
 autoload -Uz compinit
 compinit
 
@@ -152,7 +198,15 @@ alias help=run-help
 
 autoload zkbd
 
-autoload -Uz up-line-or-beginning-search down-line-or-beginning-search
+bindkey -v
+
+zle -N select-quoted
+zle -N select-bracketed
+zle -N delete-surround surround
+zle -N add-surround surround
+zle -N change-surround surround
+zle -N select-in-directory select-word-match
+zle -N select-a-directory select-word-match
 zle -N up-line-or-beginning-search
 zle -N down-line-or-beginning-search
 [[ -n "$key[Up]"   ]] && bindkey -- "$key[Up]"   up-line-or-beginning-search
@@ -191,6 +245,41 @@ zle -N rationalise-dot
 bindkey . rationalise-dot
 bindkey -M isearch . self-insert
 
+# See https://dougblack.io/words/zsh-vi-mode.html
+# Use vim cli mode
+bindkey '^P' up-history
+bindkey '^N' down-history
+
+# backspace and ^h working even after
+# returning from command mode
+bindkey '^?' backward-delete-char
+bindkey '^h' backward-delete-char
+
+# ctrl-w removed word backwards
+bindkey '^w' backward-kill-word
+
+# ctrl-r starts searching history backward
+bindkey '^r' history-incremental-search-backward
+
+# Enable surround text-objects
+bindkey -a cs change-surround
+bindkey -a ds delete-surround
+bindkey -a ys add-surround
+bindkey -M visual S add-surround
+
+# Enable parenthesis text-object
+for m in visual viopp; do
+    for c in {a,i}${(s..)^:-'()[]{}<>bB'}; do
+        bindkey -M $m $c select-bracketed
+    done
+done
+
+for m in visual viopp; do
+    for c in {a,i}{\',\",\`}; do
+        bindkey -M $m $c select-quoted
+    done
+done
+
 
 if [[ -f "${HOME}/.opam/opam-init/init.zsh" ]]; then
     source "${HOME}/.opam/opam-init/init.zsh" > /dev/null 2> /dev/null || true
@@ -213,6 +302,12 @@ compctl -K _completemarks j
 compctl -K _completemarks unmark
 compctl -K _completemarks um
 
+zstyle ':completion:*' verbose yes
+zstyle ':completion:*:descriptions' format '%B%d%b'
+zstyle ':completion:*:messages' format '%d'
+zstyle ':completion:*:warnings' format 'No matches for: %d'
+zstyle ':completion:*' group-name
+
 compctl -GRFBm rb
 
 if [ -f /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]; then
@@ -227,11 +322,16 @@ fi
 
 source "${HOME}/.prompt"
 
+zstyle ':vcs_info:*' enable git cvs svn hg
+zstyle ':vcs_info:*' actionformats ' ( %b|%a|%u|%c)'
+zstyle ':vcs_info:*' formats ' ( %b)'
+precmd () { vcs_info }
+
 prompt() {
     local -r _last_command_exit_status="$(last_command_exit_status "${1}")"
     local -r _virtualenv_info="$(virtualenv_info)"
     local -r _current_directory_information="$(current_directory_information)"
-    local -r _git_workspace="$(__git_ps1)"
+    local -r _git_workspace="${vcs_info_msg_0_}"
 
     cat << EOF
 ┌─${_last_command_exit_status}${_virtualenv_info}──$(machine_information)──[%B%F{blue}%4~%f%b]──${_current_directory_information}${_git_workspace}
@@ -240,3 +340,4 @@ EOF
 }
 
 PS1='$(prompt "${?}")'
+RPS1='[%F{cyan}%j jobs%f]──[%F{green}%W%f]'

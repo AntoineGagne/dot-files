@@ -130,6 +130,10 @@ if ! shopt -oq posix; then
   fi
 fi
 
+if [ -f /usr/share/git/completion/git-prompt.sh ]; then
+    source /usr/share/git/completion/git-prompt.sh
+fi
+
 source "${HOME}/.prompt"
 
 current_working_directory() {

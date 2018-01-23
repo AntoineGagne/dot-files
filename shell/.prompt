@@ -1,9 +1,5 @@
 # vim: ft=sh
 
-if [ -f /usr/share/git/completion/git-prompt.sh ]; then
-    source /usr/share/git/completion/git-prompt.sh
-fi
-
 declare -xi BLACK=0
 declare -xi RED=1
 declare -xi GREEN=2
