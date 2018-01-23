@@ -1,0 +1,16 @@
+bitlbee-facebook
+ckb-next
+cower
+font-awesome
+foo2zjs-nightly
+godot
+libtxc_dxtn
+libxfont
+otf-fira-code
+otf-hasklig
+python-kaptan
+python-libtmux
+python2-enum
+tmuxp
+ttf-fira-code
+zsh-autosuggestions
