@@ -154,6 +154,7 @@ autoload batch-convert-audio-file
 autoload convert-audio-file
 autoload convert-svg-to-favicon
 autoload display-available-colors
+autoload download-playlist
 autoload download-playlists
 autoload download-video-playlist
 autoload download-video-playlists
@@ -171,7 +172,6 @@ autoload top10
 autoload unmark
 autoload upload-to-link
 autoload weather
-autoload youtube-dl
 autoload rationalise-dot
 
 autoload -Uz up-line-or-beginning-search

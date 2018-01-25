@@ -1,8 +1,8 @@
-download_playlist() {
-    youtube-dl --audio-format 'flac' --audio-quality 0 -o '%(playlist)s/%(playlist_index)s - %(title)s.%(ext)s' --extract-audio "${1}"
+download-playlist() {
+    autoload -X
 }
 
-if parallel download_playlist :::: "${1}"; then
+if parallel download-playlist :::: "${1}"; then
     rm "${1}"
 else
     echo "ERROR: Could not download the playlists. Exiting."
