@@ -124,10 +124,10 @@ else
         Plug 'rust-lang/rust.vim'
 
         " {{{2 Haskell Syntax Checking
-        Plug 'eagletmt/ghcmod-vim', { 'for': 'haskell' }
+        " Plug 'eagletmt/ghcmod-vim', { 'for': 'haskell' }
 
         " {{{2 Autocompletion for the Haskell language
-        Plug 'eagletmt/neco-ghc', { 'for': 'haskell' }
+        " Plug 'eagletmt/neco-ghc', { 'for': 'haskell' }
 
         "  {{{2 Syntax highlighting for the Haskell language
         Plug 'neovimhaskell/haskell-vim', { 'for': 'haskell' }

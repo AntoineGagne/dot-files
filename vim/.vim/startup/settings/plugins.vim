@@ -14,9 +14,12 @@ source ~/.vim/startup/settings/plugins/racer.vim
 
 " {{{2 Haskell
 
-source ~/.vim/startup/settings/plugins/neco-ghc.vim
 source ~/.vim/startup/settings/plugins/haskell-vim.vim
-source ~/.vim/startup/settings/plugins/ghcmod-vim.vim
+
+if !has('nvim')
+    source ~/.vim/startup/settings/plugins/neco-ghc.vim
+    source ~/.vim/startup/settings/plugins/ghcmod-vim.vim
+endif
 
 " {{{2 Elm
 
