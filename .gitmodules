@@ -18,10 +18,6 @@
     path = vim/.vim/bundle/vim-racer
     url = https://github.com/racer-rust/vim-racer
     ignore = dirty
-[submodule "vim/.vim/bundle/neco-ghc"]
-    path = vim/.vim/bundle/neco-ghc
-    url = https://github.com/eagletmt/neco-ghc
-    ignore = dirty
 [submodule "vim/.vim/bundle/vim-pandoc-syntax"]
     path = vim/.vim/bundle/vim-pandoc-syntax
     url = https://github.com/vim-pandoc/vim-pandoc-syntax
@@ -29,10 +25,6 @@
 [submodule "vim/.vim/bundle/vim-pandoc"]
     path = vim/.vim/bundle/vim-pandoc
     url = https://github.com/vim-pandoc/vim-pandoc
-    ignore = dirty
-[submodule "vim/.vim/bundle/ghcmod-vim"]
-    path = vim/.vim/bundle/ghcmod-vim
-    url = https://github.com/eagletmt/ghcmod-vim
     ignore = dirty
 [submodule "vim/.vim/bundle/vim-airline-themes"]
     path = vim/.vim/bundle/vim-airline-themes
