@@ -117,12 +117,12 @@ machine_information() {
 }
 
 current_directory_information() {
-    local -r _current_directory_information="$(ls -lah \
+    local -r _current_directory_information="$(ls -lAh \
         | awk '/total/ {
             total_space=$2
           }
           END {
-            print NR " files, " total_space
+            print NR-1 " files, " total_space
           }'
     )"
     echo -n "[${_current_directory_information}]"
