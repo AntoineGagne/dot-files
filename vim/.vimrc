@@ -129,6 +129,8 @@ else
         " {{{2 Autocompletion for the Haskell language
         " Plug 'eagletmt/neco-ghc', { 'for': 'haskell' }
 
+        " {{{ 2 LTSA Syntax Highlighting
+        Plug 'vinceau/vim-ltsa-syntax'
         "  {{{2 Syntax highlighting for the Haskell language
         Plug 'neovimhaskell/haskell-vim', { 'for': 'haskell' }
 

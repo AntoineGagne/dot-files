@@ -110,3 +110,6 @@
     path = vim/.vim/bundle/editorconfig-vim
     url = https://github.com/editorconfig/editorconfig-vim.git
     ignore = dirty
+[submodule "vim/.vim/vim/.vim/bundle/vim-ltsa-syntax"]
+	path = vim/.vim/vim/.vim/bundle/vim-ltsa-syntax
+	url = git@github.com:vinceau/vim-ltsa-syntax.git
