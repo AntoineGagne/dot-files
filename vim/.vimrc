@@ -145,6 +145,9 @@ else
         " Plug 'vim-syntastic/syntastic'
         Plug 'w0rp/ale'
 
+        " {{{2 Typescript syntax highlighting
+        Plug 'leafgarland/typescript-vim'
+
         " {{{2 Asynchronous Execution
         Plug 'Shougo/vimproc.vim', { 'do': 'make' }
 
