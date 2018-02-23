@@ -2,6 +2,7 @@ adobe-source-code-pro-fonts
 adobe-source-han-sans-jp-fonts
 adobe-source-sans-pro-fonts
 adobe-source-serif-pro-fonts
+alsa-tools
 alsa-utils
 arc-gtk-theme
 arc-icon-theme
@@ -22,9 +23,11 @@ cmake
 compton
 coreutils
 cryptsetup
+cuetools
 cups
 device-mapper
 dhcpcd
+dialog
 diffutils
 dmenu
 dmidecode
@@ -32,6 +35,7 @@ dos2unix
 dunst
 e2fsprogs
 easytag
+editorconfig-core-c
 efibootmgr
 fakeroot
 feh
@@ -59,6 +63,7 @@ gtk-engine-murrine
 gutenprint
 gzip
 haskell-fdo-notify
+ifplugd
 imagemagick
 inetutils
 inkscape
@@ -96,6 +101,8 @@ nodejs
 noto-fonts-emoji
 npm
 ntfs-3g
+ocaml
+opam
 openssh
 opus-tools
 opusfile
@@ -117,12 +124,15 @@ psmisc
 pulseaudio
 pulseaudio-alsa
 python
+python-matplotlib
 python-mpd2
 python-pip
 python-pyacoustid
 python-requests
 python2-neovim
 python2-websocket-client
+r8168
+ranger
 redshift
 reiserfsprogs
 rsync
@@ -132,6 +142,7 @@ s-nail
 sed
 shadow
 shellcheck
+shntool
 stack
 stow
 sudo
@@ -193,4 +204,5 @@ zathura
 zathura-pdf-mupdf
 zsh
 zsh-completions
+zsh-doc
 zsh-syntax-highlighting
