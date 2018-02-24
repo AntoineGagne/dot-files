@@ -80,3 +80,4 @@ export TERM=tmux-256color
 export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 export QT_STYLE_OVERRIDE=kvantum
 export _JAVA_AWT_WM_NONREPARENTING=1
+export _JAVA_OPTIONS="-Dawt.useSystemAAFontSettings=lcd -Dswing.defaultlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel -Dswing.aatext=true -Dswing.plaf.metal.controlFont=\"DejaVu Sans-14\""
