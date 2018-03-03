@@ -112,14 +112,14 @@ set completion-group-fg "#EBDBB2"
 
 # {{{2 Tab Bar
 # Defines the background color for a tab
-set tabbar-bg "#282828"
+# set tabbar-bg "#282828"
 # Defines the foreground color for a tab
-set tabbar-fg "#EBDBB2"
+# set tabbar-fg "#EBDBB2"
 
 # Defines the background color for the focused tab
-set tabbar-focus-bg "#282828"
+# set tabbar-focus-bg "#282828"
 # Defines the foreground color for the focused tab
-set tabbar-focus-fg "#EBDBB2"
+# set tabbar-focus-fg "#EBDBB2"
 # }}}
 
 # {{{2 Index
