@@ -47,6 +47,7 @@ myManageHooks screenNumber = composeAll
     , className =? "jetbrains-idea" <&&> resource =? "Dialog" --> moveToWorkspace [1] 2
     , className =? "jetbrains-pycharm" --> moveToWorkspace [1] 2
     , className =? "jetbrains-pycharm" <&&> resource =? "Dialog" --> moveToWorkspace [1] 2
+    , className =? "JFLAP" --> moveToWorkspace [1] 2
     , className =? "Easytag" --> moveToWorkspace [1] 4
     , className =? "MPlayer" --> moveToWorkspace [1] 4
     , className =? "mpv" --> moveToWorkspace [1] 4
