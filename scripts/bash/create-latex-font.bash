@@ -41,7 +41,7 @@ usage() {
 
 		Available options:
 		  -l FILE, --logfile=FILE          where to log the output
-          -i FONT_FILE, --input=FONT_FILE  the fonts to package
+		  -i FONT_FILE, --input=FONT_FILE  the fonts to package
 		  -h, --help                       display this help text and exit
 		  -V, --version                    display version information and exit
 	EOF
