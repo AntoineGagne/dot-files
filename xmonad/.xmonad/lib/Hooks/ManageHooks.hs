@@ -8,7 +8,12 @@ import XMonad ( ManageHook
               , WorkspaceId
               )
 import XMonad.Layout.IndependentScreens ( marshall )
-import XMonad.Hooks.ManageHelpers ( doCenterFloat )
+import XMonad.Hooks.ManageHelpers ( composeOne
+                                  , doCenterFloat
+                                  , isDialog
+                                  , transience
+                                  , (-?>)
+                                  )
 import XMonad.ManageHook ( composeAll
                          , (-->)
                          , (=?)
@@ -47,10 +52,10 @@ myManageHooks screenNumber = composeAll
     , className =? "jetbrains-idea" <&&> resource =? "Dialog" --> moveToWorkspace [1] 2
     , className =? "jetbrains-pycharm" --> moveToWorkspace [1] 2
     , className =? "jetbrains-pycharm" <&&> resource =? "Dialog" --> moveToWorkspace [1] 2
-    , className =? "JFLAP" --> moveToWorkspace [1] 2
-    , className =? "JFLAP" <&&> resource =? "Input" --> moveToWorkspace [1] 2
-    , className =? "JFLAP" <&&> resource =? "Dialog" --> moveToWorkspace [1] 2
-    , className =? "JFLAP" <&&> name =? "Input" --> moveToWorkspace [1] 2
+    , composeOne [ className =? "JFLAP" -?> moveToWorkspace [1] 2
+                 , transience
+                 , className =? "JFLAP" <&&> isDialog -?> moveToWorkspace [1] 2
+                 ]
     , className =? "Easytag" --> moveToWorkspace [1] 4
     , className =? "MPlayer" --> moveToWorkspace [1] 4
     , className =? "mpv" --> moveToWorkspace [1] 4
