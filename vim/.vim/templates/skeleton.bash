@@ -25,6 +25,8 @@ declare -r PROGRAM_NAME="$(basename "${0}")"
 declare -r PROGRAM_DIRECTORY="$(readlink -m "$(dirname "${0}")")"
 declare -ra ARGUMENTS=("${@}")
 
+declare LOG_FILE
+
 usage() {
     cat <<- EOF
 		Usage: ${PROGRAM_NAME} [-h|--help] [-V|--version]
@@ -32,8 +34,9 @@ usage() {
 		Example: ${PROGRAM_NAME} -h
 
 		Available options:
-		  -h, --help     display this help text and exit
-		  -V, --version  display version information and exit
+		  -l FILE, --logfile=FILE  where to log the output
+		  -h, --help               display this help text and exit
+		  -V, --version            display version information and exit
 	EOF
 }
 
@@ -45,9 +48,53 @@ version() {
 	EOF
 }
 
+get_extension() {
+    local -r _extension="${1##*.}"
+
+    echo "${_extension}"
+}
+
+strip_extension() {
+    local -r _stripped_filename="${1%.*}"
+
+    echo "${_stripped_filename}"
+}
+
+is_program_installed() {
+    local -r _program_name="${1}"
+    type "${_program_name}" >/dev/null
+}
+
+trim() {
+    local _string="${1}"
+
+    echo "${_string}" | xargs
+}
+
+die() {
+    local -r _message="${1}"
+
+    echo "${_message}" >&2
+    exit 1
+}
+
+is_root() {
+    [[ ${EUID} -eq 0 ]]
+}
+
 parse_command_line_arguments() {
     local -r _arguments="$(parse_long_options "${@}")"
     parse_short_options "${_arguments}"
+}
+
+split_long_options() {
+    local -r _long_option="${1}"
+
+    echo "${_long_option}" | awk -F '=' '{
+        for (i = 2; i <= NF; ++i) {
+            printf "%s ", $i
+        };
+    }'
 }
 
 parse_long_options() {
@@ -57,6 +104,9 @@ parse_long_options() {
     local _argument
     for _argument in "${_arguments[@]}"; do
         case "${_argument}" in
+            --logfile*)
+                _parsed_arguments="${_parsed_arguments}-l$(split_long_options "${_argument}")"
+                ;;
             --help)
                 _parsed_arguments="${_parsed_arguments}-h "
                 ;;
@@ -73,7 +123,7 @@ parse_long_options() {
 }
 
 parse_short_options() {
-    while getopts "hV" OPTION; do
+    while getopts ":hVl:" OPTION; do
         case ${OPTION} in
             V)
                 version
@@ -83,9 +133,14 @@ parse_short_options() {
                 usage
                 exit 0
                 ;;
-            *)
-                usage
-                exit 1
+            l)
+                LOG_FILE="$(trim "${OPTARG}")"
+                ;;
+            :)
+                die "Option -${OPTARG} requires an argument." >&2
+                ;;
+            \?)
+                die "Invalid option: -${OPTARG}" >&2
                 ;;
         esac
     done
@@ -94,6 +149,7 @@ parse_short_options() {
 
 main() {
     parse_command_line_arguments "${@}"
+    exec &> >(tee -a "${LOG_FILE:-${TEMPDIR:-/tmp}/${PROGRAM_NAME}.log}")
 }
 
 main "${@}"
