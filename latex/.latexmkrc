@@ -123,11 +123,22 @@ sub makenlo2nls {
     system( "makeindex -s nomencl.ist -o \"$_[0].nls\" \"$_[0].nlo\"" );
 }
 
+# Custom dependency for Graphviz diagrams
+add_cus_dep( 'dot', 'pdf', 0, 'makedot2pdf' );
+sub makedot2pdf {
+    system( "dot -Tpdf \"$_[0].dot\" -o \"$_[0].pdf\"" );
+}
+
+add_cus_dep( 'gv', 'pdf', 0, 'makegv2pdf' );
+sub makegv2pdf {
+    system( "dot -Tpdf \"$_[0].gv\" -o \"$_[0].pdf\"" );
+}
+
 # Custom dependency and function(s) for epstopdf package
 
 # FOR USERS OF epstopf v1.4 and before: should also work with v1.5 and later
 # NOTE: you may get extras runs if you use the .eps extension in the
-# \includgraphics command deletes an outdated pdf-image, and triggers a
+# \includegraphics command deletes an outdated pdf-image, and triggers a
 # pdflatex-run
 # add_cus_dep( 'eps', 'pdf', 0, 'cus_dep_delete_dest' );
 
