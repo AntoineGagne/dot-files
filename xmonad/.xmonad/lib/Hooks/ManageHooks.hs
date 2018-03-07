@@ -40,7 +40,7 @@ myWorkspaces = [ "1 <fn=1>\xf269</fn>"
 myManageHooks :: ScreenId -> ManageHook
 myManageHooks screenNumber = composeAll
     [ className =? "Firefox" --> moveToWorkspace [0] 0
-    , className =? "Firefox" <&&> resource =? "Dialog" --> doCenterFloat
+    , className =? "Firefox" <&&> isDialog --> doCenterFloat
     , className =? "Chromium-browser" --> moveToWorkspace [0] 0
     , className =? "Chromium-browser" <&&> resource =? "Dialog" --> doCenterFloat
     , className =? "Chromium" --> moveToWorkspace [0] 0
