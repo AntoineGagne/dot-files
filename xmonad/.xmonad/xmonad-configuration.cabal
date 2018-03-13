@@ -21,6 +21,7 @@ library
                  , Programs.Commands
                  , Programs.MusicPlayers
                  , Programs.Terminals
+                 , Programs.Volume
                  , Prompts.SearchPrompts
                  , Themes.Colors
                  , Themes.Fonts
@@ -39,9 +40,10 @@ library
                      , dbus >= 0.10
                      , fdo-notify >= 0.3
                      , X11 >= 1.8
+                     , xmonad-extras >= 0.13.2
   default-language:    Haskell2010
 
-executable xmonad
+executable xmonad-x86_64-linux
   main-is:             xmonad.hs
   ghc-options: -O3 -Wall -threaded -rtsopts -with-rtsopts=-N
   build-depends:       base >= 4.7 && < 5
@@ -58,6 +60,7 @@ executable xmonad
                      , fdo-notify >= 0.3
                      , xmonad-configuration
                      , X11 >= 1.8
+                     , xmonad-extras >= 0.13.2
   default-language:    Haskell2010
 
 test-suite xmonad-configuration-test

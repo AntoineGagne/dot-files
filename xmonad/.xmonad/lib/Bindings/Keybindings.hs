@@ -44,6 +44,7 @@ import qualified XMonad.Actions.Search as Search
 import qualified XMonad.StackSet as StackSet
 
 import Programs.Commands ( runCommand )
+import Programs.Volume ( myVolumeControl )
 import Programs.Terminals ( muttCommand
                           , ncmpcppCommand
                           , newsboatCommand
@@ -54,6 +55,8 @@ import Programs.MusicPlayers ( MusicPlayerControls (..)
                              , myMusicPlayer
                              )
 import Prompts.SearchPrompts ( myPrompt )
+
+import qualified Programs.Volume as PVolume
 
 myModMask :: KeyMask
 myModMask = mod4Mask
@@ -105,9 +108,9 @@ myKeys conf = let m = modMask conf in Map.fromList $
     , ((myModMask, xK_Print), spawn "printscreen -s")
     , ((myModMask .|. shiftMask, xK_Print), spawn "printscreen -c")
     -- {{{2 Audio Controls
-    , ((0, xF86XK_AudioMute), spawn "control-volume -t")
-    , ((0, xF86XK_AudioLowerVolume), spawn "control-volume -c -5%")
-    , ((0, xF86XK_AudioRaiseVolume), spawn "control-volume -c +5%")
+    , ((0, xF86XK_AudioMute), runCommand . PVolume.toggle $ myVolumeControl )
+    , ((0, xF86XK_AudioLowerVolume), runCommand . PVolume.lower myVolumeControl $ 5)
+    , ((0, xF86XK_AudioRaiseVolume), runCommand . PVolume.raise myVolumeControl $ 5)
     -- {{{2 Music Controls
     , ((0, xF86XK_AudioNext), runCommand . nextSong $ myMusicPlayer)
     , ((0, xF86XK_AudioPrev), runCommand . previousSong $ myMusicPlayer)
