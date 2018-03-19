@@ -4,8 +4,8 @@ if !has('nvim')
     map <silent> tq :GhcModType<CR>
     map <silent> te :GhcModTypeClear<CR>
 
-    let g:haskellmode_completion_ghc = 0
-    autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc
+    " let g:haskellmode_completion_ghc = 0
+    " autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc
 endif
 
 " {{{1 Syntax Highlighting
