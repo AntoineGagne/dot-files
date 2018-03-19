@@ -84,7 +84,9 @@ is_root() {
 
 parse_command_line_arguments() {
     local -r _arguments="$(parse_long_options "${@}")"
-    parse_short_options "${_arguments}"
+    local -r _parsed_arguments_number="$(parse_short_options "${_arguments}")"
+
+    echo "${_parsed_arguments_number}"
 }
 
 split_long_options() {
@@ -104,14 +106,20 @@ parse_long_options() {
     local _argument
     for _argument in "${_arguments[@]}"; do
         case "${_argument}" in
-            --logfile*)
-                _parsed_arguments="${_parsed_arguments}-l$(split_long_options "${_argument}")"
+            --logfile=?*)
+                _parsed_arguments="${_parsed_arguments}-l${_argument#*=}"
+                ;;
+            --logfile=)
+                die '--logfile requires a non-empty option argument.'
                 ;;
             --help)
                 _parsed_arguments="${_parsed_arguments}-h "
                 ;;
             --version)
                 _parsed_arguments="${_parsed_arguments}-V "
+                ;;
+            --)
+                break
                 ;;
             *)
                 _parsed_arguments="${_parsed_arguments}${_argument} "
@@ -144,11 +152,14 @@ parse_short_options() {
                 ;;
         esac
     done
+
+    echo "${OPTIND}"
 }
 
 
 main() {
-    parse_command_line_arguments "${@}"
+    local -r _parsed_arguments_number="$(parse_command_line_arguments "${@}")"
+    shift "${_parsed_arguments_number}"
     exec &> >(tee -a "${LOG_FILE:-${TEMPDIR:-/tmp}/${PROGRAM_NAME}.log}")
 }
 
