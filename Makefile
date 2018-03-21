@@ -50,7 +50,8 @@ SOFTWARE_DIRS := bash \
 	mpd \
 	ncmpcpp \
 	kitty \
-	dunst
+	dunst \
+	gdb
 INSTALL_DIRS := $(SOFTWARE_DIRS:%=install-%)
 
 .PHONY: all
