@@ -16,4 +16,4 @@ syntax match ltsNiceOperator "||" conceal cchar=∥
 highlight link ltsNiceOperator Operator
 highlight! link Conceal Operator
 setlocal conceallevel=1
-setlocal concealcursor="nvic"
+setlocal concealcursor=nvic
