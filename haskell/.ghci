@@ -1,17 +1,10 @@
-import Data.List
+:set -XOverloadedStrings
 
-import qualified IPPrint
-import qualified Language.Haskell.HsColour as HsColour
-import qualified Language.Haskell.HsColour.Colourise as HsColour
-import qualified Language.Haskell.HsColour.Output as HsColour
+:module +Control.Monad
+:module +Data.Maybe
+:module +Data.Monoid
+:module +System.IO
 
-let myColourPrefs = HsColour.defaultColourPrefs { HsColour.conid = [HsColour.Foreground HsColour.Yellow, HsColour.Bold], HsColour.conop = [HsColour.Foreground HsColour.Yellow], HsColour.string = [HsColour.Foreground HsColour.Green], HsColour.char = [HsColour.Foreground HsColour.Cyan], HsColour.number = [HsColour.Foreground HsColour.Red, HsColour.Bold], HsColour.layout = [HsColour.Foreground HsColour.White], HsColour.keyglyph = [HsColour.Foreground HsColour.White] }
+:module +Data.Text
 
-let myPrint = putStrLn . HsColour.hscolour (HsColour.TTYg HsColour.XTerm256Compatible) myColourPrefs False False "" False . IPPrint.pshow
-
-let combination n xs = mapM (const xs) [1..n]
-let combinationWRep n xs = filter ((n ==) . length . nub) $ combination n xs
-
-:seti -XNoMonomorphismRestriction
-:set -interactive-print=myPrint
 :set prompt "\x03BB "
