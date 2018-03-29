@@ -1,1 +1,1 @@
-au BufRead,BufNewFile *.pd set filetype=perfect
+au BufRead,BufNewFile *.pd setlocal filetype=perfect

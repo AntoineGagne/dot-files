@@ -15,7 +15,7 @@ syntax keyword PerfectKeywords pre property
 syntax keyword PerfectTypes map set int
 
 " comments
-syntax keyword PerfectTodo TODO contained
+syntax keyword PerfectTodo contained TODO FIXME NOTE
 syntax match PerfectComments "//.*" contains=PerfectTodo
 
 " operators
@@ -31,7 +31,7 @@ syntax match PerfectOperators "<<="
 syntax match PerfectOperators "<<"
 syntax match PerfectOperators ">="
 syntax match PerfectOperators "<="
-syntax match PerfectOperators "~"
+syntax match PerfectOperators "\~"
 syntax match PerfectOperators "##"
 syntax match PerfectOperators "+"
 syntax match PerfectOperators "++"
