@@ -134,6 +134,9 @@ else
         "  {{{2 Syntax highlighting for the Haskell language
         Plug 'neovimhaskell/haskell-vim', { 'for': 'haskell' }
 
+        " {{{2 Perfect language syntax highlighting
+        Plug 'AntoineGagne/perfect-language-vim'
+
         " {{{2 HTML5 Syntax Highlighting
         Plug 'othree/html5.vim', { 'for': 'html' }
 
