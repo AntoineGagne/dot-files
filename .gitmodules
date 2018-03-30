@@ -113,3 +113,9 @@
 [submodule "vim/.vim/vim/.vim/bundle/vim-ltsa-syntax"]
 	path = vim/.vim/vim/.vim/bundle/vim-ltsa-syntax
 	url = git@github.com:vinceau/vim-ltsa-syntax.git
+[submodule "vim/.vim/vim/.vim/bundle/perfect-language-vim"]
+	path = vim/.vim/vim/.vim/bundle/perfect-language-vim
+	url = git@github.com:AntoineGagne/perfect-language-vim.git
+[submodule "vim/.vim/bundle/perfect-language-vim"]
+	path = vim/.vim/bundle/perfect-language-vim
+	url = git@github.com:AntoineGagne/perfect-language-vim.git
