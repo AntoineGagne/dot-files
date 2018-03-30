@@ -44,7 +44,7 @@ syntax match PerfectComments "//.*$" contains=PerfectTodo
 syntax region PerfectStrings start=/"/ skip=/\\"/ end=/"/
 
 " characters
-syntax match PerfectCharacter "^`\(\\\([abfnrtv\\`\"]\|(\(1[0-2][0-7]\|0\d\d\))\)\|.\)`"
+syntax match PerfectCharacter "`\(\\\([abfnrtv\\`\"]\|(\(1[0-2][0-7]\|0\d\d\))\)\|.\)`"
 
 " operators
 syntax match PerfectOperators "<="
@@ -72,13 +72,13 @@ syntax match PerfectOperators "\.\."
 syntax match PerfectOperators "\.\.\."
 
 " integers
-syntax match PerfectNumbers '-\?\d\(_\?\d\)*'
-syntax match PerfectNumbers '0[Xx][0-9A-Fa-f]\(_\?[0-9A-Fa-f]\)*'
-syntax match PerfectNumbers '0[Bb][01]\(_\?[01]\)*'
+syntax match PerfectNumbers '\<-\?\d\(_\?\d\)*\>'
+syntax match PerfectNumbers '\<0[Xx][0-9A-Fa-f]\(_\?[0-9A-Fa-f]\)*\>'
+syntax match PerfectNumbers '\<0[Bb][01]\(_\?[01]\)*\>'
 
 " reals
-syntax match PerfectReal '-\?\d\(_\?\d\)*\([Ee]-\?\d\(_\?\d\)*\)'
-syntax match PerfectReal '-\?\d\(_\?\d\)*\(\.\d\(_\?\d\)*\([Ee]-\?\d\(_\?\d\)*\)\?\)'
+syntax match PerfectReal '\<-\?\d\(_\?\d\)*\([Ee]-\?\d\(_\?\d\)*\)\>'
+syntax match PerfectReal '\<-\?\d\(_\?\d\)*\(\.\d\(_\?\d\)*\([Ee]-\?\d\(_\?\d\)*\)\?\)\>'
 
 highlight def link PerfectComments Comment
 highlight def link PerfectKeywords Keyword
