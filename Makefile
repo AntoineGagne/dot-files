@@ -51,7 +51,8 @@ SOFTWARE_DIRS := bash \
 	ncmpcpp \
 	kitty \
 	dunst \
-	gdb
+	gdb \
+	ocaml
 INSTALL_DIRS := $(SOFTWARE_DIRS:%=install-%)
 
 .PHONY: all
