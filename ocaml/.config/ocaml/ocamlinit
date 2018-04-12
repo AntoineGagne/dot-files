@@ -1,0 +1,23 @@
+(* Assuming you put this file in `~/.config/ocaml/.ocamlinit`, you can use this
+ * snippet to import it on every ocaml/utop session:
+ *
+ * let home_directory_path =
+ *   Sys.getenv "HOME"
+ * ;;
+ * 
+ * let user_ocamlinit_path =
+ *   List.fold_left Filename.concat home_directory_path [".config"; "ocaml"; ".ocamlinit"]
+ * ;;
+ * 
+ * Topdirs.dir_use Format.std_formatter user_ocamlinit_path;;
+*)
+
+#require "lambda-term";;
+
+let markup = [LTerm_text.S "λ "];;
+let prompt = LTerm_text.eval markup
+  in UTop.prompt := fst (React.S.create prompt)
+;;
+Sys.command "clear";;
+
+(* vim: ft=ocaml *)

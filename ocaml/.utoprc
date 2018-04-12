@@ -1,0 +1,14 @@
+profile: dark
+autoload: true
+external-editor: nvim
+
+char.foreground: light-magenta
+comment.foreground: light-black
+constant.foreground: light-magenta
+directive.foreground: light-cyan
+error.foreground: red
+keyword.foreground: light-red
+module.foreground: light-cyan
+parenthesis.foreground: light-magenta
+string.foreground: light-green
+symbol.foreground: light-red
