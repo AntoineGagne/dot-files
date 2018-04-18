@@ -18,6 +18,5 @@ let markup = [LTerm_text.S "λ "];;
 let prompt = LTerm_text.eval markup
   in UTop.prompt := fst (React.S.create prompt)
 ;;
-Sys.command "clear";;
 
 (* vim: ft=ocaml *)
