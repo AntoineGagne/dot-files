@@ -1,11 +1,6 @@
 " {{{1 Plugins
 
-" {{{2 YouCompleteMe
-nnoremap <F11> :YcmForceCompileAndDiagnostics <CR>
-
-" {{{1 Folding
-" space open/closes folds
-nnoremap <space> za
+map <Space> <leader>
 
 " {{{1 Movements
 " {{{2 File
@@ -24,10 +19,3 @@ nnoremap $ g$
 nnoremap <leader>bn :bnext<CR>
 " Move to nth previous buffer
 nnoremap <leader>bp :bprevious<CR>
-
-
-" {{{1 Special Characters
-" Inserts a « followed by a space
-map <Leader>og i« <ESC> 
-" Inserts a » preceded by a space
-map <Leader>fg a »<ESC>
