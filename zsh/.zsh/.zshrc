@@ -317,7 +317,7 @@ zstyle ':completion:*:aliases' list-colors '=*=2;38;5;128'
 zstyle ':completion:*:*:kill:*' list-colors '=(#b) #([0-9]#)*( *[a-z])*=34=31=33'
 zstyle ':completion:*:options' list-colors '=^(-- *)=34'
 
-compctl -GRFBm rb
+compdef _precommand rb
 
 if [ -f /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]; then
     source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
