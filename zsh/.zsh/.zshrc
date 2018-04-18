@@ -148,7 +148,7 @@ export REPORTTIME=1
 # likely to handle this case correctly. Some experimentation is necessary.
 export ZLE_RPROMPT_INDENT=0
 
-fpath=("${HOME}/.zsh/functions/" $fpath)
+fpath=("${HOME}/.zsh/functions/" "${HOME}/.zsh/completions/" $fpath)
 autoload -U colors && colors
 autoload batch-convert-audio-file
 autoload convert-audio-file
@@ -195,6 +195,7 @@ unalias run-help
 alias help=run-help
 
 autoload zkbd
+autoload -U ~/.zsh/completions/*(:t)
 
 bindkey -v
 

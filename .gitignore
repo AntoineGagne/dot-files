@@ -239,4 +239,5 @@ mpd/.config/mpd/**
 !**/.zsh/.zprofile
 !**/.zsh/.zshrc
 !**/.zsh/functions
+!**/.zsh/completions
 *.zwc

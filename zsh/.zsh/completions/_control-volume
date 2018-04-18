@@ -1,0 +1,24 @@
+#compdef control-volume
+
+# Resources to understand:
+#
+# * https://github.com/zsh-users/zsh-completions
+# * http://www.linux-mag.com/id/1106/
+# 
+# This file was largely inspired by:
+#
+# https://github.com/zsh-users/zsh-completions/blob/master/src/_udisksctl
+_control-volume() {
+    typeset -A opt_args
+    local context state line
+    local current_context="${curcontext}"
+
+    _arguments \
+        {-v,--volume}'[display current volume level]' \
+        {-d,--default-sink}'[display the default sink number]' \
+        {-m,--muted}'[display whether the volume is muted or not]' \
+        {-t,--toggle}'[toggle sound between muted and unmuted]' \
+        {-c,--control}'[change the volume level]' \
+}
+
+_control-volume "${@}"
