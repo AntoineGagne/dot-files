@@ -31,7 +31,7 @@ set tags+=./tags
 
 " Put the backup files in the temporary folder
 set backup
-call CreateDirectoryIfItDoesNotExists(expand('$HOME') . '/.vim/.tmp')
+call functions#CreateDirectoryIfItDoesNotExists(expand('$HOME') . '/.vim/.tmp')
 " The directory where to put the backups
 set backupdir=~/.vim/.tmp
 " Skip creating backups for the files matching the following patterns
@@ -39,14 +39,14 @@ set backupskip=/tmp/*,/private/tmp/*
 
 " {{{1 Swap
 " The directory where to save the swap files
-call CreateDirectoryIfItDoesNotExists(expand('$HOME') . '/.vim/.swap')
+call functions#CreateDirectoryIfItDoesNotExists(expand('$HOME') . '/.vim/.swap')
 set directory=~/.vim/.swap
 set writebackup
 
 " {{{1 Undo
 " Keep undo even after closing the file
 set undofile
-call CreateDirectoryIfItDoesNotExists(expand('~') . '/.vim/.undo')
+call functions#CreateDirectoryIfItDoesNotExists(expand('~') . '/.vim/.undo')
 " Set the undo directory
 set undodir=~/.vim/.undo
 " Set the maximum number of undo that can be undone
@@ -62,7 +62,7 @@ set hidden
 
 let g:netrw_banner = 1
 " Where the bookmarks will be kept
-call CreateDirectoryIfItDoesNotExists(expand('~') . '/.vim/.bookmarks')
+call functions#CreateDirectoryIfItDoesNotExists(expand('~') . '/.vim/.bookmarks')
 let g:netrw_home = expand('~') . '/.vim/.bookmarks/'
 " Tree style listing
 let g:netrw_liststyle = 3
