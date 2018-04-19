@@ -2,18 +2,6 @@
     path = vim/.vim/bundle/html5.vim
     url = https://github.com/othree/html5.vim
     ignore = dirty
-[submodule "vim/.vim/bundle/YouCompleteMe"]
-    path = vim/.vim/bundle/YouCompleteMe
-    url = https://github.com/Valloric/YouCompleteMe
-    ignore = dirty
-[submodule "vim/.vim/bundle/vim-haskellConceal"]
-    path = vim/.vim/bundle/vim-haskellConceal
-    url = https://github.com/Twinside/vim-haskellConceal
-    ignore = dirty
-[submodule "vim/.vim/bundle/syntastic"]
-    path = vim/.vim/bundle/syntastic
-    url = https://github.com/vim-syntastic/syntastic
-    ignore = dirty
 [submodule "vim/.vim/bundle/vim-racer"]
     path = vim/.vim/bundle/vim-racer
     url = https://github.com/racer-rust/vim-racer
@@ -46,10 +34,6 @@
     path = vim/.vim/bundle/vim-table-mode
     url = https://github.com/dhruvasagar/vim-table-mode
     ignore = dirty
-[submodule "vim/.vim/bundle/Vundle.vim"]
-    path = vim/.vim/bundle/Vundle.vim
-    url = https://github.com/VundleVim/Vundle.vim
-    ignore = dirty
 [submodule "vim/.vim/bundle/gruvbox"]
     path = vim/.vim/bundle/gruvbox
     url = https://github.com/morhetz/gruvbox
@@ -62,40 +46,32 @@
     path = vim/.vim/bundle/ultisnips
     url = https://github.com/SirVer/ultisnips.git
     ignore = dirty
-[submodule "vim/.vim/bundle/vim-snippets"]
-    path = vim/.vim/bundle/vim-snippets
-    url = https://github.com/honza/vim-snippets.git
-    ignore = dirty
-[submodule "vim/.vim/bundle/rust.vim"]
-    path = vim/.vim/bundle/rust.vim
-    url = https://github.com/rust-lang/rust.vim.git
-    ignore = dirty
 [submodule "vim/.vim/bundle/ale"]
-    path = "vim/.vim/bundle/ale"
+    path = vim/.vim/bundle/ale
     url = https://github.com/w0rp/ale.git
     ignore = dirty
 [submodule "scripts/haskell/create-gitignore"]
-    path = "scripts/haskell/create-gitignore"
+    path = scripts/haskell/create-gitignore
     url = https://github.com/AntoineGagne/create-gitignore.git
     ignore = dirty
 [submodule "scripts/python/cmus-notify"]
-    path = "scripts/python/cmus-notify"
+    path = scripts/python/cmus-notify
     url = https://github.com/AntoineGagne/cmus-notify.git
     ignore = dirty
 [submodule "vim/.vim/bundle/vimwiki"]
-    path = "vim/.vim/bundle/vimwiki"
+    path = vim/.vim/bundle/vimwiki
     url = https://github.com/vimwiki/vimwiki.git
     ignore = dirty
 [submodule "vim/.vim/bundle/vim-surround"]
-    path = "vim/.vim/bundle/vim-surround"
+    path = vim/.vim/bundle/vim-surround
     url = https://github.com/tpope/vim-surround.git
     ignore = dirty
 [submodule "fonts/.fonts/powerline-patched-fonts"]
-    path = "fonts/.fonts/powerline-patched-fonts"
+    path = fonts/.fonts/powerline-patched-fonts
     url = https://github.com/powerline/fonts.git
     ignore = dirty
 [submodule "weechat/.weechat/python/wee-slack"]
-    path = "weechat/.weechat/python/wee-slack"
+    path = weechat/.weechat/python/wee-slack
     url = https://github.com/wee-slack/wee-slack.git
     ignore = dirty
 [submodule "vim/.vim/bundle/LanguageClient-neovim"]
@@ -110,12 +86,6 @@
     path = vim/.vim/bundle/editorconfig-vim
     url = https://github.com/editorconfig/editorconfig-vim.git
     ignore = dirty
-[submodule "vim/.vim/vim/.vim/bundle/vim-ltsa-syntax"]
-	path = vim/.vim/vim/.vim/bundle/vim-ltsa-syntax
-	url = git@github.com:vinceau/vim-ltsa-syntax.git
-[submodule "vim/.vim/vim/.vim/bundle/perfect-language-vim"]
-	path = vim/.vim/vim/.vim/bundle/perfect-language-vim
-	url = git@github.com:AntoineGagne/perfect-language-vim.git
 [submodule "vim/.vim/bundle/perfect-language-vim"]
 	path = vim/.vim/bundle/perfect-language-vim
 	url = git@github.com:AntoineGagne/perfect-language-vim.git
