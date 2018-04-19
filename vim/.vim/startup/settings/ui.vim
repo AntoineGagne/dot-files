@@ -30,6 +30,9 @@ set title
 " Show line numbers
 set number
 
+" {{{1 Separators
+set fillchars=vert:│,fold:─
+
 
 " {{{1 Status Line
 
