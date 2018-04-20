@@ -75,7 +75,28 @@ _pandoc() {
         '--section-divs[wrap sections in <section> tags (or <div> tags for html4)]' \
         '--email-obfuscation=[specify a method for obfuscating mailto: links in HTML documents]:METHOD:(none javascript references)' \
         '--id-prefix=[specify a prefix to be added to all identifiers, internal links and footnote numbers]:STRING:()' \
-        '(-T --title-prefix)'{-T,--title-prefix=}'[specify STRING as a prefix at the beginning of the title that appears in the HTML header]:STRING:()'
+        '(-T --title-prefix)'{-T,--title-prefix=}'[specify STRING as a prefix at the beginning of the title that appears in the HTML header]:STRING:()' \
+        '(-c --css)'{-c,--css=}'[link to a CSS style sheet]:URL:_urls' \
+        '--reference-doc=[use the specified file as a style reference in producing a docx or ODT file]:FILE:_files' \
+        '--epub-cover-image=[use the specified image as the EPUB cover]:FILE:_files' \
+        '--epub-metadata=[look in the specified XML file for metadata for the EPUB]:FILE:_files' \
+        '--epub-embed-font=[embed the specified font in the EPUB]:FILE:_files' \
+        '--epub-chapter-level=[specify the header level at which to split the EPUB into separate "chapter" files]:NUMBER:()' \
+        '--epub-subdirectory=[specify the subdirectory in the OCF container that is to hold the EPUB-specific contents]:DIRNAME:_directories' \
+        '--pdf-engine=[use the specified engine when producing PDF output]:ENGINE:(pdflatex lualatex xelatex wkhtmltopdf weasyprint prince context pdfroff)' \
+        '--pdf-engine-opt=[use the given string as a command-line argument to the pdf-engine]:STRING:()' \
+        '--bibliography=[set the bibliography field in the document metadata to FILE]:FILE:_files' \
+        '--csl=[set the csl field in the document metadata to FILE]:FILE:_files' \
+        '--citation-abbreviations=[set the citation-abbreviations field in the document metadata to FILE]:FILE:_files' \
+        '--natbib[use natbib for citations in LaTeX output]' \
+        '--biblatex[use biblatex for citations in LaTeX output]' \
+        '--mathjax=[use MathJax to display embedded TeX math in HTML output]:URL:_urls' \
+        '--mathml[convert TeX math to MathML]' \
+        '--webtex=[convert TeX formulas to <img> tags that link to an external script that converts formulas to images]:URL:_urls' \
+        '--katex=[use KaTeX to display embedded TeX math in HTML output]:URL:_urls' \
+        '--katex-stylesheet=[the url should point to the katex.css stylesheet]:URL:_urls' \
+        '--dump-args[print information about command-line arguments to stdout then exit]' \
+        '--ignore-args[ignore command-line arguments (for use in wrapper scripts)]'
 }
 
 _pandoc "${@}"
