@@ -1,5 +1,11 @@
 #compdef pandoc
 
+_highlight_style() {
+    _alternative \
+        "arguments:STYLE:($(pandoc --list-highlight-styles))" \
+        'files:FILE:_files'
+}
+
 _pandoc() {
     typeset -A opt_args
     local context state line
@@ -46,7 +52,30 @@ _pandoc() {
         '(--toc --table-of-contents)'{--toc,--table-of-contents}'[include an automatically generated table of contents]' \
         '--toc-depth=[specify the number of section levels to include in the table of contents]:DEPTH:()' \
         '--strip-comments[strip out HTML comments in the Markdown or Textile source]' \
-        '--no-highlight[disable syntax highlighting for code blocks and inlines]'
+        '--no-highlight[disable syntax highlighting for code blocks and inlines]' \
+        '--highlight-styles=[specifies the coloring style to be used in highlighted source code]:OPTION:_highlight_style' \
+        '--syntax-definition=[instructs pandoc to load KDE XML syntax definition file]:FILE:_files' \
+        '(-H --include-in-header)'{-H,--include-in-header=}'[include contents of FILE, verbatim, at the end of the header]:FILE:_files' \
+        '(-B --include-before-body)'{-B,--include-before-body=}'[include contents of FILE, verbatim, at the beginning of the document body]:FILE:_files' \
+        '(-A --include-after-body)'{-A,--include-after-body=}'[include contents of FILE, verbatim, at the end of the document body]:FILE:_files' \
+        '--resource-path=[list of paths to search for images and other resources]:SEARCHPATH:_file_paths' \
+        '--request-header=[set the request header NAME to the value VALUE when making HTTP requests]:NAME:()' \
+        '--self-contained[produce a standalone HTML file with no external dependencies]' \
+        '--html-q-tags[use <q> tags for quotes in HTML]' \
+        '--ascii[use only ASCII characters in output]' \
+        '--reference-links[use reference-style links, rather than inline links, in writing Markdown or reStructuredText]' \
+        '--reference-location=[specify whether footnotes are placed at the end of the current (top-level) block]:PLACE:(block section document)' \
+        '--atx-headers[use ATX-style headers in Markdown and AsciiDoc output]' \
+        '--top-level-division=[treat top-level headers as the given division type in LaTeX, ConTeXt, DocBook and TEI output]:DIVISION:(default section chapter part)' \
+        '(-N --number-sections)'{-N,--number-sections}'[number section headings in LaTeX, ConTeXt, HTML or EPUB output]' \
+        '--number-offset=[offset for section headings in HTML output]:NUMBER:()' \
+        '--listings[use the listings package for LaTeX code blocks]' \
+        '(-i --incremental)'{-i,--incremental}'[make list items in slide shows display incrementally (one by one)]' \
+        '--slide-level=[specifies that headers with the specified level create slides (for beamer, s5, slidy, slideous, dzslides)]:NUMBER:()' \
+        '--section-divs[wrap sections in <section> tags (or <div> tags for html4)]' \
+        '--email-obfuscation=[specify a method for obfuscating mailto: links in HTML documents]:METHOD:(none javascript references)' \
+        '--id-prefix=[specify a prefix to be added to all identifiers, internal links and footnote numbers]:STRING:()' \
+        '(-T --title-prefix)'{-T,--title-prefix=}'[specify STRING as a prefix at the beginning of the title that appears in the HTML header]:STRING:()'
 }
 
 _pandoc "${@}"
