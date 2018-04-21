@@ -150,30 +150,7 @@ export ZLE_RPROMPT_INDENT=0
 
 fpath=("${HOME}/.zsh/functions/" "${HOME}/.zsh/completions/" $fpath)
 autoload -U colors && colors
-autoload batch-convert-audio-file
-autoload convert-audio-file
-autoload convert-svg-to-favicon
-autoload display-available-colors
-autoload download-playlist
-autoload download-playlists
-autoload download-video-playlist
-autoload download-video-playlists
-autoload extract
-autoload jump
-autoload mark
-autoload marks
-autoload md-to-html
-autoload parallel-download
-autoload rb
-autoload split-audio-file
-autoload start-tmux-sessions
-autoload tabs-to-space
-autoload top10
-autoload unmark
-autoload upload-to-link
-autoload weather
-autoload rationalise-dot
-
+autoload -U ~/.zsh/functions/*(:t)
 autoload -U ~/.zsh/completions/*(:t)
 
 autoload -Uz up-line-or-beginning-search
@@ -329,10 +306,10 @@ if [ -f /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh ]; th
     export ZSH_AUTOSUGGEST_USE_ASYNC=1
 fi
 
-if [ -f /usr/local/bin/virtualenvwrapper.sh ]; then
-    source /usr/local/bin/virtualenvwrapper.sh
-elif [ -f /usr/bin/virtualenvwrapper.sh ]; then
-    source /usr/bin/virtualenvwrapper.sh
+if [ -f "$(which virtualenvwrapper_lazy.sh)" ]; then
+    source "$(which virtualenvwrapper_lazy.sh)"
+elif [ -f "$(which virtualenvwrapper.sh)" ]; then
+    source "$(which virtualenvwrapper.sh)"
 fi
 
 source "${HOME}/.prompt"
