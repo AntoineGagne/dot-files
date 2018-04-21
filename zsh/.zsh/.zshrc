@@ -174,6 +174,8 @@ autoload upload-to-link
 autoload weather
 autoload rationalise-dot
 
+autoload -U ~/.zsh/completions/*(:t)
+
 autoload -Uz up-line-or-beginning-search
 autoload -Uz down-line-or-beginning-search
 autoload -Uz select-quoted
@@ -195,7 +197,6 @@ unalias run-help
 alias help=run-help
 
 autoload zkbd
-autoload -U ~/.zsh/completions/*(:t)
 
 bindkey -v
 
