@@ -1,0 +1,24 @@
+#compdef makeindex
+
+_makeindex() {
+    typeset -A opt_args
+    local context state line
+    local current_context="${curcontext}"
+
+    _arguments \
+        '-c[compress intermediate blanks (ignoring leading and trailing blanks and tabs)]' \
+        '-g[employ German word ordering in the index, in accord with rules set forth in DIN 5007]' \
+        '-i[take input from stdin]' \
+        '-l[letter ordering]' \
+        '-o[employ the specify name as the output index file]:FILE:_files' \
+        '-p[set the starting page number of the output index file to be the specified number or value]:NUMBER:((any\:"the starting page is the last source page number plus 1" odd\:"the starting page is the first odd page following the last source page number" even\:"the starting page is the first even page following the last source page number"))' \
+        '-q[send no messages to stderr]' \
+        '-r[disable implicit page range formation; page ranges must be created by using explicit range operators]' \
+        '-s[employ the specified file as the style file (the environment variable INDEXSTYLE defines the path where the style file should be found)]:FILE:_files' \
+        '-t[employ the specified file as the transcript file]' \
+        '-L[sort based on locale settings]' \
+        '-T[special support for Thai documents]' \
+        '*::FILES:_files -g "*.idx"'
+}
+
+_makeindex "${@}"
