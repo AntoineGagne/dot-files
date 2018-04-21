@@ -1,0 +1,22 @@
+#compdef stow
+
+_stow() {
+    _arguments \
+        '(-n,--no)'{-n,--no}'[do not perform any operations that modify the filesystem; merely show what would happen]' \
+        '(-d --dir)'{-d,--dir=}'[set the stow directory to the specified directory instead of the current directory]:DIRECTORY:_directories' \
+        '(-t --target)'{-t,--target=}'[set the target directory to the specified directory instead of the parent of the stow directory]:DIRECTORY:_directories' \
+        '(-v --verbose)'{-v,--verbose=}'[send verbose output to standard error describing what Stow is doing]:LEVEL:(0 1 2 3 4)' \
+        '(-S --stow)'{-S,--stow}'[stow the packages that follow this option into the target directory]' \
+        '(-D --delete)'{-D,--delete}'[unstow the packages that follow this option from the target directory rather than installing them]' \
+        '(-R --restow)'{-R,--restow}'[restow packages (first unstow, then stow again)]' \
+        '--adopt[move file to the same relative place within the package installation image within the stow directory]' \
+        '--no-folding[disable folding of newly stowed directories when stowing, and refolding of newly foldable directories when unstowing]' \
+        '--ignore=[ignore files ending in this Perl regex]:REGEX:()' \
+        '--defer=[do not stow files beginning with this Perl regex if the file is already stowed to another package]:REGEX:()' \
+        '--override=[force stowing files beginning with this Perl regex if the file is already stowed to another package]:REGEX:()' \
+        '(-V --version)'{-V,--version}'[show Stow version number, and exit]' \
+        '(-h --help)'{-h,--help}'[show Stow command syntax, and exit]' \
+        '*::FILE:_files'
+}
+
+_stow "${@}"
