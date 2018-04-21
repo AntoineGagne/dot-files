@@ -1,0 +1,29 @@
+#compdef chktex
+
+_chktex() {
+    _arguments \
+        '(-h --help)'{-h,--help}'[print a help screen]' \
+        '(-i --license)'{-i,--license}'[show distribution information]' \
+        '(-l --localrc)'{-l,--localrc}'[read local .chktexrc formatted file]' \
+        '(-d --debug)'{-d,--debug}'[specify the debugging level by the given number]:LEVEL:()' \
+        '(-r --reset)'{-r,--reset}'[reset settings to default]' \
+        '(-w --warnon)'{-w,--warnon=}'[make the specified message number into a warning]:NUMBER:()' \
+        '(-e --erroron)'{-e,--erroron=}'[make the specified message number into an error]:NUMBER:()' \
+        '(-m --msgon)'{-m,--msgon=}'[make the specified message number into a message]:NUMBER:()' \
+        '(-n --nowarn)'{-n,--nowarn=}'[mute the specified message number]:NUMBER:()' \
+        '(-L --nolinesupp)'{-L,--nolinesupp}'[do not allow per-line suppressions]' \
+        '(-v --verbosity)'{-v,--verbosity=}'[define how errors are displayed]:LEVEL:((0\:"less" 1\:"default" 2\:"fancy" 3\:"lacheck"))' \
+        '(-V --pipeverb)'{-V,--pipeverb=}'[define how errors are displayed when stdout != tty]:LEVEL:((0\:"less" 1\:"default" 2\:"fancy" 3\:"lacheck"))' \
+        '(-V --pipeverb)'{-s,--splitchar=}'[specify a string that will be used to split fields when doing -v0]:STRING:()' \
+        '(-o --output)'{-o,--output=}'[redirect error output to the specified file]:FILE:_files' \
+        '(-q --quiet)'{-q,--quiet}'[prevent version information from showing]' \
+        '(-p --pseudoname)'{-p,--pseudoname=}'[specify the input filename when reporting]:FILENAME:_files' \
+        '(-f --format)'{-f,--format=}'[specify the format to use for output]:FORMAT:()' \
+        '(-b --backup)'{-b,--backup}'[backup output file]' \
+        '(-x --wipeverb)'{-x,--wipeverb}'[ignore contents of `\verb` commands]' \
+        '(-g --globalrc)'{-g,--globalrc}'[read global .chktexrc file]' \
+        '(-I --inputfiles)'{-I,--inputfiles}'[execute `\input` statements]' \
+        '(-H --headererr)'{-H,--headererr}'[show errors found in front of `\begin{document}`]' \
+        '(-W --version)'{-W,--version}'[display version information]' \
+        '*::FILES:_files -g "*.tex"'
+}
