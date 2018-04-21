@@ -1,0 +1,11 @@
+#compdef chkstow
+
+_chkstow() {
+    _arguments \
+        '(-t --target)'{-t,--target=}'[set the target directory to the specified directory]:DIRECTORY:_directories' \
+        '(-b,--badlinks)'{-b,--badlinks}'[report symlinks that point to non-existent files]' \
+        '(-a,--aliens)'{-a,--aliens}'[report non-symlinks in the target directory]' \
+        '(-l,--list)'{-l,--list}'[list packages in the target directory]'
+}
+
+_chkstow "${@}"
