@@ -96,7 +96,8 @@ _pandoc() {
         '--katex=[use KaTeX to display embedded TeX math in HTML output]:URL:_urls' \
         '--katex-stylesheet=[the specified url should point to the katex.css stylesheet]:URL:_urls' \
         '--dump-args[print information about command-line arguments to stdout then exit]' \
-        '--ignore-args[ignore command-line arguments (for use in wrapper scripts)]'
+        '--ignore-args[ignore command-line arguments (for use in wrapper scripts)]' \
+        '*::FILES:_files'
 }
 
 _pandoc "${@}"
