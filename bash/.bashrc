@@ -72,10 +72,10 @@ case "$TERM" in
     xterm-color|*-256color) color_prompt=yes;;
 esac
 
-if [ -f /usr/local/bin/virtualenvwrapper.sh ]; then
-    source /usr/local/bin/virtualenvwrapper.sh
-elif [ -f /usr/bin/virtualenvwrapper.sh ]; then
-    source /usr/bin/virtualenvwrapper.sh
+if [ -f "$(which virtualenvwrapper_lazy.sh)" ]; then
+    source "$(which virtualenvwrapper_lazy.sh)"
+elif [ -f "$(which virtualenvwrapper.sh)" ]; then
+    source "$(which virtualenvwrapper.sh)"
 fi
 
 if type -f "pandoc" >/dev/null 2>&1; then
