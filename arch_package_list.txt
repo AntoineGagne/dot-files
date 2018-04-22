@@ -17,8 +17,6 @@ bison
 bitlbee
 bs1770gain
 bzip2
-cabal-install
-clang-tools-extra
 cmake
 compton
 coreutils
@@ -48,8 +46,8 @@ foomatic-db
 foomatic-db-ppds
 gawk
 gcc-libs
+gdb
 gettext
-ghc-static
 git
 glances
 glibc
@@ -78,6 +76,7 @@ krita
 kvantum-theme-arc
 less
 lesspipe
+libstatgrab
 licenses
 linux
 logrotate
@@ -106,9 +105,12 @@ opam
 openssh
 opus-tools
 opusfile
+otf-fira-sans
 p7zip
 pacman
 pandoc
+pandoc-citeproc
+pandoc-crossref
 parallel
 pass
 patch
@@ -131,7 +133,6 @@ python-pyacoustid
 python-requests
 python2-neovim
 python2-websocket-client
-r8168
 ranger
 redshift
 reiserfsprogs
@@ -143,7 +144,6 @@ sed
 shadow
 shellcheck
 shntool
-stack
 stow
 sudo
 swh-plugins
@@ -171,6 +171,7 @@ texlive-pstricks
 texlive-publishers
 texlive-science
 tmux
+tmuxp
 tree
 ttf-hack
 ttf-symbola
@@ -190,8 +191,6 @@ wpa_supplicant
 xclip
 xfsprogs
 xmobar
-xmonad
-xmonad-contrib
 xorg-server
 xorg-xdpyinfo
 xorg-xinit
@@ -203,6 +202,7 @@ youtube-dl
 zathura
 zathura-pdf-mupdf
 zsh
+zsh-autosuggestions
 zsh-completions
 zsh-doc
 zsh-syntax-highlighting
