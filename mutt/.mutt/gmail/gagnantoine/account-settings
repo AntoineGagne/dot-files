@@ -12,13 +12,12 @@ set postponed = "+Drafts"
 set record = +Sent
 
 # Send options.
-set smtp_url = 'smtp://gagnantoine@smtp.gmail.com:587/'
+set smtp_url = 'smtps://gagnantoine@smtp.gmail.com:587/'
 set smtp_pass = $my_gagnantoine_password
 set realname = 'Antoine Gagné'
 set from = "gagnantoine@gmail.com"
 set hostname = "gmail.com"
 set signature = "Antoine Gagné"
-set imap_keepalive = 900
 
 # Connection options
 set ssl_starttls = yes
