@@ -38,7 +38,7 @@ _pandoc() {
         '(-p --preserve-tabs)'{-p,--preserve-tabs}'[preserve tabs instead of converting them to spaces]' \
         '--tab-stop=[specify the number of spaces per tab]:NUMBER:()' \
         '--track-changes=[specifies what to do with insertions, deletons and comments]:ACTION:(accept reject all)' \
-        '--extract-media=[extract images and other medias contained in or linked from the source document]:DIRECTORY:_file_paths' \
+        '--extract-media=[extract images and other medias contained in or linked from the source document]:DIRECTORY:_directories' \
         '--abbreviations=[specifies a custom abbreviations file, with abbreviations one to a line]:FILE:_files' \
         '(-s --standalone)'{-s,--standalone}'[produce output with an appropriate header and footer]' \
         '--template=[use the specified file as a custom template for the generated document]:FILE:_files' \
@@ -58,7 +58,7 @@ _pandoc() {
         '(-H --include-in-header)'{-H,--include-in-header=}'[include contents of the specified file, verbatim, at the end of the header]:FILE:_files' \
         '(-B --include-before-body)'{-B,--include-before-body=}'[include contents of the specified file, verbatim, at the beginning of the document body]:FILE:_files' \
         '(-A --include-after-body)'{-A,--include-after-body=}'[include contents of the specified file, verbatim, at the end of the document body]:FILE:_files' \
-        '--resource-path=[list of paths to search for images and other resources]:SEARCHPATH:_file_paths' \
+        '--resource-path=[list of paths to search for images and other resources]:SEARCHPATH:_directories' \
         '--request-header=[set the request header NAME to the value VALUE when making HTTP requests]:NAME:()' \
         '--self-contained[produce a standalone HTML file with no external dependencies]' \
         '--html-q-tags[use <q> tags for quotes in HTML]' \
