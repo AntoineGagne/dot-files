@@ -1,4 +1,5 @@
 let g:LanguageClient_serverCommands = {
+            \ 'lua': ['lua-lsp'],
             \ 'python': ['pyls'],
             \ 'javascript': ['javascript-typescript-stdio'],
             \ 'haskell': ['hie', '--lsp']

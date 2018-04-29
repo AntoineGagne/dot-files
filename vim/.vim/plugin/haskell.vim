@@ -5,5 +5,3 @@ endif
 if executable("haskellman")
     setlocal keywordprg=haskellman
 endif
-
-setlocal omnifunc=necoghc#omnifunc
