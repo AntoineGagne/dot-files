@@ -48,6 +48,10 @@ if [ -d "/usr/local/heroku" ]; then
     export PATH="/usr/local/heroku/bin:$PATH"
 fi
 
+if [ -d ~/.luarocks/bin ]; then
+    export PATH="${HOME}/.luarocks/bin:${PATH}"
+fi
+
 # Added by travis gem
 if [ -f "${HOME}/.travis/travis.sh" ]; then
     source "${HOME}/.travis/travis.sh"
