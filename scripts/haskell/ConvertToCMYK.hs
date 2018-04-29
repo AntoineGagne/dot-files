@@ -18,9 +18,9 @@ import Turtle
 
 data Arguments
     = Arguments
-        { source :: FilePath
-        , destination :: FilePath
-        } deriving (Show, Generic)
+    { source :: FilePath
+    , destination :: FilePath
+    } deriving (Show, Generic)
 
 parser :: Parser Arguments
 parser = Arguments <$> argPath "SOURCE" "the source file"
