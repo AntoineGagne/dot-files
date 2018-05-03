@@ -9,7 +9,7 @@ main() {
         exit 0
     fi
 
-    /usr/bin/nohup /usr/bin/ckb -b &>/dev/null &
+    /usr/bin/nohup /usr/bin/ckb-next -b &>/dev/null &
 }
 
 main
