@@ -92,3 +92,16 @@
 [submodule "vim/.vim/bundle/vim-gutentags"]
 	path = vim/.vim/bundle/vim-gutentags
 	url = https://github.com/ludovicchabant/vim-gutentags.git
+[submodule "vim/.vim/bundle/vim-erlang-compiler"]
+	path = vim/.vim/bundle/vim-erlang-compiler
+	url = https://github.com/vim-erlang/vim-erlang-compiler.git
+	ignore = dirty
+[submodule "vim/.vim/bundle/vim-erlang-omnicomplete"]
+	path = vim/.vim/bundle/vim-erlang-omnicomplete
+	url = https://github.com/vim-erlang/vim-erlang-omnicomplete.git
+[submodule "vim/.vim/bundle/vim-erlang-runtime"]
+	path = vim/.vim/bundle/vim-erlang-runtime
+	url = https://github.com/vim-erlang/vim-erlang-runtime.git
+[submodule "vim/.vim/bundle/vim-erlang-tags"]
+	path = vim/.vim/bundle/vim-erlang-tags
+	url = https://github.com/vim-erlang/vim-erlang-tags.git

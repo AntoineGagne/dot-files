@@ -25,6 +25,12 @@ call plug#begin('~/.vim/bundle')
 
     Plug 'editorconfig/editorconfig-vim'
 
+    " {{{2 Erlang Language
+    Plug 'vim-erlang/vim-erlang-runtime'
+    Plug 'vim-erlang/vim-erlang-compiler'
+    Plug 'vim-erlang/vim-erlang-tags'
+    Plug 'vim-erlang/vim-erlang-omnicomplete'
+
     " {{{2 Tags Management
     Plug 'ludovicchabant/vim-gutentags'
 
