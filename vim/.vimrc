@@ -25,6 +25,9 @@ call plug#begin('~/.vim/bundle')
 
     Plug 'editorconfig/editorconfig-vim'
 
+    " {{{2 Tags Management
+    Plug 'ludovicchabant/vim-gutentags'
+
     " {{{2 Surrounding Text Objects
     Plug 'tpope/vim-surround'
 

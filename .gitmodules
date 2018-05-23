@@ -89,3 +89,6 @@
 [submodule "vim/.vim/bundle/perfect-language-vim"]
 	path = vim/.vim/bundle/perfect-language-vim
 	url = git@github.com:AntoineGagne/perfect-language-vim.git
+[submodule "vim/.vim/bundle/vim-gutentags"]
+	path = vim/.vim/bundle/vim-gutentags
+	url = https://github.com/ludovicchabant/vim-gutentags.git
