@@ -19,3 +19,10 @@ let g:tex_conceal='adgm'
 exec("setlocal dictionary+=" . $HOME . "/.vim/dictionaries/" . expand('<amatch>'))
 set completeopt=menuone,longest,preview
 set complete+=k
+setlocal foldmethod=syntax
+
+augroup tex
+    autocmd!
+
+    autocmd BufNewFile *.tex 0r ~/.vim/templates/skeleton.tex
+augroup END

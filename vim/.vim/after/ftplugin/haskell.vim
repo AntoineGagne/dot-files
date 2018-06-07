@@ -19,3 +19,10 @@ hi! link haskellDecl GruvboxAqua
 " hi! link haskellKeyword GruvboxRed
 " hi! link haskellLet GruvboxRed
 " hi! link haskellWhere GruvboxRed
+if executable("pointfree")
+    setlocal formatprg=pointfree
+endif
+
+if executable("haskellman")
+    setlocal keywordprg=haskellman
+endif
