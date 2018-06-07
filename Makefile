@@ -53,7 +53,8 @@ SOFTWARE_DIRS := bash \
 	dunst \
 	gdb \
 	ocaml \
-	emacs
+	emacs \
+	rofi
 INSTALL_DIRS := $(SOFTWARE_DIRS:%=install-%)
 
 .PHONY: all
