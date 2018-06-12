@@ -1,0 +1,53 @@
+snippet ctest "Common Test" b
+-module(${1:`!p snip.rv = snip.basename or "module"`}).
+
+-include_lib("common_test/include/ct.hrl").
+-include_lib("eunit/include/eunit.hrl").
+
+-compile(nowarn_export_all).
+-compile(export_all).
+
+all() ->
+	[].
+endsnippet
+
+snippet gen_statem "Finite State Machine" b
+-module(${1:`!p snip.rv = snip.basename or "module"`}).
+
+-behaviour(gen_statem).
+
+%% API
+-export([start_link/0]).
+%% gen_statem callbacks
+-export([init/1,
+		 callback_mode/0,
+		 handle_event/4,
+		 code_change/4,
+		 terminate/3]).
+
+%%%===================================================================
+%%% API
+%%%===================================================================
+
+start_link() ->
+	gen_statem:start_link(?MODULE, []).
+
+%%%===================================================================
+%%% gen_statem callbacks
+%%%===================================================================
+
+init(_Arguments) ->
+	{ok, start, []}.
+
+callback_mode() ->
+	[handle_event_function, state_enter].
+
+handle_event(enter, _OldState, State, Data) ->
+	{next_state, _State, _Data};
+handle_event({call, From}, _Action, State, Data) ->
+	{next_state, State, Data, [{reply, From, Data}]}.
+
+%%%===================================================================
+%%% Internal functions
+%%%===================================================================
+endsnippet
