@@ -1,0 +1,165 @@
+#compdef rebar3
+
+_force_stop_values() {
+    _values 'VALUE' \
+        'true' \
+        'false' \
+        'skip_rest'
+}
+
+_create_private_dir_values() {
+    _values 'VALUE' \
+        'auto_per_run' \
+        'auto_per_tc' \
+        'manual_per_tc'
+}
+
+_readable_values() {
+    _values 'VALUE' \
+        'true' \
+        'compact' \
+        'false'
+}
+
+_rebar3() {
+    typeset -A opt_args
+    local context state line
+    local current_context="${curcontext}"
+
+    _arguments -C \
+        '(-h --help)'{-h,--help}'[print the help message and exit]' \
+        '(-v --version)'{-v,--version}'[show the version information]' \
+        '1:rebar3 commands:->commands' \
+        '*:: :->command_arguments'
+
+    case $state in
+        commands)
+            local commands
+            commands=(
+                'as:higher order prover for running multiple tasks in a sequence as a certain profile'
+                'clean:remove compiled beam files from apps'
+                'compile:compile apps .app.src and .erl files'
+                'cover:perform coverage analysis'
+                'ct:run Common Tests'
+                'deps:list dependencies'
+                'dialyzer:run the Dialyzer analyzer on the project'
+                'do:higher order provider for running multiple tasks in a sequence'
+                'escriptize:generate escript archive'
+                'eunit:run EUnit Tests'
+                'get-deps:fetch dependencies'
+                'help:display a list of tasks or help for a given task or subtask'
+                'new:create a new project from templates'
+                'path:print paths to build dirs in current profile'
+                'pkgs:list available packages'
+                'release:build release of project'
+                'relup:create relup of releases'
+                'report:provide a crash report to be sent to the rebar3 issues page'
+                'shell:run shell with project apps and deps in path'
+                'tar:tar archive of release built of project'
+                'tree:print dependency tree'
+                'unlock:unlock dependencies'
+                'update:update package index'
+                'upgrade:upgrade dependencies'
+                'version:print version for rebar and current Erlang'
+                'xref:run cross reference analysis'
+            )
+            _describe -t commands 'rebar3 command' commands
+        ;;
+
+        command_arguments)
+            case $words[1] in
+                clean)
+                    _arguments \
+                        '(-a --all)'{-a,--all}'[clean all apps include deps]' \
+                        '(-p --profile)'{-p,--profile}'[clean under profile]:PROFILE:()'
+                ;;
+                cover)
+                    _arguments \
+                        '(-r --reset)'{-r,--reset}'[reset all coverdata]' \
+                        '(-v --verbose)'{-v,--verbose}'[print coverage analysis]' \
+                        '(-m --min_coverage)'{-m,--min_coverage}'[mandate a coverage percentage required to succeed (0..100)]:MINIMUM:()'
+                ;;
+                ct)
+                    _arguments \
+                        '--dir[list of additional directories containing test suites]' \
+                        '--suite[list of test suites to run]' \
+                        '--group[list of test groups to run]' \
+                        '--case[list of test cases to run]' \
+                        '--label[test label]' \
+                        '--config[list of config files]' \
+                        '--spec[list of test specifications]' \
+                        '--join_specs[merge all tests specifications and perform a single test run]' \
+                        '--allow_user_terms[allow user defined config values in config files]' \
+                        '--logdir[log folder]' \
+                        '--logopts[options for common test logging]' \
+                        '--verbosity[verbosity]' \
+                        '(-c --cover)'{-c,--cover}'[generate cover data (default: false)]' \
+                        '--cover_export_name[base name of the coverdata file to write]' \
+                        '--repeat[how often to repeat tests]' \
+                        '--duration[max runtime (format: HHMMSS)]' \
+                        '--until[run until (format: HHMMSS)]' \
+                        '--force_stop[force stop on test timeout]:VALUE:_force_stop_values' \
+                        '--basic_html[show basic HTML]' \
+                        '--stylesheet[CSS stylesheet to apply to HTML output]' \
+                        '--decrypt_key[path to key for decrypting config]:PATH:_files' \
+                        '--decrypt_file[path to file containing key for decrypting config]:PATH:_files' \
+                        '--abort_if_missing_suites[abort if suites are missing (default: true)]' \
+                        '--multiply_timetraps' \
+                        '--scale_timetraps[scale timetraps]' \
+                        '--create_priv_dir[create priv dir]:VALUE:_create_private_dir_values' \
+                        '--include[directories containing additional include files]:DIRECTORIES:_directories' \
+                        '--readable[show test case names and only display logs to shell on failures]:VALUE:_readable_values' \
+                        '(-v --verbose)'{-v,--verbose}'[verbose output]' \
+                        '--name[give a long name to the node]:NAME:()' \
+                        '--sname[give a short name to the node]:NAME:()' \
+                        '--setcookie[set the cookie if the node is distributed]' \
+                        '--sys_config[list of application config files]:CONFIG_FILES:_sequence -s, _files' \
+                        '--compile_only[compile modules in the project with the test configuration but do not run the tests]' \
+                        '--retry[run the specifications for previously failing test if any is found]'
+                ;;
+                dialyzer)
+                    _arguments \
+                        '(-u --update-plt)'{-u,--update-plt}'[enable updating the PLT (default: true)]' \
+                        '(-s --succ-typings)'{-s,--succ-typings}'[enable success typing analysis (default: true)]'
+                ;;
+                eunit)
+                    _arguments \
+                        '--app[comma separated list of application test suites to run]:SUITES:_sequence -s, _files' \
+                        '--application[comma separated list of application test suites to run]:SUITES:_sequence -s, _files' \
+                        '(-c --cover)'{-c,--cover}'[generate cover data (default: false)]' \
+                        '--cover_export_name[base name of the coverdata file to write]:NAME:()' \
+                        '(-d --dir)'{-d,--dir}'[comma separated list of dirs to load tests from]:DIRECTORIES:_sequence -s, _files'
+                    ;;
+                help)
+                    _values "COMMAND" \
+                        'as[higher order prover for running multiple tasks in a sequence as a certain profile]' \
+                        'clean[remove compiled beam files from apps]' \
+                        'compile[compile apps .app.src and .erl files]' \
+                        'cover[perform coverage analysis]' \
+                        'ct[run Common Tests]' \
+                        'deps[list dependencies]' \
+                        'dialyzer[run the Dialyzer analyzer on the project]' \
+                        'do[higher order provider for running multiple tasks in a sequence]' \
+                        'escriptize[generate escript archive]' \
+                        'eunit[run EUnit Tests]' \
+                        'get-deps[fetch dependencies]' \
+                        'help[display a list of tasks or help for a given task or subtask]' \
+                        'new[create a new project from templates]' \
+                        'path[print paths to build dirs in current profile]' \
+                        'pkgs[list available packages]' \
+                        'release[build release of project]' \
+                        'relup[create relup of releases]' \
+                        'report[provide a crash report to be sent to the rebar3 issues page]' \
+                        'shell[run shell with project apps and deps in path]' \
+                        'tar[tar archive of release built of project]' \
+                        'tree[print dependency tree]' \
+                        'unlock[unlock dependencies]' \
+                        'update[update package index]' \
+                        'upgrade[upgrade dependencies]' \
+                        'version[print version for rebar and current Erlang]' \
+                        'xref[run cross reference analysis]'
+                ;;
+            esac
+        ;;
+    esac
+}
