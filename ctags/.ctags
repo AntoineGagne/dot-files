@@ -4,6 +4,9 @@
 --exclude=.git
 --exclude=.hg
 --exclude=.svn
+--exclude=_build
+--exclude=tmp
+--exclude=\*.beam
 --exclude=__pycache__
 --exclude=\*.pyc
 --exclude=\*.egg-info
