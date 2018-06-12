@@ -59,3 +59,6 @@ source ~/.vim/startup/settings/plugins/vim-table-mode.vim
 
 " {{{1 Note taking
 source ~/.vim/startup/settings/plugins/vimwiki.vim
+
+" {{{1 Navigation
+source ~/.vim/startup/settings/plugins/fzf.vim

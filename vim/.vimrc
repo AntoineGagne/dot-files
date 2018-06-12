@@ -26,10 +26,10 @@ call plug#begin('~/.vim/bundle')
     Plug 'editorconfig/editorconfig-vim'
 
     " {{{2 Erlang Language
-    Plug 'vim-erlang/vim-erlang-runtime'
-    Plug 'vim-erlang/vim-erlang-compiler'
-    Plug 'vim-erlang/vim-erlang-tags'
-    Plug 'vim-erlang/vim-erlang-omnicomplete'
+    Plug 'vim-erlang/vim-erlang-runtime', { 'for': 'erlang' }
+    Plug 'vim-erlang/vim-erlang-compiler', { 'for': 'erlang' }
+    Plug 'vim-erlang/vim-erlang-omnicomplete', { 'for': 'erlang' }
+    " Plug 'vim-erlang/vim-erlang-tags', { 'for': 'erlang' }
 
     " {{{2 Tags Management
     Plug 'ludovicchabant/vim-gutentags'
@@ -42,7 +42,7 @@ call plug#begin('~/.vim/bundle')
     Plug 'vim-airline/vim-airline-themes'
 
     " {{{2 Rust autocompletion bundle
-    Plug 'racer-rust/vim-racer'
+    Plug 'racer-rust/vim-racer', { 'for': 'rust' }
 
     "  {{{2 Syntax highlighting for the Haskell language
     Plug 'neovimhaskell/haskell-vim', { 'for': 'haskell' }
@@ -81,6 +81,9 @@ call plug#begin('~/.vim/bundle')
 
     " {{{2 Note Taking
     Plug 'vimwiki/vimwiki'
+
+    " {{{2 Navigation
+    Plug 'junegunn/fzf'
 call plug#end()
 filetype plugin indent on
 
