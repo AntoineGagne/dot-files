@@ -4,10 +4,10 @@ set nocompatible " no longer compatible with Vi, required for Vundle
 " {{{1 Python Hosts
 
 if has('nvim')
-    if isdirectory(expand('~') . '/.virtualenvs/neovim2/bin/')
+    if isdirectory(expand('~/.virtualenvs/neovim2/bin/'))
         let g:python_host_prog = expand('~/.virtualenvs/neovim2/bin/python')
     endif
-    if isdirectory(expand('~') . '/.virtualenvs/neovim3/bin/')
+    if isdirectory(expand('~/.virtualenvs/neovim3/bin/'))
         let g:python3_host_prog = expand('~/.virtualenvs/neovim3/bin/python')
     endif
 endif
