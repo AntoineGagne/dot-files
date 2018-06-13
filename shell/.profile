@@ -78,6 +78,10 @@ if type -f "mutt" >/dev/null 2>&1; then
     export COLORFGBG="default;default"
 fi
 
+if type -f "fzf" >/dev/null 2>&1 && type -f "rg" >/dev/null 2>&1; then
+    export FZF_DEFAULT_COMMAND='rg --files --hidden --follow'
+fi
+
 export PATH=$PATH:"${HOME}/.cargo/bin"
 export TERM=tmux-256color
 # Colored GCC warnings and errors
