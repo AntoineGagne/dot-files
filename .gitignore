@@ -194,6 +194,7 @@ vimwiki_html
 **/.swap
 **/.tmp
 **/.bookmarks
+**/.sessions
 
 # Weechat dotfiles
 **/.weechat/*

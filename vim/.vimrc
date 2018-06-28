@@ -50,6 +50,9 @@ call plug#begin('~/.vim/bundle')
     " {{{2 Perfect language syntax highlighting
     Plug 'AntoineGagne/perfect-language-vim'
 
+    " {{{2 Sessions management
+    Plug 'AntoineGagne/sessions-vim'
+
     " {{{2 HTML5 Syntax Highlighting
     Plug 'othree/html5.vim', { 'for': 'html' }
 

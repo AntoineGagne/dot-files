@@ -29,6 +29,10 @@ source ~/.vim/startup/settings/plugins/elm-vim.vim
 
 source ~/.vim/startup/settings/plugins/ocaml-merlin.vim
 
+" {{{2 Sessions
+
+source ~/.vim/startup/settings/plugins/sessions-vim.vim
+
 
 " {{{1 UI
 
