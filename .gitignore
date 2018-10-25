@@ -243,3 +243,6 @@ mpd/.config/mpd/**
 !**/.zsh/completions
 *.zwc
 vim/.vim/bundle/
+xmonad/*
+*.gz
+*.core

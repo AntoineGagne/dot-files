@@ -1,3 +1,7 @@
+[submodule "gdb/.gdb/gdb-dashboard"]
+    path = gdb/.gdb/gdb-dashboard
+    url = https://github.com/cyrus-and/gdb-dashboard.git
+    ignore = dirty
 [submodule "scripts/haskell/create-gitignore"]
     path = scripts/haskell/create-gitignore
     url = https://github.com/AntoineGagne/create-gitignore.git
