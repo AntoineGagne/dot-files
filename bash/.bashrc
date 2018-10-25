@@ -166,3 +166,5 @@ prompt() {
 EOF
 }
 PS1='$(prompt "${?}")'
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash

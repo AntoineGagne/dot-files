@@ -305,6 +305,9 @@ fi
 if [ -f /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh ]; then
     source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
     export ZSH_AUTOSUGGEST_USE_ASYNC=1
+elif [ -f ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh ]; then
+    source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+    export ZSH_AUTOSUGGEST_USE_ASYNC=1
 fi
 
 if [ -f "$(which virtualenvwrapper_lazy.sh)" ]; then
@@ -334,3 +337,5 @@ EOF
 
 PS1='$(prompt "${?}")'
 RPS1='[%F{cyan}%j jobs%f]──[%F{green}%W%f]'
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
