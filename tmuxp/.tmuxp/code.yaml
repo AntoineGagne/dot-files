@@ -16,6 +16,13 @@ windows:
     automatic-rename: 'off'
   panes:
   - focus: 'true'
+  window_name: tasks
+- layout: c95e,211x57,0,0,1
+  options:
+    automatic-rename: 'off'
+  panes:
+  - focus: 'true'
+    shell_command: task
   window_name: edit
 - layout: c95f,211x57,0,0,2
   options:
@@ -30,3 +37,9 @@ windows:
   panes:
   - pane
   window_name: others
+- layout: c95e,211x57,0,0,1
+  options:
+    automatic-rename: 'off'
+  panes:
+  - focus: 'true'
+  window_name: source
