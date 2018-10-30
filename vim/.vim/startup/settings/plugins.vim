@@ -29,6 +29,9 @@ source ~/.vim/startup/settings/plugins/elm-vim.vim
 
 source ~/.vim/startup/settings/plugins/ocaml-merlin.vim
 
+" {{{2 Erlang
+source ~/.vim/startup/settings/plugins/vim-erlang-compiler.vim
+
 " {{{2 Sessions
 
 source ~/.vim/startup/settings/plugins/sessions-vim.vim
@@ -66,3 +69,4 @@ source ~/.vim/startup/settings/plugins/vimwiki.vim
 
 " {{{1 Navigation
 source ~/.vim/startup/settings/plugins/fzf.vim
+source ~/.vim/startup/settings/plugins/vim-gutentags.vim
