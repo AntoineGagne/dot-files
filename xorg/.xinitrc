@@ -87,5 +87,7 @@ if type "xscreensaver" >/dev/null 2>&1; then
     xscreensaver -nosplash &
 fi
 
+systemctl --user import-environment DISPLAY
+
 # Launch XMonad
 exec xmonad
