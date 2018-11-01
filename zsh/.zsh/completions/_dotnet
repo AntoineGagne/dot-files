@@ -1,0 +1,138 @@
+#compdef dotnet
+
+_dotnet() {
+    typeset -A opt_args
+    local context state line
+    local current_context="${curcontext}"
+
+    _arguments -C \
+        '(-h --help)'{-h,--help}'[show command line help]' \
+        '(-d --diagnostics)'{-d,--diagnostics}'[enable diagnostics output]' \
+        '--info[display .NET core information]' \
+        '--list-runtimes[display the installed runtimes]' \
+        '--list-sdks[display the installed SDKs]' \
+        '--version[display the .NET core version in use]' \
+        '1:dotnet commands:->commands' \
+        '*:: :->command_arguments'
+
+    case $state in
+        commands)
+            local commands
+            commands=(
+                'add:add a package or reference to a .NET project'
+                'build:build a .NET project'
+                'build-server:interact with servers started by a build'
+                'clean:clean build outputs of a .NET project'
+                'help:show command line help'
+                'list:list project references of a .NET project'
+                'migrate:migrate a project.json project to an MSBuild project'
+                'msbuild:run Microsoft Build Engine (MSBuild) commands'
+                'new:create a new .NET project or file'
+                'nuget:provides additional NuGet commands'
+                'pack:create a NuGet package'
+                'publish:publish a .NET project for deployment'
+                'remove:remove a package or reference from a .NET project'
+                'restore:restore dependencies specified in a .NET project'
+                'run:build and run a .NET project output'
+                'sln:modify Visual Studio solution files'
+                'store:store the specified assemblies in the runtime package store'
+                'test:run unit tests using the test runner specified in a .NET project'
+                'tool:install or manage tools that extend the .NET experience'
+                'vstest:run Microsoft Test Engine (VSTest) commands'
+            )
+            _describe -t commands 'dotnet command' commands
+            ;;
+
+        command_arguments)
+            case $words[1] in
+                add)
+                    _arguments -C \
+                        '(-h --help)'{-h,--help}'[show command line help]' \
+                        '1:add commands:->subcommands' \
+                        '*:: :->subcommand_aguments'
+                    case $state in
+                        subcommands)
+                            local subcommands=(
+                                'package:add a NuGet package reference to the project'
+                                'reference:add a project-to-project reference to the project'
+                            )
+                            _describe -t subcommands 'add subcommand' subcommands
+                            ;;
+                        subcommand_aguments)
+                            case $words[1] in
+                                package)
+                                    _arguments -C \
+                                        '(-h --help)'{-h,--help}'[show command line help]' \
+                                        '(-v --version)'{-v,--version}'[the version of the package to add]:VERSION:()' \
+                                        '(-f --framework)'{-f,--framework}'[add the reference only when targeting a specific framework]:FRAMEWORK:()' \
+                                        '(-n --no-restore)'{-n,--no-restore}'[add the reference without performing restore preview and compatibility check]' \
+                                        '(-s --source)'{-s,--source}'[the NuGet package source to use during the restore]:FILES:_files' \
+                                        '--package-directory[The directory to restore packages to]:PACKAGE_DIRECTORY:_directories' \
+                                        '--interactive[allows the command to stop and wait for user input or action (for example to complete authentication)]'
+                                    ;;
+                                reference)
+                                    _arguments -C \
+                                        '(-h --help)'{-h,--help}'[show command line help]' \
+                                        '(-f --framework)'{-f,--framework}'[add the reference only when targeting a specific framework]:FRAMEWORK'
+                                    ;;
+                            esac
+                    esac
+                    ;;
+                build)
+                    _arguments -C \
+                        '(-h --help)'{-h,--help}'[show command line help]' \
+                        '(-o --output)'{-o,--output}'[the output directory to place built artifacts in]:DIRECTORIES:_directories' \
+                        '(-f,--framework)'{-f,--framework}'[the target framework to build for. The target framework must also be specified in the project file]:FRAMEWORK:()' \
+                        '(-c,--configuration)'{-c,--configuration}'[the configuration to use for building the project. The default for most projects is Debug]:CONFIGURATION:_files' \
+                        '(-r,--runtime)'{-r,--runtime}'[the target runtime to build for]:RUNTIME:()'
+                        # --version-suffix <VERSION_SUFFIX>     Set the value of the $(VersionSuffix) property to use when building the project.
+                        # --no-incremental                      Do not use incremental building.
+                        # --no-dependencies                     Do not build project-to-project references and only build the specified project.
+                        # --no-restore                          Do not restore the project before building.
+                        # -v, --verbosity <LEVEL>               Set the MSBuild verbosity level. Allowed values are q[uiet], m[inimal], n[ormal], d[etailed], and diag[nostic].
+                        # --force                               Force all dependencies to be resolved even if the last restore was successful.
+                    ;;
+                build-server)
+                    ;;
+                clean)
+                    ;;
+                help)
+                    _arguments \
+                        '(-h --help)'{-h,--help}'[show command line help]'
+                    ;;
+                list)
+                    ;;
+                migrate)
+                    ;;
+                msbuild)
+                    ;;
+                new)
+                    ;;
+                nuget)
+                    ;;
+                pack)
+                    ;;
+                publish)
+                    ;;
+                remove)
+                    ;;
+                restore)
+                    ;;
+                run)
+                    ;;
+                sln)
+                    ;;
+                store)
+                    ;;
+                test)
+                    ;;
+                tool)
+                    ;;
+                vstest)
+                    ;;
+            esac
+            ;;
+    esac
+}
+
+_dotnet "${@}"
