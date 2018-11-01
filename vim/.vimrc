@@ -56,6 +56,10 @@ call plug#begin('~/.vim/bundle')
     " {{{2 HTML5 Syntax Highlighting
     Plug 'othree/html5.vim', { 'for': 'html' }
 
+    " {{{2 JS & JSX
+    Plug 'pangloss/vim-javascript'
+    Plug 'mxw/vim-jsx'
+
     " {{{2 Syntax checking
     Plug 'w0rp/ale'
 
