@@ -66,6 +66,9 @@ call plug#begin('~/.vim/bundle')
     " {{{2 Typescript syntax highlighting
     Plug 'leafgarland/typescript-vim'
 
+    " {{{2 C# Completion
+    Plug 'OmniSharp/omnisharp-vim'
+
     " {{{2 Asynchronous Execution
     Plug 'Shougo/vimproc.vim', { 'do': 'make' }
 
