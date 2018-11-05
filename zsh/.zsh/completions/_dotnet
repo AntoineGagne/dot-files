@@ -139,12 +139,53 @@ _dotnet() {
                         '(-h --help)'{-h,--help}'[show command line help]'
                     ;;
                 list)
+                    _arguments -C \
+                        '(-h --help)'{-h,--help}'[show command line help]' \
+                        '1:list commands:->subcommands' \
+                        '*:: :->subcommand_arguments'
+                    case $state in
+                        subcommands)
+                            local subcommands=(
+                                'reference:list all project-to-project references of the project'
+                            )
+                            _describe -t subcommands 'list subcommand' subcommands
+                            ;;
+                        subcommand_arguments)
+                            case $words[1] in
+                                reference)
+                                    _arguments -C \
+                                        '(-h --help)'{-h,--help}'[show command line help]' \
+                                    ;;
+                            esac
+                    esac
                     ;;
                 migrate)
+                    _arguments -C \
+                        '(-h --help)'{-h,--help}'[show command line help]' \
+                        '(-t --template-file)'{-t,--template-file}'[the base MSBuild template to use for the migrated project]:TEMPLATE:_files' \
+                        '(-v --sdk-package-version)'{-v,--sdk-package-version}'[the version of the SDK package that will be referenced in the migrated project]:VERSION:()' \
+                        '(-x --xproj-file)'{-x,--xproj-file}'[the path to the xproj file to use (required when there is more than one xproj in a project directory)]:XPROJ_PATH:_files' \
+                        '(-s --skip-project-references)'{-s,--skip-project-references}'[skip migrating project references (by default, project references are migrated recursively)]' \
+                        '(-r --report-file)'{-r,--report-file}'[output migration report to the given file in addition to the console]' \
+                        '--format-report-file-json[output migration report file as json rather than user messages]' \
+                        '--skip-backup[skip moving project.json, global.json, and *.xproj to a `backup` directory after successful migration]'
                     ;;
                 msbuild)
+                    _arguments -C \
+                        '(-h --help)'{-h,--help}'[show command line help]' \
                     ;;
                 new)
+                    _arguments -C \
+                        '(-h --help)'{-h,--help}'[displays help for this command]' \
+                        '(-l --list)'{-l,--list}'[lists templates containing the specified name (if no name is specified, lists all templates)]:NAME:()' \
+                        '(-n --name)'{-n,--name}'[the name for the output being created (if no name is specified, the name of the current directory is used)]:NAME:()' \
+                        '(-o --output)'{-o,--output}'[location to place the generated output]:PATH:_directories' \
+                        '(-i --install)'{-i,--install}'[installs a source or a template pack]:TARGET:()' \
+                        '(-u --uninstall)'{-u,--uninstall}'[uninstalls a source or a template pack]:TARGET:()' \
+                        '--nuget-source[specifies a NuGet source to use during install]:SOURCE:()' \
+                        '--type[filters templates based on available types]:TYPE:(project item other)' \
+                        '--force[forces content to be generated even if it would change existing files]' \
+                        '(-lang --language)'{-lang,--language}'[filters templates based on language and specifies the language of the template to create]:LANGUAGE:()'
                     ;;
                 nuget)
                     ;;
