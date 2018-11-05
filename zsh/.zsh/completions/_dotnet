@@ -1,5 +1,14 @@
 #compdef dotnet
 
+_build_verbosity_level() {
+    _values 'LEVEL' \
+        'q[quiet]' \
+        'm[minimal]' \
+        'n[normal]' \
+        'd[detailed]' \
+        'diag[diagnostic]'
+}
+
 _dotnet() {
     typeset -A opt_args
     local context state line
@@ -49,7 +58,7 @@ _dotnet() {
                     _arguments -C \
                         '(-h --help)'{-h,--help}'[show command line help]' \
                         '1:add commands:->subcommands' \
-                        '*:: :->subcommand_aguments'
+                        '*:: :->subcommand_arguments'
                     case $state in
                         subcommands)
                             local subcommands=(
@@ -58,7 +67,7 @@ _dotnet() {
                             )
                             _describe -t subcommands 'add subcommand' subcommands
                             ;;
-                        subcommand_aguments)
+                        subcommand_arguments)
                             case $words[1] in
                                 package)
                                     _arguments -C \
@@ -84,17 +93,46 @@ _dotnet() {
                         '(-o --output)'{-o,--output}'[the output directory to place built artifacts in]:DIRECTORIES:_directories' \
                         '(-f,--framework)'{-f,--framework}'[the target framework to build for. The target framework must also be specified in the project file]:FRAMEWORK:()' \
                         '(-c,--configuration)'{-c,--configuration}'[the configuration to use for building the project. The default for most projects is Debug]:CONFIGURATION:_files' \
-                        '(-r,--runtime)'{-r,--runtime}'[the target runtime to build for]:RUNTIME:()'
-                        # --version-suffix <VERSION_SUFFIX>     Set the value of the $(VersionSuffix) property to use when building the project.
-                        # --no-incremental                      Do not use incremental building.
-                        # --no-dependencies                     Do not build project-to-project references and only build the specified project.
-                        # --no-restore                          Do not restore the project before building.
-                        # -v, --verbosity <LEVEL>               Set the MSBuild verbosity level. Allowed values are q[uiet], m[inimal], n[ormal], d[etailed], and diag[nostic].
-                        # --force                               Force all dependencies to be resolved even if the last restore was successful.
+                        '(-r,--runtime)'{-r,--runtime}'[the target runtime to build for]:RUNTIME:()' \
+                        '--version-suffix[set the value of the $(VersionSuffix) property to use when building the project]:VERSION_SUFFIX:()' \
+                        '--no-incremental[do not use incremental building]' \
+                        '--no-dependencies[do not build project-to-project references and only build the specified project]' \
+                        '--no-restore[do not restore the project before building]' \
+                        '(-v --verbosity)'{-v,--verbosity}'[set the MSBuild verbosity level]:LEVEL:_build_verbosity_level' \
+                        '--force[force all dependencies to be resolved even if the last restore was successful]'
                     ;;
                 build-server)
+                    _arguments -C \
+                        '(-h --help)'{-h,--help}'[show command line help]' \
+                        '1:build-server commands:->subcommands' \
+                        '*:: :->subcommand_arguments'
+                    case $state in
+                        subcommands)
+                            local subcommands=(
+                                'shutdown:shuts down build servers that are started from dotnet'
+                            )
+                            _describe -t subcommands 'build-server subcommand' subcommands
+                            ;;
+                        subcommand_arguments)
+                            case $words[1] in
+                                shutdown)
+                                    _arguments -C \
+                                        '(-h --help)'{-h,--help}'[show command line help]' \
+                                        '--msbuild[shut down the MSBuild build server]' \
+                                        '--vbcscompiler[shut down the VB/C# compiler build server]' \
+                                        '--razor[shut down the Razor build server]'
+                                    ;;
+                            esac
+                    esac
                     ;;
                 clean)
+                    _arguments -C \
+                        '(-h --help)'{-h,--help}'[show command line help]' \
+                        '(-o --output)'{-o,--output}'[the directory containing the build artifacts to clean]:OUTPUT_DIRECTORY:_directories' \
+                        '(-f --framework)'{-f,--framework}'[the target framework to clean for (the target framework must also be specified in the project file)]:FRAMEWORK:()' \
+                        '(-r --runtime)'{-r,--runtime}'[the target runtime to clean for]:RUNTIME_IDENTIFIER:()' \
+                        '(-c --configuration)'{-c,--configuration}'[the configuration to clean for]:CONFIGURATION:()' \
+                        '(-v --verbosity)'{-v,--verbosity}'[set the MSBuild verbosity level]:LEVEL:_build_verbosity_level'
                     ;;
                 help)
                     _arguments \
