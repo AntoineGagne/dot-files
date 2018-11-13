@@ -18,12 +18,15 @@ snippet gen_statem "Finite State Machine" b
 
 %% API
 -export([start_link/0]).
+
 %% gen_statem callbacks
 -export([init/1,
 		 callback_mode/0,
 		 handle_event/4,
 		 code_change/4,
 		 terminate/3]).
+
+-record(data, {}).
 
 %%%===================================================================
 %%% API
@@ -36,13 +39,13 @@ start_link() ->
 %%% gen_statem callbacks
 %%%===================================================================
 
-init(_Arguments) ->
-	{ok, start, []}.
-
 callback_mode() ->
 	[handle_event_function, state_enter].
 
-handle_event(enter, _OldState, State, Data) ->
+init(_Arguments) ->
+	{ok, start, []}.
+
+handle_event(enter, _OldState, _State, _Data) ->
 	{next_state, _State, _Data};
 handle_event(cast, _Action, _State, _Data) ->
 	keep_state_and_data;
@@ -50,6 +53,12 @@ handle_event({call, From}, _Action, State, Data) ->
 	{next_state, State, Data, [{reply, From, Data}]};
 handle_event(info, _Msg, _State, _Data) ->
 	keep_state_and_data.
+
+terminate(_Reason, _State, _Data) ->
+	ok.
+
+code_change(_Vsn, State, Data, _Extra) ->
+	{ok, State, Data}.
 
 %%%===================================================================
 %%% Internal functions
