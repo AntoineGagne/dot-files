@@ -26,6 +26,9 @@ set tags+=~/.tags
 set tags+=./.git/tags
 set tags+=./tags
 
+" {{{1 Runtime Path
+set runtimepath+=~/.vim/custom-snippets/
+
 
 " {{{1 Backups
 

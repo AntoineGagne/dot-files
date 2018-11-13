@@ -44,8 +44,12 @@ callback_mode() ->
 
 handle_event(enter, _OldState, State, Data) ->
 	{next_state, _State, _Data};
+handle_event(cast, _Action, _State, _Data) ->
+	keep_state_and_data;
 handle_event({call, From}, _Action, State, Data) ->
-	{next_state, State, Data, [{reply, From, Data}]}.
+	{next_state, State, Data, [{reply, From, Data}]};
+handle_event(info, _Msg, _State, _Data) ->
+	keep_state_and_data.
 
 %%%===================================================================
 %%% Internal functions
