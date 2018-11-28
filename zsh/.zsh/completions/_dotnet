@@ -188,6 +188,56 @@ _dotnet() {
                         '(-lang --language)'{-lang,--language}'[filters templates based on language and specifies the language of the template to create]:LANGUAGE:()'
                     ;;
                 nuget)
+                    _arguments -C \
+                        '(-h --help)'{-h,--help}'[show help information]' \
+                        '--version[show version information]' \
+                        '(-v --verbosity)'{-v,--verbosity}'[the verbosity of logging to use]:VERBOSITY:(Debug Verbose Information Minimal Warning Error)' \
+                        '1:list commands:->subcommands' \
+                        '*:: :->subcommand_arguments'
+                    case $state in
+                        subcommands)
+                            local subcommands=(
+                                'delete:deletes a package from the server'
+                                'locals:clears or lists local NuGet resources such as http requests cache, packages folder, plugin operations cache or machine-wide global packages folder'
+                                'push:pushes a package to the server and publishes it'
+                            )
+                            _describe -t subcommands 'list subcommand' subcommands
+                            ;;
+                        subcommand_arguments)
+                            case $words[1] in
+                                delete)
+                                    _arguments -C \
+                                        '(-h --help)'{-h,--help}'[show help information]' \
+                                        '--force-english-output[forces the application to run using an invariant, English-based culture]' \
+                                        '(-s --source)'{-s,--source}'[specifies the server URL]:URL:()' \
+                                        '--non-interactive[do not prompt for user input or confirmations]' \
+                                        '(-k --api-key)'{-k,--api-key}'[the API key for the server]:KEY:()' \
+                                        '--no-service-endpoint[do not append "api/v2/packages" to the source URL]' \
+                                        '--interactive[allow the command to block and require manual action for operations like authentication]'
+                                    ;;
+                                locals)
+                                    _arguments -C \
+                                        '(-h --help)'{-h,--help}'[show help information]' \
+                                        '--force-english-output[forces the application to run using an invariant, English-based culture]' \
+                                        '(-c --clear)'{-c,--clear}'[clear the selected local resources or cache location(s)]' \
+                                        '(-l --list)'{-l,--list}'[list the selected local resources or cache location(s)]'
+                                    ;;
+                                push)
+                                    _arguments -C \
+                                        '(-h --help)'{-h,--help}'[show help information]' \
+                                        '--force-english-output[forces the application to run using an invariant, English-based culture]' \
+                                        '(-s --source)'{-s,--source}'[specifies the server URL]:URL:()' \
+                                        '(-ss --symbol-source)'{-ss,--symbol-source}'[specifies the symbol server URL. If not specified, nuget.smbsrc.net is used when pushing to nuget.org]:URL:()' \
+                                        '(-t --timeout)'{-t,--timeout}'[specifies the timeout for pushing to a server in seconds]:TIMEOUT:()' \
+                                        '(-k --api-key)'{-k,--api-key}'[the API key for the server]:KEY:()' \
+                                        '(-sk --symbol-api-key)'{-sk,--symbol-api-key}'[the API key for the symbol server]:KEY:()' \
+                                        '(-d --disable-buffering)'{-d,--disable-buffering}'[disable buffering when pushing to an HTTP(S) server to decrease memory usage]' \
+                                        '(-n --no-symbols)'{-n,--no-symbols}'[if a symbols package exists, it will not be pushed to a symbols server]' \
+                                        '--no-service-endpoint[do not append "api/v2/packages" to the source URL]' \
+                                        '--interactive[allow the command to block and require manual action for operations like authentication]'
+                                    ;;
+                            esac
+                    esac
                     ;;
                 pack)
                     ;;
