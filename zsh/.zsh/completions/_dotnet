@@ -240,6 +240,20 @@ _dotnet() {
                     esac
                     ;;
                 pack)
+                    _arguments -C \
+                        '(-h --help)'{-h,--help}'[show command line help]' \
+                        '(-o --output)'{-o,--output}'[the output directory to place built packages in]' \
+                        '--no-build[do not build the project before packing]' \
+                        '--include-symbols[include packages with symbols in addition to regular packages in output directory]' \
+                        '--include-source[include PDBs and source files]' \
+                        '(-c --configuration)'{-c,--configuration}'[the configuration to use for building the package]:CONFIGURATION:()' \
+                        '--version-suffix[set the value of the $(VersionSuffix) property to use when building the project]:SUFFIX:()' \
+                        '(-s --serviceable)'{-s,--serviceable}'[set the serviceable flag in the package]' \
+                        '--no-restore[do not restore the project before building]' \
+                        '(-v --verbosity)'{-v,--verbosity}'[set the MSBuild verbosity level]:LEVEL:_build_verbosity_level' \
+                        '--runtime[the target runtime to restore packages for]:RUNTIME_IDENTIFIER:()' \
+                        '--no-dependencies[do not restore project-to-project references and only restore the specified project]' \
+                        '--force[force all dependencies to be resolved even if the last restore was successful]'
                     ;;
                 publish)
                     ;;
