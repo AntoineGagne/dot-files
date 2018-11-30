@@ -256,12 +256,82 @@ _dotnet() {
                         '--force[force all dependencies to be resolved even if the last restore was successful]'
                     ;;
                 publish)
+                    _arguments -C \
+                        '(-h --help)'{-h,--help}'[show command line help]' \
+                        '(-o --output)'{-o,--output}'[the output directory to place the published artifacts in]:DIRECTORY:_directories' \
+                        '(-f --framework)'{-f,--framework}'[the target framework to publish for The target framework has to be specified in the project file]:FRAMEWORK:()' \
+                        '(-r --runtime)'{-r,--runtime}'[the target runtime to publish for]:RUNTIME_IDENTIFIER:()' \
+                        '(-c --configuration)'{-c,--configuration}'[the configuration to publish for]:CONFIGURATION:()' \
+                        '--version-suffix[set the value of the $(VersionSuffix) property to use when building the project]:VERSION_SUFFIX:()' \
+                        '--manifest[the path to a target manifest file that contains the list of packages to be excluded from the publish step]:MANIFEST:_files' \
+                        '--no-build[do not build the project before publishing]' \
+                        '--self-contained[publish the .NET Core runtime with your application so the runtime does not need to be installed on the target machine]' \
+                        '--no-restore[do not restore the project before building]' \
+                        '(-v --verbosity)'{-v,--verbosity}'[set the MSBuild verbosity level]:LEVEL:_build_verbosity_level' \
+                        '--no-dependencies[do not restore project-to-project references and only restore the specified project]' \
+                        '--force[force all dependencies to be resolved even if the last restore was successful]'
                     ;;
                 remove)
+                    _arguments -C \
+                        '(-h --help)'{-h,--help}'[show command line help]' \
+                        '1:list commands:->subcommands' \
+                        '*:: :->subcommand_arguments'
+                    case $state in
+                        subcommands)
+                            local subcommands=(
+                                'package:remove a NuGet package reference from the project'
+                                'reference:remove a project-to-project reference from the project'
+                            )
+                            _describe -t subcommands 'list subcommand' subcommands
+                            ;;
+                        subcommand_arguments)
+                            case $words[1] in
+                                package)
+                                    _arguments -C \
+                                        '(-h --help)'{-h,--help}'[show command line help]' \
+                                    ;;
+                                reference)
+                                    _arguments -C \
+                                        '(-h --help)'{-h,--help}'[show command line help]' \
+                                        '(-f --framework)'{-f,--framework}'[remove the reference only when targeting a specific framework]:FRAMEWORK:()'
+                                    ;;
+                            esac
+                    esac
                     ;;
                 restore)
+                    _arguments -C \
+                        '(-h --help)'{-h,--help}'[show command line help]'
+                        # '-s --source' <SOURCE>                The NuGet package source to use for the restore.
+                        # -r, --runtime <RUNTIME_IDENTIFIER>   The target runtime to restore packages for.
+                        # --packages <PACKAGES_DIR>            The directory to restore packages to.
+                        # --disable-parallel                   Prevent restoring multiple projects in parallel.
+                        # --configfile <FILE>                  The NuGet configuration file to use.
+                        # --no-cache                           Do not cache packages and http requests.
+                        # --ignore-failed-sources              Treat package source failures as warnings.
+                        # --no-dependencies                    Do not restore project-to-project references and only restore the specified project.
+                        # -f, --force                          Force all dependencies to be resolved even if the last restore was successful.
+                        #                                    This is equivalent to deleting project.assets.json.
+                        # -v, --verbosity <LEVEL>              Set the MSBuild verbosity level. Allowed values are q[uiet], m[inimal], n[ormal], d[etailed], and diag[nostic].
+                        # --interactive                        Allows the command to stop and wait for user input or action (for example to complete authentication).
+                        # --use-lock-file                      Enables project lock file to be generated and used with restore.
+                        # --locked-mode                        Don't allow updating project lock file.
+                        # --lock-file-path <LOCK_FILE_PATH>    Output location where project lock file is written. By default, this is 'PROJECT_ROOT\packages.lock.json'.
+                        # --force-evaluate                     Forces restore to reevaluate all dependencies even if a lock file already exists.
                     ;;
                 run)
+                    _arguments -C \
+                        '(-h --help)'{-h,--help}'[show command line help]' \
+                        '(-c --configuration)'{-c,--configuration}'[the configuration to run for]:CONFIGURATION:_files' \
+                        '(-f --framework)'{-f,--framework}'[the target framework to run for]:FRAMEWORK:()' \
+                        '(-p --project)'{-p,--project}'[the path to the project file to run (defaults to the current directory if there is only one project)]:PATH:_files' \
+                        '--launch-profile[the name of the launch profile (if any) to use when launching the application]:NAME:()' \
+                        '--no-launch-profile[do not attempt to use launchSettings.json to configure the application]' \
+                        '--no-build[do not build the project before running]' \
+                        '--no-restore[do not restore the project before building]' \
+                        '(-v --verbosity)'{-v,--verbosity}'[set the MSBuild verbosity level]:LEVEL:_build_verbosity_level' \
+                        '--runtime[the target runtime to restore packages for]:RUNTIME_IDENTIFIER:()' \
+                        '--no-dependencies[do not restore project-to-project references and only restore the specified project]' \
+                        '--force[force all dependencies to be resolved even if the last restore was successful]'
                     ;;
                 sln)
                     ;;
