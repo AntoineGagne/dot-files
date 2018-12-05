@@ -300,23 +300,22 @@ _dotnet() {
                     ;;
                 restore)
                     _arguments -C \
-                        '(-h --help)'{-h,--help}'[show command line help]'
-                        # '-s --source' <SOURCE>                The NuGet package source to use for the restore.
-                        # -r, --runtime <RUNTIME_IDENTIFIER>   The target runtime to restore packages for.
-                        # --packages <PACKAGES_DIR>            The directory to restore packages to.
-                        # --disable-parallel                   Prevent restoring multiple projects in parallel.
-                        # --configfile <FILE>                  The NuGet configuration file to use.
-                        # --no-cache                           Do not cache packages and http requests.
-                        # --ignore-failed-sources              Treat package source failures as warnings.
-                        # --no-dependencies                    Do not restore project-to-project references and only restore the specified project.
-                        # -f, --force                          Force all dependencies to be resolved even if the last restore was successful.
-                        #                                    This is equivalent to deleting project.assets.json.
-                        # -v, --verbosity <LEVEL>              Set the MSBuild verbosity level. Allowed values are q[uiet], m[inimal], n[ormal], d[etailed], and diag[nostic].
-                        # --interactive                        Allows the command to stop and wait for user input or action (for example to complete authentication).
-                        # --use-lock-file                      Enables project lock file to be generated and used with restore.
-                        # --locked-mode                        Don't allow updating project lock file.
-                        # --lock-file-path <LOCK_FILE_PATH>    Output location where project lock file is written. By default, this is 'PROJECT_ROOT\packages.lock.json'.
-                        # --force-evaluate                     Forces restore to reevaluate all dependencies even if a lock file already exists.
+                        '(-h --help)'{-h,--help}'[show command line help]' \
+                        '(-s --source)'{-s,--source}'[the NuGet package source to use for the restore]:SOURCE:()' \
+                        '(-r --runtime)'{-r,--runtime}'[The target runtime to restore packages for.]:RUNTIME_IDENTIFIER:()' \
+                        '--packages[the directory to restore packages to]:DIRECTORY:_directories' \
+                        '--disable-parallel[prevent restoring multiple projects in parallel]' \
+                        '--configfile[the NuGet configuration file to use]:FILE:_files' \
+                        '--no-cache[do not cache packages and http requests]' \
+                        '--ignore-failed-sources[treat package source failures as warnings]' \
+                        '--no-dependencies[do not restore project-to-project references and only restore the specified project]' \
+                        '(-f --force)'{-f,--force}'[force all dependencies to be resolved even if the last restore was successful]' \
+                        '(-v --verbosity)'{-v,--verbosity}'[set the MSBuild verbosity level]:LEVEL:_build_verbosity_level' \
+                        '--interactive[allows the command to stop and wait for user input or action (for example to complete authentication)]' \
+                        '--use-lock-file[enables project lock file to be generated and used with restore]' \
+                        '--locked-mode[do not allow updating project lock file]' \
+                        '--lock-file-path[output location where project lock file is written]:LOCK_FILE_PATH:_files' \
+                        '--force-evaluate[forces restore to reevaluate all dependencies even if a lock file already exists]'
                     ;;
                 run)
                     _arguments -C \
@@ -334,8 +333,48 @@ _dotnet() {
                         '--force[force all dependencies to be resolved even if the last restore was successful]'
                     ;;
                 sln)
+                    _arguments -C \
+                        '(-h --help)'{-h,--help}'[show command line help]' \
+                        '1:list commands:->subcommands' \
+                        '*:: :->subcommand_arguments'
+                    case $state in
+                        subcommands)
+                            local subcommands=(
+                                'add:add one or more projects to a solution file'
+                                'list:list all projects in a solution file'
+                                'remove:remove one or more projects from a solution file'
+                            )
+                            _describe -t subcommands 'list subcommand' subcommands
+                            ;;
+                        subcommand_arguments)
+                            case $words[1] in
+                                add)
+                                    _arguments -C \
+                                        '(-h --help)'{-h,--help}'[show command line help]' \
+                                    ;;
+                                list)
+                                    _arguments -C \
+                                        '(-h --help)'{-h,--help}'[show command line help]' \
+                                    ;;
+                                remove)
+                                    _arguments -C \
+                                        '(-h --help)'{-h,--help}'[show command line help]' \
+                                    ;;
+                            esac
+                    esac
                     ;;
                 store)
+                    _arguments -C \
+                        '(-h --help)'{-h,--help}'[show command line help]' \
+                        '(-m --manifest)'{-m,--manifest}'[the XML file that contains the list of packages to be stored]:PROJECT_MANIFEST:_files' \
+                        '(-f --framework)'{-f,--framework}'[the target framework to store packages for]:FRAMEWORK:()' \
+                        '--framework-version[the Microsoft.NETCore.App package version that will be used to run the assemblies]:FRAMEWORK_VERSION:()' \
+                        '(-r --runtime)'{-r,--runtime}'[the target runtime to store packages for]:RUNTIME_IDENTIFIER:()' \
+                        '(-o --output)'{-o,--output}'[the output directory to store the given assemblies in]:OUTPUT_DIR:_directories' \
+                        '(-w --working-dir)'{-w,--working-dir}'[the working directory used by the command to execute]:WORKING_DIR:_directories' \
+                        '--skip-optimization[skip the optimization phase]' \
+                        '--skip-symbols[skip creating symbol files which can be used for profiling the optimized assemblies]' \
+                        '(-v --verbosity)'{-v,--verbosity}'[set the MSBuild verbosity level]:LEVEL:_build_verbosity_level'
                     ;;
                 test)
                     ;;
