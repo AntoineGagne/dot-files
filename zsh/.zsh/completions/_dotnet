@@ -377,10 +377,100 @@ _dotnet() {
                         '(-v --verbosity)'{-v,--verbosity}'[set the MSBuild verbosity level]:LEVEL:_build_verbosity_level'
                     ;;
                 test)
+                    _arguments -C \
+                        '(-h --help)'{-h,--help}'[show command line help]' \
+                        '(-s --settings)'{-s,--settings}'[the settings file to use when running tests]:SETTINGS_FILE:_files' \
+                        '(-t --list-tests)'{-t,--list-tests}'[list the discovered tests instead of running the tests]' \
+                        '--filter[run tests that match the given expression]:EXPRESSION:()' \
+                        '(-a --test-adapter-path)'{-a,--test-adapter-path}'[the path to the custom adapters to use for the test run]:ADAPTER_PATH:_directories' \
+                        '(-l --logger)'{-l,--logger}'[the logger to use for test results]:LOGGER:()' \
+                        '(-c --configuration)'{-c,--configuration}'[the configuration to use for running tests]:CONFIGURATION:_files' \
+                        '(-f --framework)'{-f,--framework}'[the target framework to run tests for]:FRAMEWORK:()' \
+                        '(-o --output)'{-o,--output}'[the output directory to place built artifacts in]:OUTPUT_DIR:_directories' \
+                        '(-d --diag)'{-d,--diag}'[enable verbose logging to the specified file]:LOG_FILE:_files' \
+                        '--no-build[do not build the project before testing. Implies --no-restore]' \
+                        '(-r --results-directory)'{-r,--results-directory}'[the directory where the test results will be placed]:RESULTS_DIR:_directories' \
+                        '--collect[the friendly name of the data collector to use for the test run]:DATA_COLLECTOR_NAME:()' \
+                        '--blame[run the tests in blame mode]' \
+                        '--no-restore[do not restore the project before building]' \
+                        '(-v --verbosity)'{-v,--verbosity}'[set the MSBuild verbosity level]:LEVEL:_build_verbosity_level'
                     ;;
                 tool)
+                    _arguments -C \
+                        '(-h --help)'{-h,--help}'[show command line help]' \
+                        '1:list commands:->subcommands' \
+                        '*:: :->subcommand_arguments'
+                    case $state in
+                        subcommands)
+                            local subcommands=(
+                                'install:install a tool for use on the command line'
+                                'uninstall:uninstall a tool from the current development environment'
+                                'update:update a tool to the latest stable version'
+                                'list:list tools installed in the current development environment'
+                            )
+                            _describe -t subcommands 'list subcommand' subcommands
+                            ;;
+                        subcommand_arguments)
+                            case $words[1] in
+                                add)
+                                    _arguments -C \
+                                        '(-h --help)'{-h,--help}'[show command line help]' \
+                                    ;;
+                                install)
+                                    _arguments -C \
+                                        '(-h --help)'{-h,--help}'[show command line help]' \
+                                        '(-g --global)'{-g,--global}'[install the tool to the current user tools directory]' \
+                                        '--tool-path[the directory where the tool will be installed]:PATH:_directories' \
+                                        '--version[the version of the tool package to install]:VERSION:()' \
+                                        '--configfile[the NuGet configuration file to use]:FILE:_files' \
+                                        '--add-source[Add an additional NuGet package source to use during installation]:SOURCE:()' \
+                                        '--framework[the target framework to install the tool for]:FRAMEWORK:()' \
+                                        '(-v --verbosity)'{-v,--verbosity}'[set the MSBuild verbosity level]:LEVEL:_build_verbosity_level'
+                                    ;;
+                                list)
+                                    _arguments -C \
+                                        '(-h --help)'{-h,--help}'[show command line help]' \
+                                        '(-g --global)'{-g,--global}'[list tools in the current user tools directory]' \
+                                        '--tool-path[the directory containing the tools to list]:PATH:_directories' \
+                                    ;;
+                                uninstall)
+                                    _arguments -C \
+                                        '(-h --help)'{-h,--help}'[show command line help]' \
+                                        '(-g --global)'{-g,--global}'[uninstall the tool from the current user tools directory]' \
+                                        '--tool-path[the directory containing the tool to uninstall]:PATH:_directories' \
+                                    ;;
+                                update)
+                                    _arguments -C \
+                                        '(-h --help)'{-h,--help}'[show command line help]' \
+                                        '(-g --global)'{-g,--global}'[update the tool in the current user tools directory]' \
+                                        '--tool-path[the directory containing the tool to update]:PATH:_directories' \
+                                        '--configfile[the NuGet configuration file to use]:FILE:_files' \
+                                        '--add-source[add an additional NuGet package source to use during the update]:SOURCE:()' \
+                                        '--framework[the target framework to update the tool for]:FRAMEWORK:()' \
+                                        '(-v --verbosity)'{-v,--verbosity}'[set the MSBuild verbosity level]:LEVEL:_build_verbosity_level'
+                                    ;;
+                            esac
+                    esac
                     ;;
                 vstest)
+                    _arguments -C \
+                        '(-h --help)'{-h,--help}'[show command line help]' \
+                        '--Tests[run tests with names that match the provided values]:TEST_NAMES:()' \
+                        '--TestCaseFilter[run tests that match the given expression]:EXPRESSION:()' \
+                        '--Framework[target .Net Framework version to be used for test execution]:FRAMEWORK_VERSION:()' \
+                        '--Platform[target platform architecture to be used for test execution]:PLATFORM_TYPE:(x86 x64 ARM)' \
+                        '--Settings[settings to use when running tests]:SETTINGS_FILE:_files' \
+                        '(-lt --ListTests)'{-lt,--ListTests}'[lists all discovered tests from the given test container]:FILE_NAME:_files' \
+                        '--Parallel[specifies that the tests be executed in parallel]' \
+                        '--TestAdapterPath[this makes vstest.console.exe process use custom test adapters from a given path (if any) in the test run]:PATH:_directories' \
+                        '--Blame[runs the test in blame mode]:ARGUMENTS:()' \
+                        '--Diag[enable logs for test platform]:LOG_FILE_PATH:_files' \
+                        '--logger[specify a logger for test results]:LOGGER:()' \
+                        '--ResultsDirectory[test results directory will be created in specified path if not exists]:DIRECTORY:_directories' \
+                        '--ParentProcessId[process Id of the Parent Process responsible for launching current process]:PARENT_PROCESS_ID:()' \
+                        '--Port[the port for socket connection and receiving the event messages]:PORT:()' \
+                        '--Collect[enable data collector for the test run]:DATA_COLLECTOR:()' \
+                        '--InIsolation[runs the tests in an isolated process]' \
                     ;;
             esac
             ;;
