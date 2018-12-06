@@ -45,6 +45,8 @@ myManageHooks screenNumber = composeAll
     , className =? "Chromium-browser" <&&> resource =? "Dialog" --> doCenterFloat
     , className =? "Chromium" --> moveToWorkspace [0] 0
     , className =? "Chromium" <&&> resource =? "Dialog" --> doCenterFloat
+    , className =? "Spotify" --> moveToWorkspace [1] 4
+    , className =? "Spotify" <&&> isDialog --> doCenterFloat
     , className =? "Zathura" --> moveToWorkspace [1] 3
     , className =? "feh" --> moveToWorkspace [1] 3
     , className =? "octave-gui" --> moveToWorkspace [1] 2
