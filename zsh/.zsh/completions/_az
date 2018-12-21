@@ -1,0 +1,379 @@
+#compdef az
+
+_clear_output_format() {
+    _values 'FORMAT' \
+        'json' \
+        'jsonc' \
+        'table' \
+        'tsv' \
+        'yaml'
+}
+
+_az() {
+    typeset -A opt_args
+    local context state line
+    local current_context="${curcontext}"
+
+    _arguments -C \
+        '(-h --help)'{-h,--help}'[show command line help]' \
+        '1:az commands:->commands' \
+        '*:: :->command_arguments'
+    case $state in
+        commands)
+            local commands
+            commands=(
+                'account:manage Azure subscription information'
+                'acr:manage private registries with Azure Container Registries'
+                'acs:manage Azure Container Services'
+                'ad:manage Azure Active Directory Graph entities needed for Role Based Access Control'
+                'advisor:manage Azure Advisor'
+                'aks:manage Azure Kubernetes Services'
+                'ams:manage Azure Media Services resources'
+                'appservice:manage App Service plans'
+                'backup:manage Azure Backups'
+                'batch:manage Azure Batch'
+                'batchai:manage Batch AI resources'
+                'billing:manage Azure Billing'
+                'bot:manage Microsoft Bot Services'
+                'cdn:manage Azure Content Delivery Networks (CDNs)'
+                'cloud:manage registered Azure clouds'
+                'cognitiveservices:manage Azure Cognitive Services accounts'
+                'configure:manage Azure CLI configuration (this command is interactive)'
+                'consumption:manage consumption of Azure resources'
+                'container:manage Azure Container Instances'
+                'cosmosdb:manage Azure Cosmos DB database accounts'
+                'deployment:manage Azure Resource Manager deployments at subscription scope'
+                'disk:manage Azure Managed Disks'
+                'dla:(PREVIEW) manage Data Lake Analytics accounts, jobs, and catalogs'
+                'dls:(PREVIEW) manage Data Lake Store accounts and filesystems'
+                'dms:manage Azure Data Migration Service (DMS) instances'
+                'eventgrid:manage Azure Event Grid topics and subscriptions'
+                'eventhubs:manage Azure Event Hubs namespaces, eventhubs, consumergroups and geo recovery configurations - Alias'
+                'extension:manage and update CLI extensions'
+                'feature:manage resource provider features'
+                'feedback:send feedback to the Azure CLI Team'
+                'find:find Azure CLI commands'
+                'functionapp:manage function apps'
+                'group:manage resource groups and template deployments'
+                'hdinsight:manage HDInsight clusters'
+                'identity:managed Service Identities'
+                'image:manage custom virtual machine images'
+                'interactive:start interactive mode (installs the Interactive extension if not installed already)'
+                'iot:manage Internet of Things (IoT) assets Augmented with the IoT extension.'
+                'iotcentral:manage IoT Central assets'
+                'keyvault:manage KeyVault keys, secrets, and certificates'
+                'lab:manage Azure DevTest Labs'
+                'lock:manage Azure locks'
+                'login:log in to Azure'
+                'logout:log out to remove access to Azure subscriptions'
+                'managedapp:manage template solutions provided and maintained by Independent Software Vendors (ISVs)'
+                'maps:manage Azure Maps'
+                'mariadb:manage Azure Database for MariaDB servers'
+                'monitor:manage the Azure Monitor Service'
+                'mysql:manage Azure Database for MySQL servers'
+                'network:manage Azure Network resources'
+                'policy:manage resource policies'
+                'postgres:manage Azure Database for PostgreSQL servers'
+                'provider:manage resource providers'
+                'redis:manage dedicated Redis caches for your Azure applications'
+                'relay:manage Azure Relay Service namespaces, WCF relays, hybrid connections, and rules'
+                'reservations:manage Azure Reservations'
+                'resource:manage Azure resources'
+                'role:manage user roles for access control with Azure Active Directory and service principals'
+                'search:manage Azure Search services, admin keys and query keys'
+                'servicebus:manage Azure Service Bus namespaces, queues, topics, subscriptions, rules and geo-disaster recovery configuration alias'
+                'sf:manage and administer Azure Service Fabric clusters'
+                'sig:manage shared image gallery'
+                'signalr:manage Azure SignalR Service'
+                'snapshot:manage point-in-time copies of managed disks, native blobs, or other snapshots'
+                'sql:manage Azure SQL Databases and Data Warehouses'
+                'storage:manage Azure Cloud Storage resources'
+                'tag:manage resource tags'
+                'vm:manage Linux or Windows virtual machines'
+                'vmss:manage groupings of virtual machines in an Azure Virtual Machine Scale Set (VMSS)'
+                'webapp:manage web apps'
+            )
+            _describe -t commands 'az command' commands
+            ;;
+
+        command_arguments)
+            case $words[1] in
+                account)
+                    _arguments -C \
+                        '(-h --help)'{-h,--help}'[show command line help]' \
+                        '1:account commands:->subcommands' \
+                        '*:: :->subcommand_arguments'
+                    case $state in
+                        subcommands)
+                            local subcommands=(
+                                'lock:manage Azure subscription level locks'
+                                'management-group:manage Azure Management Groups'
+                                'clear:clear all subscriptions from the CLI local cache'
+                                'get-access-token:get a token for utilities to access Azure'
+                                'list:get a list of subscriptions for the logged in account'
+                                'list-locations:list supported regions for the current subscription'
+                                'set:set a subscription to be the current active subscription'
+                                'show:get the details of a subscription'
+                            )
+                            _describe -t subcommands 'account subcommand' subcommands
+                            ;;
+                        subcommand_arguments)
+                            case $words[1] in
+                                lock)
+                                    _arguments -C \
+                                        '(-h --help)'{-h,--help}'[show command line help]' \
+                                    ;;
+                                management-group)
+                                    _arguments -C \
+                                        '(-h --help)'{-h,--help}'[show command line help]' \
+                                    ;;
+                                clear)
+                                    _arguments -C \
+                                        '(-h --help)'{-h,--help}'[show command line help]' \
+                                        '--debug[increase logging verbosity to show all debug logs]' \
+                                        '(--output -o)'{--output,-o}'[output format]:FORMAT:_clear_output_format' \
+                                        '--query[JMESPath query string]:QUERY:()' \
+                                        '--subscription[name or ID of subscription]:SUBSCRIPTION:()' \
+                                        '--verbose[increase logging verbosity]'
+                                    ;;
+                                get-access-token)
+                                    _arguments -C \
+                                        '(-h --help)'{-h,--help}'[show command line help]' \
+                                    ;;
+                                list)
+                                    _arguments -C \
+                                        '(-h --help)'{-h,--help}'[show command line help]' \
+                                    ;;
+                                list-locations)
+                                    _arguments -C \
+                                        '(-h --help)'{-h,--help}'[show command line help]' \
+                                    ;;
+                                set)
+                                    _arguments -C \
+                                        '(-h --help)'{-h,--help}'[show command line help]' \
+                                        '(--subscription -s)'{--subscription,-s}'[name or ID of subscription]:SUBSCRIPTION:()' \
+                                        '--debug[increase logging verbosity to show all debug logs]' \
+                                        '(--output -o)'{--output,-o}'[output format]:FORMAT:_clear_output_format' \
+                                        '--query[JMESPath query string]:QUERY:()' \
+                                        '--verbose[increase logging verbosity]'
+                                    ;;
+                                show)
+                                    _arguments -C \
+                                        '(-h --help)'{-h,--help}'[show command line help]' \
+                                    ;;
+                            esac
+                    esac
+                    ;;
+                acr)
+                    :
+                    ;;
+                acs)
+                    :
+                    ;;
+                ad)
+                    :
+                    ;;
+                advisor)
+                    :
+                    ;;
+                aks)
+                    :
+                    ;;
+                ams)
+                    :
+                    ;;
+                appservice)
+                    :
+                    ;;
+                backup)
+                    :
+                    ;;
+                batch)
+                    :
+                    ;;
+                batchai)
+                    :
+                    ;;
+                billing)
+                    :
+                    ;;
+                bot)
+                    :
+                    ;;
+                cdn)
+                    :
+                    ;;
+                cloud)
+                    :
+                    ;;
+                cognitiveservices)
+                    :
+                    ;;
+                configure)
+                    :
+                    ;;
+                consumption)
+                    :
+                    ;;
+                container)
+                    :
+                    ;;
+                cosmosdb)
+                    :
+                    ;;
+                deployment)
+                    :
+                    ;;
+                disk)
+                    :
+                    ;;
+                dla)
+                    :
+                    ;;
+                dls)
+                    :
+                    ;;
+                dms)
+                    :
+                    ;;
+                eventgrid)
+                    :
+                    ;;
+                eventhubs)
+                    :
+                    ;;
+                extension)
+                    :
+                    ;;
+                feature)
+                    :
+                    ;;
+                feedback)
+                    :
+                    ;;
+                find)
+                    :
+                    ;;
+                functionapp)
+                    :
+                    ;;
+                group)
+                    :
+                    ;;
+                hdinsight)
+                    :
+                    ;;
+                identity)
+                    :
+                    ;;
+                image)
+                    :
+                    ;;
+                interactive)
+                    :
+                    ;;
+                iot)
+                    :
+                    ;;
+                iotcentral)
+                    :
+                    ;;
+                keyvault)
+                    :
+                    ;;
+                lab)
+                    :
+                    ;;
+                lock)
+                    :
+                    ;;
+                login)
+                    :
+                    ;;
+                logout)
+                    :
+                    ;;
+                managedapp)
+                    :
+                    ;;
+                maps)
+                    :
+                    ;;
+                mariadb)
+                    :
+                    ;;
+                monitor)
+                    :
+                    ;;
+                mysql)
+                    :
+                    ;;
+                network)
+                    :
+                    ;;
+                policy)
+                    :
+                    ;;
+                postgres)
+                    :
+                    ;;
+                provider)
+                    :
+                    ;;
+                redis)
+                    :
+                    ;;
+                relay)
+                    :
+                    ;;
+                reservations)
+                    :
+                    ;;
+                resource)
+                    :
+                    ;;
+                role)
+                    :
+                    ;;
+                search)
+                    :
+                    ;;
+                servicebus)
+                    :
+                    ;;
+                sf)
+                    :
+                    ;;
+                sig)
+                    :
+                    ;;
+                signalr)
+                    :
+                    ;;
+                snapshot)
+                    :
+                    ;;
+                sql)
+                    :
+                    ;;
+                storage)
+                    :
+                    ;;
+                tag)
+                    :
+                    ;;
+                vm)
+                    :
+                    ;;
+                vmss)
+                    :
+                    ;;
+                webapp)
+                    :
+                    ;;
+            esac
+            ;;
+    esac
+}
+
+_az "${@}"
