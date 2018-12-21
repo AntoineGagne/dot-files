@@ -2,11 +2,11 @@
 
 _build_verbosity_level() {
     _values 'LEVEL' \
-        'q[quiet]' \
-        'm[minimal]' \
-        'n[normal]' \
-        'd[detailed]' \
-        'diag[diagnostic]'
+        'q' \
+        'm' \
+        'n' \
+        'd' \
+        'diag'
 }
 
 _dotnet() {
