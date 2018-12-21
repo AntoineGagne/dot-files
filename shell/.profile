@@ -91,3 +91,5 @@ export _JAVA_AWT_WM_NONREPARENTING=1
 export _JAVA_OPTIONS="-Dawt.useSystemAAFontSettings=lcd -Dswing.defaultlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel -Dswing.aatext=true -Dswing.plaf.metal.controlFont=\"DejaVu Sans-14\""
 export XDG_DATA_HOME=${XDG_DATA_HOME:="$HOME/.local/share"}
 export DOTNET_CLI_TELEMETRY_OPTOUT=1
+
+export PATH="$HOME/.cargo/bin:$PATH"

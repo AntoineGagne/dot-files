@@ -9,3 +9,5 @@ path=(~/bin \
       ~/.cargo/bin \
       ~/.local/bin \
       $path[@])
+
+export PATH="$HOME/.cargo/bin:$PATH"
