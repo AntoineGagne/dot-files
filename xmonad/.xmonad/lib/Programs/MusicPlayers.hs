@@ -1,6 +1,7 @@
 module Programs.MusicPlayers
     ( myMusicPlayer
     , mpd
+    , spotify
     , MusicPlayerControls (..)
     ) where
 
@@ -11,6 +12,7 @@ import Network.MPD ( withMPD
                    )
 import Network.MPD.Applicative ( runCommand )
 import XMonad ( MonadIO (..) )
+import XMonad.Core ( spawn )
 
 import Programs.Commands ( Command
                          , createCommand
@@ -28,7 +30,7 @@ data MusicPlayerControls m = MusicPlayerControls
     }
 
 myMusicPlayer :: MonadIO m => MusicPlayerControls m
-myMusicPlayer = mpd
+myMusicPlayer = spotify
 
 mpd :: MonadIO m => MusicPlayerControls m
 mpd = MusicPlayerControls
@@ -36,6 +38,14 @@ mpd = MusicPlayerControls
     , stop = runMPDCommand PlaybackControl.stop
     , nextSong = runMPDCommand PlaybackControl.next
     , previousSong = runMPDCommand PlaybackControl.previous
+    }
+
+spotify :: MonadIO m => MusicPlayerControls m
+spotify = MusicPlayerControls
+    { toggle = createCommand . spawn $ "dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause"
+    , stop = createCommand . spawn $ "dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Stop"
+    , nextSong = createCommand . spawn $ "dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next"
+    , previousSong = createCommand . spawn $ "dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous"
     }
 
 runMPDCommand :: MonadIO m => MPDApplicative.Command a -> Command m
