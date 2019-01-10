@@ -288,7 +288,21 @@ _az() {
                     :
                     ;;
                 login)
-                    :
+                    _arguments -C \
+                        '(-h --help)'{-h,--help}'[show command line help]' \
+                        '--allow-no-subscriptions[support access tenants without subscriptions]' \
+                        '(-p --password)'{-p,--password}'[credentials like user password, or for a service principal, provide client secret or a pem file with key and public certificate (will prompt if not given)]:PASSWORD:()' \
+                        '--service-principal[the credential representing a service principal]' \
+                        '(-t --tenant)'{-t,--tenant}'[the AAD tenant, must provide when using service principals]' \
+                        '--use-cert-sn-issuer[used with a service principal configured with Subject Name and Issuer Authentication in order to support automatic certificate rolls]' \
+                        '--use-device-code[use CLI old authentication flow based on device code]' \
+                        '(-u --username)'{-u,--username}'[specify user name, service principal, or managed service identity ID]:USERNAME:()' \
+                        '(-i --identity)'{-i,--identity}'[log in using the Virtual Machine identity]' \
+                        '--debug[increase logging verbosity to show all debug logs]' \
+                        '(-o --output)'{-o,--output}'[output format]:FORMAT:(json jsonc table tsv yaml)' \
+                        '--query[JMESPath query string (see http://jmespath.org/ for more information)]:QUERY STRING:()' \
+                        '--subscription[name or ID of subscription]:NAME:()' \
+                        '--verbose[increase logging verbosity]'
                     ;;
                 logout)
                     :
