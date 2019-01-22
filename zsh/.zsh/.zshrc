@@ -170,7 +170,7 @@ autoload -Uz promptinit
 promptinit
 
 autoload -Uz run-help
-unalias run-help
+# unalias run-help
 alias help=run-help
 
 autoload zkbd
@@ -310,10 +310,10 @@ elif [ -f ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh ]; then
     export ZSH_AUTOSUGGEST_USE_ASYNC=1
 fi
 
-if [ -f "$(which virtualenvwrapper_lazy.sh)" ]; then
-    source "$(which virtualenvwrapper_lazy.sh)"
-elif [ -f "$(which virtualenvwrapper.sh)" ]; then
-    source "$(which virtualenvwrapper.sh)"
+if [ -f "/usr/share/virtualenvwrapper/virtualenvwrapper_lazy.sh" ]; then
+    source "/usr/share/virtualenvwrapper/virtualenvwrapper_lazy.sh"
+elif [ -f "/usr/share/virtualenvwrapper/virtualenvwrapper.sh" ]; then
+    source "/usr/share/virtualenvwrapper/virtualenvwrapper.sh"
 fi
 
 source "${HOME}/.prompt"
@@ -339,3 +339,5 @@ PS1='$(prompt "${?}")'
 RPS1='[%F{cyan}%j jobs%f]──[%F{green}%W%f]'
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+eval $(keychain --agents ssh,gpg --eval --nogui --quiet id_rsa)
