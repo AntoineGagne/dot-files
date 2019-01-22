@@ -6,8 +6,8 @@ set ignorecase
 set smartcase
 " Search as characters are entered
 set incsearch
-" Highlight matches
-set hlsearch
+" Do not highlight matches
+set nohlsearch
 
 if executable('ag')
       set grepprg=ag\ --nogroup\ --nocolor
