@@ -9,6 +9,12 @@ snippet ctest "Common Test" b
 
 all() ->
 	[].
+
+init_per_testcase(_Name, Config) ->
+	Config.
+
+end_per_testcase(_Name, Config) ->
+	Config.
 endsnippet
 
 snippet gen_statem "Finite State Machine" b
