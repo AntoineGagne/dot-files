@@ -1,4 +1,5 @@
 " Enable the french spell checker
+setlocal spell
 setlocal spelllang=fr
 
 " Enable syntax folding
