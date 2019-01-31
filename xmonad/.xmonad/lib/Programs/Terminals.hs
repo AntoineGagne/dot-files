@@ -14,6 +14,8 @@ module Programs.Terminals
     , newsboatCommand
     , weechat
     , weechatCommand
+    , ranger
+    , rangerCommand
     ) where
 
 import XMonad ( MonadIO )
@@ -71,6 +73,9 @@ newsboatCommand = createProgramCommand newsboat
 weechatCommand :: MonadIO m => Command m
 weechatCommand = createProgramCommand weechat
 
+rangerCommand :: MonadIO m => Command m
+rangerCommand = createProgramCommand ranger
+
 createProgramCommand :: MonadIO m => TerminalProgram -> Command m
 createProgramCommand = createCommand . spawn . launchApp myTerminal
 
@@ -104,6 +109,14 @@ weechat = TerminalProgram
     , programTitle = "weechat"
     , programCommand = "weechat"
     , programType = "chat"
+    }
+
+ranger :: TerminalProgram
+ranger = TerminalProgram
+    { programName = "ranger"
+    , programTitle = "ranger"
+    , programCommand = "ranger"
+    , programType = "file"
     }
 
 launchApp :: TerminalEmulator -> TerminalProgram -> String
