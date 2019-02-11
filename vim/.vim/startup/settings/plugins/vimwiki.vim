@@ -29,7 +29,8 @@ let wiki.nested_syntaxes = {
             \'sql': 'sql',
             \'tex': 'plaintex',
             \'viml': 'vim',
-            \'xml': 'xml'
+            \'xml': 'xml',
+            \'erlang': 'erlang'
             \}
 " let wiki.syntax = 'markdown'
 " let wiki.ext = '.md'
