@@ -70,3 +70,7 @@ code_change(_Vsn, State, Data, _Extra) ->
 %%% Internal functions
 %%%===================================================================
 endsnippet
+
+snippet trace "Add a statement that prints even during tests" b
+io:format(user, "at=~s:~p:~p", [?MODULE_STRING, ?FUNCTION_NAME, ?LINE]),
+endsnippet
