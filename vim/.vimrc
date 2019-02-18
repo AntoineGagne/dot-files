@@ -37,6 +37,9 @@ call plug#begin('~/.vim/bundle')
     " {{{2 Surrounding Text Objects
     Plug 'tpope/vim-surround'
 
+    " {{{2 Transformation
+    Plug 'tpope/vim-abolish'
+
     " {{{2 Status bar
     Plug 'vim-airline/vim-airline'
     Plug 'vim-airline/vim-airline-themes'
