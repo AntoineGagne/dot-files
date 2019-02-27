@@ -71,6 +71,20 @@ code_change(_Vsn, State, Data, _Extra) ->
 %%%===================================================================
 endsnippet
 
-snippet trace "Add a statement that prints even during tests" b
+snippet trace "Statement that prints even during tests" b
 io:format(user, "~nat=~s:~p:~p", [?MODULE_STRING, ?FUNCTION_NAME, ?LINE]),
+endsnippet
+
+snippet proper "Property Based Testing" b
+-module(${1:`!p snip.rv = snip.basename or "module"`}).
+
+-include_lib("proper/include/proper.hrl").
+-include_lib("eunit/include/eunit.hrl").
+
+-compile(nowarn_export_all).
+-compile(export_all).
+
+%%%===================================================================
+%%% Generators
+%%%===================================================================
 endsnippet
