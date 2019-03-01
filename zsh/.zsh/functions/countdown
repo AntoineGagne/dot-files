@@ -1,0 +1,10 @@
+# vim: ft=zsh
+
+local -r now=$(date +%s)
+local -r to=$((now + ${1})); 
+while [ "${to}" -ge $(date +%s) ]; do
+    echo -ne "$(date -u --date @$((${to} - $(date +%s))) +%H:%M:%S)\r";
+    sleep 0.1
+done
+
+notification-send "Timer elapsed" "Timer of ${@}s elapsed"
