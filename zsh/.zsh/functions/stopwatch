@@ -1,4 +1,5 @@
 # vim: ft=zsh
+# Taken from: https://superuser.com/a/611582
 
 local -r now=$(date +%s); 
 while true; do 
