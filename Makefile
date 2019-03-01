@@ -3,7 +3,11 @@ SYSTEMD_CONFIG_DIR := ${HOME}/.config/systemd/user
 UNITS := clean-local-tmp.service \
 		 clean-local-tmp.timer \
 		 mpdstats.service \
-		 dunst.service
+		 dunst.service \
+		 change-wallpaper.service \
+		 change-wallpaper.timer \
+		 sort-pictures.service \
+		 sort-pictures.timer
 SYSTEMD_UNITS := $(addprefix $(SYSTEMD_CONFIG_DIR)/, $(UNITS))
 
 VIRTUALENVS_DIR := $(HOME)/.virtualenvs
