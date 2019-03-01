@@ -1,0 +1,10 @@
+[Unit]
+Description=Sort the pictures in `%h/Pictures/` every day.
+
+[Timer]
+OnCalendar=daily
+Persistent=true
+Unit=sort-pictures.service
+
+[Install]
+WantedBy=default.target

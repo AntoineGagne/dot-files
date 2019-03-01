@@ -1,0 +1,7 @@
+[Unit]
+Description=Sort the pictures in `%h/Pictures/` every day.
+
+[Service]
+Environment="PATH=/usr/bin:/bin:%h/.local/bin"
+Type=simple
+ExecStart=%h/.local/bin/sort-pictures.bash %h/Pictures

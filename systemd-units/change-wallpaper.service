@@ -1,0 +1,7 @@
+[Unit]
+Description=Change the wallpaper every day.
+
+[Service]
+Environment="PATH=/usr/bin:/bin:%h/.local/bin"
+Type=simple
+ExecStart=/bin/sh %h/.fehbg

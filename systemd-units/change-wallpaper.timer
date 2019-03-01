@@ -1,0 +1,10 @@
+[Unit]
+Description=Change the wallpaper every day.
+
+[Timer]
+OnCalendar=daily
+Persistent=true
+Unit=change-wallpaper.service
+
+[Install]
+WantedBy=default.target
