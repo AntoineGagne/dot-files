@@ -1,4 +1,6 @@
 let g:LanguageClient_serverCommands = {
+            \ 'c': ['clangd-7'],
+            \ 'cpp': ['clangd-7'],
             \ 'lua': ['lua-lsp'],
             \ 'python': ['pyls'],
             \ 'javascript': ['javascript-typescript-stdio'],
