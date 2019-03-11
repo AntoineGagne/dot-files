@@ -1,6 +1,9 @@
+let g:c_language_server = glob("/usr/bin/clangd*")
+let g:cpp_language_server = glob("/usr/bin/clangd*")
+
 let g:LanguageClient_serverCommands = {
-            \ 'c': ['clangd-7'],
-            \ 'cpp': ['clangd-7'],
+            \ 'c': [g:c_language_server],
+            \ 'cpp': [g:cpp_language_server],
             \ 'lua': ['lua-lsp'],
             \ 'python': ['pyls'],
             \ 'javascript': ['javascript-typescript-stdio'],
