@@ -1,10 +1,4 @@
 let g:cpp_include_fixer = glob('/usr/bin/clang-include-fixer-*')
-let g:cpp_format_executable = glob('/usr/share/clang/clang-format-*/clang-format.py')
-
-if executable(g:cpp_format_executable)
-    execute 'map <C-K> :pyf ' . g:cpp_format_executable . '<cr>'
-    execute 'imap <C-K> <c-o>:pyf ' . g:cpp_format_executable . '<cr>'
-endif
 
 function! FixIncludes()
     if executable(g:cpp_include_fixer)

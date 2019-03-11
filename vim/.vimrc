@@ -23,7 +23,10 @@ call plug#begin('~/.vim/bundle')
                 \ }
     Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 
+    " Autoformatting
     Plug 'editorconfig/editorconfig-vim'
+    Plug 'kana/vim-operator-user'
+    Plug 'rhysd/vim-clang-format'
 
     " {{{2 Erlang Language
     Plug 'vim-erlang/vim-erlang-runtime', { 'for': 'erlang' }
