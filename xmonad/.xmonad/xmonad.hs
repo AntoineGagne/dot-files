@@ -25,6 +25,7 @@ import Programs.Terminals ( TerminalEmulator ( terminalDaemonName )
                           )
 import Hooks.ManageHooks ( myManageHooks
                          , myWorkspaces
+                         , manageSpotify
                          )
 import Hooks.Notifications ( myUrgencyHook )
 import Bindings.Keybindings ( myKeys )
@@ -41,6 +42,7 @@ main = do
         { workspaces = withScreens screenNumber myWorkspaces
         , manageHook = manageDocks <+> myManageHooks screenNumber <+> manageHook def
         , logHook = fadeInactiveCurrentWSLogHook 0.8 <+> mapM_ dynamicLogWithPP (zipWith myBarPrettyPrinter hs [0..screenNumber])
+        , handleEventHook = manageSpotify screenNumber <+> docksEventHook
         }
 
 xmobarCommand :: ScreenId -> String
@@ -87,7 +89,6 @@ defaults = def
     , normalBorderColor  = myNormalBorderColor
     , terminal = terminalDaemonName myTerminal
     , keys = myKeys
-    , handleEventHook = docksEventHook
     }
 
 myLayoutPrinter :: String -> String
