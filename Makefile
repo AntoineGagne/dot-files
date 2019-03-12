@@ -59,7 +59,8 @@ SOFTWARE_DIRS := bash \
 	ocaml \
 	emacs \
 	rofi \
-	pulse
+	pulse \
+	kerl
 INSTALL_DIRS := $(SOFTWARE_DIRS:%=install-%)
 
 .PHONY: all
