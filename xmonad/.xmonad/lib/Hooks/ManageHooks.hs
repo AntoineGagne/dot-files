@@ -58,6 +58,8 @@ myManageHooks screenNumber = composeAll
     , className =? "octave-gui" --> moveToWorkspace' [1] 2
     , className =? "jetbrains-idea" --> moveToWorkspace' [1] 2
     , className =? "jetbrains-idea" <&&> resource =? "Dialog" --> moveToWorkspace' [1] 2
+    , className =? "jetbrains-idea-ce" --> moveToWorkspace' [1] 2
+    , className =? "jetbrains-idea-ce" <&&> resource =? "Dialog" --> moveToWorkspace' [1] 2
     , className =? "jetbrains-pycharm" --> moveToWorkspace' [1] 2
     , className =? "jetbrains-pycharm" <&&> resource =? "Dialog" --> moveToWorkspace' [1] 2
     , composeOne [ className =? "JFLAP" -?> moveToWorkspace' [1] 2
