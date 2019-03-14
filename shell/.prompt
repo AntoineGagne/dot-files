@@ -101,6 +101,12 @@ virtualenv_info() {
     [[ -n "$venv" ]] && echo "──[$venv]"
 }
 
+kerl_info() {
+    if [ -n "$(kerl prompt 2>/dev/null)" ]; then
+        kerl prompt 2>/dev/null
+    fi
+}
+
 last_command_exit_status() {
     local -ri _exit_code="${1}"
     local -i _code_color=${GREEN}

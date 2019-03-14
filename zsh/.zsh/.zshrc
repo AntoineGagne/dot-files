@@ -326,11 +326,12 @@ precmd () { vcs_info }
 prompt() {
     local -r _last_command_exit_status="$(last_command_exit_status "${1}")"
     local -r _virtualenv_info="$(virtualenv_info)"
+    local -r _kerl_info="$(kerl_info)"
     local -r _current_directory_information="$(current_directory_information)"
     local -r _git_workspace="${vcs_info_msg_0_}"
 
     cat << EOF
-┌─${_last_command_exit_status}${_virtualenv_info}──$(machine_information)──[%B%F{blue}%4~%f%b]──${_current_directory_information}${_git_workspace}
+┌─${_last_command_exit_status}${_virtualenv_info}──$(machine_information)──[%B%F{blue}%4~%f%b]──${_current_directory_information}${_kerl_info}${_git_workspace}
 └─╼ λ 
 EOF
 }
