@@ -6,7 +6,7 @@ source ~/.vim/startup/settings/plugins/LanguageClient-neovim.vim
 
 " {{{1 Autoformatters
 
-source ~/.vim/startup/settings/plugins/vim-clang-format.vim
+" source ~/.vim/startup/settings/plugins/vim-clang-format.vim
 
 " {{{1 Languages
 
