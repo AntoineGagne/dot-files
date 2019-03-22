@@ -15,6 +15,10 @@ init_per_testcase(_Name, Config) ->
 
 end_per_testcase(_Name, Config) ->
 	Config.
+
+%%%===================================================================
+%%% Internal functions
+%%%===================================================================
 endsnippet
 
 snippet gen_statem "Finite State Machine" b
@@ -49,7 +53,7 @@ callback_mode() ->
 	[handle_event_function, state_enter].
 
 init(_Arguments) ->
-	{ok, start, []}.
+	{ok, start, #data{}}.
 
 handle_event(enter, _OldState, _State, _Data) ->
 	{next_state, _State, _Data};
