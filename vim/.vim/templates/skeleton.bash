@@ -1,6 +1,6 @@
 #! /usr/bin/env bash
 #
-# Copyright © 2018 Antoine Gagné
+# Copyright © <year> Antoine Gagné
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU Affero General Public License as
