@@ -1,51 +1,75 @@
 #! /usr/bin/env bash
-# 
-# Copyright (c) <year> Antoine Gagné
-# 
-# Permission is hereby granted, free of charge, to any person obtaining a copy
-# of this software and associated documentation files (the "Software"), to deal
-# in the Software without restriction, including without limitation the rights
-# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-# copies of the Software, and to permit persons to whom the Software is
-# furnished to do so, subject to the following conditions:
-# 
-# The above copyright notice and this permission notice shall be included in all
-# copies or substantial portions of the Software.
-# 
-# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-# SOFTWARE.
+#
+# Copyright © 2018 Antoine Gagné
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU Affero General Public License as
+# published by the Free Software Foundation, either version 3 of the
+# License, or (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU Affero General Public License for more details.
+#
+# You should have received a copy of the GNU Affero General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-declare -r AUTHORS="Antoine Gagné"
-declare -r PROGRAM_NAME="$(basename "${0}")"
-declare -r PROGRAM_DIRECTORY="$(readlink -m "$(dirname "${0}")")"
-declare -ra ARGUMENTS=("${@}")
+declare -r AUTHORS='Antoine Gagné'
+declare -r PROGRAM_NAME="$(basename "${0%.*}")"
+declare -r PROGRAM_DIRECTORY="$(readlink "$(dirname "${0}")")"
+declare -r RED="$(tput setaf 9)"
+declare -r RESET="$(tput sgr0)"
+declare -ra REQUIRED_COMMANDS=()
 
-declare LOG_FILE
+repeat() {
+    local -r _characters="${1}"
+    local -ri _times="${2}"
+
+    yes "${_characters}" | head -n "${_times}" | tr -d '\n'
+}
 
 usage() {
+    local -r _padding="$(repeat ' ' "${#PROGRAM_NAME}")"
     cat <<- EOF
-		Usage: ${PROGRAM_NAME} [-h|--help] [-V|--version]
-		Do something.
-		Example: ${PROGRAM_NAME} -h
+Usage: ${PROGRAM_NAME} [-h|--help] [-V|--version]
+<Description>
+Example: ${PROGRAM_NAME} -h
 
-		Available options:
-		  -l FILE, --logfile=FILE  where to log the output
-		  -h, --help               display this help text and exit
-		  -V, --version            display version information and exit
-	EOF
+Available options:
+  -h, --help                            display this help text and exit
+  -V, --version                         display version information and exit
+EOF
 }
 
 version() {
     cat <<- EOF
-		${PROGRAM_NAME} v0.0.0
+${PROGRAM_NAME} v0.0.0
 
-		Written by ${AUTHORS}
-	EOF
+Written by ${AUTHORS}
+Licensed under AGPL3
+EOF
+}
+
+die() {
+    local -r _message="${1}"
+    echo "${RED}${_message}${RESET}"
+    exit 1
+}
+
+validate_dependencies() {
+    local _command
+    for _command in "${REQUIRED_COMMANDS[@]}"; do
+        if ! type "${_command}" >/dev/null; then
+            die "${_command} is not installed. Exiting."
+        fi
+    done
+}
+
+trim() {
+    local _string="${1}"
+
+    echo "${_string}" | xargs
 }
 
 get_extension() {
@@ -65,102 +89,48 @@ is_program_installed() {
     type "${_program_name}" >/dev/null
 }
 
-trim() {
-    local _string="${1}"
-
-    echo "${_string}" | xargs
-}
-
-die() {
-    local -r _message="${1}"
-
-    echo "${_message}" >&2
-    exit 1
-}
-
 is_root() {
     [[ ${EUID} -eq 0 ]]
 }
 
-parse_command_line_arguments() {
-    local -r _arguments="$(parse_long_options "${@}")"
-    local -r _parsed_arguments_number="$(parse_short_options "${_arguments}")"
-
-    echo "${_parsed_arguments_number}"
-}
-
-split_long_options() {
-    local -r _long_option="${1}"
-
-    echo "${_long_option}" | awk -F '=' '{
-        for (i = 2; i <= NF; ++i) {
-            printf "%s ", $i
-        };
-    }'
-}
-
-parse_long_options() {
-    local -r _arguments=("${@}")
-    local _parsed_arguments
-
-    local _argument
-    for _argument in "${_arguments[@]}"; do
-        case "${_argument}" in
-            --logfile=?*)
-                _parsed_arguments="${_parsed_arguments}-l${_argument#*=}"
-                ;;
-            --logfile=)
-                die '--logfile requires a non-empty option argument.'
-                ;;
-            --help)
-                _parsed_arguments="${_parsed_arguments}-h "
-                ;;
-            --version)
-                _parsed_arguments="${_parsed_arguments}-V "
-                ;;
-            --)
-                break
-                ;;
-            *)
-                _parsed_arguments="${_parsed_arguments}${_argument} "
-                ;;
-        esac
-    done
-
-    echo "${_parsed_arguments}"
-}
-
-parse_short_options() {
-    while getopts ":hVl:" OPTION; do
-        case ${OPTION} in
-            V)
-                version
-                exit 0
-                ;;
-            h)
-                usage
-                exit 0
-                ;;
-            l)
-                LOG_FILE="$(trim "${OPTARG}")"
-                ;;
-            :)
-                die "Option -${OPTARG} requires an argument." >&2
-                ;;
-            \?)
-                die "Invalid option: -${OPTARG}" >&2
-                ;;
-        esac
-    done
-
-    echo "${OPTIND}"
-}
-
-
 main() {
-    local -r _parsed_arguments_number="$(parse_command_line_arguments "${@}")"
-    shift "${_parsed_arguments_number}"
-    exec &> >(tee -a "${LOG_FILE:-${TEMPDIR:-/tmp}/${PROGRAM_NAME}.log}")
+    create_application
+    execute_with_authentication_token get_operations
 }
 
+while getopts ':hV-:' OPTION; do
+    case "${OPTION}" in
+        V)
+            version
+            exit 0
+            ;;
+        h)
+            usage
+            exit 0
+            ;;
+        -)
+            case "${OPTARG}" in
+                help)
+                    usage
+                    exit 0
+                    ;;
+                version)
+                    version
+                    exit 0
+                    ;;
+                *)
+                    die "Invalid option --${OPTARG}."
+                    ;;
+            esac
+            ;;
+        :)
+            die "Option -${OPTARG} requires an argument."
+            ;;
+        \?)
+            die "Invalid option: -${OPTARG}."
+            ;;
+    esac
+done
+
+shift "${OPTIND}"
 main "${@}"
