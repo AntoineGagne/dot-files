@@ -1,3 +1,5 @@
+let g:fzf_layout = { 'window': 'call windows#FloatingWindow()' }
+
 command! Buffers call fzf#run(fzf#wrap(
             \ {'source': buffers#GetListedBuffers()}))
 
