@@ -339,6 +339,16 @@ EOF
 PS1='$(prompt "${?}")'
 RPS1='[%F{cyan}%j jobs%f]──[%F{green}%W%f]'
 
+
+[ -f "$HOME/.kiex/scripts/kiex" ] && source "$HOME/.kiex/scripts/kiex"
+
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+if type "direnv" >/dev/null 2>&1; then
+    eval "$(direnv hook zsh)"
+fi
+
+# Remove duplicate lines in $PATH
+export PATH="$(echo "$PATH" | awk -F':' '{for (i=1;i<=NF;++i) print($i)}' | awk '!x[$0]++' | awk '{printf("%s:", $0);}' | sed 's/.$//')"
 
 eval $(keychain --agents ssh,gpg --eval --nogui --quiet id_rsa)
