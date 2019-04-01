@@ -66,6 +66,9 @@ call plug#begin('~/.vim/bundle')
     Plug 'pangloss/vim-javascript'
     Plug 'mxw/vim-jsx'
 
+    " {{{2 Undo Tree Visualization
+    Plug 'mbbill/undotree'
+
     " {{{2 Syntax checking
     Plug 'w0rp/ale'
 
