@@ -32,3 +32,8 @@ command! -bang LoadSession call fzf#run(fzf#wrap('buffers',
 if executable('rg')
     command! -bang -nargs=* Grep call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --smart-case --hidden --follow ' . shellescape(<q-args>), 1, <bang>0)
 endif
+
+nnoremap <leader>bls :Buffers<return>
+nnoremap <leader>bd :Bdelete<return>
+nnoremap <leader>/ :BLines<return>
+nnoremap <leader>ls :GitFiles<return>
