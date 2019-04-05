@@ -19,6 +19,10 @@ set fileformats=unix,dos,mac
 " See :help formatoptions and :help fo-table
 set formatoptions=tcroqnj
 
+" {{{1 Sessions
+
+let g:session_directory = expand('~/.vim/.sessions')
+
 
 " {{{1 Tags
 
