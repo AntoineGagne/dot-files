@@ -107,6 +107,9 @@ call plug#begin('~/.vim/bundle')
     " {{{2 Navigation
     Plug 'junegunn/fzf'
     Plug 'junegunn/fzf.vim'
+
+    " {{{2 Others
+    Plug 'tpope/vim-repeat'
 call plug#end()
 filetype plugin indent on
 
