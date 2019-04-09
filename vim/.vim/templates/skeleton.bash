@@ -1,6 +1,6 @@
 #! /usr/bin/env bash
 #
-# Copyright © <year> Antoine Gagné
+# Copyright © 2019 Antoine Gagné
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU Affero General Public License as
@@ -44,7 +44,7 @@ EOF
 
 version() {
     cat <<- EOF
-${PROGRAM_NAME} v0.0.0
+${PROGRAM_NAME} v0.1.0
 
 Written by ${AUTHORS}
 Licensed under AGPL3
@@ -53,14 +53,14 @@ EOF
 
 die() {
     local -r _message="${1}"
-    echo "${RED}${_message}${RESET}"
+    echo "${RED}${_message}${RESET}" 1>&2
     exit 1
 }
 
 validate_dependencies() {
     local _command
     for _command in "${REQUIRED_COMMANDS[@]}"; do
-        if ! type "${_command}" >/dev/null; then
+        if ! type "${_command}" &>/dev/null; then
             die "${_command} is not installed. Exiting."
         fi
     done
@@ -93,9 +93,15 @@ is_root() {
     [[ ${EUID} -eq 0 ]]
 }
 
+format_floating_point() {
+    local -ri _decimals_number="${1}"
+    local -r _floating_point_number="${2}"
+
+    printf "%.${_decimals_number}f" "${_floating_point_number}"
+}
+
 main() {
-    create_application
-    execute_with_authentication_token get_operations
+    validate_dependencies
 }
 
 while getopts ':hV-:' OPTION; do
