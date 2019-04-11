@@ -1,0 +1,9 @@
+[Unit]
+Description=Send MQTT Data
+
+[Service]
+ExecStart=%h/.local/bin/send-mqtt -H %i -P 1883 -t '/devices/'
+Type=simple
+
+[Install]
+WantedBy=default.target

@@ -1,0 +1,10 @@
+[Unit]
+Description=Send MQTT Data.
+
+[Timer]
+OnCalendar=*:*:0/10
+Persistent=true
+Unit=send-mqtt@%i.service
+
+[Install]
+WantedBy=timers.target
