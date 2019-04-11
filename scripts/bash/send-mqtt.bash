@@ -60,7 +60,7 @@ EOF
 
 die() {
     local -r _message="${1}"
-    echo "${RED}${_message}${RESET}" 1>&2
+    echo "${_message}" 1>&2
     exit 1
 }
 
