@@ -7,7 +7,9 @@ UNITS := clean-local-tmp.service \
 		 change-wallpaper.service \
 		 change-wallpaper.timer \
 		 sort-pictures.service \
-		 sort-pictures.timer
+		 sort-pictures.timer \
+		 send-mqtt@.timer \
+		 send-mqtt@.service
 SYSTEMD_UNITS := $(addprefix $(SYSTEMD_CONFIG_DIR)/, $(UNITS))
 
 VIRTUALENVS_DIR := $(HOME)/.virtualenvs
@@ -60,7 +62,8 @@ SOFTWARE_DIRS := bash \
 	emacs \
 	rofi \
 	pulse \
-	kerl
+	kerl \
+	rebar3
 INSTALL_DIRS := $(SOFTWARE_DIRS:%=install-%)
 
 .PHONY: all

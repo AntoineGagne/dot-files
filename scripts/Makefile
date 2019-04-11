@@ -18,7 +18,9 @@ SCRIPTS = bash/cmus-status.bash \
 		  bash/cppman.bash \
 		  bash/haskellman.bash \
 		  bash/display-song-information.bash \
-		  bash/notification-send.bash
+		  bash/notification-send.bash \
+		  bash/send-mqtt.bash \
+		  bash/kubernetes-dashboard.bash
 INSTALL_SCRIPTS := $(SCRIPTS:%=install-%)
 MANPAGES_DIR := $(HOME)/.local/share/man/man1
 MANPAGES := $(patsubst %, $(MANPAGES_DIR)/%.1.gz, control-brightness control-volume)
