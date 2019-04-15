@@ -16,10 +16,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 declare -r AUTHORS='Antoine Gagné'
-declare -r PROGRAM_NAME="$(basename "${0%.*}")"
-declare -r PROGRAM_DIRECTORY="$(readlink "$(dirname "${0}")")"
-declare -r RED="$(tput setaf 9)"
-declare -r RESET="$(tput sgr0)"
+declare -r PROGRAM_NAME="send-mqtt"
 declare -ra REQUIRED_COMMANDS=(mosquitto_pub bc)
 declare PORT_NUMBER=1883
 declare HOST='localhost'
