@@ -16,10 +16,10 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 declare -r AUTHORS='Antoine Gagné'
+# shellcheck disable=SC2155
 declare -r PROGRAM_NAME="$(basename "${0%.*}")"
+# shellcheck disable=SC2155
 declare -r PROGRAM_DIRECTORY="$(readlink "$(dirname "${0}")")"
-declare -r RED="$(tput setaf 9)"
-declare -r RESET="$(tput sgr0)"
 declare -ra REQUIRED_COMMANDS=()
 
 repeat() {
@@ -53,7 +53,7 @@ EOF
 
 die() {
     local -r _message="${1}"
-    echo "${RED}${_message}${RESET}" 1>&2
+    echo "${_message}" 1>&2
     exit 1
 }
 
