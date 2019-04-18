@@ -337,6 +337,7 @@ EOF
 }
 
 PS1='$(prompt "${?}")'
+PS2="├╼ "
 RPS1='[%F{cyan}%j jobs%f]──[%F{green}%W%f]'
 
 
