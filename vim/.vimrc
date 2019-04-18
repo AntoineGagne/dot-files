@@ -34,6 +34,9 @@ call plug#begin('~/.vim/bundle')
     Plug 'vim-erlang/vim-erlang-omnicomplete', { 'for': 'erlang' }
     " Plug 'vim-erlang/vim-erlang-tags', { 'for': 'erlang' }
 
+    " {{{2 Semantic Highlighting
+    Plug 'arakashic/chromatica.nvim'
+
     " {{{2 Python Language
     Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'}
 
