@@ -57,10 +57,15 @@ die() {
     exit 1
 }
 
+is_program_installed() {
+    local -r _program_name="${1}"
+    type "${_program_name}" &>/dev/null
+}
+
 validate_dependencies() {
     local _command
     for _command in "${REQUIRED_COMMANDS[@]}"; do
-        if ! type "${_command}" &>/dev/null; then
+        if ! is_program_installed "${_command}"; then
             die "${_command} is not installed. Exiting."
         fi
     done
@@ -82,11 +87,6 @@ strip_extension() {
     local -r _stripped_filename="${1%.*}"
 
     echo "${_stripped_filename}"
-}
-
-is_program_installed() {
-    local -r _program_name="${1}"
-    type "${_program_name}" >/dev/null
 }
 
 is_root() {
