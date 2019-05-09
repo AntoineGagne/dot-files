@@ -8,13 +8,16 @@ snippet ctest "Common Test" b
 -compile(export_all).
 
 all() ->
-	[].
+	[
+	].
 
 init_per_testcase(_Name, Config) ->
 	Config.
 
 end_per_testcase(_Name, Config) ->
 	Config.
+
+${0}
 
 %%%===================================================================
 %%% Internal functions
@@ -91,6 +94,8 @@ snippet proper "Property Based Testing" b
 %%%===================================================================
 %%% Generators
 %%%===================================================================
+
+${0}
 endsnippet
 
 snippet functional_module "Purely functional module" b
@@ -103,7 +108,24 @@ snippet functional_module "Purely functional module" b
 %%% API
 %%%===================================================================
 
+${0}
+
 %%%===================================================================
 %%% Internal functions
 %%%===================================================================
+endsnippet
+
+snippet error "Error tuple" b
+{error, ${1}}
+endsnippet
+
+snippet ok "Success tuple" b
+{ok, ${1}}
+endsnippet
+
+snippet test_case "Test case" b
+${1:${VISUAL}}() ->
+	[{doc, "${2}"}].
+$1(_Config) ->
+	${0}.
 endsnippet
