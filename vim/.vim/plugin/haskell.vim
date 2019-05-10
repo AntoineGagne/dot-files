@@ -1,3 +1,21 @@
+" {{{1 ghcmod-vim.vim
+hi ghcmodType ctermbg=yellow
+let g:ghcmod_type_highlight = 'ghcmodType'
+
+autocmd BufRead,BufNewFile ~/.xmonad/* call s:add_xmonad_path()
+function! s:add_xmonad_path()
+  if !exists('b:ghcmod_ghc_options')
+    let b:ghcmod_ghc_options = []
+  endif
+  call add(b:ghcmod_ghc_options, '-i' . expand('~/.xmonad/lib'))
+endfunction
+
+" {{{1 neco-ghc.vim
+" let &path=expand('~') . '/.local/bin/ghc-mod'
+let g:necoghc_enable_detailed_browse = 1
+let g:necoghc_use_stack = 1
+
+" {{{1 haskell-vim.vim
 " Disable haskell-vim omnifunc
 let g:haskellmode_completion_ghc = 0
 " To enable highlighting of forall

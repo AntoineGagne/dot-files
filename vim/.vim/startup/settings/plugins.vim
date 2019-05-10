@@ -4,9 +4,6 @@
 source ~/.vim/startup/settings/plugins/deoplete.vim
 source ~/.vim/startup/settings/plugins/LanguageClient-neovim.vim
 
-" {{{1 Semantic Highlighting
-source ~/.vim/startup/settings/plugins/chromatica.vim
-
 " {{{1 Autoformatters
 
 " source ~/.vim/startup/settings/plugins/vim-clang-format.vim
@@ -16,16 +13,6 @@ source ~/.vim/startup/settings/plugins/chromatica.vim
 " {{{2 Rust
 
 source ~/.vim/startup/settings/plugins/racer.vim
-
-
-" {{{2 Haskell
-
-source ~/.vim/startup/settings/plugins/haskell-vim.vim
-
-if !has('nvim')
-    source ~/.vim/startup/settings/plugins/neco-ghc.vim
-    source ~/.vim/startup/settings/plugins/ghcmod-vim.vim
-endif
 
 " {{{2 Elm
 
@@ -38,20 +25,6 @@ source ~/.vim/startup/settings/plugins/ocaml-merlin.vim
 " {{{2 Sessions
 
 source ~/.vim/startup/settings/plugins/sessions-vim.vim
-
-
-" {{{1 UI
-
-
-" {{{2 Status Line
-
-source ~/.vim/startup/settings/plugins/vim-airline.vim
-
-
-" {{{2 Colorschemes
-
-source ~/.vim/startup/settings/plugins/gruvbox.vim
-
 
 " {{{1 Linting
 
