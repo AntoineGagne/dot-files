@@ -38,6 +38,7 @@ source ~/.vim/startup/settings/plugins/ocaml-merlin.vim
 " {{{2 Erlang
 source ~/.vim/startup/settings/plugins/vim-erlang-compiler.vim
 source ~/.vim/startup/settings/plugins/vim-erlang-omnicomplete.vim
+source ~/.vim/startup/settings/plugins/vim-wrangler.vim
 
 " {{{2 Sessions
 
