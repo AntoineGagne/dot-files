@@ -1,3 +1,4 @@
+" {{{1 vimwiki.vim
 let wiki = {}
 
 let wiki.path = '~/vimwiki/'

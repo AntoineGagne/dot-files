@@ -1,3 +1,4 @@
+" {{{1 ale.vim
 " The symbols displayed for errors
 let g:ale_sign_error = '●'
 let g:ale_sign_warning = '◆'

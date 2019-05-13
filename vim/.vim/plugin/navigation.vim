@@ -1,3 +1,4 @@
+" {{{1 fzf.vim
 let g:fzf_layout = { 'window': 'call windows#FloatingWindow()' }
 
 command! Buffers call fzf#run(fzf#wrap(
@@ -37,3 +38,10 @@ nnoremap <leader>bls :Buffers<return>
 nnoremap <leader>bd :Bdelete<return>
 nnoremap <leader>/ :BLines<return>
 nnoremap <leader>ls :GitFiles<return>
+
+" {{{1 vim-gutentags.vim
+call directories#CreateDirectoryIfItDoesNotExists(expand('~/.vim/.tags'))
+let g:gutentags_cache_dir=expand('~/.vim/.tags')
+" let g:gutentags_define_advanced_commands=1
+
+let g:gutentags_exclude_filetypes = ['c', 'cpp', 'haskell', 'python']

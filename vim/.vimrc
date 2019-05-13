@@ -116,6 +116,3 @@ call plug#begin('~/.vim/bundle')
     Plug 'tpope/vim-repeat'
 call plug#end()
 filetype plugin indent on
-
-" {{{1 Configuration Files
-source ~/.vim/startup/settings.vim
