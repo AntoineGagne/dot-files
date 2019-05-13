@@ -119,5 +119,3 @@ filetype plugin indent on
 
 " {{{1 Configuration Files
 source ~/.vim/startup/settings.vim
-source ~/.vim/startup/autocommands.vim
-source ~/.vim/startup/mappings.vim
