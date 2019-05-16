@@ -28,7 +28,6 @@ function! ale_linters#erlang#dialyzer#GetCommand(buffer) abort
                 \ . ' -Wrace_conditions'
                 \ . ' -Wunderspecs'
                 \ . ' %s'
-    echom l:command
     return l:command
 endfunction
 
