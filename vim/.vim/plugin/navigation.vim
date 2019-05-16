@@ -23,6 +23,8 @@ endif
 
 nnoremap <leader>bls :Buffers<return>
 nnoremap <leader>bd :Bdelete<return>
+nnoremap <leader>mls :Marks<return>
+nnoremap <leader>wls :Windows<return>
 nnoremap <leader>/ :BLines<return>
 nnoremap <leader>ls :GitFiles<return>
 
