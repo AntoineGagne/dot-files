@@ -3,6 +3,7 @@
 module Programs.Terminals
     ( TerminalEmulator (..)
     , kitty
+    , alacritty
     , urxvt
     , mutt
     , muttCommand
@@ -33,7 +34,7 @@ data TerminalEmulator = TerminalEmulator
     }
 
 myTerminal :: TerminalEmulator
-myTerminal = urxvt
+myTerminal = alacritty
 
 myTerminalCommand :: MonadIO m => Command m
 myTerminalCommand = createCommand . spawn . terminalDaemonName $ myTerminal
@@ -44,6 +45,14 @@ kitty = TerminalEmulator
     , terminalDaemonName = "kitty --single-instance"
     , terminalTitleOption = "--class="
     , terminalExecutionOption = " "
+    }
+
+alacritty :: TerminalEmulator
+alacritty = TerminalEmulator
+    { terminalName = "alacritty"
+    , terminalDaemonName = "alacritty"
+    , terminalTitleOption = "--title "
+    , terminalExecutionOption = "--command "
     }
 
 urxvt :: TerminalEmulator
