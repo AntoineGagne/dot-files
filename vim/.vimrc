@@ -15,6 +15,11 @@ endif
 " {{{1 Plugins
 
 call plug#begin('~/.vim/bundle')
+
+    " {{{2 Typescript syntax highlighting
+    Plug 'HerringtonDarkholme/yats.vim', {'for': 'typescript'}
+    Plug 'mhartington/nvim-typescript', {'do': './install.sh', 'for': 'typescript'}
+
     " {{{2 Autocompletion plugin
     " Plug 'Valloric/YouCompleteMe'
     Plug 'autozimu/LanguageClient-neovim', {
