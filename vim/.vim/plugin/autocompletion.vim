@@ -11,8 +11,8 @@ let g:deoplete#enable_smart_case = 1
 " autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
 
 " {{{1 LanguageClient-neovim.vim
-let g:c_language_server = glob("/usr/bin/clangd*")
-let g:cpp_language_server = glob("/usr/bin/clangd*")
+let g:c_language_server = glob('/usr/bin/clangd*')
+let g:cpp_language_server = glob('/usr/bin/clangd*')
 
 let g:LanguageClient_serverCommands = {
             \ 'c': [g:c_language_server],
