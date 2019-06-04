@@ -38,10 +38,11 @@ fi
 
 # Set the keyboard layout to french canadian
 setxkbmap -layout ca -variant fr
+alacritty &
 # Start urxvt daemon
-urxvtd -q -f -o
+# urxvtd -q -f -o
 # Spawn a urxvt terminal
-urxvtc &
+# urxvtc &
 # kitty --single-instance &
 
 # Create the song indicator pipe and put a default value
