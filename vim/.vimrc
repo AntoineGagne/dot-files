@@ -31,7 +31,10 @@ call plug#begin('~/.vim/bundle')
     " Autoformatting
     Plug 'editorconfig/editorconfig-vim'
     Plug 'kana/vim-operator-user'
-    Plug 'rhysd/vim-clang-format'
+    Plug 'rhysd/vim-clang-format', { 'for': ['c', 'cpp'] }
+
+    " {{{2 Vimscript Language
+    Plug 'junegunn/vader.vim'
 
     " {{{2 Erlang Language
     Plug 'vim-erlang/vim-erlang-runtime', { 'for': 'erlang' }
@@ -41,10 +44,10 @@ call plug#begin('~/.vim/bundle')
     " Plug 'vim-erlang/vim-erlang-tags', { 'for': 'erlang' }
 
     " {{{2 Semantic Highlighting
-    Plug 'arakashic/chromatica.nvim'
+    Plug 'arakashic/chromatica.nvim', { 'for': ['c', 'cpp'] }
 
     " {{{2 Python Language
-    Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'}
+    Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins', 'for': 'python'}
 
     " {{{2 Tags Management
     Plug 'ludovicchabant/vim-gutentags'
@@ -75,8 +78,8 @@ call plug#begin('~/.vim/bundle')
     Plug 'othree/html5.vim', { 'for': 'html' }
 
     " {{{2 JS & JSX
-    Plug 'pangloss/vim-javascript'
-    Plug 'mxw/vim-jsx'
+    Plug 'pangloss/vim-javascript', {'for': 'javascript'}
+    Plug 'mxw/vim-jsx', {'for': 'javascript'}
 
     " {{{2 Undo Tree Visualization
     Plug 'mbbill/undotree'
@@ -84,17 +87,14 @@ call plug#begin('~/.vim/bundle')
     " {{{2 Syntax checking
     Plug 'w0rp/ale'
 
-    " {{{2 Typescript syntax highlighting
-    Plug 'leafgarland/typescript-vim'
-
     " {{{2 C# Completion
-    Plug 'OmniSharp/omnisharp-vim'
+    Plug 'OmniSharp/omnisharp-vim', {'for': 'csharp'}
 
     " {{{2 Asynchronous Execution
     Plug 'Shougo/vimproc.vim', { 'do': 'make' }
 
     " {{{2 Elm Syntax Highlighting
-    Plug 'elmcast/elm-vim'
+    Plug 'elmcast/elm-vim', {'for': 'elm'}
 
     " {{{2 Pandoc Syntax
     Plug 'vim-pandoc/vim-pandoc', { 'for': 'markdown' }
@@ -116,6 +116,9 @@ call plug#begin('~/.vim/bundle')
     " {{{2 Navigation
     Plug 'junegunn/fzf'
     Plug 'junegunn/fzf.vim'
+
+    " {{{2 jq language
+    Plug 'vito-c/jq.vim'
 
     " {{{2 Others
     Plug 'tpope/vim-repeat'
