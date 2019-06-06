@@ -1,0 +1,1 @@
+vim -c "argdo setf erlang | execute 'normal! gg=G' | update" "${1}"
