@@ -129,3 +129,46 @@ ${1:${VISUAL}}() ->
 $1(_Config) ->
 	${0}.
 endsnippet
+
+snippet supervisor "Supervisor" b
+-module(${1:`!p snip.rv = snip.basename or "module"`}).
+
+-behaviour(supervisor).
+
+%% API
+-export([start_link/0]).
+
+%% Supervisor callbacks
+-export([init/1]).
+
+-define(SERVER, ?MODULE).
+
+%%====================================================================
+%% API functions
+%%====================================================================
+
+-spec start_link() ->
+    {ok, pid()} | ignore | {error, term()}.
+start_link() ->
+    supervisor:start_link({local, ?SERVER}, ?MODULE, []).
+
+%%====================================================================
+%% Supervisor callbacks
+%%====================================================================
+
+init([]) ->
+    {ok, {#{strategy => ${1:one_for_one},
+            intensity => 5,
+            period => 10},
+          [${0}
+          ]}}.
+endsnippet
+
+snippet child_spec "Supervisor Child Specification" i
+#{id => ${1},
+  start => {$1, start_link, []},
+  restart => ${2:permanent},
+  shutdown => 5000,
+  type => ${3:worker},
+  modules => [$1]}${0}
+endsnippet
