@@ -63,7 +63,8 @@ SOFTWARE_DIRS := bash \
 	rofi \
 	pulse \
 	kerl \
-	rebar3
+	rebar3 \
+	erlang
 INSTALL_DIRS := $(SOFTWARE_DIRS:%=install-%)
 
 .PHONY: all
