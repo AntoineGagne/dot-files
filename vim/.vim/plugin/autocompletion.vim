@@ -14,14 +14,23 @@ let g:deoplete#enable_smart_case = 1
 let g:c_language_server = glob('/usr/bin/clangd*')
 let g:cpp_language_server = glob('/usr/bin/clangd*')
 
+" {{{1 ALE
+let g:ale_completion_enabled = 0
+
 let g:LanguageClient_serverCommands = {
+            \ 'bib': ['texlab'],
             \ 'c': [g:c_language_server],
             \ 'cpp': [g:cpp_language_server],
+            \ 'dockerfile': ['docker-langserver', '--stdio'],
+            \ 'latex': ['texlab'],
             \ 'lua': ['lua-lsp'],
+            \ 'plaintex': ['texlab'],
             \ 'python': ['pyls'],
             \ 'javascript': ['javascript-typescript-stdio'],
             \ 'haskell': ['hie', '--lsp'],
-            \ 'rust': ['rls']
+            \ 'rust': ['ra_lsp_server'],
+            \ 'sh': ['bash-language-server', 'start'],
+            \ 'tex': ['texlab']
             \ }
 
 " Automatically start language servers.
