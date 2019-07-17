@@ -1,0 +1,5 @@
+{ok, _} = compile:file("/home/angagne/.erlang.d/user_default").
+{module, user_default} = code:load_abs("user_default").
+
+user_default:banner().
+shell:prompt_func({user_default, prompt}).
