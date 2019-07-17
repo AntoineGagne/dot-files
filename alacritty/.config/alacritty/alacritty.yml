@@ -99,17 +99,14 @@ debug.render_timer: false
 # and cursor.background colors, otherwise invert the colors of the cursor.
 custom_cursor_colors: true
 
-# Colors (Tomorrow Night Bright)
+# Colors (Gruvbox dark)
 colors:
   # Default colors
   primary:
+    # hard contrast: background = '0x1d2021'
     background: '0x282828'
+    # soft contrast: background = '0x32302f'
     foreground: '0xebdbb2'
-
-  # Colors the cursor will use if `custom_cursor_colors` is true
-  cursor:
-    text: '0x32302f'
-    cursor: '0xfbf1c7'
 
   # Normal colors
   normal:
@@ -171,7 +168,7 @@ visual_bell:
   duration: 0
 
 # Background opacity
-background_opacity: 0.95
+background_opacity: 0.9
 
 # Mouse bindings
 #
