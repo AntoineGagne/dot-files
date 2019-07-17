@@ -1,8 +1,8 @@
 session_name: news
 start_directory: ${HOME}
 global_options:
-    default-shell: /bin/bash
-    default-command: /bin/bash
+    default-shell: /bin/zsh
+    default-command: /bin/zsh
 windows:
 - layout: c95d,211x57,0,0,0
   options:
