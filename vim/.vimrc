@@ -1,5 +1,4 @@
 filetype off         " required for Vundle
-set nocompatible " no longer compatible with Vi, required for Vundle
 
 " {{{1 Python Hosts
 
@@ -102,6 +101,9 @@ call plug#begin('~/.vim/bundle')
 
     " {{{2 Markdown Tables
     Plug 'dhruvasagar/vim-table-mode', { 'for': ['markdown', 'rst'] }
+
+    " {{{2 TOML Support
+    Plug 'cespare/vim-toml'
 
     " {{{2 ColorScheme 
     Plug 'morhetz/gruvbox'
