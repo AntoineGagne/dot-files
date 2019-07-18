@@ -172,3 +172,11 @@ snippet child_spec "Supervisor Child Specification" i
   type => ${3:worker},
   modules => [$1]}${0}
 endsnippet
+
+snippet logger_include "OTP 21 Logger Include"
+-include_lib("kernel/include/logger.hrl").
+endsnippet
+
+snippet ms_transform "ETS MS Transforms"
+-include_lib("stdlib/include/ms_transform.hrl").
+endsnippet
