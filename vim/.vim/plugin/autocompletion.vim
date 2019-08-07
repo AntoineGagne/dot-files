@@ -36,3 +36,6 @@ let g:LanguageClient_serverCommands = {
 
 " Automatically start language servers.
 let g:LanguageClient_autoStart = 1
+
+" {{{1 Wildmenu
+set wildoptions+=pum
