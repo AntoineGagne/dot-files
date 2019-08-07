@@ -17,6 +17,7 @@ let g:cpp_language_server = glob('/usr/bin/clangd*')
 " {{{1 ALE
 let g:ale_completion_enabled = 0
 
+let g:LanguageClient_loggingFile = '/tmp/LanguageClient.log'
 let g:LanguageClient_serverCommands = {
             \ 'bib': ['texlab'],
             \ 'c': [g:c_language_server],
