@@ -1,8 +1,20 @@
 -module(user_default).
 
+-include_lib("xmerl/include/xmerl.hrl").
+
 -export([to_list/1,
          banner/0,
-         prompt/1]).
+         prompt/1,
+
+         fmap/2,
+         bind/2,
+         '=<<'/2,
+         '>>='/2
+        ]).
+
+-type result(A) :: {ok, A} | {error, term()}.
+
+-export_type([result/1]).
 
 banner() ->
     Command = io_lib:format("figlet -t -c ~p", [node()]),
@@ -25,3 +37,27 @@ to_list(Binary) when is_binary(Binary) ->
     binary_to_list(Binary);
 to_list(Other) ->
     Other.
+
+-spec fmap(fun ((A) -> B), result(A)) -> result(B).
+fmap(F, {ok, V}) ->
+    {ok, F(V)};
+fmap(_F, Error={error, _}) ->
+    Error.
+
+-spec bind(fun ((A) -> result(B)), result(A)) -> result(B).
+bind(F, {ok, V}) ->
+    F(V);
+bind(_F, Error={error, _}) ->
+    Error.
+
+-spec '=<<'(fun ((A) -> result(B)), result(A)) -> result(B).
+'=<<'(F, {ok, V}) ->
+    F(V);
+'=<<'(_F, Error={error, _}) ->
+    Error.
+
+-spec '>>='(result(A), fun ((A) -> result(B))) -> result(B).
+'>>='({ok, V}, F) ->
+   F(V);
+'>>='(Error={error, _}, _F) ->
+    Error.
