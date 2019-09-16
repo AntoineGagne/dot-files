@@ -87,7 +87,7 @@ call plug#begin('~/.vim/bundle')
     Plug 'w0rp/ale'
 
     " {{{2 C# Completion
-    Plug 'OmniSharp/omnisharp-vim', {'for': 'csharp'}
+    Plug 'OmniSharp/omnisharp-vim', {'for': 'cs'}
 
     " {{{2 Asynchronous Execution
     Plug 'Shougo/vimproc.vim', { 'do': 'make' }
