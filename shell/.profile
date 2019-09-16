@@ -70,6 +70,11 @@ if [ -d "${HOME}/.node_modules/bin" ]; then
     export npm_config_prefix="${HOME}/.node_modules"
 fi
 
+if [ -d "${HOME}/perl5" ]; then
+    export PATH="${PATH}:${HOME}/perl5/bin"
+    export PERL5LIB="${PERL5LIB}:${HOME}/perl5/lib/perl5"
+fi
+
 if type -f "nvim" >/dev/null 2>&1; then
     export EDITOR=nvim
 fi
