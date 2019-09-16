@@ -241,6 +241,12 @@ bindkey '^r' history-incremental-search-backward
 # Delete everything from the cursor to the end of the line
 bindkey '^K' kill-line
 
+fzf-editor() {
+    fd --type f| fzf --bind='enter:execute(vim {})'
+}
+zle -N fzf-editor
+bindkey '^e' fzf-editor
+
 # Enable surround text-objects
 bindkey -a cs change-surround
 bindkey -a ds delete-surround
@@ -318,6 +324,18 @@ if [ -f "/usr/share/virtualenvwrapper/virtualenvwrapper_lazy.sh" ]; then
 elif [ -f "/usr/share/virtualenvwrapper/virtualenvwrapper.sh" ]; then
     source "/usr/share/virtualenvwrapper/virtualenvwrapper.sh"
 fi
+
+# If current selection is a text file shows its content,
+# if it's a directory shows its content, the rest is ignored
+# Taken from: https://github.com/silvanocerza/dotfiles/blob/d3cf4ed770f18ba81a9059f7dd93dc3a97381239/zsh/zshrc#L48
+FZF_CTRL_T_OPTS="--preview-window wrap --preview '
+if [[ -f {} ]]; then
+    file --mime {} | grep -q \"text\/.*;\" && bat --color \"always\" {} || (tput setaf 1; file --mime {})
+elif [[ -d {} ]]; then
+    exa -l --color always {}
+else;
+    tput setaf 1; echo You are not supposed to see this!
+fi'"
 
 source "${HOME}/.prompt"
 
