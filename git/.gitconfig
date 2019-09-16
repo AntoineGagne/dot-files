@@ -195,6 +195,7 @@
 [core]
     excludesfile = ~/.git.d/global_gitignore
     editor = nvim
+    pager = less -r
 [diff]
     algorithm = patience
     tool = vimdiff
