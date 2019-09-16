@@ -9,6 +9,12 @@ if [ -x /usr/bin/dircolors ]; then
     alias fgrep='fgrep --color=auto'
     alias egrep='egrep --color=auto'
 fi
-alias ll='ls -alF'
-alias la='ls -A'
-alias l='ls -CF'
+if command -v "exa" >/dev/null 2>&1; then
+    alias ll='exa -laF'
+    alias la='exa -aF'
+    alias l='exa -F'
+else
+    alias ll='ls -alF'
+    alias la='ls -A'
+    alias l='ls -CF'
+fi
