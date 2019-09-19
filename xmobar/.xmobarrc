@@ -54,13 +54,14 @@ Config { font = "xft:Fira Code Medium:style=Medium:size=10:antialias=true,Source
                                      , "-D", "intel_backlight"
                                      ] 10
                     , Run Date "<fn=1></fn> %a %b %d %T" "date" 10
-                    , Run MPD [ "-t"
-                              , "<statei> <title> by <artist> (<ppos>/<plength>)"
-                              , "--"
-                              , "-P", "<fn=1></fn>"
-                              , "-Z", "<fn=1></fn>"
-                              , "-S", "<fn=1></fn>"
-                              ] 10
+                    -- , Run MPD [ "-t"
+                    --           , "<statei> <title> by <artist> (<ppos>/<plength>)"
+                    --           , "--"
+                    --           , "-P", "<fn=1></fn>"
+                    --           , "-Z", "<fn=1></fn>"
+                    --           , "-S", "<fn=1></fn>"
+                    --           ] 10
+                    , Run Mpris2 "spotify" ["-t", "<artist> - <title>"] 10
                     , Run StdinReader
                     ]
 }
