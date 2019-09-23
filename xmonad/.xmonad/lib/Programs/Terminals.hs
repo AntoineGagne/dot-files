@@ -138,7 +138,7 @@ launchApp TerminalEmulator {..} TerminalProgram {..} = terminalDaemonName
                                              ++ terminalExecutionOption
                                              ++ " "
                                              ++ launchCommand
-    where launchCommand = "bash -c 'tmux -q has-session -t "
+    where launchCommand = "zsh -c 'tmux -q has-session -t "
                         ++ programType
                         ++ " && tmux -2 attach-session -t "
                         ++ programType
