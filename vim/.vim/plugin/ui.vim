@@ -13,7 +13,7 @@ set visualbell
 " Enable syntax processing
 syntax enable
 set termguicolors
-set cole=2
+set conceallevel=2
 let g:tex_conceal='adgms'
 
 " Set transparent background

@@ -16,6 +16,6 @@ nnoremap $ g$
 
 " {{{2 Buffers
 " Move to nth next buffer
-nnoremap <leader>bn :bnext<CR>
+" nnoremap <leader>bn :bnext<CR>
 " Move to nth previous buffer
-nnoremap <leader>bp :bprevious<CR>
+" nnoremap <leader>bp :bprevious<CR>

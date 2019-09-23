@@ -1,9 +1,9 @@
 " {{{1 Files
 
- " Set the encoding to utf-8
-scriptencoding utf-8
 " Set the encoding to utf-8
 set encoding=utf-8
+ " Set the encoding to utf-8
+scriptencoding utf-8
 " Instead of failing a command because of unsaved changes, instead raise a
 " dialogue asking if you wish to save changed files
 set confirm
@@ -19,6 +19,17 @@ set fileformats=unix,dos,mac
 " See :help formatoptions and :help fo-table
 set formatoptions=tcroqnj
 
+" {{{1 Important directories
+
+call directories#CreateDirectories(
+            \ expand('~/.vim/.sessions'),
+            \ expand('~/.vim/.tmp'),
+            \ expand('~/.vim/.swap'),
+            \ expand('~/.vim/.undo'),
+            \ expand('~/.vim/.bookmarks')
+            \ )
+
+
 " {{{1 Sessions
 
 let g:session_directory = expand('~/.vim/.sessions')
@@ -33,12 +44,10 @@ set tags+=./tags
 " {{{1 Runtime Path
 set runtimepath+=~/.vim/custom-snippets/
 
-
 " {{{1 Backups
 
 " Put the backup files in the temporary folder
 set backup
-call directories#CreateDirectoryIfItDoesNotExists(expand('~/.vim/.tmp'))
 " The directory where to put the backups
 set backupdir=~/.vim/.tmp
 " Skip creating backups for the files matching the following patterns
@@ -46,14 +55,12 @@ set backupskip=/tmp/*,/private/tmp/*
 
 " {{{1 Swap
 " The directory where to save the swap files
-call directories#CreateDirectoryIfItDoesNotExists(expand('~/.vim/.swap'))
 set directory=~/.vim/.swap
 set writebackup
 
 " {{{1 Undo
 " Keep undo even after closing the file
 set undofile
-call directories#CreateDirectoryIfItDoesNotExists(expand('~/.vim/.undo'))
 " Set the undo directory
 set undodir=~/.vim/.undo
 " Set the maximum number of undo that can be undone
@@ -69,7 +76,6 @@ set hidden
 
 let g:netrw_banner = 1
 " Where the bookmarks will be kept
-call directories#CreateDirectoryIfItDoesNotExists(expand('~/.vim/.bookmarks'))
 let g:netrw_home = expand('~/.vim/.bookmarks/')
 " Tree style listing
 let g:netrw_liststyle = 3
