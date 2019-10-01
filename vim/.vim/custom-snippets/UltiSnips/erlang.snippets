@@ -127,7 +127,7 @@ snippet test_case "Test case" b
 ${1:${VISUAL}}() ->
 	[{doc, "${2}"}].
 $1(_Config) ->
-	${0}.
+	${0:ok}.
 endsnippet
 
 snippet supervisor "Supervisor" b
