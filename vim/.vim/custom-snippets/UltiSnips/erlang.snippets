@@ -164,6 +164,14 @@ init([]) ->
           ]}}.
 endsnippet
 
+snippet ctsuite "Common Test Suite"
+init_per_suite(Config) ->
+    Config.
+
+end_per_suite(Config) ->
+    Config.
+endsnippet
+
 snippet child_spec "Supervisor Child Specification" i
 #{id => ${1},
   start => {$1, start_link, []},
