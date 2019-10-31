@@ -19,14 +19,17 @@ AUTHORS='Antoine Gagné'
 PROGRAM_NAME="$(basename "${0%.*}")"
 REQUIRED_COMMANDS=""
 
+exec 3>/dev/null
+
 usage() {
     cat <<- EOF
-Usage: ${PROGRAM_NAME} [-h|--help] [-V|--version]
+Usage: ${PROGRAM_NAME} [-h|--help] [-V|--version] [-v|--verbose]
 <Description>
 Example: ${PROGRAM_NAME} -h
 
 Available options:
   -h, --help                            display this help text and exit
+  -v, --verbose                         enable verbose output
   -V, --version                         display version information and exit
 EOF
 }
@@ -46,6 +49,20 @@ die() {
     exit 1
 }
 
+warn() {
+    _message="${1}"
+    echo "${_message}" 1>&2
+}
+
+verbose() {
+    exec 3>&1
+}
+
+info() {
+    _message="${1}"
+    echo "${_message}" 1>&3
+}
+
 validate_dependencies() {
     for _command in ${REQUIRED_COMMANDS}; do
         if ! is_program_installed "${_command}"; then
@@ -63,7 +80,7 @@ main() {
     validate_dependencies
 }
 
-while getopts ':hV-:' OPTION; do
+while getopts ':hvV-:' OPTION; do
     case "${OPTION}" in
         V)
             version
@@ -72,6 +89,9 @@ while getopts ':hV-:' OPTION; do
         h)
             usage
             exit 0
+            ;;
+        v)
+            verbose
             ;;
         -)
             case "${OPTARG}" in
@@ -82,6 +102,9 @@ while getopts ':hV-:' OPTION; do
                 version)
                     version
                     exit 0
+                    ;;
+                verbose)
+                    verbose
                     ;;
                 *)
                     die "Invalid option --${OPTARG}."
@@ -97,7 +120,4 @@ while getopts ':hV-:' OPTION; do
     esac
 done
 
-if [ -n "${*}" ]; then
-    shift "${OPTIND}"
-fi
 main "${@}"
