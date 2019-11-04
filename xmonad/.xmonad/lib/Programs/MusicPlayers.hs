@@ -48,6 +48,14 @@ spotify = MusicPlayerControls
     , previousSong = createCommand . spawn $ "dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous"
     }
 
+spotifyd :: MonadIO m => MusicPlayerControls m
+spotifyd = MusicPlayerControls
+    { toggle = createCommand . spawn $ "dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotifyd /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause"
+    , stop = createCommand . spawn $ "dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotifyd /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Stop"
+    , nextSong = createCommand . spawn $ "dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotifyd /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next"
+    , previousSong = createCommand . spawn $ "dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotifyd /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous"
+    }
+
 runMPDCommand :: MonadIO m => MPDApplicative.Command a -> Command m
 runMPDCommand = createCommand . liftMPD_ . runCommand
 
