@@ -65,7 +65,7 @@ call plug#begin('~/.vim/bundle')
     Plug 'racer-rust/vim-racer', { 'for': 'rust' }
 
     "  {{{2 Syntax highlighting for the Haskell language
-    Plug 'neovimhaskell/haskell-vim', { 'for': 'haskell' }
+    Plug 'neovimhaskell/haskell-vim', { 'for': ['haskell'] }
 
     " {{{2 Perfect language syntax highlighting
     Plug 'AntoineGagne/perfect-language-vim'
@@ -88,6 +88,15 @@ call plug#begin('~/.vim/bundle')
 
     " {{{2 C# Completion
     Plug 'OmniSharp/omnisharp-vim', {'for': 'cs'}
+
+    " {{{2 F#
+    " Plug 'fsharp/vim-fsharp', {
+    "   \ 'for': 'fsharp',
+    "   \ 'do':  'make fsautocomplete',
+    "   \}
+    Plug 'ionide/Ionide-vim', {
+                \ 'do':  'make fsautocomplete',
+                \}
 
     " {{{2 Asynchronous Execution
     Plug 'Shougo/vimproc.vim', { 'do': 'make' }
@@ -124,5 +133,12 @@ call plug#begin('~/.vim/bundle')
 
     " {{{2 Others
     Plug 'tpope/vim-repeat'
+
+    " Use release branch
+    " Plug 'neoclide/coc.nvim', { 'branch': 'release'}
 call plug#end()
 filetype plugin indent on
+
+" {{{1 OCaml Required Commands
+" These can't be put into autoloaded files otherwise it doesn't work
+source ~/.vim/runtime/ocaml.vim
