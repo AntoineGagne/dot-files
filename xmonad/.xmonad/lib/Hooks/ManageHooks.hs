@@ -82,6 +82,7 @@ myManageHooks screenNumber = composeAll
     , name =? "mutt" --> moveToWorkspace' [1] 7
     , name =? "cmus" --> moveToWorkspace' [1] 4
     , name =? "ncmpcpp" --> moveToWorkspace' [1] 4
+    , name =? "spt" --> moveToWorkspace' [1] 4
     , name =? "weechat" --> moveToWorkspace' [1] 6
     , name =? "newsboat" --> moveToWorkspace' [0] 3
     , name =? "ranger" --> moveToWorkspace' [1] 8
