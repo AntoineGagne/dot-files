@@ -42,6 +42,9 @@ call plug#begin('~/.vim/bundle')
     Plug 'ppikula/vim-wrangler', { 'for': 'erlang' }
     " Plug 'vim-erlang/vim-erlang-tags', { 'for': 'erlang' }
 
+    " {{{2 Elixir Language
+    Plug 'elixir-editors/vim-elixir'
+
     " {{{2 Semantic Highlighting
     Plug 'arakashic/chromatica.nvim', { 'for': ['c', 'cpp'] }
 
