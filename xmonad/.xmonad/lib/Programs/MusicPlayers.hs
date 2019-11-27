@@ -30,7 +30,7 @@ data MusicPlayerControls m = MusicPlayerControls
     }
 
 myMusicPlayer :: MonadIO m => MusicPlayerControls m
-myMusicPlayer = spotify
+myMusicPlayer = spotifyd
 
 mpd :: MonadIO m => MusicPlayerControls m
 mpd = MusicPlayerControls

@@ -46,6 +46,7 @@ import qualified XMonad.StackSet as StackSet
 import Programs.Commands ( runCommand )
 import Programs.Volume ( myVolumeControl )
 import Programs.Terminals ( muttCommand
+                          , sptCommand
                           , ncmpcppCommand
                           , newsboatCommand
                           , rangerCommand
@@ -158,7 +159,7 @@ myKeys conf = let m = modMask conf in Map.fromList $
                   [ ((0, xK_e), runCommand muttCommand)
                   , ((0, xK_n), runCommand newsboatCommand)
                   , ((0, xK_c), runCommand weechatCommand)
-                  , ((0, xK_m), runCommand ncmpcppCommand)
+                  , ((0, xK_m), runCommand sptCommand)
                   , ((0, xK_f), runCommand rangerCommand)
                   , ((0, xK_b), catchIO . safeSpawnProg $ "firefox")
                   , ((0, xK_v), catchIO . safeSpawnProg $ "zathura")

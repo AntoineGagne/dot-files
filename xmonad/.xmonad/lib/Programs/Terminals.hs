@@ -17,6 +17,8 @@ module Programs.Terminals
     , weechatCommand
     , ranger
     , rangerCommand
+    , spt
+    , sptCommand
     ) where
 
 import XMonad ( MonadIO )
@@ -76,6 +78,9 @@ muttCommand = createProgramCommand mutt
 ncmpcppCommand :: MonadIO m => Command m
 ncmpcppCommand = createProgramCommand ncmpcpp
 
+sptCommand :: MonadIO m => Command m
+sptCommand = createProgramCommand spt
+
 newsboatCommand :: MonadIO m => Command m
 newsboatCommand = createProgramCommand newsboat
 
@@ -94,6 +99,14 @@ mutt = TerminalProgram
     , programTitle = "mutt"
     , programCommand = "mutt"
     , programType = "email"
+    }
+
+spt :: TerminalProgram
+spt = TerminalProgram
+    { programName = "spt"
+    , programTitle = "spt"
+    , programCommand = "spt"
+    , programType = "music"
     }
 
 ncmpcpp :: TerminalProgram
