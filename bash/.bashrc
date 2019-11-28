@@ -168,3 +168,6 @@ EOF
 PS1='$(prompt "${?}")'
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
+# added by travis gem
+[ -f /home/angagne/.travis/travis.sh ] && source /home/angagne/.travis/travis.sh
