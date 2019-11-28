@@ -370,6 +370,10 @@ if type "direnv" >/dev/null 2>&1; then
     eval "$(direnv hook zsh)"
 fi
 
+if [[ -s "$HOME/.kiex/scripts/kiex" ]]; then
+    source "$HOME/.kiex/scripts/kiex"
+fi
+
 # Remove duplicate lines in $PATH
 export PATH="$(echo "$PATH" | awk -F':' '{for (i=1;i<=NF;++i) print($i)}' | awk '!x[$0]++' | awk '{printf("%s:", $0);}' | sed 's/.$//')"
 
