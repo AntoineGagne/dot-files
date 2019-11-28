@@ -22,7 +22,6 @@ let g:LanguageClient_serverCommands = {
             \ 'bib': ['texlab'],
             \ 'c': [g:c_language_server],
             \ 'cpp': [g:cpp_language_server],
-            \ 'dockerfile': ['docker-langserver', '--stdio'],
             \ 'elixir': ['elixir-ls'],
             \ 'fsharp': g:fsharp#languageserver_command,
             \ 'latex': ['texlab'],
