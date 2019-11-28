@@ -23,6 +23,8 @@ let g:LanguageClient_serverCommands = {
             \ 'c': [g:c_language_server],
             \ 'cpp': [g:cpp_language_server],
             \ 'dockerfile': ['docker-langserver', '--stdio'],
+            \ 'elixir': ['elixir-ls'],
+            \ 'fsharp': g:fsharp#languageserver_command,
             \ 'latex': ['texlab'],
             \ 'lua': ['lua-lsp'],
             \ 'plaintex': ['texlab'],
