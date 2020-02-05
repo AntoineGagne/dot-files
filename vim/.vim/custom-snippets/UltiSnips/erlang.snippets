@@ -204,3 +204,7 @@ endsnippet
 snippet log_error "LOG_ERROR"
 ?LOG_ERROR(#{what => ${1}})
 endsnippet
+
+snippet meck_expect
+meck:expect($1, $2, [{[$3], $4}])
+endsnippet
