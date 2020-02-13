@@ -45,6 +45,7 @@ snippet gen_statem "Finite State Machine" b
 %%% API
 %%%===================================================================
 
+-spec start_link() -> gen_statem:start_ret().
 start_link() ->
 	gen_statem:start_link({local, ?MODULE}, ?MODULE, [], []).
 
@@ -53,13 +54,11 @@ start_link() ->
 %%%===================================================================
 
 callback_mode() ->
-	[handle_event_function, state_enter].
+	[handle_event_function].
 
 init(_Arguments) ->
 	{ok, start, #data{}}.
 
-handle_event(enter, _OldState, _State, _Data) ->
-	{next_state, _State, _Data};
 handle_event(cast, _Action, _State, _Data) ->
 	keep_state_and_data;
 handle_event({call, From}, _Action, State, Data) ->
