@@ -46,7 +46,7 @@ snippet gen_statem "Finite State Machine" b
 %%%===================================================================
 
 start_link() ->
-	gen_statem:start_link(?MODULE, []).
+	gen_statem:start_link({local, ?MODULE}, ?MODULE, [], []).
 
 %%%===================================================================
 %%% gen_statem callbacks
