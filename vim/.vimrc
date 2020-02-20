@@ -33,7 +33,7 @@ call plug#begin('~/.vim/bundle')
     Plug 'rhysd/vim-clang-format', { 'for': ['c', 'cpp'] }
 
     " {{{2 Vimscript Language
-    Plug 'junegunn/vader.vim'
+    Plug 'junegunn/vader.vim', { 'for': ['vim'] }
 
     " {{{2 Erlang Language
     Plug 'vim-erlang/vim-erlang-runtime', { 'for': 'erlang' }
@@ -52,7 +52,7 @@ call plug#begin('~/.vim/bundle')
     Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins', 'for': 'python'}
 
     " {{{2 Tags Management
-    Plug 'ludovicchabant/vim-gutentags'
+    Plug 'ludovicchabant/vim-gutentags', { 'for': ['erlang'] }
 
     " {{{2 Surrounding Text Objects
     Plug 'tpope/vim-surround'
@@ -99,6 +99,7 @@ call plug#begin('~/.vim/bundle')
     "   \}
     Plug 'ionide/Ionide-vim', {
                 \ 'do': 'make fsautocomplete',
+                \ 'for': ['fsharp']
                 \}
 
     " {{{2 Asynchronous Execution
