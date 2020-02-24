@@ -39,4 +39,4 @@ let g:LanguageClient_serverCommands = {
 let g:LanguageClient_autoStart = 1
 
 " {{{1 Wildmenu
-set wildoptions+=pum
+set wildoptions=pum
