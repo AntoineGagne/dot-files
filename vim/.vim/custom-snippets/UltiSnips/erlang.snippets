@@ -95,6 +95,10 @@ snippet proper "Property Based Testing" b
 %%%===================================================================
 
 ${0}
+
+%%%===================================================================
+%%% Internal functions
+%%%===================================================================
 endsnippet
 
 snippet functional_module "Purely functional module" b
@@ -242,8 +246,8 @@ meck:expect($1, $2, [{[$3], $4}]),
 endsnippet
 
 
-snippet cowboy_router
--module(${0}).
+snippet cowboy_router "Cowboy Routes"
+-module(${1:`!p snip.rv = snip.basename or "module"`}).
 
 -behaviour(gen_server).
 
@@ -300,4 +304,61 @@ terminate(_Reason, _State) ->
 %%%===================================================================
 %%% Internal functions
 %%%===================================================================
+endsnippet
+
+snippet cowboy_rest "Cowboy REST Handler"
+-module(${1:`!p snip.rv = snip.basename or "module"`}).
+
+-include_lib("kernel/include/logger.hrl").
+
+-behaviour(cowboy_rest).
+
+%% API
+-export([to_json/2,
+         from_json/2]).
+
+%% cowboy_rest callbacks
+-export([init/2,
+         delete_resource/2,
+         allowed_methods/2,
+         content_types_provided/2,
+         content_types_accepted/2]).
+
+-type state() :: term().
+-type cowboy_return(Parameter) :: {Parameter, cowboy_req:req(), state()}.
+
+%%====================================================================
+%% Public API
+%%====================================================================
+
+-spec to_json(cowboy_req:req(), state()) -> cowboy_return(Response :: binary()).
+to_json(Request, State) ->
+    {<<>>, Request, State}.
+
+-spec from_json(cowboy_req:req(), state()) -> cowboy_return(IsBadRequest :: boolean()).
+from_json(Request, State) ->
+    {false, Request, State}.
+
+%%====================================================================
+%% cowboy_rest callbacks
+%%====================================================================
+
+init(Request, State) ->
+    {cowboy_rest, Request, State}.
+
+allowed_methods(Request, State) ->
+    {[<<"GET">>, <<"POST">>, <<"PUT">>, <<"DELETE">>], Request, State}.
+
+content_types_provided(Request, State) ->
+    {[{{<<"application">>, <<"json">>, '*'}, to_json}], Request, State}.
+
+content_types_accepted(Request, State) ->
+    {[{{<<"application">>, <<"json">>, '*'}, from_json}], Request, State}.
+
+delete_resource(Request, State) ->
+    {true, Request, State}.
+
+%%====================================================================
+%% Internal functions
+%%====================================================================
 endsnippet
