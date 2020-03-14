@@ -21,10 +21,11 @@ call plug#begin('~/.vim/bundle')
 
     " {{{2 Autocompletion plugin
     " Plug 'Valloric/YouCompleteMe'
-    Plug 'autozimu/LanguageClient-neovim', {
-                \    'branch': 'next',
-                \    'do': './install.sh'
-                \ }
+    " Plug 'autozimu/LanguageClient-neovim', {
+    "             \    'branch': 'next',
+    "             \    'do': './install.sh'
+    "             \ }
+    Plug 'neovim/nvim-lsp'
     Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 
     " Autoformatting
