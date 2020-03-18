@@ -39,7 +39,7 @@ call plug#begin('~/.vim/bundle')
     Plug 'vim-erlang/vim-erlang-runtime', { 'for': 'erlang' }
     Plug 'vim-erlang/vim-erlang-compiler', { 'for': 'erlang' }
     Plug 'vim-erlang/vim-erlang-omnicomplete', { 'for': 'erlang' }
-    Plug 'ppikula/vim-wrangler', { 'for': 'erlang' }
+    " Plug 'ppikula/vim-wrangler', { 'for': 'erlang' }
     " Plug 'vim-erlang/vim-erlang-tags', { 'for': 'erlang' }
 
     " {{{2 Elixir Language
