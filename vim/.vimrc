@@ -138,6 +138,9 @@ call plug#begin('~/.vim/bundle')
     " {{{2 Others
     Plug 'tpope/vim-repeat'
 
+    " {{{2 Bitbake language
+    Plug 'kergoth/vim-bitbake'
+
     " Use release branch
     " Plug 'neoclide/coc.nvim', { 'branch': 'release'}
 call plug#end()
