@@ -16,8 +16,13 @@ endif
 call plug#begin('~/.vim/bundle')
 
     " {{{2 Typescript syntax highlighting
-    Plug 'HerringtonDarkholme/yats.vim', {'for': ['typescript', 'typescriptreact']}
-    Plug 'mhartington/nvim-typescript', {'do': './install.sh', 'for': ['typescript', 'typescriptreact']}
+    Plug 'HerringtonDarkholme/yats.vim', {
+                \ 'for': ['typescript', 'typescriptreact']
+                \}
+    Plug 'mhartington/nvim-typescript', {
+                \ 'do': './install.sh', 
+                \ 'for': ['typescript', 'typescriptreact']
+                \}
 
     " {{{2 Autocompletion plugin
     " Plug 'Valloric/YouCompleteMe'
@@ -110,11 +115,11 @@ call plug#begin('~/.vim/bundle')
     Plug 'elmcast/elm-vim', {'for': 'elm'}
 
     " {{{2 Pandoc Syntax
-    Plug 'vim-pandoc/vim-pandoc', { 'for': 'markdown' }
-    Plug 'vim-pandoc/vim-pandoc-syntax', { 'for': 'markdown' }
+    Plug 'vim-pandoc/vim-pandoc', { 'for': ['markdown', 'pandoc'] }
+    Plug 'vim-pandoc/vim-pandoc-syntax', { 'for': ['markdown', 'pandoc'] }
 
     " {{{2 Markdown Tables
-    Plug 'dhruvasagar/vim-table-mode', { 'for': ['markdown', 'rst'] }
+    Plug 'dhruvasagar/vim-table-mode', { 'for': ['markdown', 'rst', 'pandoc'] }
 
     " {{{2 TOML Support
     Plug 'cespare/vim-toml'
