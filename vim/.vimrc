@@ -16,13 +16,10 @@ endif
 call plug#begin('~/.vim/bundle')
 
     " {{{2 Typescript syntax highlighting
-    Plug 'HerringtonDarkholme/yats.vim', {
-                \ 'for': ['typescript', 'typescriptreact']
-                \}
-    Plug 'mhartington/nvim-typescript', {
-                \ 'do': './install.sh', 
-                \ 'for': ['typescript', 'typescriptreact']
-                \}
+    Plug 'HerringtonDarkholme/yats.vim'
+    " Plug 'mhartington/nvim-typescript', {
+    "             \ 'do': './install.sh', 
+    "             \}
 
     " {{{2 Autocompletion plugin
     " Plug 'Valloric/YouCompleteMe'

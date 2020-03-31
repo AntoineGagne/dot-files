@@ -9,6 +9,7 @@ module.custom_settings = {
        message_level = vim.lsp.protocol.MessageType.Log;
     };
     texlab = {};
+    tsserver = {};
 };
 
 return module;
