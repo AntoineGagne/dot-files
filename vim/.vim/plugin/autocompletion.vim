@@ -43,10 +43,12 @@ lua << EOF
   local nvim_lsp = require 'nvim_lsp'
   local lsp = require 'lsp'
   nvim_lsp.bashls.setup(lsp.custom_settings.bashls)
-  nvim_lsp.texlab.setup(lsp.custom_settings.texlab)
   nvim_lsp.elmls.setup(lsp.custom_settings.elmls)
   nvim_lsp.hie.setup(lsp.custom_settings.hie)
+  nvim_lsp.texlab.setup(lsp.custom_settings.texlab)
+  nvim_lsp.tsserver.setup(lsp.custom_settings.tsserver)
 EOF
 
 " {{{1 Wildmenu
-set wildoptions=pum
+set wildmode=full
+" set wildoptions=pum

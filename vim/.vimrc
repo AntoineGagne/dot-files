@@ -16,8 +16,10 @@ endif
 call plug#begin('~/.vim/bundle')
 
     " {{{2 Typescript syntax highlighting
-    Plug 'HerringtonDarkholme/yats.vim', {'for': 'typescript'}
-    Plug 'mhartington/nvim-typescript', {'do': './install.sh', 'for': 'typescript'}
+    Plug 'HerringtonDarkholme/yats.vim'
+    " Plug 'mhartington/nvim-typescript', {
+    "             \ 'do': './install.sh', 
+    "             \}
 
     " {{{2 Autocompletion plugin
     " Plug 'Valloric/YouCompleteMe'
@@ -40,7 +42,7 @@ call plug#begin('~/.vim/bundle')
     Plug 'vim-erlang/vim-erlang-runtime', { 'for': 'erlang' }
     Plug 'vim-erlang/vim-erlang-compiler', { 'for': 'erlang' }
     Plug 'vim-erlang/vim-erlang-omnicomplete', { 'for': 'erlang' }
-    Plug 'ppikula/vim-wrangler', { 'for': 'erlang' }
+    " Plug 'ppikula/vim-wrangler', { 'for': 'erlang' }
     " Plug 'vim-erlang/vim-erlang-tags', { 'for': 'erlang' }
 
     " {{{2 Elixir Language
@@ -110,11 +112,11 @@ call plug#begin('~/.vim/bundle')
     Plug 'elmcast/elm-vim', {'for': 'elm'}
 
     " {{{2 Pandoc Syntax
-    Plug 'vim-pandoc/vim-pandoc', { 'for': 'markdown' }
-    Plug 'vim-pandoc/vim-pandoc-syntax', { 'for': 'markdown' }
+    Plug 'vim-pandoc/vim-pandoc', { 'for': ['markdown', 'pandoc'] }
+    Plug 'vim-pandoc/vim-pandoc-syntax', { 'for': ['markdown', 'pandoc'] }
 
     " {{{2 Markdown Tables
-    Plug 'dhruvasagar/vim-table-mode', { 'for': ['markdown', 'rst'] }
+    Plug 'dhruvasagar/vim-table-mode', { 'for': ['markdown', 'rst', 'pandoc'] }
 
     " {{{2 TOML Support
     Plug 'cespare/vim-toml'
@@ -144,6 +146,9 @@ call plug#begin('~/.vim/bundle')
 
     " {{{2 Dhall
     Plug 'vmchale/dhall-vim'
+
+    " {{{2 Bitbake language
+    Plug 'kergoth/vim-bitbake'
 
     " Use release branch
     " Plug 'neoclide/coc.nvim', { 'branch': 'release'}
