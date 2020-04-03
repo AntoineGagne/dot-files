@@ -138,6 +138,12 @@ call plug#begin('~/.vim/bundle')
 
     " {{{2 Others
     Plug 'tpope/vim-repeat'
+    
+    " {{{2 Purescript
+    Plug 'raichoo/purescript-vim'
+
+    " {{{2 Dhall
+    Plug 'vmchale/dhall-vim'
 
     " Use release branch
     " Plug 'neoclide/coc.nvim', { 'branch': 'release'}
