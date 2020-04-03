@@ -64,7 +64,8 @@ SOFTWARE_DIRS := bash \
 	pulse \
 	kerl \
 	rebar3 \
-	erlang
+	erlang \
+	erlang_ls
 INSTALL_DIRS := $(SOFTWARE_DIRS:%=install-%)
 
 .PHONY: all
