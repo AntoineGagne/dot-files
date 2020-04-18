@@ -68,7 +68,7 @@ call plug#begin('~/.vim/bundle')
     Plug 'vim-airline/vim-airline-themes'
 
     " {{{2 Rust autocompletion bundle
-    Plug 'racer-rust/vim-racer', { 'for': 'rust' }
+    " Plug 'racer-rust/vim-racer', { 'for': 'rust' }
 
     "  {{{2 Syntax highlighting for the Haskell language
     Plug 'neovimhaskell/haskell-vim', { 'for': ['haskell'] }
