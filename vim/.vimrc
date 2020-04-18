@@ -109,7 +109,7 @@ call plug#begin('~/.vim/bundle')
     Plug 'Shougo/vimproc.vim', { 'do': 'make' }
 
     " {{{2 Elm Syntax Highlighting
-    Plug 'elmcast/elm-vim', {'for': 'elm'}
+    Plug 'andys8/vim-elm-syntax', { 'for': 'elm' }
 
     " {{{2 Pandoc Syntax
     Plug 'vim-pandoc/vim-pandoc', { 'for': ['markdown', 'pandoc'] }
