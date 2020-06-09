@@ -15,9 +15,10 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-AUTHORS='Antoine Gagné'
-PROGRAM_NAME="$(basename "${0%.*}")"
-REQUIRED_COMMANDS=""
+readonly AUTHORS='Antoine Gagné'
+readonly PROGRAM_NAME="$(basename "${0%.*}")"
+readonly REQUIRED_COMMANDS=''
+readonly REQUIRED_VARIABLES=''
 
 exec 3>/dev/null
 
@@ -63,6 +64,25 @@ info() {
     echo "${_message}" 1>&3
 }
 
+is_variable_unset() {
+    _name="${1}"
+
+    eval "[ \"\${${_name}:-x}\" = \"x\" ]"
+}
+
+validate_mandatory_variables() {
+    for _name in ${REQUIRED_VARIABLES}; do
+        if is_variable_unset "${_name}"; then
+            die "${_name} is unset. Exiting."
+        fi
+    done
+}
+
+is_program_installed() {
+    _program_name="${1}"
+    command -v "${_program_name}" >/dev/null
+}
+
 validate_dependencies() {
     for _command in ${REQUIRED_COMMANDS}; do
         if ! is_program_installed "${_command}"; then
@@ -78,6 +98,7 @@ is_program_installed() {
 
 main() {
     validate_dependencies
+    validate_mandatory_variables
 }
 
 while getopts ':hvV-:' OPTION; do
