@@ -1,6 +1,7 @@
 " {{{1 deoplete.vim
 let g:deoplete#enable_at_startup = 1
 let g:deoplete#enable_smart_case = 1
+set completeopt=menu,noselect
 
 " Let <Tab> also do completion
 " inoremap <silent><expr> <Tab>
