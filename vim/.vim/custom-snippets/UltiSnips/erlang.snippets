@@ -208,6 +208,18 @@ end_per_suite(Config) ->
     Config.
 endsnippet
 
+snippet ctgroup "Common Test Group"
+groups() ->
+	[
+	].
+
+init_per_group(Config) ->
+    Config.
+
+end_per_group(Config) ->
+    Config.
+endsnippet
+
 snippet child_spec "Supervisor Child Specification" i
 #{id => ${1},
   start => {$1, start_link, []},
