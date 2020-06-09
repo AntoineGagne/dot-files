@@ -150,6 +150,9 @@ call plug#begin('~/.vim/bundle')
     " {{{2 Bitbake language
     Plug 'kergoth/vim-bitbake'
 
+    " {{{2 CSS language
+    Plug 'hail2u/vim-css3-syntax'
+
     " Use release branch
     " Plug 'neoclide/coc.nvim', { 'branch': 'release'}
 call plug#end()
