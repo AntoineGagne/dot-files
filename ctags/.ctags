@@ -21,3 +21,10 @@
 --exclude=\*.out
 --exclude=\*.zip
 --exclude=\*.tar\*
+--exclude=\*.js\*
+--exclude=\*.jsx\*
+--exclude=\*.ts\*
+--exclude=\*.tsx\*
+--exclude=\*.css\*
+--exclude=\*.html\*
+--exclude=\*.c\*
