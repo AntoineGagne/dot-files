@@ -132,7 +132,7 @@ call plug#begin('~/.vim/bundle')
     Plug 'vimwiki/vimwiki'
 
     " {{{2 Navigation
-    Plug 'junegunn/fzf'
+    Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
     Plug 'junegunn/fzf.vim'
 
     " {{{2 jq language
