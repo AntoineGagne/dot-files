@@ -99,5 +99,9 @@ export DOTNET_CLI_TELEMETRY_OPTOUT=1
 export MOZ_ACCELERATED=1
 export MOZ_WEBRENDER=1
 export FZF_TMUX=1
+export QT_AUTO_SCREEN_SCALE_FACTOR=1
+export GDK_SCALE=2
+export GDK_DPI_SCALE=0.5
+export ELM_SCALE=1.5
 
 export PATH="$HOME/.cargo/bin:$PATH"
