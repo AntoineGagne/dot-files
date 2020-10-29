@@ -132,7 +132,7 @@ call plug#begin('~/.vim/bundle')
     Plug 'vimwiki/vimwiki'
 
     " {{{2 Navigation
-    Plug 'junegunn/fzf'
+    Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
     Plug 'junegunn/fzf.vim'
 
     " {{{2 jq language
@@ -149,6 +149,9 @@ call plug#begin('~/.vim/bundle')
 
     " {{{2 Bitbake language
     Plug 'kergoth/vim-bitbake'
+
+    " {{{2 CSS language
+    Plug 'hail2u/vim-css3-syntax'
 
     " Use release branch
     " Plug 'neoclide/coc.nvim', { 'branch': 'release'}

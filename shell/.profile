@@ -67,7 +67,6 @@ fi
 
 if [ -d "${HOME}/.node_modules/bin" ]; then
     export PATH=$PATH:"${HOME}/.node_modules/bin"
-    export npm_config_prefix="${HOME}/.node_modules"
 fi
 
 if [ -d "${HOME}/perl5" ]; then
@@ -85,6 +84,10 @@ fi
 
 if type -f "fzf" >/dev/null 2>&1 && type -f "rg" >/dev/null 2>&1; then
     export FZF_DEFAULT_COMMAND='rg --files --hidden --follow'
+fi
+
+if [ -s "${HOME}/.nvm/nvm.sh" ]; then
+    source "${HOME}/.nvm/nvm.sh"
 fi
 
 export PATH=$PATH:"${HOME}/.cargo/bin"

@@ -7,13 +7,14 @@
     # Adds file contents to the index
     a = add --all
     ai = add -i
+    aap = add -p
 
     # Applies a patch to files and/or to the index
     ap = apply
     as = apply --stat
     ac = apply --check
 
-    # Apply a series of patches from a mailbox    
+    # Apply a series of patches from a mailbox
     ama = am --abort
     amr = am --resolved
     ams = am --skip
@@ -188,45 +189,72 @@
 
     # Saves a snapshot of the repository
     snapshot = !git stash save "snapshot: $(date)" && git stash apply "stash@{0}"
+
 [credential]
     helper = cache --timeout=3600
+
 [color]
     ui = auto
+
 [core]
     excludesfile = ~/.git.d/global_gitignore
     editor = nvim
     pager = less -r
+
 [diff]
     algorithm = patience
     tool = vimdiff
+
 [difftool]
     prompt = false
+
 [difftool "vimdiff"]
     path = nvim
     cmd = "nvim -d \"$LOCAL\" \"$REMOTE\""
+
 [filter "tabspace"]
-	smudge = unexpand --tabs=4 --first-only
-	clean = expand --tabs=4 --initial
+    smudge = unexpand --tabs=4 --first-only
+    clean = expand --tabs=4 --initial
+
 [init]
     templatedir = ~/.git.d/git_templates
+
 [merge]
     tool = vimdiff
     # Include summaries of merged commits in newly created merge commit messages
     log = true
     conflictstyle = diff3
+
 [mergetool]
     prompt = false
+
 [mergetool "vimdiff"]
     path = nvim
     # See https://github.com/neovim/neovim/issues/2377 (Mon Oct  9 19:51:26 EDT 2017)
     cmd = nvim -d $BASE $LOCAL $REMOTE $MERGED -c '$wincmd w' -c 'wincmd J'
+
 [push]
     default = simple
+
 [rerere]
     enabled = 1
     autoupdate = 1
+
+[url "git@github.com:"]
+    insteadOf = "github:"
+    pushInsteadOf = "github:"
+
+[url "git@gist.github.com:"]
+    insteadOf = "gist:"
+    pushInsteadOf = "gist:"
+
+[url "git@gitlab.com:"]
+    insteadOf = "gitlab:"
+    pushInsteadOf = "gitlab:"
+
 [user]
     email = gagnantoine@gmail.com
     name = Antoine Gagné
+
 [web]
     browser = firefox

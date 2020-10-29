@@ -2,6 +2,7 @@ local module = {};
 
 module.custom_settings = {
     bashls = {};
+    cssls = {};
     elmls = {};
     hie = {};
     purescriptls = {
