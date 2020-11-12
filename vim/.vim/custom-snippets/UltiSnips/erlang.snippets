@@ -220,6 +220,10 @@ end_per_group(Config) ->
     Config.
 endsnippet
 
+snippet ctgroupspec "Common Test Group Specification"
+{$1, [parallel], [$2]}
+endsnippet
+
 snippet child_spec "Supervisor Child Specification" i
 #{id => ${1},
   start => {$1, start_link, []},
@@ -257,6 +261,9 @@ snippet meck_expect
 meck:expect($1, $2, [{[$3], $4}]),
 endsnippet
 
+snippet meck_wait
+meck:wait($1, $2, $3, $4)
+endsnippet
 
 snippet cowboy_router "Cowboy Routes"
 -module(${1:`!p snip.rv = snip.basename or "module"`}).
