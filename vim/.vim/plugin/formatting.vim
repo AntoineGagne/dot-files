@@ -8,6 +8,7 @@ let g:ale_fixers = {
             \ 'javascriptreact': ['prettier'],
             \ 'css': ['prettier'],
             \ 'typescript': ['prettier'],
-            \ 'typescriptreact': ['prettier']
+            \ 'typescriptreact': ['prettier'],
+            \ 'rust': ['rustfmt']
             \}
 let g:ale_fix_on_save = 1
