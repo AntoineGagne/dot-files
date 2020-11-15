@@ -48,6 +48,7 @@ lua << EOF
   nvim_lsp.hie.setup(lsp.custom_settings.hie)
   nvim_lsp.texlab.setup(lsp.custom_settings.texlab)
   nvim_lsp.tsserver.setup(lsp.custom_settings.tsserver)
+  nvim_lsp.rust_analyzer.setup(lsp.custom_settings.rust_analyzer)
 EOF
 
 " {{{1 Wildmenu
