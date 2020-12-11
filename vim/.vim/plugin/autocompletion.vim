@@ -41,7 +41,7 @@ let g:ale_completion_enabled = 0
 
 " {{{ nvim-lsp
 lua << EOF
-  local nvim_lsp = require 'nvim_lsp'
+  local nvim_lsp = require 'lspconfig'
   local lsp = require 'lsp'
   nvim_lsp.bashls.setup(lsp.custom_settings.bashls)
   nvim_lsp.elmls.setup(lsp.custom_settings.elmls)
