@@ -37,11 +37,11 @@ import Themes.Themes ( showColor )
 main :: IO ()
 main = do
     screenNumber <- countScreens
-    hs <- mapM (spawnPipe . xmobarCommand) [0..screenNumber - 1]
+    handles <- mapM (spawnPipe . xmobarCommand) [0..screenNumber - 1]
     xmonad $ ewmh $ myUrgencyHook defaults
         { workspaces = withScreens screenNumber myWorkspaces
         , manageHook = manageDocks <+> myManageHooks screenNumber <+> manageHook def
-        , logHook = fadeInactiveCurrentWSLogHook 0.8 <+> mapM_ dynamicLogWithPP (zipWith myBarPrettyPrinter hs [0..screenNumber])
+        , logHook = fadeInactiveCurrentWSLogHook 0.8 <+> mapM_ dynamicLogWithPP (zipWith myBarPrettyPrinter handles [0..screenNumber])
         , handleEventHook = manageSpotify screenNumber <+> docksEventHook
         }
 

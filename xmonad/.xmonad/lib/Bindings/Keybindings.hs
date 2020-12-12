@@ -4,6 +4,7 @@ module Bindings.Keybindings
     , myModMask
     ) where
 
+import Data.Default
 import Graphics.X11.Types ( xK_Print )
 import Graphics.X11.ExtraTypes.XF86 ( xF86XK_AudioLowerVolume
                                     , xF86XK_AudioMute
@@ -142,7 +143,7 @@ myKeys conf = let m = modMask conf in Map.fromList $
     ] ++
     [ ((myModMask .|. mask, key), f sc)
     | (key, sc) <- zip [xK_w, xK_e, xK_r] [0..]
-    , (f, mask) <- [(viewScreen, 0), (sendToScreen, shiftMask)]
+    , (f, mask) <- [(viewScreen def, 0), (sendToScreen def, shiftMask)]
     ]
         where viewShift i = StackSet.view i . StackSet.shift i
               searchEngineMap method = Map.fromList
