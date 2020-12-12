@@ -6,6 +6,9 @@ module Programs.Brightness
     , currentPercentage
     , getDevice
     , update
+    , percent
+    , Percent
+    , BrightnessDevice
 
     , dummyDevice
     ) where
@@ -33,6 +36,10 @@ import System.EasyFile
     ( (</>)
     )
 
+newtype Percent
+    = Percent Integer
+    deriving (Show, Eq, Ord)
+
 data BrightnessDevice = BrightnessDevice
     { _actualBrightness :: Integer
     , _maximumBrightness :: Integer
@@ -50,11 +57,17 @@ update device' = do
     latest <- getDevice
     sendNotification . createNote . fromInteger $ currentPercentage latest
 
-increaseBy :: BrightnessDevice -> Integer -> BrightnessDevice
-increaseBy device' n = changeWith device' (+ n)
+percent :: Integer -> Maybe Percent
+percent n
+    | n < 0 = Nothing
+    | n > 100 = Nothing
+    | otherwise = Just . Percent $ n
 
-decreaseBy :: BrightnessDevice -> Integer -> BrightnessDevice
-decreaseBy device' n = changeWith device' (flip (-) n)
+increaseBy :: BrightnessDevice -> Percent -> BrightnessDevice
+increaseBy device' (Percent n) = changeWith device' (+ n)
+
+decreaseBy :: BrightnessDevice -> Percent -> BrightnessDevice
+decreaseBy device' (Percent n) = changeWith device' (flip (-) n)
 
 changeWith :: BrightnessDevice -> (Integer -> Integer) -> BrightnessDevice
 changeWith device' operation = setPercentage device' new
@@ -66,11 +79,9 @@ currentPercentage device' = floor $ actual / maximum' * 100
     where
         actual :: Double
         actual = fromInteger (device'^.actualBrightness )
+
         maximum' :: Double
         maximum' = fromInteger (device'^.maximumBrightness)
-
-normalizeValue :: Integer -> Integer
-normalizeValue = max 0 . min 100
 
 setPercentage :: BrightnessDevice -> Integer -> BrightnessDevice
 setPercentage device' n = device' & brightness .~ newBrightness
@@ -86,6 +97,9 @@ setPercentage device' n = device' & brightness .~ newBrightness
 
     current :: Double
     current = fromInteger (device'^.brightness)
+
+    normalizeValue :: Integer -> Integer
+    normalizeValue = max 0 . min 100
 
 writeDevice :: MonadIO m => BrightnessDevice -> m ()
 writeDevice device' =
