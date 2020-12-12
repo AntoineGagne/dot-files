@@ -11,6 +11,26 @@ category:            System
 build-type:          Simple
 cabal-version:       >=1.10
 
+executable xmonad-x86_64-linux
+  main-is:             xmonad.hs
+  ghc-options: -O3 -Wall -threaded -rtsopts -with-rtsopts=-N
+  build-depends:       base >= 4.7 && < 5
+                     , xmonad >= 0.13
+                     , xmonad-contrib >= 0.13
+                     , containers
+                     , directory
+                     , process >= 1.4
+                     , transformers >= 0.5.2
+                     , libmpd >= 0.9
+                     , bytestring >= 0.10
+                     , transformers >= 0.5
+                     , dbus >= 0.10
+                     , fdo-notify >= 0.3
+                     , xmonad-configuration
+                     , X11 >= 1.8
+                     , xmonad-extras >= 0.13.2
+  default-language:    Haskell2010
+
 library
   hs-source-dirs: lib
   ghc-options: -O3 -Wall
@@ -18,6 +38,7 @@ library
                  , Bindings.MouseBindings
                  , Hooks.ManageHooks
                  , Hooks.Notifications
+                 , Programs.Brightness
                  , Programs.Commands
                  , Programs.MusicPlayers
                  , Programs.Terminals
@@ -41,27 +62,9 @@ library
                      , fdo-notify >= 0.3
                      , X11 >= 1.8
                      , xmonad-extras >= 0.13.2
-                     , data-default == 0.7.1.1
-  default-language:    Haskell2010
-
-executable xmonad-x86_64-linux
-  main-is:             xmonad.hs
-  ghc-options: -O3 -Wall -threaded -rtsopts -with-rtsopts=-N
-  build-depends:       base >= 4.7 && < 5
-                     , xmonad >= 0.13
-                     , xmonad-contrib >= 0.13
-                     , containers
-                     , directory
-                     , process >= 1.4
-                     , transformers >= 0.5.2
-                     , libmpd >= 0.9
-                     , bytestring >= 0.10
-                     , transformers >= 0.5
-                     , dbus >= 0.10
-                     , fdo-notify >= 0.3
-                     , xmonad-configuration
-                     , X11 >= 1.8
-                     , xmonad-extras >= 0.13.2
+                     , data-default >= 0.7.1 && < 0.8
+                     , lens >= 4.19 && < 4.20
+                     , easy-file >= 0.2 && < 0.3
   default-language:    Haskell2010
 
 test-suite xmonad-configuration-test
@@ -80,9 +83,11 @@ test-suite xmonad-configuration-test
                      , transformers >= 0.5
                      , dbus >= 0.10
                      , fdo-notify >= 0.3
-                     , xmonad-configuration
+                     , lens >= 4.19 && < 4.20
                      , X11 >= 1.8
-                     , hspec
+                     , xmonad-configuration
+                     , hspec >= 2.7
+                     , hspec-discover >= 2.7
                      , QuickCheck
   ghc-options: -O3 -Wall -threaded -rtsopts -with-rtsopts=-N
   default-language: Haskell2010
