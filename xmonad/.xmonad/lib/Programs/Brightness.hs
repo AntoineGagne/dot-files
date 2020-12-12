@@ -36,6 +36,9 @@ import System.EasyFile
     ( (</>)
     )
 
+import qualified Data.Text as Text
+import qualified Data.Text.IO as TextIO
+
 newtype Percent
     = Percent Integer
     deriving (Show, Eq, Ord)
@@ -84,26 +87,25 @@ currentPercentage device' = floor $ actual / maximum' * 100
         maximum' = fromInteger (device'^.maximumBrightness)
 
 setPercentage :: BrightnessDevice -> Integer -> BrightnessDevice
-setPercentage device' n = device' & brightness .~ newBrightness
+setPercentage device' n = device' & brightness .~ new
   where
-    newBrightness :: Integer
-    newBrightness = normalizeValue n'
+    new :: Integer
+    new = floor $ normalizeValue maximum' computed
 
-    n' :: Integer
-    n' = floor $ fromInteger n / 100 * maximum' / current
+    computed :: Double
+    computed = fromInteger n / 100 * maximum'
 
     maximum' :: Double
     maximum' = fromInteger (device'^.maximumBrightness)
 
-    current :: Double
-    current = fromInteger (device'^.brightness)
-
-    normalizeValue :: Integer -> Integer
-    normalizeValue = max 0 . min 100
+    normalizeValue :: Double -> Double -> Double
+    normalizeValue maximum'' = max 0 . min maximum''
 
 writeDevice :: MonadIO m => BrightnessDevice -> m ()
-writeDevice device' =
-    liftIO $ writeFile (device'^.device </> "brightness") (show (device'^.brightness))
+writeDevice device' = liftIO $ TextIO.writeFile path new
+    where
+        path = device'^.device </> "brightness"
+        new = Text.pack . show $ device'^.brightness
 
 readDevice :: MonadIO m => FilePath -> m BrightnessDevice
 readDevice devicePath = liftIO $
@@ -113,7 +115,7 @@ readDevice devicePath = liftIO $
         <*> readIntegerFromFile "brightness"
         <*> pure devicePath
   where
-      readIntegerFromFile path = read <$> readFile (devicePath </> path)
+      readIntegerFromFile path = read . Text.unpack <$> TextIO.readFile (devicePath </> path)
 
 createNote :: Int -> Note
 createNote brightnessLevel = blankNote

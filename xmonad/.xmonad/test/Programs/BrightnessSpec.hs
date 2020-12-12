@@ -28,26 +28,12 @@ spec = do
         it "does not decrease less than 0" $
             decreaseBy (dummyDevice 0 0 1000) (percent' 10) `shouldBe` dummyDevice 0 0 1000
 
-        it "is inverse to `increaseBy`" $ property $ do
-            n <- chooseInteger (0, 100)
-            a <- arbitrary
-            b <- arbitrary
-            c <- arbitrary
-            pure $ increaseBy (decreaseBy (dummyDevice a b c) (percent' n)) (percent' n) `shouldBe` dummyDevice a b c
-
     describe "increaseBy" $ parallel $ do
         it "increases by a correct amount" $
             increaseBy (dummyDevice 1000 900 1000) (percent' 10) `shouldBe` dummyDevice 1000 1000 1000
 
         it "does not increase more than the maximum" $
             increaseBy device' (percent' 10) `shouldBe` device'
-
-        it "is inverse to `decreaseBy`" $ property $ do
-            n <- chooseInteger (0, 100)
-            a <- arbitrary
-            b <- arbitrary
-            c <- arbitrary
-            pure $ decreaseBy (increaseBy (dummyDevice a b c) (percent' n)) (percent' n) `shouldBe` dummyDevice a b c
 
     describe "currentPercentage" $ parallel $ do
         it "returns 100% when the maximum is equal to the current" $
