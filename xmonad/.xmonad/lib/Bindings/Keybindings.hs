@@ -4,8 +4,9 @@ module Bindings.Keybindings
     , myModMask
     ) where
 
+import Data.Maybe
+    ( fromJust )
 import Data.Default
-import Graphics.X11.Types ( xK_Print )
 import Graphics.X11.ExtraTypes.XF86 ( xF86XK_AudioLowerVolume
                                     , xF86XK_AudioMute
                                     , xF86XK_AudioRaiseVolume
@@ -16,11 +17,8 @@ import Graphics.X11.ExtraTypes.XF86 ( xF86XK_AudioLowerVolume
                                     , xF86XK_MonBrightnessUp
                                     , xF86XK_MonBrightnessDown
                                     )
-import System.Exit ( exitWith
-                   , ExitCode (..)
-                   )
+import System.Exit ( exitSuccess)
 import XMonad
-import XMonad.Core ( catchIO )
 import XMonad.Actions.CycleWS ( prevScreen
                               , nextScreen
                               , shiftPrevScreen
@@ -48,7 +46,6 @@ import Programs.Commands ( runCommand )
 import Programs.Volume ( myVolumeControl )
 import Programs.Terminals ( muttCommand
                           , sptCommand
-                          , ncmpcppCommand
                           , newsboatCommand
                           , rangerCommand
                           , weechatCommand
@@ -59,6 +56,7 @@ import Programs.MusicPlayers ( MusicPlayerControls (..)
                              )
 import Prompts.SearchPrompts ( myPrompt )
 
+import qualified Programs.Brightness as PBrightness
 import qualified Programs.Volume as PVolume
 
 myModMask :: KeyMask
@@ -75,7 +73,7 @@ myKeys conf = let m = modMask conf in Map.fromList $
     , ((myModMask .|. shiftMask, xK_c), kill)
     -- {{{2 XMonad
     , ((myModMask, xK_q), restart "xmonad" True)
-    , ((myModMask .|. shiftMask, xK_q), io (exitWith ExitSuccess))
+    , ((myModMask .|. shiftMask, xK_q), io exitSuccess)
     -- {{{2 Layouts
     , ((myModMask, xK_space), sendMessage NextLayout)
     -- Reset the layouts on the current workspace
@@ -120,8 +118,8 @@ myKeys conf = let m = modMask conf in Map.fromList $
     , ((0, xF86XK_AudioStop), runCommand . stop $ myMusicPlayer)
     , ((0, xF86XK_AudioPlay), runCommand . toggle $ myMusicPlayer)
     -- {{{2 Brightness Controls
-    , ((0, xF86XK_MonBrightnessDown), spawn "control-brightness -5")
-    , ((0, xF86XK_MonBrightnessUp), spawn "control-brightness 5")
+    , ((0, xF86XK_MonBrightnessDown), PBrightness.update =<< decreaseBrightness)
+    , ((0, xF86XK_MonBrightnessUp), PBrightness.update =<< increaseBrightness)
     -- {{{2 Screens Related
     , ((myModMask, xK_Left), prevScreen)
     , ((myModMask .|. shiftMask, xK_Left), shiftPrevScreen)
@@ -145,24 +143,28 @@ myKeys conf = let m = modMask conf in Map.fromList $
     | (key, sc) <- zip [xK_w, xK_e, xK_r] [0..]
     , (f, mask) <- [(viewScreen def, 0), (sendToScreen def, shiftMask)]
     ]
-        where viewShift i = StackSet.view i . StackSet.shift i
-              searchEngineMap method = Map.fromList
-                  [ ((0, xK_a), method Search.amazon)
-                  , ((0, xK_h), method Search.hoogle)
-                  , ((0, xK_i), method Search.images)
-                  , ((0, xK_m), method Search.imdb)
-                  , ((0, xK_s), method Search.stackage)
-                  , ((0, xK_w), method Search.wikipedia)
-                  , ((0, xK_y), method Search.youtube)
-                  , ((0, xK_g), method (Search.intelligent Search.wikipedia !> Search.hoogle !> Search.stackage !> Search.youtube !> Search.prefixAware Search.duckduckgo))
-                  ]
-              applicationsSpawn = Map.fromList
-                  [ ((0, xK_e), runCommand muttCommand)
-                  , ((0, xK_n), runCommand newsboatCommand)
-                  , ((0, xK_c), runCommand weechatCommand)
-                  , ((0, xK_m), runCommand sptCommand)
-                  , ((0, xK_f), runCommand rangerCommand)
-                  , ((0, xK_b), catchIO . safeSpawnProg $ "firefox")
-                  , ((0, xK_v), catchIO . safeSpawnProg $ "zathura")
-                  , ((0, xK_i), catchIO . safeSpawnProg $ "krita")
-                  ]
+        where
+            viewShift i = StackSet.view i . StackSet.shift i
+            searchEngineMap method = Map.fromList
+                [ ((0, xK_a), method Search.amazon)
+                , ((0, xK_h), method Search.hoogle)
+                , ((0, xK_i), method Search.images)
+                , ((0, xK_m), method Search.imdb)
+                , ((0, xK_s), method Search.stackage)
+                , ((0, xK_w), method Search.wikipedia)
+                , ((0, xK_y), method Search.youtube)
+                , ((0, xK_g), method (Search.intelligent Search.wikipedia !> Search.hoogle !> Search.stackage !> Search.youtube !> Search.prefixAware Search.duckduckgo))
+                ]
+            applicationsSpawn = Map.fromList
+                [ ((0, xK_e), runCommand muttCommand)
+                , ((0, xK_n), runCommand newsboatCommand)
+                , ((0, xK_c), runCommand weechatCommand)
+                , ((0, xK_m), runCommand sptCommand)
+                , ((0, xK_f), runCommand rangerCommand)
+                , ((0, xK_b), catchIO . safeSpawnProg $ "firefox")
+                , ((0, xK_v), catchIO . safeSpawnProg $ "zathura")
+                , ((0, xK_i), catchIO . safeSpawnProg $ "krita")
+                ]
+            decreaseBrightness = PBrightness.decreaseBy <$> PBrightness.getDevice <*> pure percent
+            increaseBrightness = PBrightness.increaseBy <$> PBrightness.getDevice <*> pure percent
+            percent = fromJust . PBrightness.percent $ 5
