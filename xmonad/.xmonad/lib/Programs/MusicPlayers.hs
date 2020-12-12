@@ -1,3 +1,5 @@
+{-# LANGUAGE OverloadedStrings #-}
+
 module Programs.MusicPlayers
     ( myMusicPlayer
     , mpd
@@ -6,13 +8,22 @@ module Programs.MusicPlayers
     ) where
 
 import Control.Monad ( void )
+
+import Data.Text ()
+import DBus
+    ( methodCall
+    , MethodCall (..)
+    )
+import DBus.Client
+    ( callNoReply
+    , connectSession
+    )
 import Network.MPD ( withMPD
                    , MPD
                    , Response
                    )
 import Network.MPD.Applicative ( runCommand )
 import XMonad ( MonadIO (..) )
-import XMonad.Core ( spawn )
 
 import Programs.Commands ( Command
                          , createCommand
@@ -42,19 +53,35 @@ mpd = MusicPlayerControls
 
 spotify :: MonadIO m => MusicPlayerControls m
 spotify = MusicPlayerControls
-    { toggle = createCommand . spawn $ "dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause"
-    , stop = createCommand . spawn $ "dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Stop"
-    , nextSong = createCommand . spawn $ "dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next"
-    , previousSong = createCommand . spawn $ "dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous"
+    { toggle = createCommand . callMethod $ method "PlayPause"
+    , stop = createCommand . callMethod $ method "Stop"
+    , nextSong = createCommand . callMethod $ method "Next"
+    , previousSong = createCommand . callMethod $ method "Previous"
     }
+    where
+        method name =
+            (methodCall "/org/mpris/MediaPlayer2" "org.mpris.MediaPlayer2.Player" name)
+                { methodCallDestination = Just "org.mpris.MediaPlayer2.spotify"
+                }
 
 spotifyd :: MonadIO m => MusicPlayerControls m
 spotifyd = MusicPlayerControls
-    { toggle = createCommand . spawn $ "dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotifyd /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause"
-    , stop = createCommand . spawn $ "dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotifyd /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Stop"
-    , nextSong = createCommand . spawn $ "dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotifyd /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next"
-    , previousSong = createCommand . spawn $ "dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotifyd /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous"
+    { toggle = createCommand . callMethod $ method "PlayPause"
+    , stop = createCommand . callMethod $ method "Stop"
+    , nextSong = createCommand . callMethod $ method "Next"
+    , previousSong = createCommand . callMethod $ method "Previous"
     }
+    where
+        method name =
+            (methodCall "/org/mpris/MediaPlayer2" "org.mpris.MediaPlayer2.Player" name)
+                { methodCallDestination = Just "org.mpris.MediaPlayer2.spotify"
+                }
+
+callMethod :: MonadIO m => MethodCall -> m ()
+callMethod method = do
+    client <- liftIO connectSession
+    liftIO $ callNoReply client method
+
 
 runMPDCommand :: MonadIO m => MPDApplicative.Command a -> Command m
 runMPDCommand = createCommand . liftMPD_ . runCommand
