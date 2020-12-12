@@ -15,8 +15,8 @@ executable xmonad-x86_64-linux
   main-is:             xmonad.hs
   ghc-options: -O3 -Wall -threaded -rtsopts -with-rtsopts=-N
   build-depends:       base >= 4.7 && < 5
-                     , xmonad >= 0.13
-                     , xmonad-contrib >= 0.13
+                     , xmonad >= 0.15 && < 0.16
+                     , xmonad-contrib >= 0.16 && < 0.17
                      , containers
                      , directory
                      , process >= 1.4
@@ -65,12 +65,16 @@ library
                      , data-default >= 0.7.1 && < 0.8
                      , lens >= 4.19 && < 4.20
                      , easy-file >= 0.2 && < 0.3
+                     , text >= 1.2 && < 1.3
   default-language:    Haskell2010
 
 test-suite xmonad-configuration-test
   type:                exitcode-stdio-1.0
   hs-source-dirs:      test
   main-is:             Spec.hs
+  other-modules:       Programs.BrightnessSpec
+                     , Themes.ColorsSpec
+                     , Themes.FontsSpec
   build-depends:       base
                      , xmonad >= 0.13
                      , xmonad-contrib >= 0.13
