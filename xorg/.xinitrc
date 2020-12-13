@@ -45,14 +45,6 @@ alacritty &
 # urxvtc &
 # kitty --single-instance &
 
-# Create the song indicator pipe and put a default value
-if type "create-named-pipe" >/dev/null 2>&1; then
-    screen_number=$(xrandr | grep -c 'connected')
-    for number in $(seq 0 "$((screen_number - 1))"); do
-        create-named-pipe "${HOME}/.volume-${number}" "$(control-volume -v)"
-    done
-fi
-
 # Set the background image
 if [ -f "${HOME}/.fehbg" ]; then
     sh ~/.fehbg
@@ -65,9 +57,9 @@ if type "xbindkeys" >/dev/null 2>&1 && ! pidof -x "xbindkeys" >/dev/null 2>&1; t
     fi
 fi
 
-if type "corsair-keyboard" >/dev/null 2>&1; then
-    corsair-keyboard
-fi
+# if type "corsair-keyboard" >/dev/null 2>&1; then
+#     corsair-keyboard
+# fi
 
 if type "compton" >/dev/null 2>&1; then
     compton -b

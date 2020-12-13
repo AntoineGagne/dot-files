@@ -57,12 +57,9 @@ xmobarCommand (S screenNumber) =
     [ myStatusBar,
       "-x",
       show screenNumber,
-      additionalCommands,
       "-i",
       "~"
     ]
-  where
-    additionalCommands = "-C '[Run PipeReader \"N/A:/$HOME/.volume-" ++ show screenNumber ++ "\" \"vol\"]'"
 
 myBarPrettyPrinter :: Handle -> ScreenId -> PP
 myBarPrettyPrinter handle screenNumber =

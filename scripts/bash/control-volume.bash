@@ -4,7 +4,6 @@ get_default_sink_number() {
     pacmd list-sinks | perl -000ne 'if (/\*\s*index/){/(\*\s*index:\s*(\d+))/; print "$2\n"}'
 }
 
-declare -r named_volume_pipes="$(find "${HOME}" -maxdepth 1 -name '.volume-*' -type p -print)"
 declare -ri expire_time=1000
 declare -r application_name="$(basename "${0}")"
 declare -rxi sink_number=$(get_default_sink_number)
@@ -23,20 +22,7 @@ control_volume() {
 write_volume_status() {
     local -r _volume_level="$(get_volume_level)"
     local -r _is_muted="$(is_muted)"
-    write_volume_to_named_pipes "${_volume_level}" "${_is_muted}"
     send_volume_level_as_notification "${_volume_level}" "${_is_muted}"
-}
-
-write_volume_to_named_pipes() {
-    local -r _volume_level="${1}"
-    local -r _is_muted="${2}"
-    for named_volume_pipe in $named_volume_pipes; do
-        if [ "${_is_muted}" = "no" ]; then
-            echo "${_volume_level}" >"${named_volume_pipe}" &
-        else
-            echo "Muted" >"${named_volume_pipe}" &
-        fi
-    done
 }
 
 send_volume_level_as_notification() {

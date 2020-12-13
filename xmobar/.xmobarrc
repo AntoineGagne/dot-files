@@ -16,7 +16,7 @@ Config { font = "xft:Fira Code Medium:style=Medium:size=10:antialias=true,Source
        , sepChar =  "%"
        -- separator between left-right alignment
        , alignSep = "}{"
-       , template = "%StdinReader% }{ <fc=#98971a>%mpd%</fc> <fc=#689d6a><fn=1></fn> %vol%</fc> <fc=#b16286><fn=1></fn> %wlo1wi%</fc> <fc=#d79921><fn=1></fn> %bright%</fc> <fc=#8ec07c>%date%</fc> %battery% "
+       , template = "%StdinReader% }{ <fc=#98971a>%mpris2%</fc> <fc=#689d6a><fn=1></fn> %alsa:default:Master%</fc> <fc=#b16286><fn=1></fn> %wlp2s0wi%</fc> <fc=#d79921><fn=1></fn> %bright%</fc> <fc=#8ec07c>%date%</fc> %battery% "
 
        -- Send to bottom of window stack on start
        , lowerOnStart = True
@@ -31,9 +31,9 @@ Config { font = "xft:Fira Code Medium:style=Medium:size=10:antialias=true,Source
        -- Enable/disable hiding (True = disabled)
        , persistent = False
 
-       , commands = [ Run Wireless "wlo1" [ "--template" , "<quality>%"
-                                          , "--"
-                                          ] 20
+       , commands = [ Run Wireless "wlp2s0" [ "--template" , "<quality>%"
+                                            , "--"
+                                            ] 20
                     , Run Battery [ "--template" , "<leftipat><acstatus>"
                                   , "--Low", "10"
                                   , "--High", "80"
@@ -53,6 +53,7 @@ Config { font = "xft:Fira Code Medium:style=Medium:size=10:antialias=true,Source
                                      , "--"
                                      , "-D", "intel_backlight"
                                      ] 10
+                    , Run Alsa "default" "Master" []
                     , Run Date "<fn=1></fn> %a %b %d %T" "date" 10
                     -- , Run MPD [ "-t"
                     --           , "<statei> <title> by <artist> (<ppos>/<plength>)"
@@ -61,7 +62,7 @@ Config { font = "xft:Fira Code Medium:style=Medium:size=10:antialias=true,Source
                     --           , "-Z", "<fn=1></fn>"
                     --           , "-S", "<fn=1></fn>"
                     --           ] 10
-                    , Run Mpris2 "spotify" ["-t", "<artist> - <title>"] 10
+                    , Run Mpris2 "spotifyd" ["-t", "<artist> - <title>"] 10
                     , Run StdinReader
                     ]
 }
