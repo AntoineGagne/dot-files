@@ -77,7 +77,7 @@ spotifyd =
   where
     method name =
       (methodCall "/org/mpris/MediaPlayer2" "org.mpris.MediaPlayer2.Player" name)
-        { methodCallDestination = Just "org.mpris.MediaPlayer2.spotify"
+        { methodCallDestination = Just "org.mpris.MediaPlayer2.spotifyd"
         }
 
 callMethod :: MonadIO m => MethodCall -> m ()
