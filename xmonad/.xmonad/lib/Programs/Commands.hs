@@ -1,10 +1,11 @@
 module Programs.Commands
-    ( Command
-    , createCommand
-    , runCommand
-    ) where
+  ( Command,
+    createCommand,
+    runCommand,
+  )
+where
 
-import XMonad ( MonadIO )
+import XMonad (MonadIO)
 
 newtype Command m = Command (m ())
 
