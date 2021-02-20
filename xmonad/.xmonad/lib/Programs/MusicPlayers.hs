@@ -26,7 +26,6 @@ import Network.MPD
 import Network.MPD.Applicative (runCommand)
 import qualified Network.MPD.Applicative as MPDApplicative
 import qualified Network.MPD.Applicative.PlaybackControl as PlaybackControl
-import qualified Network.MPD.Commands.Extensions as MPDExtensions
 import Programs.Commands
   ( Command,
     createCommand,
@@ -46,7 +45,7 @@ myMusicPlayer = spotifyd
 mpd :: MonadIO m => MusicPlayerControls m
 mpd =
   MusicPlayerControls
-    { toggle = createCommand . liftMPD_ $ MPDExtensions.toggle,
+    { toggle = runMPDCommand PlaybackControl.toggle,
       stop = runMPDCommand PlaybackControl.stop,
       nextSong = runMPDCommand PlaybackControl.next,
       previousSong = runMPDCommand PlaybackControl.previous
