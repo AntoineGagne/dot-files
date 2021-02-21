@@ -28,7 +28,7 @@ data VolumeControls m = VolumeControls
   }
 
 myVolumeControl :: MonadIO m => VolumeControls m
-myVolumeControl = scriptControl
+myVolumeControl = alsaControl
 
 alsaControl :: MonadIO m => VolumeControls m
 alsaControl =
@@ -36,12 +36,4 @@ alsaControl =
     { toggle = createCommand $ void toggleMute,
       raise = createCommand . void . raiseVolume,
       lower = createCommand . void . lowerVolume
-    }
-
-scriptControl :: MonadIO m => VolumeControls m
-scriptControl =
-  VolumeControls
-    { toggle = createCommand $ spawn "control-volume -t",
-      raise = \_ -> createCommand . void . spawn $ "control-volume -c +5%",
-      lower = \_ -> createCommand . void . spawn $ "control-volume -c -5%"
     }
