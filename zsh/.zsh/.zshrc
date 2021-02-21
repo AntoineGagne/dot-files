@@ -374,6 +374,10 @@ if [[ -s "$HOME/.kiex/scripts/kiex" ]]; then
     source "$HOME/.kiex/scripts/kiex"
 fi
 
+if [[ -f "${HOME}/.ghcup/env" ]]; then
+    source "${HOME}/.ghcup/env"
+fi
+
 # Remove duplicate lines in $PATH
 export PATH="$(echo "$PATH" | awk -F':' '{for (i=1;i<=NF;++i) print($i)}' | awk '!x[$0]++' | awk '{printf("%s:", $0);}' | sed 's/.$//')"
 
