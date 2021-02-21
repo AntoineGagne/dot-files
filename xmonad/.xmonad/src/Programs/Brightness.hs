@@ -51,24 +51,32 @@ data BrightnessDevice = BrightnessDevice
 
 makeLenses ''BrightnessDevice
 
+-- | Read the values of the device at @/sys/class/backlight/intel_backlight@.
 getDevice :: MonadIO m => m BrightnessDevice
 getDevice = readDevice "/sys/class/backlight/intel_backlight"
 
+-- | Update a device with its new value and send a DBUS notification when it is
+-- | done.
 update :: MonadIO m => BrightnessDevice -> m ()
 update device' = do
   _ <- writeDevice device'
   latest <- getDevice
   sendNotification . createNote . fromInteger $ currentPercentage latest
 
+-- | Create a 'Percent'.
 percent :: Integer -> Maybe Percent
 percent n
   | n < 0 = Nothing
   | n > 100 = Nothing
   | otherwise = Just . Percent $ n
 
+-- | Increase the brightness by the specified percentage. Note that 'update'
+-- | must be called for the changes to be saved.
 increaseBy :: BrightnessDevice -> Percent -> BrightnessDevice
 increaseBy device' (Percent n) = changeWith device' (+ n)
 
+-- | Decrease the brightness by the specified percentage. Note that 'update'
+-- | must be called for the changes to be saved.
 decreaseBy :: BrightnessDevice -> Percent -> BrightnessDevice
 decreaseBy device' (Percent n) = changeWith device' (flip (-) n)
 
