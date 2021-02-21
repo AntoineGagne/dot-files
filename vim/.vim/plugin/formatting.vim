@@ -7,6 +7,7 @@ let g:ale_fixers = {
             \ 'javascript': ['prettier'],
             \ 'javascriptreact': ['prettier'],
             \ 'css': ['prettier'],
+            \ 'haskell': ['ormolu'],
             \ 'typescript': ['prettier'],
             \ 'typescriptreact': ['prettier'],
             \ 'rust': ['rustfmt']
