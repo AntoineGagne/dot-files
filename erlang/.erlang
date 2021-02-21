@@ -1,9 +1,18 @@
+LoadAndClean = fun (File) ->
+                       {ok, Module} = compile:file(File),
+                       {module, _} = code:load_abs(Module),
+                       Basename = filename:basename(File),
+                       {ok, CurrentDirectory} = file:get_cwd(),
+                       WithoutExtension = filename:join(CurrentDirectory, Basename),
+                       BeamFile = unicode:characters_to_list([WithoutExtension, ".beam"]),
+                       ok = file:delete(BeamFile)
+               end.
+
 case os:getenv("HOME") of
     false ->
         ok;
     Home ->
         UserDefaults = filename:join(Home, ".erlang.d/user_default"),
-        {ok, _} = compile:file(UserDefaults),
-        {module, user_default} = code:load_abs("user_default"),
+        ok = LoadAndClean(UserDefaults),
         shell:prompt_func({user_default, prompt})
 end.
