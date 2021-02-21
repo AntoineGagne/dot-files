@@ -60,7 +60,6 @@ library
                      , containers
                      , directory
                      , transformers >= 0.5.2
-                     , libmpd >= 0.10
                      , bytestring >= 0.10
                      , transformers >= 0.5
                      , dbus >= 1.2 && < 1.3
@@ -72,6 +71,10 @@ library
                      , easy-file >= 0.2 && < 0.3
                      , text >= 1.2 && < 1.3
   default-language:    Haskell2010
+
+  if flag(with_mpd)
+    build-depends: libmpd >= 0.10
+    cpp-options: -DWITH_MPD
 
 test-suite xmonad-configuration-test
   type:                exitcode-stdio-1.0

@@ -1,3 +1,4 @@
+{-# LANGUAGE CPP #-}
 {-# LANGUAGE OverloadedStrings #-}
 
 module Programs.MusicPlayers
@@ -17,7 +18,7 @@ import DBus.Client
   ( callNoReply,
     connectSession,
   )
-import Data.Text ()
+#ifdef WITH_MPD
 import Network.MPD
   ( MPD,
     Response,
@@ -26,6 +27,7 @@ import Network.MPD
 import Network.MPD.Applicative (runCommand)
 import qualified Network.MPD.Applicative as MPDApplicative
 import qualified Network.MPD.Applicative.PlaybackControl as PlaybackControl
+#endif
 import Programs.Commands
   ( Command,
     createCommand,
@@ -41,15 +43,6 @@ data MusicPlayerControls m = MusicPlayerControls
 
 myMusicPlayer :: MonadIO m => MusicPlayerControls m
 myMusicPlayer = spotifyd
-
-mpd :: MonadIO m => MusicPlayerControls m
-mpd =
-  MusicPlayerControls
-    { toggle = runMPDCommand PlaybackControl.toggle,
-      stop = runMPDCommand PlaybackControl.stop,
-      nextSong = runMPDCommand PlaybackControl.next,
-      previousSong = runMPDCommand PlaybackControl.previous
-    }
 
 spotify :: MonadIO m => MusicPlayerControls m
 spotify =
@@ -84,6 +77,16 @@ callMethod method = do
   client <- liftIO connectSession
   liftIO $ callNoReply client method
 
+#ifdef WITH_MPD
+mpd :: MonadIO m => MusicPlayerControls m
+mpd =
+  MusicPlayerControls
+    { toggle = runMPDCommand PlaybackControl.toggle,
+      stop = runMPDCommand PlaybackControl.stop,
+      nextSong = runMPDCommand PlaybackControl.next,
+      previousSong = runMPDCommand PlaybackControl.previous
+    }
+
 runMPDCommand :: MonadIO m => MPDApplicative.Command a -> Command m
 runMPDCommand = createCommand . liftMPD_ . runCommand
 
@@ -94,3 +97,4 @@ liftMPD_ = void . liftMPD
 
 liftMPD :: MonadIO m => MPD a -> m (Response a)
 liftMPD = liftIO . withMPD
+#endif
