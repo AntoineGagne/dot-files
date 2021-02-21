@@ -1,4 +1,9 @@
-{ok, _} = compile:file("/home/angagne/.erlang.d/user_default").
-{module, user_default} = code:load_abs("user_default").
-
-shell:prompt_func({user_default, prompt}).
+case os:getenv("HOME") of
+    false ->
+        ok;
+    Home ->
+        UserDefaults = filename:join(Home, ".erlang.d/user_default"),
+        {ok, _} = compile:file(UserDefaults),
+        {module, user_default} = code:load_abs("user_default"),
+        shell:prompt_func({user_default, prompt})
+end.
