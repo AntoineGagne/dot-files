@@ -20,19 +20,20 @@ executable xmonad-x86_64-linux
   main-is: Main.hs
   ghc-options: -static -O3 -Wall -threaded -rtsopts -with-rtsopts=-N
   build-depends:       base >= 4.7 && < 5
-                     , xmonad >= 0.15 && < 0.16
-                     , xmonad-contrib >= 0.16 && < 0.17
-                     , containers
-                     , directory
-                     , process >= 1.4
-                     , transformers >= 0.5.2
-                     , libmpd >= 0.10
-                     , bytestring >= 0.10
-                     , transformers >= 0.5
-                     , dbus >= 1.2 && < 1.3
-                     , fdo-notify >= 0.3
-                     , xmonad-configuration
                      , X11 >= 1.8
+                     , alsa-mixer >= 0.3
+                     , bytestring >= 0.10
+                     , containers
+                     , dbus >= 1.2 && < 1.3
+                     , directory
+                     , fdo-notify >= 0.3
+                     , libmpd >= 0.10
+                     , process >= 1.4
+                     , transformers >= 0.5
+                     , transformers >= 0.5.2
+                     , xmonad >= 0.15 && < 0.16
+                     , xmonad-configuration
+                     , xmonad-contrib >= 0.16 && < 0.17
                      , xmonad-extras >= 0.13.2
   default-language:    Haskell2010
 
@@ -55,21 +56,22 @@ library
                  , Themes.Palettes
                  , Themes.Themes
   build-depends:       base >= 4.7 && < 5
+                     , X11 >= 1.8
+                     , alsa-mixer >= 0.3
+                     , bytestring >= 0.10
+                     , containers
+                     , data-default >= 0.7.1 && < 0.8
+                     , dbus >= 1.2 && < 1.3
+                     , directory
+                     , easy-file >= 0.2 && < 0.3
+                     , fdo-notify >= 0.3
+                     , lens >= 4.19 && < 4.20
+                     , mtl >= 2.2
+                     , text >= 1.2 && < 1.3
+                     , transformers >= 0.5
                      , xmonad >= 0.15 && < 0.16
                      , xmonad-contrib >= 0.16 && < 0.17
-                     , containers
-                     , directory
-                     , transformers >= 0.5.2
-                     , bytestring >= 0.10
-                     , transformers >= 0.5
-                     , dbus >= 1.2 && < 1.3
-                     , fdo-notify >= 0.3
-                     , X11 >= 1.8
                      , xmonad-extras >= 0.13.2
-                     , data-default >= 0.7.1 && < 0.8
-                     , lens >= 4.19 && < 4.20
-                     , easy-file >= 0.2 && < 0.3
-                     , text >= 1.2 && < 1.3
   default-language:    Haskell2010
 
   if flag(with_mpd)
