@@ -1,17 +1,8 @@
 INSTALL_DIR = $(HOME)/.local/bin
-SCRIPTS = bash/cmus-status.bash \
-		  bash/control-volume.bash \
-		  bash/create-named-pipe.bash \
-		  bash/printscreen.bash \
-		  python/cmus_parse.py \
+SCRIPTS = bash/printscreen.bash \
 		  bash/clean-local-tmp.sh \
-		  bash/control-brightness.bash \
 		  bash/unmount-device.sh \
 		  python/display_screens.py \
-		  bash/create-tmux-session.bash \
-		  bash/create-tmux-sessions.bash \
-		  bash/recompile-xmonad.sh \
-		  bash/spawn-rtv.sh \
 		  bash/merge-rss-urls.bash \
 		  bash/corsair-keyboard.bash \
 		  bash/webman.bash \
@@ -19,11 +10,10 @@ SCRIPTS = bash/cmus-status.bash \
 		  bash/haskellman.bash \
 		  bash/display-song-information.bash \
 		  bash/notification-send.bash \
-		  bash/send-mqtt.bash \
-		  bash/kubernetes-dashboard.bash
+		  bash/send-mqtt.bash
 INSTALL_SCRIPTS := $(SCRIPTS:%=install-%)
 MANPAGES_DIR := $(HOME)/.local/share/man/man1
-MANPAGES := $(patsubst %, $(MANPAGES_DIR)/%.1.gz, control-brightness control-volume)
+MANPAGES := $(patsubst %, $(MANPAGES_DIR)/%.1.gz, )
 
 .PHONY: all
 all: $(INSTALL_SCRIPTS) manpages
