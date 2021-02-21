@@ -1,7 +1,6 @@
 module Programs.Volume
   ( VolumeControls (..),
     alsaControl,
-    scriptControl,
     myVolumeControl,
   )
 where
