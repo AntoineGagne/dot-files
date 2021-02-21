@@ -2,14 +2,14 @@ filetype off         " required for Vundle
 
 " {{{1 Python Hosts
 
-if has('nvim')
-    if isdirectory(expand('~/.virtualenvs/neovim2/bin/'))
-        let g:python_host_prog = expand('~/.virtualenvs/neovim2/bin/python')
-    endif
-    if isdirectory(expand('~/.virtualenvs/neovim3/bin/'))
-        let g:python3_host_prog = expand('~/.virtualenvs/neovim3/bin/python')
-    endif
-endif
+" if has('nvim')
+"     if isdirectory(expand('~/.virtualenvs/neovim2/bin/'))
+"         let g:python_host_prog = expand('~/.virtualenvs/neovim2/bin/python')
+"     endif
+"     if isdirectory(expand('~/.virtualenvs/neovim3/bin/'))
+"         let g:python3_host_prog = expand('~/.virtualenvs/neovim3/bin/python')
+"     endif
+" endif
 
 " {{{1 Plugins
 
@@ -75,9 +75,6 @@ call plug#begin('~/.vim/bundle')
 
     " {{{2 Perfect language syntax highlighting
     Plug 'AntoineGagne/perfect-language-vim'
-
-    " {{{2 Sessions management
-    Plug 'AntoineGagne/sessions-vim'
 
     " {{{2 HTML5 Syntax Highlighting
     Plug 'othree/html5.vim', { 'for': 'html' }
