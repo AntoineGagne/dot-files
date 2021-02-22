@@ -1,7 +1,7 @@
 name:                xmonad-configuration
 synopsis:            XMonad's Configuration
 description:         Contains XMonad's configuration parameters
-version:             1.0.0
+version:             1.1.0
 license:             MIT
 license-file:        LICENSE
 author:              Antoine Gagné
