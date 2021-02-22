@@ -47,7 +47,6 @@ SOFTWARE_DIRS := bash \
 	icons \
 	weechat \
 	compton \
-	rtv \
 	newsboat \
 	alacritty \
 	pandoc \
