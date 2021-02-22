@@ -1,6 +1,8 @@
 module Themes.Gruvbox
   ( gruvboxTheme,
     myTheme,
+    myGridConfig,
+    gruvboxGridConfig,
   )
 where
 
@@ -9,12 +11,48 @@ import Themes.Fonts
   ( Font (..),
     FontStyle (..),
     FontType (..),
+    urxvtResourceFontString,
   )
 import Themes.Palettes (Palette (..))
 import Themes.Themes (Theme (..))
+import XMonad (Window)
+import XMonad.Actions.GridSelect
+  ( GSConfig (..),
+    buildDefaultGSConfig,
+    colorRangeFromClassName,
+  )
+import XMonad.Core (X)
 
 myTheme :: Theme
 myTheme = gruvboxTheme
+
+myGridConfig :: GSConfig Window
+myGridConfig = gruvboxGridConfig
+
+gruvboxGridConfig :: GSConfig Window
+gruvboxGridConfig =
+  (buildDefaultGSConfig gruvboxColorizer)
+    { gs_cellheight = 200,
+      gs_cellwidth = 300,
+      gs_cellpadding = 8,
+      gs_originFractX = 0.5,
+      gs_originFractY = 0.5,
+      gs_font = urxvtResourceFontString gruvboxFont
+    }
+
+gruvboxColorizer :: Window -> Bool -> X (String, String)
+gruvboxColorizer =
+  colorRangeFromClassName
+    -- Lowest inactive bg
+    (40, 40, 40)
+    -- Highest inactive bg
+    (40, 40, 40)
+    -- Active bg
+    (184, 187, 38)
+    -- Inactive fg
+    (251, 241, 199)
+    -- Active fg
+    (40, 40, 40)
 
 gruvboxTheme :: Theme
 gruvboxTheme =

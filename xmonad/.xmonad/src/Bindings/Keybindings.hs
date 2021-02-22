@@ -39,12 +39,16 @@ import Programs.Volume (myVolumeControl)
 import qualified Programs.Volume as PVolume
 import Prompts.SearchPrompts (myPrompt)
 import System.Exit (exitSuccess)
+import Themes.Gruvbox (myGridConfig)
 import XMonad
 import XMonad.Actions.CycleWS
   ( nextScreen,
     prevScreen,
     shiftNextScreen,
     shiftPrevScreen,
+  )
+import XMonad.Actions.GridSelect
+  ( goToSelected,
   )
 import XMonad.Actions.PhysicalScreens
   ( sendToScreen,
@@ -61,6 +65,11 @@ import XMonad.Hooks.UrgencyHook
 import XMonad.Layout.IndependentScreens
   ( onCurrentScreen,
     workspaces',
+  )
+import XMonad.Prompt.Window
+  ( WindowPrompt (Goto),
+    allWindows,
+    windowPrompt,
   )
 import qualified XMonad.StackSet as StackSet
 import XMonad.Util.Run (safeSpawnProg)
@@ -138,6 +147,8 @@ myKeys conf =
           ((myModMask .|. shiftMask, xK_s), Submap.submap $ searchEngineMap Search.selectSearch),
           -- {{{2 Applications
           ((myModMask, xK_o), Submap.submap applicationsSpawn),
+          -- {{2 Grid Select
+          ((myModMask, xK_a), Submap.submap gridMap),
           -- {{{2 Urgency Hooks
           ((myModMask, xK_u), focusUrgent),
           ((myModMask .|. shiftMask, xK_u), clearUrgents)
@@ -182,6 +193,11 @@ myKeys conf =
           ((0, xK_b), catchIO . safeSpawnProg $ "firefox"),
           ((0, xK_v), catchIO . safeSpawnProg $ "zathura"),
           ((0, xK_i), catchIO . safeSpawnProg $ "krita")
+        ]
+    gridMap =
+      Map.fromList
+        [ ((0, xK_s), goToSelected myGridConfig),
+          ((0, xK_g), windowPrompt myPrompt Goto allWindows)
         ]
     decreaseBrightness = PBrightness.decreaseBy <$> PBrightness.getDevice <*> pure percent
     increaseBrightness = PBrightness.increaseBy <$> PBrightness.getDevice <*> pure percent
