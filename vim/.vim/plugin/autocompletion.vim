@@ -43,12 +43,17 @@ let g:ale_completion_enabled = 0
 lua << EOF
   local nvim_lsp = require 'lspconfig'
   local lsp = require 'lsp'
-  nvim_lsp.bashls.setup(lsp.custom_settings.bashls)
-  nvim_lsp.elmls.setup(lsp.custom_settings.elmls)
-  nvim_lsp.hls.setup(lsp.custom_settings.hls)
-  nvim_lsp.texlab.setup(lsp.custom_settings.texlab)
-  nvim_lsp.tsserver.setup(lsp.custom_settings.tsserver)
-  nvim_lsp.rust_analyzer.setup(lsp.custom_settings.rust_analyzer)
+
+  local servers = {
+      "bashls", "elmls", "hls", "texlab", "tsserver", "rust_analyzer"
+  };
+
+  for _, server in ipairs(servers) do
+      nvim_lsp[server].setup {
+        lsp.configurations[server],
+        on_attach = lsp.on_attach
+      };
+  end
 EOF
 
 " {{{1 Wildmenu
