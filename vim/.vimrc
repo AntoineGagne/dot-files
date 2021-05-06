@@ -29,6 +29,7 @@ call plug#begin('~/.vim/bundle')
     "             \ }
     Plug 'neovim/nvim-lsp'
     Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+    Plug 'deoplete-plugins/deoplete-lsp'
 
     " Autoformatting
     Plug 'editorconfig/editorconfig-vim'

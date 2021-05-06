@@ -45,7 +45,8 @@ lua << EOF
   local lsp = require 'lsp'
 
   local servers = {
-      "bashls", "elmls", "hls", "texlab", "tsserver", "rust_analyzer"
+      "bashls", "elmls", "hls", "texlab", "tsserver", "rust_analyzer",
+      "erlangls"
   };
 
   for _, server in ipairs(servers) do
