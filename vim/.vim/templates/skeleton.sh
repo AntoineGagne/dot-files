@@ -1,6 +1,6 @@
 #! /bin/sh
 #
-# Copyright © 2019 Antoine Gagné
+# Copyright © 2021 Antoine Gagné
 # 
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU Affero General Public License as
