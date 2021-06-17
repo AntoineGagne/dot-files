@@ -1,6 +1,6 @@
 #! /usr/bin/env bash
 #
-# Copyright © 2019 Antoine Gagné
+# Copyright © 2021 Antoine Gagné
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU Affero General Public License as
@@ -18,9 +18,15 @@
 declare -r AUTHORS='Antoine Gagné'
 # shellcheck disable=SC2155
 declare -r PROGRAM_NAME="$(basename "${0%.*}")"
-# shellcheck disable=SC2155
-declare -r PROGRAM_DIRECTORY="$(readlink "$(dirname "${0}")")"
 declare -ra REQUIRED_COMMANDS=()
+declare -ra REQUIRED_VARIABLES=()
+
+exec 3>/dev/null
+
+main() {
+    validate_dependencies
+    validate_mandatory_variables
+}
 
 repeat() {
     local -r _characters="${1}"
@@ -31,35 +37,41 @@ repeat() {
 
 usage() {
     local -r _padding="$(repeat ' ' "${#PROGRAM_NAME}")"
+
     cat <<- EOF
-Usage: ${PROGRAM_NAME} [-h|--help] [-V|--version]
+Usage: ${PROGRAM_NAME} [-h|--help] [-V|--version] [-v|--verbose]
 <Description>
 Example: ${PROGRAM_NAME} -h
 
 Available options:
   -h, --help                            display this help text and exit
+  -v, --verbose                         enable verbose output
   -V, --version                         display version information and exit
 EOF
 }
 
 version() {
     cat <<- EOF
-${PROGRAM_NAME} v0.1.0
+${PROGRAM_NAME} v0.0.0
 
 Written by ${AUTHORS}
 Licensed under AGPL3
 EOF
 }
 
-die() {
-    local -r _message="${1}"
-    echo "${_message}" 1>&2
-    exit 1
+validate_mandatory_variables() {
+    local _name
+    for _name in "${REQUIRED_VARIABLES[@]}"; do
+        if is_variable_unset "${_name}"; then
+            die "${_name} is unset. Exiting."
+        fi
+    done
 }
 
-is_program_installed() {
-    local -r _program_name="${1}"
-    type "${_program_name}" &>/dev/null
+is_variable_unset() {
+    local -r _name="${1}"
+
+    eval "[ \"\${${_name}:-x}\" = \"x\" ]"
 }
 
 validate_dependencies() {
@@ -71,40 +83,37 @@ validate_dependencies() {
     done
 }
 
-trim() {
-    local _string="${1}"
-
-    echo "${_string}" | xargs
+is_program_installed() {
+    local -r _program_name="${1}"
+    command -v "${_program_name}" >/dev/null
 }
 
-get_extension() {
-    local -r _extension="${1##*.}"
-
-    echo "${_extension}"
+is_program_installed() {
+    local -r _program_name="${1}"
+    command -v "${_program_name}" >/dev/null
 }
 
-strip_extension() {
-    local -r _stripped_filename="${1%.*}"
-
-    echo "${_stripped_filename}"
+die() {
+    local -r _message="${1}"
+    echo "${_message}" 1>&2
+    exit 1
 }
 
-is_root() {
-    [[ ${EUID} -eq 0 ]]
+warn() {
+    local -r _message="${1}"
+    echo "${_message}" 1>&2
 }
 
-format_floating_point() {
-    local -ri _decimals_number="${1}"
-    local -r _floating_point_number="${2}"
-
-    printf "%.${_decimals_number}f" "${_floating_point_number}"
+info() {
+    local -r _message="${1}"
+    echo "${_message}" 1>&3
 }
 
-main() {
-    validate_dependencies
+verbose() {
+    exec 3>&1
 }
 
-while getopts ':hV-:' OPTION; do
+while getopts ':hvV-:' OPTION; do
     case "${OPTION}" in
         V)
             version
@@ -113,6 +122,9 @@ while getopts ':hV-:' OPTION; do
         h)
             usage
             exit 0
+            ;;
+        v)
+            verbose
             ;;
         -)
             case "${OPTARG}" in
@@ -123,6 +135,9 @@ while getopts ':hV-:' OPTION; do
                 version)
                     version
                     exit 0
+                    ;;
+                verbose)
+                    verbose
                     ;;
                 *)
                     die "Invalid option --${OPTARG}."
@@ -138,5 +153,6 @@ while getopts ':hV-:' OPTION; do
     esac
 done
 
-shift "${OPTIND}"
+shift $(( OPTIND - 1))
+
 main "${@}"
