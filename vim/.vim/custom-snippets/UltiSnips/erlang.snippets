@@ -20,6 +20,10 @@ end_per_testcase(_Name, Config) ->
 ${0}
 
 %%%===================================================================
+%%% Test cases
+%%%===================================================================
+
+%%%===================================================================
 %%% Internal functions
 %%%===================================================================
 endsnippet
@@ -208,15 +212,23 @@ end_per_suite(Config) ->
     Config.
 endsnippet
 
+snippet ctcase "Common Test Cases"
+init_per_testcase(_Case, Config) ->
+	Config.
+
+end_per_testcase(_Case, Config) ->
+	Config.
+endsnippet
+
 snippet ctgroup "Common Test Group"
 groups() ->
 	[
 	].
 
-init_per_group(Config) ->
+init_per_group(_Group, Config) ->
     Config.
 
-end_per_group(Config) ->
+end_per_group(_Group, Config) ->
     Config.
 endsnippet
 
@@ -235,6 +247,10 @@ endsnippet
 
 snippet logger_include "OTP 21 Logger Include"
 -include_lib("kernel/include/logger.hrl").
+endsnippet
+
+snippet eunit_include "EUnit Include"
+-include_lib("eunit/include/eunit.hrl").
 endsnippet
 
 snippet ms_transform "ETS MS Transforms"
