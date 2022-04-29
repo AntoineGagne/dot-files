@@ -118,10 +118,18 @@ compress() {
     pdftk "${_input}" output "${_output}" compress
 }
 
+setup_cleanup() {
+    _files="${*}"
+
+
+    trap "{ rm --force ${_files}; }" EXIT
+}
+
 main() {
     validate_dependencies
     validate_mandatory_variables
 
+    set -x
     _pdf="${1}"
     _expression="${2}"
 
@@ -129,19 +137,21 @@ main() {
         die 'Failed to create temporary file'
     fi
 
+    _uncompressed_file="${_temporary_file}-uncompressed.pdf"
+    _unwatermarked_file="${_temporary_file}-unwatermarked.pdf"
+    _fixed_file="${_temporary_file}-fixed.pdf"
+    setup_cleanup "${_temporary_file}" "${_uncompressed_file}" "${_unwatermarked_file}" "${_fixed_file}"
+
     # Most of the commands below were adapted from:
     # https://superuser.com/a/536644
-    _uncompressed_file="${_temporary_file}-uncompressed.pdf"
     if ! uncompress "${_pdf}" "${_uncompressed_file}"; then
         die "Failed to uncompress ${_pdf} to ${_uncompressed_file}"
     fi
 
-    _unwatermarked_file="${_temporary_file}-unwatermarked.pdf"
     if ! remove_watermark "${_expression}" "${_uncompressed_file}" "${_unwatermarked_file}"; then
         die "Failed to remove watermark from ${_uncompressed_file} to ${_unwatermarked_file} using expression '${_expression}'"
     fi
 
-    _fixed_file="${_temporary_file}-fixed.pdf"
     if ! compress "${_unwatermarked_file}" "${_fixed_file}"; then
         die "Failed to compress ${_unwatermarked_file} to ${_fixed_file}"
     fi
