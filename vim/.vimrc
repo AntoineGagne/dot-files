@@ -28,6 +28,8 @@ call plug#begin('~/.vim/bundle')
     "             \    'do': './install.sh'
     "             \ }
     Plug 'neovim/nvim-lsp'
+    Plug 'Shougo/deoplete-lsp'
+    " Plug 'nvim-lua/completion-nvim'
     Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
     Plug 'deoplete-plugins/deoplete-lsp'
 
@@ -53,7 +55,7 @@ call plug#begin('~/.vim/bundle')
     Plug 'arakashic/chromatica.nvim', { 'for': ['c', 'cpp'] }
 
     " {{{2 Python Language
-    Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins', 'for': 'python'}
+    Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'}
 
     " {{{2 Tags Management
     Plug 'ludovicchabant/vim-gutentags', { 'for': ['erlang'] }

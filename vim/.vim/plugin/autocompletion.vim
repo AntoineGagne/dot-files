@@ -45,7 +45,7 @@ lua << EOF
   local lsp = require 'lsp'
 
   local servers = {
-      "bashls", "elmls", "hls", "texlab", "tsserver", "rust_analyzer",
+      "bashls", "elmls", "erlangls", "hls", "texlab", "tsserver", "rust_analyzer",
       "erlangls"
   };
 

@@ -1,6 +1,10 @@
-nnoremap <silent> K :call LanguageClient#textDocument_hover()<cr>
-nnoremap <silent> gd :call LanguageClient#textDocument_definition()<cr>
-nnoremap <silent> gD :call LanguageClient_textDocument_implementation()<cr>
-vnoremap <buffer> <silent> <leader>li :call LanguageClient_textDocument_rangeFormatting()<cr>
-nnoremap <buffer> <silent> <leader>lr :call LanguageClient#textDocument_rename()<cr>
-nnoremap <buffer> <silent> <leader>lf :call LanguageClient_textDocument_documentSymbol()<cr>
+nnoremap <silent> gd <cmd>lua vim.lsp.buf.declaration()<CR>
+nnoremap <silent> <c-]> <cmd>lua vim.lsp.buf.definition()<CR>
+nnoremap <silent> K <cmd>lua vim.lsp.buf.hover()<CR>
+nnoremap <silent> gD <cmd>lua vim.lsp.buf.implementation()<CR>
+nnoremap <silent> <c-k> <cmd>lua vim.lsp.buf.signature_help()<CR>
+nnoremap <silent> 1gD <cmd>lua vim.lsp.buf.type_definition()<CR>
+nnoremap <silent> gr <cmd>lua vim.lsp.buf.references()<CR>
+nnoremap <silent> g0 <cmd>lua vim.lsp.buf.document_symbol()<CR>
+
+setlocal omnifunc=v:lua.vim.lsp.omnifunc

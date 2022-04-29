@@ -9,6 +9,7 @@ local custom_settings = {
        log_level = vim.lsp.protocol.MessageType.Log;
        message_level = vim.lsp.protocol.MessageType.Log;
     };
+    pyls = {};
     rust_analyzer = {};
     texlab = {};
     tsserver = {};
