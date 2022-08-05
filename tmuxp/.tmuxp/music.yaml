@@ -9,5 +9,5 @@ windows:
     automatic-rename: 'off'
   panes:
   - focus: 'true'
-    shell_command: cmus &
-  window_name: cmus
+    shell_command: spt
+  window_name: spotify

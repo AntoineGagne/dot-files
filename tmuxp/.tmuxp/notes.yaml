@@ -1,0 +1,19 @@
+session_name: notes
+start_directory: ${HOME}
+global_options:
+    default-shell: /usr/bin/zsh
+    default-command: /usr/bin/zsh
+windows:
+- layout: c95e,211x57,0,0,1
+  options:
+    automatic-rename: 'off'
+  panes:
+  - focus: 'true'
+  window_name: tasks
+- layout: c95d,211x57,0,0,0
+  options:
+    automatic-rename: 'off'
+  panes:
+  - focus: 'true'
+    shell_command: vim +':VimwikiIndex'
+  window_name: wiki
