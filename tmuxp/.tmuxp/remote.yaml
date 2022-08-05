@@ -1,0 +1,12 @@
+session_name: remote
+start_directory: ${HOME}
+global_options:
+    default-shell: /bin/zsh
+    default-command: /bin/zsh
+windows:
+- layout: c95d,211x57,0,0,0
+  options:
+    automatic-rename: 'off'
+  panes:
+  - focus: 'true'
+  window_name: ssh
