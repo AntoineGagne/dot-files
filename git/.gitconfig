@@ -253,7 +253,7 @@
     pushInsteadOf = "gitlab:"
 
 [user]
-    email = gagnantoine@gmail.com
+    email = AntoineGagne@users.noreply.github.com
     name = Antoine Gagné
 
 [web]
