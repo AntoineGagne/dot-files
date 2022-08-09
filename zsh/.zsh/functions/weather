@@ -1,2 +1,2 @@
 local -r _region="${1:-Ville de Québec}"
-curl "wttr.in/~${_region}"
+curl -H 'Accept-Language: fr' "wttr.in/~${_region}?m"
