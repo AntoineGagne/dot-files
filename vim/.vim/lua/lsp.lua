@@ -1,5 +1,6 @@
 local custom_settings = {
     bashls = {};
+    ccls = {};
     cssls = {};
     elmls = {};
     erlangls = {};
