@@ -163,8 +163,21 @@ autoload -Uz select-word-match
 autoload -Uz zrecompile
 autoload -Uz vcs_info
 
+# On slow systems, checking the cached .zcompdump file to see if it must be 
+# regenerated adds a noticable delay to zsh startup.  This little hack restricts 
+# it to once a day.  It should be pasted into your own completion file.
+#
+# The globbing is a little complicated here:
+# - '#q' is an explicit glob qualifier that makes globbing work within zsh's [[ ]] construct.
+# - 'N' makes the glob pattern evaluate to nothing when it doesn't match (rather than throw a globbing error)
+# - '.' matches "regular files"
+# - 'mh+24' matches files (or directories or whatever) that are older than 24 hours.
 autoload -Uz compinit
-compinit
+if [[ -n ${ZDOTDIR}/.zcompdump(#qN.mh+24) ]]; then
+	compinit;
+else
+	compinit -C;
+fi;
 
 autoload -Uz promptinit
 promptinit
@@ -361,21 +374,38 @@ PS1='$(prompt "${?}")'
 PS2="├╼ "
 RPS1='[%F{cyan}%j jobs%f]──[%F{green}%W%f]'
 
-
-[ -f "$HOME/.kiex/scripts/kiex" ] && source "$HOME/.kiex/scripts/kiex"
-
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 if type "direnv" >/dev/null 2>&1; then
     eval "$(direnv hook zsh)"
 fi
 
-if [[ -s "$HOME/.kiex/scripts/kiex" ]]; then
-    source "$HOME/.kiex/scripts/kiex"
-fi
-
 if [[ -f "${HOME}/.ghcup/env" ]]; then
     source "${HOME}/.ghcup/env"
+fi
+
+if [[ -d "${HOME}/.kube" ]]; then
+    KUBECONFIG_YAMLS="$(ls -1 ~/.kube/*.yaml | xargs)"
+    export KUBECONFIG="${KUBECONFIG_YAMLS// /:}"
+
+fi
+
+if [[ -d "${HOME}/.cargo/bin" ]]; then
+    PATH="${PATH}:${HOME}/.cargo/bin"
+fi
+
+
+lazy_load_nvm() {
+    unset -f node nvm npm
+    export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
+    if [ -s "$NVM_DIR/nvm.sh" ]; then
+        \. "$NVM_DIR/nvm.sh" # This loads nvm
+    fi
+}
+
+if [[ -d "${HOME}/.npm-packages" ]]; then
+    export NPM_PACKAGES="$HOME/.npm-packages"
+    PATH="${PATH}:${NPM_PACKAGES}/bin"
 fi
 
 # Remove duplicate lines in $PATH
