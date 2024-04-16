@@ -54,9 +54,6 @@ call plug#begin('~/.vim/bundle')
     " {{{2 Python Language
     Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'}
 
-    " {{{2 Tags Management
-    Plug 'ludovicchabant/vim-gutentags', { 'for': ['erlang'] }
-
     " {{{2 Surrounding Text Objects
     Plug 'tpope/vim-surround'
 
