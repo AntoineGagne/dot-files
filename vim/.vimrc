@@ -51,9 +51,6 @@ call plug#begin('~/.vim/bundle')
     " {{{2 Elixir Language
     Plug 'elixir-editors/vim-elixir'
 
-    " {{{2 Semantic Highlighting
-    Plug 'arakashic/chromatica.nvim', { 'for': ['c', 'cpp'] }
-
     " {{{2 Python Language
     Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'}
 
