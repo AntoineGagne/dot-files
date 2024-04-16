@@ -46,10 +46,20 @@ lua << EOF
 
   local servers = {
       "bashls", "elmls", "hls", "texlab", "tsserver", "rust_analyzer",
-      "erlangls", "ccls"
+      "erlangls", "clangd", "elixirls"
   };
 
   for _, server in ipairs(servers) do
+    if lsp.cmds[server] then
+      nvim_lsp[server].setup {
+        cmd = lsp.cmds[server],
+        settings = lsp.configurations[server],
+        on_attach = lsp.on_attach,
+        flags = {
+          debounce_text_changes = 150,
+        }
+      };
+    else
       nvim_lsp[server].setup {
         settings = lsp.configurations[server],
         on_attach = lsp.on_attach,
@@ -57,6 +67,7 @@ lua << EOF
           debounce_text_changes = 150,
         }
       };
+    end
   end
 EOF
 
