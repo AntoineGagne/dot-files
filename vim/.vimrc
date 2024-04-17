@@ -22,11 +22,6 @@ call plug#begin('~/.vim/bundle')
     "             \}
 
     " {{{2 Autocompletion plugin
-    " Plug 'Valloric/YouCompleteMe'
-    " Plug 'autozimu/LanguageClient-neovim', {
-    "             \    'branch': 'next',
-    "             \    'do': './install.sh'
-    "             \ }
     Plug 'neovim/nvim-lsp'
     Plug 'Shougo/deoplete-lsp'
     " Plug 'nvim-lua/completion-nvim'
@@ -40,13 +35,6 @@ call plug#begin('~/.vim/bundle')
 
     " {{{2 Vimscript Language
     Plug 'junegunn/vader.vim', { 'for': ['vim'] }
-
-    " {{{2 Erlang Language
-    Plug 'vim-erlang/vim-erlang-runtime', { 'for': 'erlang' }
-    Plug 'vim-erlang/vim-erlang-compiler', { 'for': 'erlang' }
-    Plug 'vim-erlang/vim-erlang-omnicomplete', { 'for': 'erlang' }
-    " Plug 'ppikula/vim-wrangler', { 'for': 'erlang' }
-    " Plug 'vim-erlang/vim-erlang-tags', { 'for': 'erlang' }
 
     " {{{2 Elixir Language
     Plug 'elixir-editors/vim-elixir'
@@ -63,9 +51,6 @@ call plug#begin('~/.vim/bundle')
     " {{{2 Status bar
     Plug 'vim-airline/vim-airline'
     Plug 'vim-airline/vim-airline-themes'
-
-    " {{{2 Rust autocompletion bundle
-    " Plug 'racer-rust/vim-racer', { 'for': 'rust' }
 
     "  {{{2 Syntax highlighting for the Haskell language
     Plug 'neovimhaskell/haskell-vim', { 'for': ['haskell'] }
@@ -85,19 +70,6 @@ call plug#begin('~/.vim/bundle')
 
     " {{{2 Syntax checking
     Plug 'w0rp/ale'
-
-    " {{{2 C# Completion
-    Plug 'OmniSharp/omnisharp-vim', {'for': 'cs'}
-
-    " {{{2 F#
-    " Plug 'fsharp/vim-fsharp', {
-    "   \ 'for': 'fsharp',
-    "   \ 'do':  'make fsautocomplete',
-    "   \}
-    Plug 'ionide/Ionide-vim', {
-                \ 'do': 'make fsautocomplete',
-                \ 'for': ['fsharp']
-                \}
 
     " {{{2 Asynchronous Execution
     Plug 'Shougo/vimproc.vim', { 'do': 'make' }
@@ -146,9 +118,6 @@ call plug#begin('~/.vim/bundle')
 
     " {{{2 CSS language
     Plug 'hail2u/vim-css3-syntax'
-
-    " Use release branch
-    " Plug 'neoclide/coc.nvim', { 'branch': 'release'}
 call plug#end()
 filetype plugin indent on
 
