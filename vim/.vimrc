@@ -17,9 +17,6 @@ call plug#begin('~/.vim/bundle')
 
     " {{{2 Typescript syntax highlighting
     Plug 'HerringtonDarkholme/yats.vim'
-    " Plug 'mhartington/nvim-typescript', {
-    "             \ 'do': './install.sh', 
-    "             \}
 
     " {{{2 Autocompletion plugin
     Plug 'neovim/nvim-lsp'
