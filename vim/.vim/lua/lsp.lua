@@ -36,7 +36,44 @@ local custom_settings = {
 
 local cmds = {
     elixirls = { "/home/a.gagne/.local/bin/elixir-ls" };
+};
 
+local on_init = {
+  lua_ls = function(client)
+    local path = client.workspace_folders[1].name
+    local luarc_json = path..'/.luarc.json'
+    local luarc_jsonc = path..'/.luarc.jsonc'
+    if vim.loop.fs_stat(luarc_json) or vim.loop.fs_stat(luarc_jsonc) then
+      return
+    end
+
+    if not client.config.settings.Lua then
+        client.config.settings['Lua'] = {}
+    end
+
+    client.config.settings.Lua = vim.tbl_deep_extend(
+      'force',
+      client.config.settings.Lua,
+      {
+        runtime = {
+          -- Tell the language server which version of Lua you're using
+          -- (most likely LuaJIT in the case of Neovim)
+          version = 'LuaJIT'
+        },
+        -- Make the server aware of Neovim runtime files
+        workspace = {
+          checkThirdParty = false,
+          library = {
+            vim.env.VIMRUNTIME
+            -- Depending on the usage, you might want to add additional paths here.
+            -- "${3rd}/luv/library"
+            -- "${3rd}/busted/library",
+          }
+          -- or pull in all of 'runtimepath'. NOTE: this is a lot slower
+          -- library = vim.api.nvim_get_runtime_file("", true)
+        }
+    })
+  end
 };
 
 local on_attach = function(client, bufnr)
@@ -102,5 +139,6 @@ end
 return {
     configurations = custom_settings,
     on_attach = on_attach,
-    cmds = cmds
+    cmds = cmds,
+    on_init = on_init
 };
