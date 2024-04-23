@@ -30,6 +30,9 @@ call plug#begin('~/.vim/bundle')
     Plug 'kana/vim-operator-user'
     Plug 'rhysd/vim-clang-format', { 'for': ['c', 'cpp'] }
 
+    " Tree Sitter
+    Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+
     " {{{2 Vimscript Language
     Plug 'junegunn/vader.vim', { 'for': ['vim'] }
 
