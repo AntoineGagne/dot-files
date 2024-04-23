@@ -88,7 +88,11 @@ call plug#begin('~/.vim/bundle')
     Plug 'cespare/vim-toml'
 
     " {{{2 ColorScheme 
-    Plug 'morhetz/gruvbox'
+    if has('nvim')
+        Plug 'luisiacc/gruvbox-baby', {'branch': 'main'}
+    else
+        Plug 'morhetz/gruvbox'
+    endif
 
     " {{{2 Snippets
     Plug 'SirVer/ultisnips'

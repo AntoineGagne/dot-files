@@ -101,13 +101,19 @@ let g:chromatica#enable_at_startup = 1
 let g:chromatica#responsive_mode = 1
 
 " {{{2 gruvbox.vim
-colorscheme gruvbox
-set background=dark
-let g:gruvbox_italic = 1
-let g:gruvbox_improved_strings = 1
-let g:gruvbox_improved_warnings = 1
-let g:gruvbox_invert_indent_guides = 1
-let g:gruvbox_italicize_strings = 1
+" set background=dark
+" colorscheme gruvbox
+" let g:gruvbox_italic = 1
+" let g:gruvbox_improved_strings = 1
+" let g:gruvbox_improved_warnings = 1
+" let g:gruvbox_invert_indent_guides = 1
+" let g:gruvbox_italicize_strings = 1
+
+" {{{2 gruvbox-baby
+" set background=dark
+let g:gruvbox_baby_transparent_mode = 1
+" let g:gruvbox_baby_use_original_palette = 1
+colorscheme gruvbox-baby
 
 if !empty($TMUX)
     set t_ut=
