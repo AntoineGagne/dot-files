@@ -4,6 +4,7 @@ let g:table_mode_header_fillchar="="
 
 " {{{1 ale
 let g:ale_fixers = {
+            \ 'erlang': ['erlfmt'],
             \ 'javascript': ['prettier'],
             \ 'javascriptreact': ['prettier'],
             \ 'css': ['prettier'],
