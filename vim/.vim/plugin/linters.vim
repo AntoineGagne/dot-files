@@ -14,6 +14,8 @@ let g:ale_set_loclist = 1
 let g:ale_set_ballons = 1
 let g:ale_set_quickfix = 1
 
+let g:ale_disable_lsp = 1
+
 let g:ale_open_list = 0
 " Set this if you want to.
 " This can be useful if you are combining ALE with
@@ -22,4 +24,7 @@ let g:ale_keep_list_window_open = 0
 
 let g:ale_sign_column_always = 1
 
-let g:ale_linters_ignore = {'haskell': ['ghc', 'cabal_ghc', 'stack_ghc']}
+let g:ale_linters_ignore = {
+            \'haskell': ['ghc', 'cabal_ghc', 'stack_ghc'],
+            \'erlang': ['erlc', 'dialyzer','elvis'],
+\}

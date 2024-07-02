@@ -47,12 +47,20 @@ lua << EOF
   local servers = {
       "bashls", "elmls", "hls", "texlab", "tsserver", "rust_analyzer",
       "erlangls", "clangd", "elixirls", "lua_ls"
-  };
+  }
 
   for _, server in ipairs(servers) do
     local configuration = {
        settings = lsp.configurations[server],
        on_attach = lsp.on_attach,
+       handlers = {
+           ['textDocument/references'] = vim.lsp.with(
+               vim.lsp.handlers['textDocument/references'],
+               {
+                   loclist = true
+               }
+           )
+       },
        flags = {
          debounce_text_changes = 150
        }
