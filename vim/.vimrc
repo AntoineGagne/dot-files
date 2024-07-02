@@ -19,11 +19,13 @@ call plug#begin('~/.vim/bundle')
     Plug 'HerringtonDarkholme/yats.vim'
 
     " {{{2 Autocompletion plugin
-    Plug 'neovim/nvim-lsp'
+    Plug 'neovim/nvim-lspconfig'
     Plug 'Shougo/deoplete-lsp'
     " Plug 'nvim-lua/completion-nvim'
     Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
     Plug 'deoplete-plugins/deoplete-lsp'
+
+    Plug 'vim-erlang/vim-erlang-runtime', { 'for': 'erlang' }
 
     " Autoformatting
     Plug 'editorconfig/editorconfig-vim'
@@ -32,6 +34,7 @@ call plug#begin('~/.vim/bundle')
 
     " Tree Sitter
     Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+    Plug 'nvim-treesitter/nvim-treesitter-textobjects'
 
     " {{{2 Vimscript Language
     Plug 'junegunn/vader.vim', { 'for': ['vim'] }
@@ -89,7 +92,7 @@ call plug#begin('~/.vim/bundle')
 
     " {{{2 ColorScheme 
     if has('nvim')
-        Plug 'luisiacc/gruvbox-baby', {'branch': 'main'}
+        Plug 'ellisonleao/gruvbox.nvim'
     else
         Plug 'morhetz/gruvbox'
     endif
