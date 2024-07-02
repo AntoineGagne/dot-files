@@ -1,17 +1,14 @@
 local custom_settings = {
-    bashls = {};
-    clangd = {};
-    cssls = {};
-    elmls = {};
-    erlangls = {};
-    elixirls = {};
-    hie = {};
-    hls = {};
-    purescriptls = {
-       log_level = vim.lsp.protocol.MessageType.Log;
-       message_level = vim.lsp.protocol.MessageType.Log;
-    };
-    pyls = {};
+    bashls = {},
+    clangd = {},
+    cssls = {},
+    elmls = {},
+    erlangls = {},
+    elixirls = {},
+    hie = {},
+    hls = {},
+    purescriptls = {},
+    pyls = {},
     rust_analyzer = {
         ["rust-analyzer"] = {
             imports = {
@@ -29,14 +26,14 @@ local custom_settings = {
                 enable = true
             },
         }
-    };
-    texlab = {};
-    tsserver = {};
-};
+    },
+    texlab = {},
+    tsserver = {},
+}
 
 local cmds = {
-    elixirls = { "/home/a.gagne/.local/bin/elixir-ls" };
-};
+    elixirls = { "/home/a.gagne/.local/bin/elixir-ls" }
+}
 
 local on_init = {
   lua_ls = function(client)
@@ -62,7 +59,7 @@ local on_init = {
         },
         -- Make the server aware of Neovim runtime files
         workspace = {
-          checkThirdParty = false,
+          checkThirdParty = true,
           library = {
             vim.env.VIMRUNTIME
             -- Depending on the usage, you might want to add additional paths here.
