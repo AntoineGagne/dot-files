@@ -1,0 +1,10 @@
+snippet redux_action
+  export type $1Action = {
+    type: typeof $2;
+  };
+
+  export function ${3}Action(${4}): $1Action {
+    return {
+      type: $2,
+    };
+  }

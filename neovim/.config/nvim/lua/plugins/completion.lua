@@ -1,39 +1,25 @@
 return {
+  { "honza/vim-snippets" },
   {
-    "L3MON4D3/LuaSnip",
-    -- follow latest release.
-    version = "v2.*", -- Replace <CurrentMajor> by the latest released major (first number of latest release)
-    -- install jsregexp (optional!).
-    build = "make install_jsregexp",
-    config = function()
-      local ls = require("luasnip")
-
-      vim.keymap.set({"i"}, "<C-x><C-t>", function() ls.expand() end, {silent = true})
-      vim.keymap.set({"i", "s"}, "<c-x><C-f>", function() ls.jump( 1) end, {silent = true})
-      vim.keymap.set({"i", "s"}, "<c-x><C-b>", function() ls.jump(-1) end, {silent = true})
-
-      vim.keymap.set({"i", "s"}, "<C-E>", function()
-        if ls.choice_active() then
-          ls.change_choice(1)
-        end
-      end, {silent = true})
-    end,
+    'dcampos/nvim-snippy',
+    opts = {
+      mappings = {
+        is = {
+          ['<Tab>'] = 'expand_or_advance',
+          ['<S-Tab>'] = 'previous',
+        },
+        nx = {
+          ['<leader>x'] = 'cut_text',
+        },
+      },
+    }
   },
-  {
-    'neovim/nvim-lspconfig',
-  },
-  {
-    'hrsh7th/cmp-nvim-lsp'
-  },
-  {
-    'hrsh7th/cmp-buffer'
-  },
-  {
-    'hrsh7th/cmp-path'
-  },
-  {
-    'hrsh7th/cmp-cmdline'
-  },
+  { 'neovim/nvim-lspconfig' },
+  { 'hrsh7th/cmp-nvim-lsp' },
+  { 'hrsh7th/cmp-buffer' },
+  { 'hrsh7th/cmp-path' },
+  { 'hrsh7th/cmp-cmdline' },
+  { "dcampos/cmp-snippy" },
   {
     'hrsh7th/nvim-cmp',
     dependencies = {
@@ -43,7 +29,7 @@ return {
       'cmp-path',
     },
     config = function()
-      local cmp = require'cmp'
+      local cmp = require("cmp")
       cmp.setup({
         snippet = {
           -- REQUIRED - you must specify a snippet engine
@@ -70,6 +56,7 @@ return {
         }),
         sources = cmp.config.sources({
           { name = 'nvim_lsp' },
+          { name = 'snippy' },
           { name = 'buffer' },
         })
       })
@@ -92,10 +79,10 @@ return {
           on_attach = local_config.on_attach,
           handlers = {
             ['textDocument/references'] = vim.lsp.with(
-            vim.lsp.handlers['textDocument/references'],
-            {
-              loclist = true
-            }
+              vim.lsp.handlers['textDocument/references'],
+              {
+                loclist = true
+              }
             )
           },
           flags = {

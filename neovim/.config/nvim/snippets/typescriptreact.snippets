@@ -1,0 +1,33 @@
+snippet redux_page
+  import React, { useEffect } from 'react';
+  import { Dispatch } from 'redux';
+  import { connect } from 'react-redux';
+  import { RootState } from '../../../reducers/RootReducer';
+
+  type Props = {};
+
+  export function _$1Page(props: Props) {
+    useEffect(() => {
+      ${2}
+    }, [${3}]);
+
+    return (
+      <>
+        ${6}
+      </>
+    );
+  }
+
+  function mapStateToProps(state: RootState) {
+    return {
+      ${4}
+    };
+  }
+
+  function mapDispatchToProps(dispatch: Dispatch) {
+    return {
+      ${5}
+    };
+  }
+
+  export const $1Page = connect(mapStateToProps, mapDispatchToProps)(_$1Page);
