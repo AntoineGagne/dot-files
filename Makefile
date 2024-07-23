@@ -64,7 +64,8 @@ SOFTWARE_DIRS := bash \
 	kerl \
 	rebar3 \
 	erlang \
-	erlang_ls
+	erlang_ls \
+	neovim
 INSTALL_DIRS := $(SOFTWARE_DIRS:%=install-%)
 
 .PHONY: all
