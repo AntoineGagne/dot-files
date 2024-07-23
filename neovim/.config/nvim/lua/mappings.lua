@@ -22,7 +22,7 @@ vim.keymap.set(
       sort_mru = true
     })
   end,
-    { remap = false })
+  { remap = false })
 vim.keymap.set({'n', 'v'}, '<leader>mls', builtins.marks, { remap = false })
 vim.keymap.set({'n', 'v'}, '<leader>/', builtins.current_buffer_fuzzy_find, { remap = false })
 vim.keymap.set({'n', 'v'}, '<leader>ls', builtins.git_files, { remap = false })
