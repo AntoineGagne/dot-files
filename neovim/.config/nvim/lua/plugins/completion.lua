@@ -1,5 +1,5 @@
 return {
-  { "honza/vim-snippets" },
+  { 'honza/vim-snippets' },
   {
     'dcampos/nvim-snippy',
     opts = {
@@ -12,14 +12,14 @@ return {
           ['<leader>x'] = 'cut_text',
         },
       },
-    }
+    },
   },
   { 'neovim/nvim-lspconfig' },
   { 'hrsh7th/cmp-nvim-lsp' },
   { 'hrsh7th/cmp-buffer' },
   { 'hrsh7th/cmp-path' },
   { 'hrsh7th/cmp-cmdline' },
-  { "dcampos/cmp-snippy" },
+  { 'dcampos/cmp-snippy' },
   {
     'hrsh7th/nvim-cmp',
     dependencies = {
@@ -29,7 +29,7 @@ return {
       'cmp-path',
     },
     config = function()
-      local cmp = require("cmp")
+      local cmp = require('cmp')
       cmp.setup({
         snippet = {
           -- REQUIRED - you must specify a snippet engine
@@ -59,7 +59,7 @@ return {
           { name = 'snippy' },
           { name = 'buffer' },
           { name = 'path' },
-        })
+        }),
       })
 
       -- Use buffer source for `/` and `?` (if you enabled `native_menu`, this won't work anymore).
@@ -67,42 +67,39 @@ return {
         mapping = cmp.mapping.preset.cmdline(),
         sources = {
           { name = 'buffer' },
-          { name = 'path' }
-        }
+          { name = 'path' },
+        },
       })
 
       local local_config = require('lsp.config')
-      local capabilities = require("cmp_nvim_lsp").default_capabilities()
-      local lspconfig = require("lspconfig")
+      local capabilities = require('cmp_nvim_lsp').default_capabilities()
+      local lspconfig = require('lspconfig')
       for server, setup in pairs(local_config.to_enable) do
         local command, config, on_init = unpack(setup)
         local lsp = {
           settings = config or {},
           on_attach = local_config.on_attach,
           handlers = {
-            ['textDocument/references'] = vim.lsp.with(
-              vim.lsp.handlers['textDocument/references'],
-              {
-                loclist = true
-              }
-            )
+            ['textDocument/references'] = vim.lsp.with(vim.lsp.handlers['textDocument/references'], {
+              loclist = true,
+            }),
           },
           flags = {
-            debounce_text_changes = 150
+            debounce_text_changes = 150,
           },
-          capabilities = capabilities
+          capabilities = capabilities,
         }
 
         if on_init then
-          lsp["on_init"] = on_init
+          lsp['on_init'] = on_init
         end
 
         if command then
-          lsp["cmd"] = command
+          lsp['cmd'] = command
         end
 
         lspconfig[server].setup(lsp)
       end
     end,
-  }
+  },
 }

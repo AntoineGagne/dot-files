@@ -10,7 +10,7 @@ return {
   { 'cespare/vim-toml' },
   { 'vito-c/jq.vim' },
   { 'raichoo/purescript-vim' },
-  { 'vmchale/dhall-vim'},
+  { 'vmchale/dhall-vim' },
   { 'kergoth/vim-bitbake' },
-  { 'hail2u/vim-css3-syntax' }
+  { 'hail2u/vim-css3-syntax' },
 }

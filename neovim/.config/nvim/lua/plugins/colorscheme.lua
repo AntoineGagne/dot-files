@@ -1,9 +1,9 @@
 return {
   {
-    "ellisonleao/gruvbox.nvim",
+    'ellisonleao/gruvbox.nvim',
     priority = 1000,
     config = function()
-      vim.cmd("colorscheme gruvbox")
+      vim.cmd('colorscheme gruvbox')
     end,
     lazy = false,
     opts = {
@@ -27,11 +27,11 @@ return {
       -- invert background for search, diffs, statuslines and errors
       inverse = true,
       -- can be "hard", "soft" or empty string
-      contrast = "",
+      contrast = '',
       palette_overrides = {},
       overrides = {},
       dim_inactive = false,
       transparent_mode = false,
-    }
-  }
+    },
+  },
 }

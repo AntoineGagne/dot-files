@@ -6,25 +6,22 @@ return {
       lint.linters_by_ft = {
         dockerfile = { 'hadolint' },
         yaml = { 'yamllint' },
-        zsh = { 'zsh' }
+        zsh = { 'zsh' },
       }
 
       local group = vim.api.nvim_create_augroup('linting', { clear = true })
-      vim.api.nvim_create_autocmd(
-        { 'BufEnter', 'BufWritePost', 'InsertLeave', 'TextChangedI' },
-        {
-          callback = function()
-            lint.try_lint()
-          end,
-          group = group
-        }
-      )
-    end
+      vim.api.nvim_create_autocmd({ 'BufEnter', 'BufWritePost', 'InsertLeave', 'TextChangedI' }, {
+        callback = function()
+          lint.try_lint()
+        end,
+        group = group,
+      })
+    end,
   },
   {
     'stevearc/conform.nvim',
-    event = { "BufWritePre" },
-    cmd = { "ConformInfo" },
+    event = { 'BufWritePre' },
+    cmd = { 'ConformInfo' },
     ---@module "conform"
     ---@type conform.setupOpts
     opts = {
@@ -38,14 +35,14 @@ return {
         sh = { 'shellcheck' },
       },
       default_format_opts = {
-        lsp_format = "fallback",
+        lsp_format = 'fallback',
       },
       format_on_save = {
         timeout_ms = 500,
-      }
+      },
     },
     init = function()
       vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
-    end
-  }
+    end,
+  },
 }

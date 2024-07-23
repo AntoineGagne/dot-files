@@ -3,68 +3,68 @@ return {
   -- use in Neovim to power faster and more accurate
   -- syntax highlighting.
   {
-    "nvim-treesitter/nvim-treesitter",
-    build = ":TSUpdate",
+    'nvim-treesitter/nvim-treesitter',
+    build = ':TSUpdate',
     event = {
-      "VeryLazy"
+      'VeryLazy',
     },
     config = function()
-      local configs = require("nvim-treesitter.configs")
+      local configs = require('nvim-treesitter.configs')
 
       configs.setup({
-          ensure_installed = {
-            "bash",
-            "c",
-            "cpp",
-            "css",
-            "diff",
-            "elixir",
-            "erlang",
-            "go",
-            "gomod",
-            "gosum",
-            "gowork",
-            "graphql",
-            "haskell",
-            "html",
-            "json",
-            "lua",
-            "muttrc",
-            "ocaml",
-            "php",
-            "python",
-            "ruby",
-            "rust",
-            "tmux",
-            "toml",
-            "vim",
-            "vimdoc",
-            "xml",
-            "zathurarc"
-          },
-          sync_install = false,
-          highlight = {
-            enable = true
-          },
-          indent = {
-            enable = true
-          },
-          disable = function(_, buf)
-            -- 100 KB
-            local max_filesize = 100 * 1024
-            local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buf))
-            if ok and stats and stats.size > max_filesize then
-              return true
-            end
-          end,
-        })
+        ensure_installed = {
+          'bash',
+          'c',
+          'cpp',
+          'css',
+          'diff',
+          'elixir',
+          'erlang',
+          'go',
+          'gomod',
+          'gosum',
+          'gowork',
+          'graphql',
+          'haskell',
+          'html',
+          'json',
+          'lua',
+          'muttrc',
+          'ocaml',
+          'php',
+          'python',
+          'ruby',
+          'rust',
+          'tmux',
+          'toml',
+          'vim',
+          'vimdoc',
+          'xml',
+          'zathurarc',
+        },
+        sync_install = false,
+        highlight = {
+          enable = true,
+        },
+        indent = {
+          enable = true,
+        },
+        disable = function(_, buf)
+          -- 100 KB
+          local max_filesize = 100 * 1024
+          local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buf))
+          if ok and stats and stats.size > max_filesize then
+            return true
+          end
+        end,
+      })
     end,
   },
   {
-    "nvim-treesitter/nvim-treesitter-textobjects",
-    dependencies = { "nvim-treesitter" },
+    'nvim-treesitter/nvim-treesitter-textobjects',
+    dependencies = { 'nvim-treesitter' },
     config = function()
-      require("nvim-treesitter.configs").setup({
+      require('nvim-treesitter.configs').setup({
         textobjects = {
           select = {
             enable = true,
@@ -74,14 +74,14 @@ return {
 
             keymaps = {
               -- You can use the capture groups defined in textobjects.scm
-              ["af"] = "@function.outer",
-              ["if"] = "@function.inner",
-              ["ac"] = "@class.outer",
+              ['af'] = '@function.outer',
+              ['if'] = '@function.inner',
+              ['ac'] = '@class.outer',
               -- You can optionally set descriptions to the mappings (used in the desc parameter of
               -- nvim_buf_set_keymap) which plugins like which-key display
-              ["ic"] = { query = "@class.inner", desc = "Select inner part of a class region" },
+              ['ic'] = { query = '@class.inner', desc = 'Select inner part of a class region' },
               -- You can also use captures from other query groups like `locals.scm`
-              ["as"] = { query = "@scope", query_group = "locals", desc = "Select language scope" },
+              ['as'] = { query = '@scope', query_group = 'locals', desc = 'Select language scope' },
             },
             -- You can choose the select mode (default is charwise 'v')
             --
@@ -106,8 +106,8 @@ return {
             -- and should return true or false
             include_surrounding_whitespace = true,
           },
-        }
-    })
-  end
-  }
+        },
+      })
+    end,
+  },
 }
