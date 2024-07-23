@@ -71,6 +71,13 @@ return {
         },
       })
 
+      cmp.setup.cmdline({ ':' }, {
+        autocomplete = false,
+        sources = {
+          { name = 'cmdline' },
+        },
+      })
+
       local local_config = require('lsp.config')
       local capabilities = require('cmp_nvim_lsp').default_capabilities()
       local lspconfig = require('lspconfig')
