@@ -40,9 +40,7 @@ return {
         lualine_y = {},
         lualine_z = {}
       },
-      tabline = {
-        lualine_a = {'buffers'},
-      },
+      tabline = {},
       inactive_winbar = {},
       extensions = {}
     }

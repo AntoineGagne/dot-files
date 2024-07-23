@@ -1,3 +1,2 @@
 return {
-  { 'vimwiki/vimwiki' }
 }

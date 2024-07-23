@@ -1,3 +1,6 @@
-require("config.lazy")
+vim.g.mapleader = "<Space>"
 
-vim.cmd("colorscheme gruvbox")
+require("config.lazy")
+require("general")
+require("autocommands")
+require("mappings")
