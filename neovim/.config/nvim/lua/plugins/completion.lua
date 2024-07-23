@@ -58,6 +58,7 @@ return {
           { name = 'nvim_lsp' },
           { name = 'snippy' },
           { name = 'buffer' },
+          { name = 'path' },
         })
       })
 
@@ -65,7 +66,8 @@ return {
       cmp.setup.cmdline({ '/', '?' }, {
         mapping = cmp.mapping.preset.cmdline(),
         sources = {
-          { name = 'buffer' }
+          { name = 'buffer' },
+          { name = 'path' }
         }
       })
 

@@ -93,17 +93,17 @@ return {
       ['K'] = '<Cmd>lua vim.lsp.buf.hover()<CR>',
       ['gi'] = '<cmd>lua vim.lsp.buf.implementation()<CR>',
       ['<C-k>'] = '<cmd>lua vim.lsp.buf.signature_help()<CR>',
-      ['<space>wa'] = '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>',
-      ['<space>wr'] = '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>',
-      ['<space>wl'] = '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>',
-      ['<space>D'] = '<cmd>lua vim.lsp.buf.type_definition()<CR>',
-      ['<space>rn'] = '<cmd>lua vim.lsp.buf.rename()<CR>',
-      ['<space>ca'] = '<cmd>lua vim.lsp.buf.code_action()<CR>',
+      ['<leader>wa'] = '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>',
+      ['<leader>wr'] = '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>',
+      ['<leader>wl'] = '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>',
+      ['<leader>D'] = '<cmd>lua vim.lsp.buf.type_definition()<CR>',
+      ['<leader>rn'] = '<cmd>lua vim.lsp.buf.rename()<CR>',
+      ['<leader>ca'] = '<cmd>lua vim.lsp.buf.code_action()<CR>',
       ['gr'] = '<cmd>lua vim.lsp.buf.references()<CR>',
-      ['<space>e'] = '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>',
+      ['<leader>e'] = '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>',
       ['[d'] = '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>',
       [']d'] = '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>',
-      ['<space>q'] = '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>'
+      ['<leader>q'] = '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>'
     }
     for keys, mapping in pairs(keymappings) do
       buf_set_keymap('n', keys, mapping, opts)
@@ -112,10 +112,10 @@ return {
     if client.resolved_capabilities then
       -- Set some keybinds conditional on server capabilities
       if client.resolved_capabilities.document_formatting then
-        buf_set_keymap("n", "<space>f", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
+        buf_set_keymap("n", "<leader>f", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
       end
       if client.resolved_capabilities.document_range_formatting then
-        buf_set_keymap("v", "<space>f", "<cmd>lua vim.lsp.buf.range_formatting()<CR>", opts)
+        buf_set_keymap("v", "<leader>f", "<cmd>lua vim.lsp.buf.range_formatting()<CR>", opts)
       end
 
       -- Set autocommands conditional on server_capabilities
