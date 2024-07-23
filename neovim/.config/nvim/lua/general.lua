@@ -1,13 +1,15 @@
 vim.o.encoding = 'utf-8'
 vim.o.autoread = true
-vim.o.fileformat = 'unix'
+vim.schedule(function()
+  vim.o.fileformat = 'unix'
+end)
 vim.o.fileformats = 'unix,dos,mac'
 vim.o.formatoptions = 'tcroqnj'
 
 vim.opt.tags:append({
   vim.fn.expand('~/.local/state/nvim/tags'),
   './.git/tags',
-  './tags'
+  './tags',
 })
 
 -- Put the backup files in the temporary folder
@@ -69,7 +71,7 @@ vim.o.inccommand = 'nosplit'
 -- Enables spell check
 vim.o.spell = true
 -- Enables the english and the french spell checker
-vim.opt.spelllang = {'en', 'fr'}
+vim.opt.spelllang = { 'en', 'fr' }
 
 -- Show spaces visually
 vim.o.list = true
@@ -77,10 +79,10 @@ vim.o.list = true
 vim.opt.listchars = {
   space = '•',
   tab = '→ ',
-  nbsp = '␣'
+  nbsp = '␣',
 }
 -- Allow backspacing over autoindent, line breaks and start of insert action
-vim.opt.backspace = {'indent', 'eol', 'start'}
+vim.opt.backspace = { 'indent', 'eol', 'start' }
 vim.o.autoindent = true
 -- Number of visual spaces per TAB
 vim.o.tabstop = 4
@@ -116,9 +118,9 @@ vim.o.number = true
 -- Separators
 vim.opt.fillchars = {
   vert = '│',
-  fold = '─'
+  fold = '─',
 }
--- Display the cursor position on the last line of the screen or in the status 
+-- Display the cursor position on the last line of the screen or in the status
 -- line of a window
 vim.o.ruler = true
 -- Always display the status line, even if only one window is displayed
@@ -129,7 +131,8 @@ vim.o.showmatch = true
 -- Highlight current line
 vim.o.cursorline = true
 -- Use a bar-shaped cursor for insert mode, even through tmux.
-vim.o.guicursor = 'n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor,sm:block-blinkwait175-blinkoff150-blinkon175'
+vim.o.guicursor =
+  'n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor,sm:block-blinkwait175-blinkoff150-blinkon175'
 -- Set the number of screen lines above and below the cursor
 vim.o.scrolloff = 4
 
