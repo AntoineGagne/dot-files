@@ -6,8 +6,8 @@ return {
       local builtins = require 'telescope.builtin'
       vim.keymap.set({ 'n', 'v' }, '<leader>bls', function()
         builtins.buffers {
-          show_all_buffers = false,
-          ignore_current_buffer = true,
+          show_all_buffers = true,
+          select_current = false,
           sort_mru = true,
         }
       end, { remap = false })
