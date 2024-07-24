@@ -22,6 +22,7 @@ return {
   { 'dcampos/cmp-snippy' },
   {
     'hrsh7th/nvim-cmp',
+    event = 'InsertEnter',
     dependencies = {
       'cmp-buffer',
       'cmp-cmdline',
@@ -73,6 +74,7 @@ return {
 
       cmp.setup.cmdline({ ':' }, {
         autocomplete = false,
+        mapping = cmp.mapping.preset.cmdline(),
         sources = {
           { name = 'cmdline' },
         },
