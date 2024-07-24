@@ -1,8 +1,6 @@
 vim.o.encoding = 'utf-8'
 vim.o.autoread = true
-vim.schedule(function()
-  vim.o.fileformat = 'unix'
-end)
+vim.o.fileformat = 'unix'
 vim.o.fileformats = 'unix,dos,mac'
 vim.o.formatoptions = 'tcroqnj'
 
@@ -137,11 +135,11 @@ vim.o.guicursor =
 vim.o.scrolloff = 4
 
 -- Set the command window height
-vim.o.cmdheight = 1
+-- vim.o.cmdheight = 1
 -- Show command in bottom bar
-vim.o.showcmd = true
+-- vim.o.showcmd = true
 -- Visual autocomplete for command menu
-vim.o.wildmenu = true
+-- vim.o.wildmenu = true
 
 vim.g.netrw_banner = 1
 -- Where the bookmarks will be kept
