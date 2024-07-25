@@ -1,6 +1,12 @@
 -- Move vertically by visual line
-vim.keymap.set({ 'n', 'v' }, 'j', 'gj', { remap = false })
-vim.keymap.set({ 'n', 'v' }, 'k', 'gk', { remap = false })
+vim.keymap.set({ 'n', 'v' }, 'j', 'gj', {
+  remap = false,
+  desc = 'Move down by visual line',
+})
+vim.keymap.set({ 'n', 'v' }, 'k', 'gk', {
+  remap = false,
+  desc = 'Move up by visual line',
+})
 
 -- Move to beginning/end of line
 -- Switches `^` and `0`
