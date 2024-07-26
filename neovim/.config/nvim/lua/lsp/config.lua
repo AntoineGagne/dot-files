@@ -101,10 +101,10 @@ return {
       ['<leader>rn'] = '<cmd>lua vim.lsp.buf.rename()<CR>',
       ['<leader>ca'] = '<cmd>lua vim.lsp.buf.code_action()<CR>',
       ['gr'] = '<cmd>lua vim.lsp.buf.references()<CR>',
-      ['<leader>e'] = '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>',
-      ['[d'] = '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>',
-      [']d'] = '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>',
-      ['<leader>q'] = '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>',
+      ['<leader>dK'] = '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>',
+      ['<leader>dk'] = '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>',
+      ['<leader>dj'] = '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>',
+      ['<leader>dsl'] = '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>',
     }
     for keys, mapping in pairs(keymappings) do
       buf_set_keymap('n', keys, mapping, opts)
