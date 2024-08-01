@@ -88,10 +88,10 @@ return {
 
     -- Mappings.
     local opts = { noremap = true, silent = true }
+    -- See also `lsp-defaults.txt`
     local keymappings = {
       ['gD'] = '<Cmd>lua vim.lsp.buf.declaration()<CR>',
       ['gd'] = '<Cmd>lua vim.lsp.buf.definition()<CR>',
-      ['K'] = '<Cmd>lua vim.lsp.buf.hover()<CR>',
       ['gi'] = '<cmd>lua vim.lsp.buf.implementation()<CR>',
       ['<C-k>'] = '<cmd>lua vim.lsp.buf.signature_help()<CR>',
       ['<leader>wa'] = '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>',
