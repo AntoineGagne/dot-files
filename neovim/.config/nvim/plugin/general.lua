@@ -151,3 +151,14 @@ vim.g.netrw_sizestyle = 'H'
 -- Sort options
 -- 'i' will ignore letter case
 vim.g.netrw_sort_options = 'i'
+
+-- see `exrc`
+vim.g.exrc = false
+
+-- For transparency
+vim.cmd([[
+highlight Normal guibg=none
+highlight NonText guibg=none
+highlight Normal ctermbg=none
+highlight NonText ctermbg=none
+]])
