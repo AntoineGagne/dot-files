@@ -76,38 +76,35 @@ return {
   },
 
   on_attach = function(client, bufnr)
-    local function buf_set_keymap(...)
-      vim.api.nvim_buf_set_keymap(bufnr, ...)
-    end
-
-    local function buf_set_option(...)
-      vim.api.nvim_buf_set_option(bufnr, ...)
-    end
-
-    buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
-
     -- Mappings.
-    local opts = { noremap = true, silent = true }
+    local opts = { remap = false, silent = true, buffer = bufnr }
     -- See also `lsp-defaults.txt`
     local keymappings = {
-      ['gD'] = '<Cmd>lua vim.lsp.buf.declaration()<CR>',
-      ['gd'] = '<Cmd>lua vim.lsp.buf.definition()<CR>',
-      ['gi'] = '<cmd>lua vim.lsp.buf.implementation()<CR>',
-      ['<C-k>'] = '<cmd>lua vim.lsp.buf.signature_help()<CR>',
-      ['<leader>wa'] = '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>',
-      ['<leader>wr'] = '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>',
-      ['<leader>wl'] = '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>',
-      ['<leader>D'] = '<cmd>lua vim.lsp.buf.type_definition()<CR>',
-      ['<leader>rn'] = '<cmd>lua vim.lsp.buf.rename()<CR>',
-      ['<leader>ca'] = '<cmd>lua vim.lsp.buf.code_action()<CR>',
-      ['gr'] = '<cmd>lua vim.lsp.buf.references()<CR>',
-      ['<leader>dK'] = '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>',
-      ['<leader>dk'] = '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>',
-      ['<leader>dj'] = '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>',
-      ['<leader>dsl'] = '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>',
+      ['gD'] = { '<Cmd>lua vim.lsp.buf.declaration()<CR>', 'Show symbol declaration' },
+      ['gd'] = { '<Cmd>lua vim.lsp.buf.definition()<CR>', 'Show symbol definition' },
+      ['gi'] = { '<cmd>lua vim.lsp.buf.implementation()<CR>', 'Show symbol implementation' },
+      ['<C-k>'] = { '<cmd>lua vim.lsp.buf.signature_help()<CR>', 'Show signature help' },
+      ['<leader>wa'] = { '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', 'Add to workspace folder' },
+      ['<leader>wr'] = { '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', 'Remove from workspace folder' },
+      ['<leader>wl'] = {
+        '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>',
+        'Show the workspace folders',
+      },
+      ['<leader>D'] = { '<cmd>lua vim.lsp.buf.type_definition()<CR>', 'Show the symbol type definition' },
+      ['<leader>rn'] = { '<cmd>lua vim.lsp.buf.rename()<CR>', 'Rename the symbol under the cursor' },
+      ['<leader>ca'] = { '<cmd>lua vim.lsp.buf.code_action()<CR>', 'Show the code action menu' },
+      ['gr'] = { '<cmd>lua vim.lsp.buf.references()<CR>', 'Show the symbol references' },
+      ['<leader>dK'] = {
+        '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>',
+        'Show the diagnostic under the cursor',
+      },
+      ['<leader>dk'] = { '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', 'Go to the previous diagnostic' },
+      ['<leader>dj'] = { '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', 'Go to the next diagnostic' },
+      ['<leader>dsl'] = { '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', 'Set the location list' },
     }
     for keys, mapping in pairs(keymappings) do
-      buf_set_keymap('n', keys, mapping, opts)
+      function_, description = unpack(mapping)
+      vim.keymap.set('n', keys, function_, vim.tbl_deep_extend('force', opts, { desc = description }))
     end
 
     if client.resolved_capabilities then
