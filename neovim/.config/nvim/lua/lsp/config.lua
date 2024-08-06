@@ -2,6 +2,7 @@ return {
   to_enable = {
     bashls = { nil, nil, nil },
     clangd = { nil, nil, nil },
+    cmake = { nil, nil, nil },
     cssls = { nil, nil, nil },
     elmls = { nil, nil, nil },
     erlangls = { nil, nil, nil },
