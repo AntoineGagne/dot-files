@@ -84,6 +84,7 @@ return {
       ['gD'] = { '<Cmd>lua vim.lsp.buf.declaration()<CR>', 'Show symbol declaration' },
       ['gd'] = { '<Cmd>lua vim.lsp.buf.definition()<CR>', 'Show symbol definition' },
       ['gi'] = { '<cmd>lua vim.lsp.buf.implementation()<CR>', 'Show symbol implementation' },
+      ['K'] = { '<Cmd>lua vim.lsp.buf.hover()<CR>', 'Show symbol details' },
       ['<C-k>'] = { '<cmd>lua vim.lsp.buf.signature_help()<CR>', 'Show signature help' },
       ['<leader>wa'] = { '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', 'Add to workspace folder' },
       ['<leader>wr'] = { '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', 'Remove from workspace folder' },
