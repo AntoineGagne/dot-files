@@ -1,4 +1,4 @@
-vim.bo.spell = true
+vim.wo.spell = true
 vim.bo.spelllang = 'fr'
 
 -- Enable syntax folding
