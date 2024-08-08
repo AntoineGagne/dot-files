@@ -2,7 +2,7 @@ live_config_reload = true
 # shell = "bin/zsh"
 
 [window]
-opacity = 0.95
+opacity = 0.90
 blur = true
 # decorations = "None"
 
@@ -53,7 +53,7 @@ TERM = "xterm-256color"
 size = 11
 
 [font.bold]
-family = "Fira Code"
+family = "FiraCode Nerd Font"
 style = "Bold"
 
 [font.glyph_offset]
@@ -61,11 +61,11 @@ x = 0
 y = 0
 
 [font.italic]
-family = "Fira Code"
+family = "FiraCode Nerd Font"
 style = "Light"
 
 [font.normal]
-family = "Fira Code"
+family = "FiraCode Nerd Font"
 style = "Medium"
 
 [font.offset]
