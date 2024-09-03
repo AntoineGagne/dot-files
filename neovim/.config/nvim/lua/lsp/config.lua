@@ -109,6 +109,8 @@ return {
       vim.keymap.set('n', keys, function_, vim.tbl_deep_extend('force', opts, { desc = description }))
     end
 
+    vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
+
     if client.resolved_capabilities then
       -- Set some keybinds conditional on server capabilities
       if client.resolved_capabilities.document_formatting then
