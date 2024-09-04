@@ -4,8 +4,13 @@ vim.o.fileformat = 'unix'
 vim.o.fileformats = 'unix,dos,mac'
 vim.o.formatoptions = 'tcroqnj'
 
+local state_directory = vim.fn.stdpath('state')
+if type(state_directory) == 'table' then
+  state_directory = state_directory[0]
+end
+
 vim.opt.tags:append({
-  vim.fn.expand('~/.local/state/nvim/tags'),
+  vim.fn.expand(vim.fs.joinpath(state_directory, 'nvim', 'tags')),
   './.git/tags',
   './tags',
 })
@@ -13,18 +18,18 @@ vim.opt.tags:append({
 -- Put the backup files in the temporary folder
 vim.o.backup = true
 -- The directory where to put the backups
-vim.o.backupdir = vim.fn.expand('~/.local/state/nvim/tmp')
+vim.o.backupdir = vim.fn.expand(vim.fs.joinpath(state_directory, 'nvim', 'tmp'))
 -- Skip creating backups for the files matching the following patterns
 vim.opt.backupskip = { '/tmp/*', '/private/tmp/*' }
 
 -- The directory where to save the swap files
-vim.o.directory = vim.fn.expand('~/.local/state/nvim/swap')
+vim.o.directory = vim.fn.expand(vim.fs.joinpath(state_directory, 'nvim', 'swap'))
 vim.o.writebackup = true
 
 -- Keep undo even after closing the file
 vim.o.undofile = true
 -- Set the undo directory
-vim.o.undodir = vim.fn.expand('~/.local/state/nvim/.undo')
+vim.o.undodir = vim.fn.expand(vim.fs.joinpath(state_directory, 'nvim', '.undo'))
 -- Set the maximum number of undo that can be undone
 vim.o.undolevels = 1000
 -- Set the maximum number of lines to save for undo on a buffer reload
@@ -143,7 +148,7 @@ vim.o.scrolloff = 4
 
 vim.g.netrw_banner = 1
 -- Where the bookmarks will be kept
-vim.g.netrw_home = vim.fn.expand('~/.local/state/nvim/.bookmarks/')
+vim.g.netrw_home = vim.fn.expand(vim.fs.joinpath(state_directory, 'nvim', '.bookmarks'))
 -- Tree style listing
 vim.g.netrw_liststyle = 3
 -- Human readable file size
