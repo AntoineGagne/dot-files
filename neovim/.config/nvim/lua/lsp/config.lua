@@ -54,6 +54,9 @@ return {
       nil,
       {
         ['rust-analyzer'] = {
+          checkOnSave = {
+            command = 'clippy',
+          },
           imports = {
             granularity = {
               group = 'module',
