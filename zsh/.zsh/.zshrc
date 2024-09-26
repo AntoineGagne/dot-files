@@ -148,6 +148,26 @@ export REPORTTIME=1
 # likely to handle this case correctly. Some experimentation is necessary.
 export ZLE_RPROMPT_INDENT=0
 
+lazy_load_nvm() {
+    unset -f node nvm npm
+    export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
+    if [[ -s "$NVM_DIR/nvm.sh" ]]; then
+        source "$NVM_DIR/nvm.sh"
+    fi
+}
+
+node() {
+    lazy_load_nvm
+    node $@
+}
+
+npm() {
+    lazy_load_nvm
+    npm $@
+}
+
+
+
 fpath=("${HOME}/.zsh/functions/" "${HOME}/.zsh/completions/" $fpath)
 autoload -U colors && colors
 autoload -U ~/.zsh/functions/*(:t)
@@ -393,15 +413,6 @@ fi
 if [[ -d "${HOME}/.cargo/bin" ]]; then
     PATH="${PATH}:${HOME}/.cargo/bin"
 fi
-
-
-lazy_load_nvm() {
-    unset -f node nvm npm
-    export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
-    if [ -s "$NVM_DIR/nvm.sh" ]; then
-        \. "$NVM_DIR/nvm.sh" # This loads nvm
-    fi
-}
 
 if [[ -d "${HOME}/.npm-packages" ]]; then
     export NPM_PACKAGES="$HOME/.npm-packages"
