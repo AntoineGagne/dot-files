@@ -86,10 +86,6 @@ if type -f "fzf" >/dev/null 2>&1 && type -f "rg" >/dev/null 2>&1; then
     export FZF_DEFAULT_COMMAND='rg --files --hidden --follow'
 fi
 
-if [ -s "${HOME}/.nvm/nvm.sh" ]; then
-    source "${HOME}/.nvm/nvm.sh"
-fi
-
 export PATH=$PATH:"${HOME}/.cargo/bin"
 export TERM=tmux-256color
 # Colored GCC warnings and errors
