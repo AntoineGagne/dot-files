@@ -13,4 +13,5 @@ return {
   { 'vmchale/dhall-vim' },
   { 'kergoth/vim-bitbake' },
   { 'hail2u/vim-css3-syntax' },
+  { 'zchee/vim-flatbuffers' },
 }
