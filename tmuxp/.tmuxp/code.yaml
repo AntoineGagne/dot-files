@@ -4,21 +4,25 @@ global_options:
     default-shell: /usr/bin/zsh
     default-command: /usr/bin/zsh
 windows:
+- layout: c95d,211x57,0,0,0
+  options:
+    automatic-rename: 'off'
+  panes:
+  - focus: 'true'
   window_name: edit
-- layout: c95f,211x57,0,0,2
+- layout: c95d,211x57,0,0,0
   options:
     automatic-rename: 'off'
   panes:
   - focus: 'true'
   window_name: build
-- focus: 'true'
-  layout: c960,211x57,0,0,3
+- layout: c95d,211x57,0,0,0
   options:
     automatic-rename: 'off'
   panes:
-  - pane
+  - focus: 'true'
   window_name: others
-- layout: c95e,211x57,0,0,1
+- layout: c95d,211x57,0,0,0
   options:
     automatic-rename: 'off'
   panes:
