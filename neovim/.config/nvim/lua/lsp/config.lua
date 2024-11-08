@@ -11,6 +11,15 @@ return {
       nil,
       nil,
     },
+    harper_ls = {
+      nil,
+      {
+        ['harper-ls'] = {
+          userDictPath = '~/.local/state/harper-ls',
+        },
+      },
+      nil,
+    },
     hie = { nil, nil, nil },
     hls = { nil, nil, nil },
     lua_ls = {
