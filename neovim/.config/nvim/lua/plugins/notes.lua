@@ -12,6 +12,12 @@ return {
       'nvim-tree/nvim-web-devicons',
     },
   },
+  {
+    'nvim-neorg/neorg',
+    lazy = false,
+    version = '*',
+    config = true,
+  },
   -- {
   --   'MeanderingProgrammer/markdown.nvim',
   --   main = 'render-markdown',
