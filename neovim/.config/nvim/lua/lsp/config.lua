@@ -85,7 +85,6 @@ return {
       nil,
     },
     texlab = { nil, nil, nil },
-    tsserver = { nil, nil, nil },
   },
 
   on_attach = function(client, bufnr)
