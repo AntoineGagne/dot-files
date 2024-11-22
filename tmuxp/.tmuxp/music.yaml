@@ -9,5 +9,5 @@ windows:
     automatic-rename: 'off'
   panes:
   - focus: 'true'
-    shell_command: spt
+    shell_command: spotify_player
   window_name: spotify
