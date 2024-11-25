@@ -92,6 +92,16 @@ return {
             ['textDocument/references'] = vim.lsp.with(vim.lsp.handlers['textDocument/references'], {
               loclist = true,
             }),
+            ['textDocument/hover'] = vim.lsp.with(vim.lsp.handlers['textDocument/hover'], {
+              border = 'rounded',
+              -- Suppress 'No information available' notification
+              silent = true,
+            }),
+            ['textDocument/signatureHelp'] = vim.lsp.with(vim.lsp.handlers['textDocument/signatureHelp'], {
+              border = 'rounded',
+              -- Suppress 'No information available' notification
+              silent = true,
+            }),
           },
           flags = {
             debounce_text_changes = 150,
