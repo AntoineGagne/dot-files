@@ -95,12 +95,12 @@ return {
             ['textDocument/hover'] = vim.lsp.with(vim.lsp.handlers['textDocument/hover'], {
               border = 'rounded',
               -- Suppress 'No information available' notification
-              silent = true,
+              silent = false,
             }),
             ['textDocument/signatureHelp'] = vim.lsp.with(vim.lsp.handlers['textDocument/signatureHelp'], {
               border = 'rounded',
               -- Suppress 'No information available' notification
-              silent = true,
+              silent = false,
             }),
           },
           flags = {
