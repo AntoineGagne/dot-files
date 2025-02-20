@@ -1,8 +1,7 @@
-live_config_reload = true
 # shell = "bin/zsh"
 
 [window]
-opacity = 0.90
+opacity = 0.70
 blur = true
 # decorations = "None"
 
@@ -566,3 +565,6 @@ mouse = "Middle"
 
 [selection]
 semantic_escape_chars = ",│`|:\"' ()[]{}<>"
+
+[general]
+live_config_reload = true
