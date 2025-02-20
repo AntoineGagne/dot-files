@@ -1,5 +1,12 @@
-snippet test
+snippet testcase
   #[test]
   fn ${1}() {
       ${0}
+  }
+
+snippet display_impl
+  impl Display for ${1} {
+      fn fmt(&self, formatter: &mut Formatter<'_>) -> std::fmt::Result {
+          write!(formatter, "{}", self.0)
+      }
   }
