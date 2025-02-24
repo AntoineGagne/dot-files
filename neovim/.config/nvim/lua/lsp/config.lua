@@ -59,6 +59,7 @@ return {
       end,
     },
     purescriptls = { nil, nil, nil },
+    pylsp = { nil, nil, nil },
     rust_analyzer = {
       nil,
       {
