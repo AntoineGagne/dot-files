@@ -109,7 +109,12 @@ return {
       ['<leader>D'] = { '<cmd>lua vim.lsp.buf.type_definition()<CR>', 'Show the symbol type definition' },
       ['<leader>rn'] = { '<cmd>lua vim.lsp.buf.rename()<CR>', 'Rename the symbol under the cursor' },
       ['<leader>ca'] = { '<cmd>lua vim.lsp.buf.code_action()<CR>', 'Show the code action menu' },
-      ['gr'] = { '<cmd>lua vim.lsp.buf.references()<CR>', 'Show the symbol references' },
+      ['gr'] = {
+        function()
+          require('telescope.builtin').lsp_references()
+        end,
+        'Show the symbol references',
+      },
       ['<leader>dK'] = {
         '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>',
         'Show the diagnostic under the cursor',
