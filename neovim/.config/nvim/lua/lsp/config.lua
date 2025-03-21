@@ -60,6 +60,7 @@ return {
     },
     purescriptls = { nil, nil, nil },
     pyright = { nil, nil, nil },
+    ruff = { nil, nil, nil },
     rust_analyzer = {
       nil,
       {
