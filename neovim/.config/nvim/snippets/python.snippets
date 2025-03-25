@@ -79,3 +79,31 @@ snippet abstractmethod
 	@abstractmethod
 	def ${1}(${2}):
 	    raise NotImplementedError
+
+snippet try
+  try:
+      ${1}
+  except ${2}:
+      ${3}
+
+snippet try_finally
+  try:
+      ${1}
+  except ${2}:
+      ${3}
+  finally:
+      ${4}
+
+snippet ifelse
+  if ${1}:
+      ${2}
+  else:
+      ${3}
+
+snippet ifelifelse
+  if ${1}:
+      ${2}
+  elif ${3}:
+      ${4}
+  else:
+      ${5}
