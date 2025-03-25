@@ -1,0 +1,81 @@
+snippet dataclass
+	@dataclass
+	class ${1}:
+	    ${2}: ${3}
+
+snippet class
+	class ${1}:
+	    def __init__(self, ${2}):
+			    ${3}
+
+snippet fastapi_router
+	from fastapi import APIRouter
+	from http import HTTPStatus
+	from starlette.responses import JSONResponse
+
+	router = APIRouter()
+
+	@router.get("${1}")
+	def ${2}:
+	    ${3}
+
+snippet main_subcommands
+	from argparse import ArgumentParser, ArgumentDefaultsHelpFormatter
+	
+	
+	def main():
+	    arguments = _parse_arguments()
+	    arguments.execute(arguments)
+	
+	
+	def _parse_arguments():
+	    parser = ArgumentParser(
+	        formatter_class=ArgumentDefaultsHelpFormatter, prog="", description=""
+	    )
+	    subparser = parser.add_subparsers(
+	        title="Commands",
+	        description="These are various commands available for the application:",
+	    )
+	    _create_subparser(subparser)
+	
+	    return parser.parse_args()
+	
+	
+	def _create_subparser(subparser):
+	    parser = subparser.add_parser(
+	        "start", formatter_class=ArgumentDefaultsHelpFormatter
+	    )
+	    parser.set_defaults(execute=_start)
+	
+	
+	def _start(arguments):
+	    pass
+	
+	
+	if __name__ == "__main__":
+	    main()
+
+snippet main
+	from argparse import ArgumentParser, ArgumentDefaultsHelpFormatter
+
+
+	def main():
+		arguments = _parse_arguments()
+
+
+	def _parse_arguments():
+	    parser = ArgumentParser(
+        formatter_class=ArgumentDefaultsHelpFormatter,
+        prog='',
+        description=''
+      )
+			return parser.parse_args()
+
+	
+	if __name__ == '__main__':
+	    main()
+
+snippet abstractmethod
+	@abstractmethod
+	def ${1}(${2}):
+	    raise NotImplementedError
