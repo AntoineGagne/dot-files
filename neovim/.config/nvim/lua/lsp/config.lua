@@ -60,6 +60,7 @@ return {
     },
     purescriptls = { nil, nil, nil },
     pyright = { nil, nil, nil },
+    pylsp = { nil, nil, nil },
     ruff = { nil, nil, nil },
     rust_analyzer = {
       nil,
@@ -124,13 +125,22 @@ return {
       ['<leader>dsl'] = { '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', 'Set the location list' },
     }
     for keys, mapping in pairs(keymappings) do
-      function_, description = unpack(mapping)
+      local function_, description = unpack(mapping)
       vim.keymap.set('n', keys, function_, vim.tbl_deep_extend('force', opts, { desc = description }))
     end
 
     vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
 
     if client.resolved_capabilities then
+      if client.name == 'pyright' then
+        client.resolved_capabilities.hover = false
+      end
+
+      if client.name == 'pylsp' then
+        client.resolved_capabilities.rename = false
+        client.resolved_capabilities.signature_help = false
+      end
+
       -- Set some keybinds conditional on server capabilities
       if client.resolved_capabilities.document_formatting then
         buf_set_keymap('n', '<leader>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
