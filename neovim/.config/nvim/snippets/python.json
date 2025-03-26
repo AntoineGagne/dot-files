@@ -138,5 +138,19 @@
             "else:",
             "    ${5}"
         ]
+    },
+    "Method": {
+        "prefix": "defm",
+        "body": [
+          "def $1(self$2):",
+          "    $3"
+        ]
+    },
+    "Free Function": {
+        "prefix": "def",
+        "body": [
+          "def $1($2):",
+          "    $3"
+        ]
     }
 }
