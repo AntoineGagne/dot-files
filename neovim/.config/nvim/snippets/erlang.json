@@ -2,7 +2,7 @@
     "Common Test": {
         "prefix": "ctest",
         "body": [
-            "-module(${1:${TM_FILENAME_BASE}}).",
+            "-module($TM_FILENAME_BASE).",
             "",
             "-include_lib(\"common_test/include/ct.hrl\").",
             "-include_lib(\"eunit/include/eunit.hrl\").",
@@ -34,7 +34,7 @@
     "gen_server": {
         "prefix": "gen_server",
         "body": [
-            "-module(${1:${TM_FILENAME_BASE}}).",
+            "-module(${TM_FILENAME_BASE}).",
             "",
             "-behaviour(gen_server).",
             "",
@@ -84,7 +84,7 @@
     "gen_statem": {
         "prefix": "gen_statem",
         "body": [
-            "-module(${1:${TM_FILENAME_BASE}}).",
+            "-module(${TM_FILENAME_BASE}).",
             "",
             "-behaviour(gen_statem).",
             "",
@@ -143,7 +143,7 @@
     "proper": {
         "prefix": "proper",
         "body": [
-            "-module(${1:${TM_FILENAME_BASE}}).",
+            "-module(${TM_FILENAME_BASE}).",
             "",
             "-include_lib(\"proper/include/proper.hrl\").",
             "-include_lib(\"eunit/include/eunit.hrl\").",
@@ -165,7 +165,7 @@
     "Functional Module": {
         "prefix": "functional_module",
         "body": [
-            "-module(${1:${TM_FILENAME_BASE}}).",
+            "-module(${TM_FILENAME_BASE}).",
             "",
             "%% API",
             "-export([]).",
@@ -201,7 +201,7 @@
     "Supervisor": {
         "prefix": "supervisor",
         "body": [
-            "-module(${1:${TM_FILENAME_BASE/_sup$//}}_sup).",
+            "-module(${TM_FILENAME_BASE}).",
             "",
             "-behaviour(supervisor).",
             "",
@@ -237,7 +237,7 @@
     "Application": {
         "prefix": "application",
         "body": [
-            "-module(${1:${TM_FILENAME_BASE/_app$//}_app}).",
+            "-module(${TM_FILENAME_BASE}).",
             "",
             "-behaviour(application).",
             "",
@@ -258,7 +258,7 @@
             "-spec start(StartType :: start_type(), StartArgs :: term()) ->",
             "    {ok, Pid :: pid()} | {ok, Pid :: pid(), State :: term()} | {error, Reason :: term()}.",
             "start(_StartType, _StartArgs) ->",
-            "    ${1:${TM_FILENAME_BASE/_app$//}}_sup:start_link().",
+            "    ${TM_FILENAME_BASE}_sup:start_link().",
             "",
             "-spec stop(State :: term()) -> ok.",
             "stop(_State) ->",
@@ -357,7 +357,7 @@
     "Cowboy Router": {
         "prefix": "cowboy_router",
         "body": [
-            "-module(${1:${TM_FILENAME_BASE}}).",
+            "-module(${TM_FILENAME_BASE}).",
             "",
             "-behaviour(gen_server).",
             "",
@@ -389,7 +389,7 @@
             "",
             "init([]) ->",
             "    process_flag(trap_exit, true),",
-            "    Port = application:get_env(${1:${TM_FILENAME_BASE}}, api_port, ?DEFAULT_PORT),",
+            "    Port = application:get_env(${TM_FILENAME_BASE}, api_port, ?DEFAULT_PORT),",
             "    Routes = [{\"/route/\", ${2}, []},",
             "              {\"/route/:id\", [{id, nonempty}], snmp_simulator_devices_handler, []}],",
             "    Dispatch = cowboy_router:compile([{'_', Routes}]),",
@@ -419,7 +419,7 @@
     "Cowboy REST": {
         "prefix": "cowboy_rest",
         "body": [
-            "-module(${1:${TM_FILENAME_BASE}}).",
+            "-module(${TM_FILENAME_BASE}).",
             "",
             "-include_lib(\"kernel/include/logger.hrl\").",
             "",
@@ -478,7 +478,7 @@
     "Cowboy Handler": {
         "prefix": "cowboy_handler",
         "body": [
-            "-module(${1:${TM_FILENAME_BASE}}).",
+            "-module(${TM_FILENAME_BASE}).",
             "",
             "-include_lib(\"kernel/include/logger.hrl\").",
             "",
@@ -506,7 +506,7 @@
     "gen_event": {
         "prefix": "gen_event",
         "body": [
-            "-module(${1:${TM_FILENAME_BASE}}).",
+            "-module(${TM_FILENAME_BASE}).",
             "",
             "-behaviour(gen_event).",
             "",
