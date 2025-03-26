@@ -1,0 +1,142 @@
+{
+    "dataclass": {
+        "prefix": "dataclass",
+        "body": [
+            "@dataclass",
+            "class ${1}:",
+            "    ${2}: ${3}"
+        ]
+    },
+    "class": {
+        "prefix": "class",
+        "body": [
+            "class ${1}:",
+            "    def __init__(self, ${2}):",
+            "        ${3}"
+        ]
+    },
+    "FastAPI Router": {
+        "prefix": "fastapi_router",
+        "body": [
+            "from fastapi import APIRouter",
+            "from http import HTTPStatus",
+            "from starlette.responses import JSONResponse",
+            "",
+            "router = APIRouter()",
+            "",
+            "@router.get(\"${1}\")",
+            "def ${2}:",
+            "    ${3}"
+        ]
+    },
+    "Main with subcommands": {
+        "prefix": "main_subcommands",
+        "body": [
+            "from argparse import ArgumentParser, ArgumentDefaultsHelpFormatter",
+            "",
+            "",
+            "def main():",
+            "    arguments = _parse_arguments()",
+            "    arguments.execute(arguments)",
+            "",
+            "",
+            "def _parse_arguments():",
+            "    parser = ArgumentParser(",
+            "        formatter_class=ArgumentDefaultsHelpFormatter, prog=\"\", description=\"\"",
+            "    )",
+            "    subparser = parser.add_subparsers(",
+            "        title=\"Commands\",",
+            "        description=\"These are various commands available for the application:\",",
+            "    )",
+            "    _create_subparser(subparser)",
+            "",
+            "    return parser.parse_args()",
+            "",
+            "",
+            "def _create_subparser(subparser):",
+            "    parser = subparser.add_parser(",
+            "        \"start\", formatter_class=ArgumentDefaultsHelpFormatter",
+            "    )",
+            "    parser.set_defaults(execute=_start)",
+            "",
+            "",
+            "def _start(arguments):",
+            "    pass",
+            "",
+            "",
+            "if __name__ == \"__main__\":",
+            "    main()"
+        ]
+    },
+    "Main": {
+        "prefix": "main",
+        "body": [
+            "from argparse import ArgumentParser, ArgumentDefaultsHelpFormatter",
+            "",
+            "",
+            "def main():",
+            "   arguments = _parse_arguments()",
+            "",
+            "",
+            "def _parse_arguments():",
+            "    parser = ArgumentParser(",
+            "      formatter_class=ArgumentDefaultsHelpFormatter,",
+            "      prog=\"\",",
+            "      description=\"\"",
+            "    )",
+            "       return parser.parse_args()",
+            "",
+            "",
+            "if __name__ == \"__main__\":",
+            "    main()"
+        ]
+    },
+    "Abstract Method": {
+        "prefix": "abstractmethod",
+        "body": [
+            "@abstractmethod",
+            "def ${1}(${2}):",
+            "    raise NotImplementedError"
+        ]
+    },
+    "try": {
+        "prefix": "try",
+        "body": [
+            "try:",
+            "    ${1}",
+            "except ${2}:",
+            "    ${3}"
+        ]
+    },
+    "try..finally": {
+        "prefix": "try_finally",
+        "body": [
+            "try:",
+            "    ${1}",
+            "except ${2}:",
+            "    ${3}",
+            "finally:",
+            "    ${4}"
+        ]
+    },
+    "if..else": {
+        "prefix": "ifelse",
+        "body": [
+            "if ${1}:",
+            "    ${2}",
+            "else:",
+            "    ${3}"
+        ]
+    },
+    "if..elif..else": {
+        "prefix": "ifelifelse",
+        "body": [
+            "if ${1}:",
+            "    ${2}",
+            "elif ${3}:",
+            "    ${4}",
+            "else:",
+            "    ${5}"
+        ]
+    }
+}

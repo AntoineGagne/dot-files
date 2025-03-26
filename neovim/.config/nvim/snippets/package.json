@@ -1,0 +1,35 @@
+{
+    "contributes": {
+        "snippets": [
+            {
+                "language": "c",
+                "path": "./c.json"
+            },
+            {
+                "language": "erlang",
+                "path": "./erlang.json"
+            },
+            {
+                "language": "python",
+                "path": "./python.json"
+            },
+            {
+                "language": "rust",
+                "path": "./rust.json"
+            },
+            {
+                "language": "tex",
+                "path": "./tex.json"
+            },
+            {
+                "language": "typescript",
+                "path": "./typescript.json"
+            },
+            {
+                "language": "typescriptreact",
+                "path": "./typescriptreact.json"
+            }
+        ]
+    },
+    "name": "custom-snippets"
+}

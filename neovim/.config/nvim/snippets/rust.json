@@ -1,0 +1,21 @@
+{
+    "testcase": {
+        "prefix": "testcase",
+        "body": [
+            "#[test]",
+            "fn ${1}() {",
+            "    ${0}",
+            "}"
+        ]
+    },
+    "display_impl": {
+        "prefix": "display_impl",
+        "body": [
+            "impl Display for ${1} {",
+            "    fn fmt(&self, formatter: &mut Formatter<'_>) -> std::fmt::Result {",
+            "        write!(formatter, \"{}\", self.0)",
+            "    }",
+            "}"
+        ]
+    }
+}
