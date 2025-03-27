@@ -97,8 +97,24 @@ return {
     -- See also `lsp-defaults.txt`
     local keymappings = {
       ['gD'] = { '<Cmd>lua vim.lsp.buf.declaration()<CR>', 'Show symbol declaration' },
-      ['gd'] = { '<Cmd>lua vim.lsp.buf.definition()<CR>', 'Show symbol definition' },
-      ['gi'] = { '<cmd>lua vim.lsp.buf.implementation()<CR>', 'Show symbol implementation' },
+      ['gd'] = {
+        function()
+          require('telescope.builtin').lsp_definitions()
+        end,
+        'Show symbol definition',
+      },
+      ['gri'] = {
+        function()
+          require('telescope.builtin').lsp_implementations()
+        end,
+        'Show symbol implementation',
+      },
+      ['gO'] = {
+        function()
+          require('telescope.builtin').lsp_document_symbols()
+        end,
+        'Show symbol implementation',
+      },
       ['K'] = { '<Cmd>lua vim.lsp.buf.hover()<CR>', 'Show symbol details' },
       ['<C-k>'] = { '<cmd>lua vim.lsp.buf.signature_help()<CR>', 'Show signature help' },
       ['<leader>wa'] = { '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', 'Add to workspace folder' },
@@ -107,7 +123,12 @@ return {
         '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>',
         'Show the workspace folders',
       },
-      ['<leader>D'] = { '<cmd>lua vim.lsp.buf.type_definition()<CR>', 'Show the symbol type definition' },
+      ['<leader>D'] = {
+        function()
+          require('telescope.builtin').lsp_type_definitions()
+        end,
+        'Show the symbol type definition',
+      },
       ['<leader>rn'] = { '<cmd>lua vim.lsp.buf.rename()<CR>', 'Rename the symbol under the cursor' },
       ['<leader>ca'] = { '<cmd>lua vim.lsp.buf.code_action()<CR>', 'Show the code action menu' },
       ['grr'] = {
@@ -116,13 +137,6 @@ return {
         end,
         'Show the symbol references',
       },
-      ['<leader>dK'] = {
-        '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>',
-        'Show the diagnostic under the cursor',
-      },
-      ['<leader>dk'] = { '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', 'Go to the previous diagnostic' },
-      ['<leader>dj'] = { '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', 'Go to the next diagnostic' },
-      ['<leader>dsl'] = { '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', 'Set the location list' },
     }
     for keys, mapping in pairs(keymappings) do
       local function_, description = unpack(mapping)
