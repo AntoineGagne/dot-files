@@ -90,6 +90,7 @@ return {
 
       cmdline = {
         enabled = true,
+        keymap = { preset = 'super-tab' },
         completion = {
           menu = { auto_show = true },
         },
