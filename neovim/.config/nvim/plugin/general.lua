@@ -71,6 +71,9 @@ end
 -- Shows the effects of a command incrementally, as you type
 vim.o.inccommand = 'nosplit'
 
+-- Show the current editing mode
+vim.o.showmode = false
+
 -- Enables spell check
 vim.o.spell = true
 -- Enables the english and the french spell checker
