@@ -7,37 +7,27 @@ return {
       local capabilities = require('blink.cmp').get_lsp_capabilities({})
       local lspconfig = require('lspconfig')
       for server, setup in pairs(local_config.to_enable) do
-        local command, config, on_init = unpack(setup)
+        setup = setup or {}
         local lsp = {
-          settings = config or {},
-          on_attach = local_config.on_attach,
-          handlers = {
-            ['textDocument/references'] = vim.lsp.with(vim.lsp.handlers['textDocument/references'], {
-              loclist = true,
-            }),
-            ['textDocument/hover'] = vim.lsp.with(vim.lsp.handlers['textDocument/hover'], {
-              border = 'rounded',
-              -- Suppress 'No information available' notification
-              silent = false,
-            }),
-            ['textDocument/signatureHelp'] = vim.lsp.with(vim.lsp.handlers['textDocument/signatureHelp'], {
-              border = 'rounded',
-              -- Suppress 'No information available' notification
-              silent = false,
-            }),
-          },
+          settings = setup.settings or {},
+          on_attach = function(client, bufnr)
+            local_config.on_attach(client, bufnr)
+            if setup.on_attach then
+              setup.on_attach(client, bufnr)
+            end
+          end,
           flags = {
             debounce_text_changes = 150,
           },
           capabilities = capabilities,
         }
 
-        if on_init then
-          lsp['on_init'] = on_init
+        if setup.on_init then
+          lsp['on_init'] = setup.on_init
         end
 
-        if command then
-          lsp['cmd'] = command
+        if setup.command then
+          lsp['cmd'] = setup.command
         end
 
         lspconfig[server].setup(lsp)
