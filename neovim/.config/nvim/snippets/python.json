@@ -17,6 +17,7 @@
     },
     "FastAPI Router": {
         "prefix": "fastapi_router",
+        "description": "FastAPI Router",
         "body": [
             "from fastapi import APIRouter",
             "from http import HTTPStatus",
@@ -31,6 +32,7 @@
     },
     "Main with subcommands": {
         "prefix": "main_subcommands",
+        "description": "main with subcommands",
         "body": [
             "from argparse import ArgumentParser, ArgumentDefaultsHelpFormatter",
             "",
@@ -141,16 +143,27 @@
     },
     "Method": {
         "prefix": "defm",
+        "description": "method",
         "body": [
-          "def $1(self$2):",
-          "    $3"
+            "def $1(self$2):",
+            "    $3"
         ]
     },
     "Free Function": {
         "prefix": "def",
+        "description": "function",
         "body": [
-          "def $1($2):",
-          "    $3"
+            "def $1(self$2):",
+            "    $3"
+        ]
+    },
+    "Custom Exception": {
+        "prefix": "exception",
+        "description": "Custom exception",
+        "body": [
+            "class $1(Exception):",
+            "    def __init__(self, *args, **kwargs):",
+            "        super().__init__(*args, **kwargs)"
         ]
     }
 }
