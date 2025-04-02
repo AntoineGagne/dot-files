@@ -229,5 +229,13 @@
             "for ${1:i} in range($2):",
             "    ${3:pass}"
         ]
+    },
+    "if __name__ == \"__main__\"": {
+        "prefix": "ifmain",
+        "description": "if __name__ == \"__main__\"",
+        "body": [
+            "if __name__ == \"__main__\":",
+            "    ${1:pass}"
+        ]
     }
 }
