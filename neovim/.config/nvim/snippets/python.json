@@ -165,5 +165,69 @@
             "    def __init__(self, *args, **kwargs):",
             "        super().__init__(*args, **kwargs)"
         ]
+    },
+    "pdb": {
+        "prefix": "pdb",
+        "description": "Setup a PDB trace",
+        "body": "import pdb; pdb.set_trace()"
+    },
+    "for": {
+        "prefix": "for",
+        "description": "for loop",
+        "body": [
+            "for $1 in $2:",
+            "    $0"
+        ]
+    },
+    "match/case": {
+        "prefix": "match",
+        "description": "match statement",
+        "body": [
+            "match ${1:expression}:",
+            "    case ${2:pattern}:",
+            "       ${2:pass}"
+        ]
+    },
+    "case": {
+        "prefix": "case",
+        "description": "case block",
+        "body": [
+            "case ${1:pattern}:",
+            "    ${2:pass}"
+        ]
+    },
+    "case wildcard": {
+        "prefix": "casewildcard",
+        "description": "case wildcard block",
+        "body": [
+            "case _:",
+            "    ${2:pass}"
+        ]
+    },
+    "from..import": {
+        "prefix": "fromimport",
+        "description": "from..import",
+        "body": "from ${1} import ${2}"
+    },
+    "import": {
+        "prefix": "import",
+        "description": "Import a package or module",
+        "body": "import ${1}"
+    },
+    "with": {
+        "prefix": "with",
+        "description": "'with' statement",
+        "body": [
+            "with ${1:expression} as ${2:alias}:",
+            "    ${3:pass}"
+        ]
+    },
+    "for..range": {
+        "prefix": "forrange",
+        "description": "for loop over integers",
+        "body": [
+            "for ${1:i} in range($2):",
+            "    ${3:pass}"
+        ]
     }
 }
