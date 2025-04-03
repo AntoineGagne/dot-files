@@ -64,20 +64,7 @@ local to_enable = {
     end,
   }),
   purescriptls = Setup:create({}),
-  pyright = Setup:create({
-    on_attach = function(client, bufnr)
-      client.server_capabilities.hoverProvider = false
-    end,
-  }),
-  pylsp = Setup:create({
-    on_attach = function(client, bufnr)
-      client.server_capabilities.definitionProvider = false
-      client.server_capabilities.documentSymbolProvider = false
-      client.server_capabilities.documentFormattingProvider = false
-      client.server_capabilities.renameProvider = false
-      client.server_capabilities.referencesProvider = false
-    end,
-  }),
+  basedpyright = Setup:create({}),
   ruff = Setup:create({}),
   rust_analyzer = Setup:create({
     settings = {
