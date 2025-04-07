@@ -185,7 +185,7 @@
         "body": [
             "match ${1:expression}:",
             "    case ${2:pattern}:",
-            "       ${2:pass}"
+            "       ${3:pass}"
         ]
     },
     "case": {
