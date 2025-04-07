@@ -1,72 +1,101 @@
-local Setup = {
-  command = nil,
-  settings = nil,
-  on_init = nil,
-  on_attach = function(client, bufnr) end,
-}
+local Setup = (function()
+  local defaults = {
+    command = nil,
+    settings = nil,
+    enabled = true,
 
-function Setup:create(object)
-  object.parent = self
-  return object
-end
+    callbacks = {
+      on_attach = function(client, bufnr) end,
+      on_init = function(client) end,
+    },
+  }
+
+  return {
+    create = function(overrides)
+      return vim.tbl_deep_extend('force', defaults, overrides)
+    end,
+  }
+end)()
 
 local to_enable = {
-  bashls = Setup:create({}),
-  clangd = Setup:create({}),
-  cmake = Setup:create({}),
-  cssls = Setup:create({}),
-  elmls = Setup:create({}),
-  erlangls = Setup:create({}),
-  elixirls = Setup:create({
+  bashls = Setup.create({}),
+  clangd = Setup.create({}),
+  cmake = Setup.create({}),
+  cssls = Setup.create({}),
+  elmls = Setup.create({}),
+  erlangls = Setup.create({}),
+  elixirls = Setup.create({
     command = { '/home/a.gagne/.local/bin/elixir-ls' },
   }),
-  harper_ls = Setup:create({
+  harper_ls = Setup.create({
     settings = {
       ['harper-ls'] = {
         userDictPath = '~/.local/state/harper-ls',
       },
     },
   }),
-  hie = Setup:create({}),
-  hls = Setup:create({}),
-  lua_ls = Setup:create({
-    on_init = function(client)
-      local path = client.workspace_folders[1].name
-      local luarc_json = path .. '/.luarc.json'
-      local luarc_jsonc = path .. '/.luarc.jsonc'
-      if vim.loop.fs_stat(luarc_json) or vim.loop.fs_stat(luarc_jsonc) then
-        return
-      end
+  hie = Setup.create({}),
+  hls = Setup.create({}),
+  lua_ls = Setup.create({
+    callbacks = {
+      on_init = function(client)
+        local path = client.workspace_folders[1].name
+        local luarc_json = path .. '/.luarc.json'
+        local luarc_jsonc = path .. '/.luarc.jsonc'
+        if vim.loop.fs_stat(luarc_json) or vim.loop.fs_stat(luarc_jsonc) then
+          return
+        end
 
-      if not client.config.settings.Lua then
-        client.config.settings['Lua'] = {}
-      end
+        if not client.config.settings.Lua then
+          client.config.settings['Lua'] = {}
+        end
 
-      client.config.settings.Lua = vim.tbl_deep_extend('force', client.config.settings.Lua, {
-        runtime = {
-          -- Tell the language server which version of Lua you're using
-          -- (most likely LuaJIT in the case of Neovim)
-          version = 'LuaJIT',
-        },
-        -- Make the server aware of Neovim runtime files
-        workspace = {
-          checkThirdParty = true,
-          library = {
-            vim.env.VIMRUNTIME,
-            -- Depending on the usage, you might want to add additional paths here.
-            -- "${3rd}/luv/library"
-            -- "${3rd}/busted/library",
+        client.config.settings.Lua = vim.tbl_deep_extend('force', client.config.settings.Lua, {
+          runtime = {
+            -- Tell the language server which version of Lua you're using
+            -- (most likely LuaJIT in the case of Neovim)
+            version = 'LuaJIT',
           },
-          -- or pull in all of 'runtimepath'. NOTE: this is a lot slower
-          -- library = vim.api.nvim_get_runtime_file("", true)
-        },
-      })
-    end,
+          -- Make the server aware of Neovim runtime files
+          workspace = {
+            checkThirdParty = true,
+            library = {
+              vim.env.VIMRUNTIME,
+              -- Depending on the usage, you might want to add additional paths here.
+              -- "${3rd}/luv/library"
+              -- "${3rd}/busted/library",
+            },
+            -- or pull in all of 'runtimepath'. NOTE: this is a lot slower
+            -- library = vim.api.nvim_get_runtime_file("", true)
+          },
+        })
+      end,
+    },
   }),
-  purescriptls = Setup:create({}),
-  basedpyright = Setup:create({}),
-  ruff = Setup:create({}),
-  rust_analyzer = Setup:create({
+  purescriptls = Setup.create({}),
+  basedpyright = Setup.create({}),
+  pyright = Setup.create({
+    enabled = false,
+    callbacks = {
+      on_attach = function(client, bufnr)
+        client.server_capabilities.hoverProvider = false
+      end,
+    },
+  }),
+  pylsp = Setup.create({
+    enabled = false,
+    callbacks = {
+      on_attach = function(client, bufnr)
+        client.server_capabilities.definitionProvider = false
+        client.server_capabilities.documentSymbolProvider = false
+        client.server_capabilities.documentFormattingProvider = false
+        client.server_capabilities.renameProvider = false
+        client.server_capabilities.referencesProvider = false
+      end,
+    },
+  }),
+  ruff = Setup.create({}),
+  rust_analyzer = Setup.create({
     settings = {
       ['rust-analyzer'] = {
         checkOnSave = {
@@ -89,8 +118,8 @@ local to_enable = {
       },
     },
   }),
-  texlab = Setup:create({}),
-  ts_ls = Setup:create({}),
+  texlab = Setup.create({}),
+  ts_ls = Setup.create({}),
 }
 
 local function with(f, config)

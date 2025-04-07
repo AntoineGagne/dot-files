@@ -8,13 +8,17 @@ return {
       local lspconfig = require('lspconfig')
       for server, setup in pairs(local_config.to_enable) do
         setup = setup or {}
+        if not setup.enabled then
+          goto continue
+        end
+
         local lsp = {
           settings = setup.settings or {},
           on_attach = function(client, bufnr)
+            -- Global `on_attach`
             local_config.on_attach(client, bufnr)
-            if setup.on_attach then
-              setup.on_attach(client, bufnr)
-            end
+            -- Per client `on_attach`
+            setup.callbacks.on_attach(client, bufnr)
           end,
           flags = {
             debounce_text_changes = 150,
@@ -22,15 +26,14 @@ return {
           capabilities = capabilities,
         }
 
-        if setup.on_init then
-          lsp['on_init'] = setup.on_init
-        end
+        lsp['on_init'] = setup.callbacks.on_init
 
         if setup.command then
           lsp['cmd'] = setup.command
         end
 
         lspconfig[server].setup(lsp)
+        ::continue::
       end
     end,
   },
