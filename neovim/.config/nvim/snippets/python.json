@@ -169,7 +169,7 @@
     "pdb": {
         "prefix": "pdb",
         "description": "Setup a PDB trace",
-        "body": "import pdb; pdb.set_trace()"
+        "body": "__import__(\"pdb\").set_trace()"
     },
     "for": {
         "prefix": "for",
