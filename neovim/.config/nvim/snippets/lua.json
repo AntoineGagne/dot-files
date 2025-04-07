@@ -1,0 +1,6 @@
+{
+    "inspect": {
+        "prefix": "inspect",
+        "body": "vim.print(vim.inspect($0))"
+    }
+}
