@@ -30,7 +30,7 @@ local to_enable = {
   harper_ls = Setup.create({
     settings = {
       ['harper-ls'] = {
-        userDictPath = '~/.local/state/harper-ls',
+        userDictPath = '~/.local/state/harper-ls/dictionary',
       },
     },
   }),
