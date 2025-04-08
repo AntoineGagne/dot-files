@@ -1,14 +1,14 @@
 #! /bin/sh
 
 # Taken from: http://simena86.github.io/blog/2013/04/12/my-vim-setup/ (Fri Jan 13 20:17:00 EST 2017)
-set -e
-PATH="/usr/local/bin:$PATH"
-trap "rm -f .git/tags.$$" EXIT
-ctags -f.git/tags.$$  --exclude=.git
-mv .git/tags.$$ .git/tags
-
-if which hasktags > /dev/null ; then
-    OLD_DIR=$(pwd)
-    (cd "$GITDIR" && hasktags -c -x --ignore-close-implementation -a -f "$TAGSFILE" "$OLD_DIR")
-    LC_COLLATE=C sort "$GITDIR/$TAGSFILE" -o "$GITDIR/$TAGSFILE"
-fi
+# set -e
+# PATH="/usr/local/bin:$PATH"
+# trap "rm -f .git/tags.$$" EXIT
+# ctags -f.git/tags.$$  --exclude=.git
+# mv .git/tags.$$ .git/tags
+# 
+# if which hasktags > /dev/null ; then
+#     OLD_DIR=$(pwd)
+#     (cd "$GITDIR" && hasktags -c -x --ignore-close-implementation -a -f "$TAGSFILE" "$OLD_DIR")
+#     LC_COLLATE=C sort "$GITDIR/$TAGSFILE" -o "$GITDIR/$TAGSFILE"
+# fi
