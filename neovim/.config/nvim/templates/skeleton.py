@@ -13,6 +13,7 @@ def _parse_arguments():
     subparser = parser.add_subparsers(
         title="Commands",
         description="These are various commands available for the application:",
+        required=True,
     )
     _create_subparser(subparser)
 
