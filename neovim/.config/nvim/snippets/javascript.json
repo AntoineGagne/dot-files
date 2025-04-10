@@ -1,18 +1,54 @@
 {
-  "function": {
-    "prefix": "function",
-    "body": [
-      "function ${1:functionName}($2) {",
-      "    $3",
-      "}"
-    ]
-  },
-  "Anonymous Function": {
-    "prefix": "afunction",
-    "body": [
-      "function() {",
-      "    $1",
-      "}"
-    ]
-  }
+    "function": {
+        "prefix": "function",
+        "body": [
+            "function ${1:functionName}($2) {",
+            "    $3",
+            "}"
+        ]
+    },
+    "Anonymous Function": {
+        "prefix": "afunction",
+        "body": [
+            "function() {",
+            "    $1",
+            "}"
+        ],
+        "description": "Anonymous function"
+    },
+    "Fetch (PUT)": {
+        "prefix": "fetchput",
+        "body": [
+            "const controller = new AbortController();",
+            "const signal = controller.signal;",
+            "const request = new Request(${1:url}, {",
+            "  method: 'PUT',",
+            "  headers: new Headers({",
+            "    'Content-Type': 'application/json',",
+            "   'Accept': 'application/json'",
+            "  }),",
+            "  body: JSON.stringify(${2:body})",
+            "});",
+            "setTimeout(() => controller.abort(), ${3:3000});",
+            "fetch(request, { signal });"
+        ],
+        "description": "Send a PUT request using the Fetch API"
+    },
+    "Fetch (GET)": {
+        "prefix": "fetchget",
+        "body": [
+            "const controller = new AbortController();",
+            "const signal = controller.signal;",
+            "const request = new Request(${1:url}, {",
+            "  method: 'GET',",
+            "  headers: new Headers({",
+            "    'Content-Type': 'application/json',",
+            "   'Accept': 'application/json'",
+            "  }),",
+            "});",
+            "setTimeout(() => controller.abort(), ${3:3000});",
+            "fetch(request, { signal });"
+        ],
+        "description": "Send a GET request using the Fetch API"
+    }
 }
