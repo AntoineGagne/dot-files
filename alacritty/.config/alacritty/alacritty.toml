@@ -3,7 +3,7 @@
 [window]
 opacity = 0.70
 blur = true
-# decorations = "None"
+decorations = "None"
 
 [scrolling]
 history = 0
