@@ -10,6 +10,10 @@
                 "path": "./erlang.json"
             },
             {
+                "language": "javascript",
+                "path": "./javascript.json"
+            },
+            {
                 "language": "html",
                 "path": "./html.json"
             },

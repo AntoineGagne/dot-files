@@ -1,0 +1,18 @@
+{
+  "function": {
+    "prefix": "function",
+    "body": [
+      "function ${1:functionName}($2) {",
+      "    $3",
+      "}"
+    ]
+  },
+  "Anonymous Function": {
+    "prefix": "afunction",
+    "body": [
+      "function() {",
+      "    $1",
+      "}"
+    ]
+  }
+}
