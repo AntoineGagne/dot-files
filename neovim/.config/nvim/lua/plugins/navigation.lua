@@ -29,6 +29,13 @@ return {
     end,
   },
   {
+    'AntoineGagne/telescope-nucleo-sorter.nvim',
+    build = 'cargo build --release',
+    config = function()
+      require('telescope').load_extension('nucleo')
+    end,
+  },
+  {
     'stevearc/oil.nvim',
     ---@module 'oil'
     ---@type oil.SetupOpts
