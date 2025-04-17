@@ -1,6 +1,0 @@
-{
-    "workspace.library": [
-        "~/neovim/share/nvim/runtime",
-        "${3rd}/luassert/library"
-    ]
-}
