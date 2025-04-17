@@ -6,6 +6,7 @@ return {
       local local_config = require('lsp.config')
       local capabilities = require('blink.cmp').get_lsp_capabilities({})
       local lspconfig = require('lspconfig')
+      local global_settings = local_config.global_settings.with_telescope(local_config.global_settings.create({}))
       for server, setup in pairs(local_config.to_enable) do
         setup = setup or {}
         if not setup.enabled then
@@ -16,7 +17,7 @@ return {
           settings = setup.settings or {},
           on_attach = function(client, bufnr)
             -- Global `on_attach`
-            local_config.on_attach(client, bufnr)
+            local_config.on_attach(global_settings, client, bufnr)
             -- Per client `on_attach`
             setup.callbacks.on_attach(client, bufnr)
           end,

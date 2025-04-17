@@ -39,11 +39,14 @@ local to_enable = {
   lua_ls = Setup.create({
     callbacks = {
       on_init = function(client)
-        local path = client.workspace_folders[1].name
-        local luarc_json = path .. '/.luarc.json'
-        local luarc_jsonc = path .. '/.luarc.jsonc'
-        if vim.loop.fs_stat(luarc_json) or vim.loop.fs_stat(luarc_jsonc) then
-          return
+        if client.workspace_folders then
+          local path = client.workspace_folders[1].name
+          if
+            path ~= vim.fn.stdpath('config')
+            and (vim.loop.fs_stat(path .. '/.luarc.json') or vim.loop.fs_stat(path .. '/.luarc.jsonc'))
+          then
+            return
+          end
         end
 
         if not client.config.settings.Lua then
@@ -52,17 +55,16 @@ local to_enable = {
 
         client.config.settings.Lua = vim.tbl_deep_extend('force', client.config.settings.Lua, {
           runtime = {
-            -- Tell the language server which version of Lua you're using
-            -- (most likely LuaJIT in the case of Neovim)
             version = 'LuaJIT',
           },
+
           -- Make the server aware of Neovim runtime files
           workspace = {
-            checkThirdParty = true,
+            checkThirdParty = false,
             library = {
-              vim.env.VIMRUNTIME,
-              -- Depending on the usage, you might want to add additional paths here.
-              -- "${3rd}/luv/library"
+              '$VIMRUNTIME',
+              '${3rd}/luv/library',
+              '$XDG_DATA_HOME/nvim/lazy',
               -- "${3rd}/busted/library",
             },
             -- or pull in all of 'runtimepath'. NOTE: this is a lot slower
@@ -129,75 +131,78 @@ local function with(f, config)
   end
 end
 
-local signature_help = with(vim.lsp.buf.signature_help, { border = 'rounded', silent = false })
-local hover = with(vim.lsp.buf.hover, { border = 'rounded', silent = false })
+local GlobalSettings = (function()
+  local defaults = {
+    callbacks = {
+      implementations = vim.lsp.buf.implementation,
+      declaration = vim.lsp.buf.declaration,
+      definitions = vim.lsp.buf.definition,
+      document_symbols = vim.lsp.buf.document_symbol,
+      type_definition = vim.lsp.buf.type_definition,
+      reference = vim.lsp.buf.references,
+      hover = with(vim.lsp.buf.hover, { border = 'rounded', silent = false }),
+      signature_help = with(vim.lsp.buf.signature_help, { border = 'rounded', silent = false }),
+      workspace = {
+        add = vim.lsp.buf.add_workspace_folder,
+        remove = vim.lsp.buf.remove_workspace_folder,
+        list = function()
+          vim.print(vim.lsp.buf.list_workspace_folders())
+        end,
+      },
+      rename = vim.lsp.buf.rename,
+    },
+  }
+
+  local function create(overrides)
+    return vim.tbl_deep_extend('force', defaults, overrides)
+  end
+
+  return {
+    create = create,
+
+    with_telescope = function(settings)
+      local telescope_builtins = require('telescope.builtin')
+      return vim.tbl_deep_extend('force', settings, {
+        callbacks = {
+          definitions = telescope_builtins.lsp_definitions,
+          implementations = telescope_builtins.lsp_implementations,
+          document_symbols = telescope_builtins.lsp_document_symbols,
+          type_definition = telescope_builtins.lsp_type_definitions,
+          reference = telescope_builtins.lsp_references,
+        },
+      })
+    end,
+  }
+end)()
 
 return {
   to_enable = to_enable,
-
-  on_attach = function(client, bufnr)
+  global_settings = GlobalSettings,
+  on_attach = function(settings, client, bufnr)
     -- Mappings.
     local opts = { remap = false, silent = true, buffer = bufnr }
 
-    -- See also `lsp-defaults.txt`
     local keymappings = {
-      ['gD'] = { '<Cmd>lua vim.lsp.buf.declaration()<CR>', 'Show symbol declaration' },
-      ['gd'] = {
-        function()
-          require('telescope.builtin').lsp_definitions()
-        end,
-        'Show symbol definition',
-      },
-      ['gri'] = {
-        function()
-          require('telescope.builtin').lsp_implementations()
-        end,
-        'Show symbol implementation',
-      },
-      ['gO'] = {
-        function()
-          require('telescope.builtin').lsp_document_symbols()
-        end,
-        'Show symbol implementation',
-      },
-      ['<leader>wa'] = { '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', 'Add to workspace folder' },
-      ['<leader>wr'] = { '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', 'Remove from workspace folder' },
-      ['<leader>wl'] = {
-        '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>',
-        'Show the workspace folders',
-      },
-      ['<leader>D'] = {
-        function()
-          require('telescope.builtin').lsp_type_definitions()
-        end,
-        'Show the symbol type definition',
-      },
-      ['<leader>rn'] = { '<cmd>lua vim.lsp.buf.rename()<CR>', 'Rename the symbol under the cursor' },
-      ['<leader>ca'] = { '<cmd>lua vim.lsp.buf.code_action()<CR>', 'Show the code action menu' },
-      ['grr'] = {
-        function()
-          require('telescope.builtin').lsp_references()
-        end,
-        'Show the symbol references',
-      },
-      ['K'] = { hover, 'Show symbol details' },
-      ['<C-k>'] = { signature_help, 'Show signature help' },
+      ['gD'] = { settings.callbacks.declaration, 'Show symbol declaration' },
+      ['gd'] = { settings.callbacks.definitions, 'Show symbol definition' },
+      ['gri'] = { settings.callbacks.implementations, 'Show symbol implementation' },
+      ['gO'] = { settings.callbacks.document_symbols, 'Show symbol implementation' },
+      ['<leader>wa'] = { settings.callbacks.workspace.add, 'Add to workspace folder' },
+      ['<leader>wr'] = { settings.callbacks.workspace.remove, 'Remove from workspace folder' },
+      ['<leader>wl'] = { settings.callbacks.workspace.list, 'Show the workspace folders' },
+      ['<leader>D'] = { settings.callbacks.type_definition, 'Show the symbol type definition' },
+      ['<leader>rn'] = { settings.callbacks.rename, 'Rename the symbol under the cursor' },
+      ['grr'] = { settings.callbacks.reference, 'Show the symbol references' },
+      ['K'] = { settings.callbacks.hover, 'Show symbol details' },
+      ['<C-k>'] = { settings.callbacks.signature_help, 'Show signature help' },
     }
+
     for keys, mapping in pairs(keymappings) do
       local function_, description = unpack(mapping)
       vim.keymap.set('n', keys, function_, vim.tbl_deep_extend('force', opts, { desc = description }))
     end
 
     vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
-
-    -- Set some keybinds conditional on server capabilities
-    if client.server_capabilities.document_formatting then
-      buf_set_keymap('n', '<leader>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
-    end
-
-    if client.server_capabilities.document_range_formatting then
-      buf_set_keymap('v', '<leader>f', '<cmd>lua vim.lsp.buf.range_formatting()<CR>', opts)
-    end
 
     -- Set autocommands conditional on server_capabilities
     if client.server_capabilities.document_highlight then
