@@ -22,7 +22,7 @@ return {
         remap = false,
         desc = 'Search the current buffer',
       })
-      vim.keymap.set({ 'n', 'v' }, '<leader>ls', builtins.git_files, {
+      vim.keymap.set({ 'n', 'v' }, '<leader>ls', builtins.find_files, {
         remap = false,
         desc = 'Search git files',
       })
