@@ -149,6 +149,15 @@
             "    $3"
         ]
     },
+    "Class Method": {
+        "prefix": "defc",
+        "description": "classmethod",
+        "body": [
+            "@classmethod",
+            "def $1(cls$2):",
+            "    $3"
+        ]
+    },
     "Free Function": {
         "prefix": "def",
         "description": "function",
