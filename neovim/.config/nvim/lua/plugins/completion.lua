@@ -6,7 +6,7 @@ return {
       local local_config = require('lsp.config')
       local capabilities = require('blink.cmp').get_lsp_capabilities({})
       local lspconfig = require('lspconfig')
-      local global_settings = local_config.global_settings.with_telescope(local_config.global_settings.create({}))
+      local global_settings = local_config.global_settings.with_snacks(local_config.global_settings.create({}))
       for server, setup in pairs(local_config.to_enable) do
         setup = setup or {}
         if not setup.enabled then

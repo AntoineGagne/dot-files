@@ -172,6 +172,19 @@ local GlobalSettings = (function()
         },
       })
     end,
+
+    with_snacks = function(settings)
+      local snacks = require('snacks.picker')
+      return vim.tbl_deep_extend('force', settings, {
+        callbacks = {
+          definitions = snacks.lsp_definitions,
+          implementations = snacks.lsp_implementations,
+          document_symbols = snacks.lsp_document_symbols,
+          type_definition = snacks.lsp_type_definitions,
+          reference = snacks.lsp_references,
+        },
+      })
+    end,
   }
 end)()
 
