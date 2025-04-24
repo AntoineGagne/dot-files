@@ -13,7 +13,12 @@ return {
       explorer = { enabled = false },
       indent = { enabled = false },
       input = { enabled = true },
-      picker = { enabled = true },
+      picker = {
+        enabled = true,
+        config = function()
+          vim.ui.select = Snacks.picker.select
+        end,
+      },
       notifier = { enabled = true },
       quickfile = { enabled = true },
       rename = { enabled = true },
@@ -40,9 +45,16 @@ return {
       {
         '<leader>/',
         function()
-          Snacks.picker.grep()
+          Snacks.picker.lines()
         end,
         'Search the current buffer',
+      },
+      {
+        '<leader>g/',
+        function()
+          Snacks.picker.grep()
+        end,
+        'Search within the files',
       },
       {
         '<leader>ls',
