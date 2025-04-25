@@ -102,7 +102,7 @@ vim.o.expandtab = true
 vim.o.smarttab = true
 
 vim.o.foldmethod = 'expr'
-vim.o.foldexpr = 'nvim_treesitter#foldexpr()'
+vim.o.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
 vim.o.foldenable = false
 
 -- Load filetype-specific indent files
