@@ -81,6 +81,8 @@ return {
         default = { 'lsp', 'path', 'snippets', 'buffer' },
       },
 
+      signature = { enabled = true },
+
       -- (Default) Rust fuzzy matcher for typo resistance and significantly better performance
       -- You may use a lua implementation instead by using `implementation = "lua"` or fallback to the lua implementation,
       -- when the Rust fuzzy matcher is not available, by using `implementation = "prefer_rust"`
