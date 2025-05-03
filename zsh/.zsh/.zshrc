@@ -392,6 +392,11 @@ if [[ -d "${HOME}/.kube" ]]; then
 
 fi
 
+if command -v bartib >/dev/null; then
+    export BARTIB_FILE="${HOME}/.local/state/bartib/activities.log"
+    mkdir -p "$(dirname "${BARTIB_FILE}")"
+fi
+
 if [[ -d "${HOME}/.cargo/bin" ]]; then
     PATH="${PATH}:${HOME}/.cargo/bin"
 fi
