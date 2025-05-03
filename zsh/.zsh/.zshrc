@@ -376,7 +376,13 @@ PS1='$(prompt "${?}")'
 PS2="├╼ "
 RPS1='[%F{cyan}%j jobs%f]──[%F{green}%W%f]'
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+if [[ -f ~/.fzf.zsh ]]; then
+    source ~/.fzf.zsh
+fi
+
+if command -v tv >/dev/null; then
+    eval "$(tv init zsh)"
+fi
 
 if type "direnv" >/dev/null 2>&1; then
     eval "$(direnv hook zsh)"
