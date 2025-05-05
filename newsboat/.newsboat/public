@@ -1,37 +1,38 @@
-https://www.youtube.com/feeds/videos.xml?user=gamesdonequick youtube videos games speedruns
-https://www.youtube.com/feeds/videos.xml?channel_id=UCGIY_O-8vW4rfX98KlMkvRg videos games youtube nintendo
-https://www.youtube.com/feeds/videos.xml?channel_id=UCJvBEEqTaLaKclbCPgIjBSQ videos games music acapella youtube
-https://www.youtube.com/feeds/videos.xml?channel_id=UCAL3JXZSzSm8AlZyD3nQdBA videos survival youtube
-https://www.youtube.com/feeds/videos.xml?channel_id=UCjmJDM5pRKbUlVIzDYYWb6g videos movies youtube warnerbros
-https://xkcd.com/rss.xml comics xkcd
-https://feeds.feedburner.com/Explosm comics "c&h"
+http://beets.io/blog/atom.xml filemanager music beets
+http://beets.io/blog/atom.xml music beets tag
+http://feeds.feedburner.com/codinghorror?format=xml programming
+http://feeds.nature.com/nature/rss/current news science nature
+http://planet.haskell.org/rss20.xml programming functionalprogramming haskell
+http://www.planeterlang.com/atom.xml programming functionalprogramming erlang
+http://www.reddit.com/r/programming+haskell+bash+coolgithubprojects+cpp+erlang+rust+ocaml+commandline+shell+xmonad+linux.rss programming reddit
+https://blog.erlang.org/feed.xml programming functionalprogramming erlang
+https://blog.janestreet.com/feed.xml programming blog ocaml functionalprogramming janestreet
+https://blog.jetbrains.com/feed/ jetbrains programming
 https://blog.rust-lang.org/feed.xml programming rust
-https://this-week-in-rust.org/atom.xml programming rust
-https://www.python.org/jobs/feed/rss/ programming python jobs
+https://code.facebook.com/posts/rss/ programming facebook
+https://duckdb.org/feed.xml programming database
+https://en.wikipedia.org/w/index.php?title=Special:NewPages&feed=rss wikipedia
+https://feeds.feedburner.com/Explosm comics "c&h"
+https://feeds.feedburner.com/HighScalability programming performance cloud devops
 https://feeds.feedburner.com/PythonInsider programming python
-https://neovim.io/news.xml programming editor neovim commandline
+https://ferd.ca/feed.rss programming functionalprogramming fredhebert
+https://github.com/beetbox/beets/releases.atom filemanager music beets
 https://github.com/neovim/neovim/releases.atom programming editor neovim commandline
 https://github.com/xmonad/xmonad/releases.atom programming windowmanager linux xmonad reddit
-https://www.latex-project.org/feed.xml programming latex
-https://weechat.org/blog/feed/atom irc chat weechat commandline
 https://hacks.mozilla.org/feed/ mozilla web programming
-https://www.sudosatirical.com/articles/index.xml humor news satire
-http://beets.io/blog/atom.xml filemanager music beets
-https://github.com/beetbox/beets/releases.atom filemanager music beets
-https://code.facebook.com/posts/rss/ programming facebook
-https://blog.jetbrains.com/feed/ jetbrains programming
-https://newsboat.org/news.atom newsboat rss
-http://beets.io/blog/atom.xml music beets tag
-https://en.wikipedia.org/w/index.php?title=Special:NewPages&feed=rss wikipedia
-https://blog.erlang.org/feed.xml programming functionalprogramming erlang
-http://feeds.feedburner.com/codinghorror?format=xml programming
 https://hnrss.org/frontpage programming hackernews
 https://hnrss.org/newest programming hackernews
-http://feeds.nature.com/nature/rss/current news science nature
-https://blog.janestreet.com/feed.xml programming blog ocaml functionalprogramming janestreet
-http://www.reddit.com/r/programming+haskell+bash+coolgithubprojects+cpp+erlang+rust+ocaml+commandline+shell+xmonad+linux.rss programming reddit
-https://feeds.feedburner.com/HighScalability programming performance cloud devops
-http://www.planeterlang.com/atom.xml programming functionalprogramming erlang
-http://planet.haskell.org/rss20.xml programming functionalprogramming haskell
-https://ferd.ca/feed.rss programming functionalprogramming fredhebert
+https://neovim.io/news.xml programming editor neovim commandline
+https://newsboat.org/news.atom newsboat rss
 https://serokell.io/blog.rss.xml programming functionalprogramming haskell
+https://this-week-in-rust.org/atom.xml programming rust
+https://weechat.org/blog/feed/atom irc chat weechat commandline
+https://www.latex-project.org/feed.xml programming latex
+https://www.python.org/jobs/feed/rss/ programming python jobs
+https://www.sudosatirical.com/articles/index.xml humor news satire
+https://www.youtube.com/feeds/videos.xml?channel_id=UCAL3JXZSzSm8AlZyD3nQdBA videos survival youtube
+https://www.youtube.com/feeds/videos.xml?channel_id=UCGIY_O-8vW4rfX98KlMkvRg videos games youtube nintendo
+https://www.youtube.com/feeds/videos.xml?channel_id=UCJvBEEqTaLaKclbCPgIjBSQ videos games music acapella youtube
+https://www.youtube.com/feeds/videos.xml?channel_id=UCjmJDM5pRKbUlVIzDYYWb6g videos movies youtube warnerbros
+https://www.youtube.com/feeds/videos.xml?user=gamesdonequick youtube videos games speedruns
+https://xkcd.com/rss.xml comics xkcd
