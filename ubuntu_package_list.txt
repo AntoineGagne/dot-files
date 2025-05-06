@@ -36,7 +36,7 @@ libxml2-utils
 m4
 maven
 mpc
-mutt
+neomutt
 ncmpcpp
 neovim
 newsboat
