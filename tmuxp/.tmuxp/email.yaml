@@ -9,5 +9,5 @@ windows:
     automatic-rename: 'off'
   panes:
   - focus: 'true'
-    shell_command: mutt
-  window_name: mutt
+    shell_command: neomutt
+  window_name: neomutt
