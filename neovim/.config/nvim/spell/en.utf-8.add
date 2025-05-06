@@ -8,3 +8,14 @@ PLC
 TC1000
 TwinCAT
 MQTT
+user-defined
+MCLK
+NINT
+ITR
+INTD
+IWR
+SMB
+LVDS
+FPA
+CCE4K
+SensIR
