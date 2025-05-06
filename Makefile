@@ -49,7 +49,9 @@ SOFTWARE_DIRS := bash \
 	rebar3 \
 	erlang \
 	erlang_ls \
-	neovim
+	neovim \
+	television \
+	ghostty
 INSTALL_DIRS := $(SOFTWARE_DIRS:%=install-%)
 
 .PHONY: all
