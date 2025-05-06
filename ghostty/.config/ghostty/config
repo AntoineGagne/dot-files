@@ -1,0 +1,11 @@
+# font-family = "FiraCode Nerd Font Mono"
+# font-feature = "calt"
+font-family = "Iosevka Custom"
+font-feature = "calt VAAE dlig frac lnum dnom"
+font-style = "Medium"
+font-size = 12
+adjust-cell-width = -1
+theme = "GruvboxDark"
+background-opacity = "0.80"
+scrollback-limit = "0"
+gtk-single-instance = true
