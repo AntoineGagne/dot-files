@@ -19,7 +19,6 @@ NEOVIM_3 := $(HOME)/.virtualenvs/neovim3
 PYTHON_3 := $(shell command -v python3 2>/dev/null)
 
 SOFTWARE_DIRS := bash \
-	ctags \
 	git \
 	haskell \
 	python \
@@ -27,39 +26,24 @@ SOFTWARE_DIRS := bash \
 	shell \
 	vim \
 	formatters \
-	glances \
-	cmus \
 	latex \
-	xbindkeys \
-	urxvt \
 	tmux \
-	xfonts \
-	Xresources \
 	mutt \
 	javascript \
-	cpp \
 	xmonad \
-	xorg \
 	locale \
 	xmobar \
 	zathura \
 	feh \
 	icons \
 	weechat \
-	compton \
 	newsboat \
 	alacritty \
 	pandoc \
 	tmuxp \
-	beets \
-	mpd \
-	ncmpcpp \
-	kitty \
 	dunst \
 	gdb \
 	ocaml \
-	emacs \
-	rofi \
 	pulse \
 	kerl \
 	rebar3 \

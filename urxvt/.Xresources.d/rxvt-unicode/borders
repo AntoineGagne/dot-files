@@ -1,3 +1,0 @@
-! remove border
-urxvt.internalBorder: 5
-urxvt.borderLess: false

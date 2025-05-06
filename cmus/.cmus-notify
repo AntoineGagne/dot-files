@@ -1,6 +1,0 @@
-[notifications]
-    application_name = Cmus
-    custom_notification = ~/.cmus/status_display/custom_notifier
-
-[format]
-    body = <fn=1></fn> {title} by {artist}

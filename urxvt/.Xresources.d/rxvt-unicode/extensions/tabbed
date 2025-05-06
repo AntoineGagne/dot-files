@@ -1,7 +1,0 @@
-urxvt.tabbed.tabbar-fg: 2
-urxvt.tabbed.tabbar-bg: 0
-urxvt.tabbed.tab-fg: 3
-urxvt.tabbed.tab-bg: 0
-urxvt.keysym.Control-Shift-T: perl:tabbed:new_tab
-urxvt.keysym.Shift-Right: perl:tabbed:next_tab
-urxvt.keysym.Shift-Left: perl:tabbed:prev_tab
