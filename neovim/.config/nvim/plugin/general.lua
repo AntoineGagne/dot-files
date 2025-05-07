@@ -9,8 +9,14 @@ if type(state_directory) == 'table' then
   state_directory = state_directory[0]
 end
 
+--- @param ... string Path fragments to join and expand
+--- @return string
+local function expand_directory(...)
+  return vim.fn.expand(vim.fs.joinpath(...)) .. '//'
+end
+
 vim.opt.tags:append({
-  vim.fn.expand(vim.fs.joinpath(state_directory, 'nvim', 'tags')),
+  expand_directory(state_directory, 'nvim', 'tags'),
   './.git/tags',
   './tags',
 })
@@ -18,18 +24,18 @@ vim.opt.tags:append({
 -- Put the backup files in the temporary folder
 vim.o.backup = true
 -- The directory where to put the backups
-vim.o.backupdir = vim.fn.expand(vim.fs.joinpath(state_directory, 'nvim', 'tmp'))
+vim.o.backupdir = expand_directory(state_directory, 'nvim', 'backup')
 -- Skip creating backups for the files matching the following patterns
 vim.opt.backupskip = { '/tmp/*', '/private/tmp/*' }
 
 -- The directory where to save the swap files
-vim.o.directory = vim.fn.expand(vim.fs.joinpath(state_directory, 'nvim', 'swap'))
+vim.o.directory = expand_directory(state_directory, 'nvim', 'swap')
 vim.o.writebackup = true
 
 -- Keep undo even after closing the file
 vim.o.undofile = true
 -- Set the undo directory
-vim.o.undodir = vim.fn.expand(vim.fs.joinpath(state_directory, 'nvim', '.undo'))
+vim.o.undodir = expand_directory(state_directory, 'nvim', '.undo')
 -- Set the maximum number of undo that can be undone
 vim.o.undolevels = 1000
 -- Set the maximum number of lines to save for undo on a buffer reload
