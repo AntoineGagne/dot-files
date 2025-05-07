@@ -1,7 +1,24 @@
 #compdef bartib
 
 _bartib_tasks() {
-    local -a _tasks=($(bartib last | head -n -1 | awk 'BEGIN { a="" } NR > 2 {for (i=2; i <= NF - 1; i++) { if (i != 2) { a=a" "$i; } else { a=$i } } gsub("[\[\]]", "", $1); printf("%s[%s]\n", $1, a)}' | tr '\n' ' '))
+    local -r _awk_command="$(cat << 'EOF'
+BEGIN {
+    a=""
+}
+NR > 2 {
+    for (i=2; i <= NF - 1; ++i) {
+        if (i != 2) {
+            a=a" "$i;
+        } else {
+            a=$i;
+        }
+    }
+    gsub("[\[\]]", "", $1);
+    printf("%s[%s]\n", $1, a);
+}
+EOF
+)"
+    local -a _tasks=($(bartib last | head -n -1 | awk "${_awk_command}" | tr '\n' ' '))
 
     _values "TASK" ${_tasks[@]}
 }
