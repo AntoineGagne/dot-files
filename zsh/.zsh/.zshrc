@@ -166,6 +166,10 @@ npm() {
     npm $@
 }
 
+is_command() {
+    local -r _command="${1}"
+    command -v "${_command}" &>/dev/null
+}
 
 
 fpath=("${HOME}/.zsh/functions/" "${HOME}/.zsh/completions/" $fpath)
@@ -380,7 +384,7 @@ if [[ -f ~/.fzf.zsh ]]; then
     source ~/.fzf.zsh
 fi
 
-if command -v tv >/dev/null; then
+if is_command tv >/dev/null; then
     eval "$(tv init zsh)"
 fi
 
@@ -398,7 +402,7 @@ if [[ -d "${HOME}/.kube" ]]; then
 
 fi
 
-if command -v bartib >/dev/null; then
+if is_command bartib >/dev/null; then
     export BARTIB_FILE="${HOME}/.local/state/bartib/activities.log"
     mkdir -p "$(dirname "${BARTIB_FILE}")"
 fi
