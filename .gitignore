@@ -308,3 +308,4 @@ _build.prev/
 node_modules/
 ocaml/.ocp/ocp-build.prefs
 
+.uuid
