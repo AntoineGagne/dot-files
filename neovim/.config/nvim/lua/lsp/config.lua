@@ -21,6 +21,7 @@ local to_enable = {
   bashls = Setup.create({}),
   clangd = Setup.create({}),
   cmake = Setup.create({}),
+  csharp_ls = Setup:create({}),
   cssls = Setup.create({}),
   elmls = Setup.create({}),
   erlangls = Setup.create({}),
