@@ -416,6 +416,12 @@ if [[ -d "${HOME}/.npm-packages" ]]; then
     PATH="${PATH}:${NPM_PACKAGES}/bin"
 fi
 
+if is_command "dotnet" &>/dev/null; then
+    export PATH="${PATH}:/usr/share/dotnet"
+    export PATH="${PATH}:${HOME}/.dotnet/tools"
+    export DOTNET_ROOT="/usr/share/dotnet"
+fi
+
 # Remove duplicate lines in $PATH
 export PATH="$(echo "$PATH" | awk -F':' '{for (i=1;i<=NF;++i) print($i)}' | awk '!x[$0]++' | awk '{printf("%s:", $0);}' | sed 's/.$//')"
 
