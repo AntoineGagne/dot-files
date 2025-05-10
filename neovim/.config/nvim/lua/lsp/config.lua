@@ -122,6 +122,12 @@ local to_enable = {
     },
   }),
   texlab = Setup.create({}),
+  tinymist = Setup.create({
+    settings = {
+      formatterMode = 'typstyle',
+      exportPdf = 'onType',
+    },
+  }),
   ts_ls = Setup.create({}),
 }
 
