@@ -19,6 +19,7 @@ return {
           'cmake',
           'cpp',
           'css',
+          'c_sharp',
           'diff',
           'dockerfile',
           'dot',
