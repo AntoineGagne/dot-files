@@ -97,8 +97,8 @@ _bartib() {
                 list)
                     _arguments -C \
                         '(-h --help)'{-h,--help}'[Prints help information]' \
-                        '(--current-week)'--current-week'[show activities of the current week]' \
-                        '(--last-week)'--last-week'[show activities of the last week]' \
+                        '(--current_week)'--current_week'[show activities of the current week]' \
+                        '(--last_week)'--last_week'[show activities of the last week]' \
                         '(--no_grouping)'--no_grouping'[do not group activities by date in list]' \
                         '(--today)'--today'[show activities of the current day]' \
                         '(--yesterday)'--yesterday"[show yesterdays' activities]" \
