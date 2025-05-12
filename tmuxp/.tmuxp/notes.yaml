@@ -10,10 +10,3 @@ windows:
   panes:
   - focus: 'true'
   window_name: tasks
-- layout: c95d,211x57,0,0,0
-  options:
-    automatic-rename: 'off'
-  panes:
-  - focus: 'true'
-    shell_command: vim +':VimwikiIndex'
-  window_name: wiki
