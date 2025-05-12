@@ -1,0 +1,16 @@
+# vim: ft=zsh
+
+_start() {
+    local -r now=$(date +%s)
+    local -r to=$((now + ${1})); 
+    while [ "${to}" -ge $(date +%s) ]; do
+        sleep 0.1
+    done
+
+    notification-send "Timer elapsed" "Timer of ${@}s elapsed"
+}
+
+(
+    trap '' HUP INT
+    _start ${1}
+) </dev/null &>/dev/null &
