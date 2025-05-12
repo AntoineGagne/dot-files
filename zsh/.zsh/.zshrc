@@ -419,6 +419,16 @@ if is_command "dotnet" &>/dev/null; then
     export DOTNET_ROOT="/usr/share/dotnet"
 fi
 
+if [[ -d "${HOME}/.pyenv" ]]; then
+    export PYENV_ROOT="${HOME}/.pyenv" 
+
+    if [[ -d "${PYENV_ROOT}/bin" ]]; then
+        export PATH="${PYENV_ROOT}/bin:${PATH}"
+    fi
+
+    eval "$(pyenv init - zsh)"
+fi
+
 # Remove duplicate lines in $PATH
 export PATH="$(echo "$PATH" | awk -F':' '{for (i=1;i<=NF;++i) print($i)}' | awk '!x[$0]++' | awk '{printf("%s:", $0);}' | sed 's/.$//')"
 
