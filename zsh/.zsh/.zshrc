@@ -385,20 +385,12 @@ PS1='$(prompt "${?}")'
 PS2="├╼ "
 RPS1='[%F{cyan}%j jobs%f]──[%F{green}%W%f]'
 
-if [[ -f ~/.fzf.zsh ]]; then
-    source ~/.fzf.zsh
-fi
-
-if is_command tv >/dev/null; then
+if is_command tv; then
     eval "$(tv init zsh)"
 fi
 
-if type "direnv" >/dev/null 2>&1; then
+if is_command direnv; then
     eval "$(direnv hook zsh)"
-fi
-
-if [[ -f "${HOME}/.ghcup/env" ]]; then
-    source "${HOME}/.ghcup/env"
 fi
 
 if [[ -d "${HOME}/.kube" ]]; then
