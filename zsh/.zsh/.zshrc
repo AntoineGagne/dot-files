@@ -1,3 +1,8 @@
+export PROFILING_MODE=0
+if [ "${PROFILING_MODE}" -ne 0 ]; then
+    zmodload zsh/zprof
+fi
+
 HISTFILE=~/.zsh/histfile
 HISTSIZE=50000
 SAVEHIST=50000
@@ -426,3 +431,8 @@ fi
 export PATH="$(echo "$PATH" | awk -F':' '{for (i=1;i<=NF;++i) print($i)}' | awk '!x[$0]++' | awk '{printf("%s:", $0);}' | sed 's/.$//')"
 
 eval $(keychain --agents ssh,gpg --eval --nogui --quiet id_rsa)
+
+
+if [ "${PROFILING_MODE}" -ne 0 ]; then
+    zprof
+fi
