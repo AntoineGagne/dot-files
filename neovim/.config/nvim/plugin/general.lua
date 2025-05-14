@@ -50,7 +50,7 @@ vim.o.foldlevelstart = 10
 -- 10 nested fold max
 vim.o.foldnestmax = 10
 -- Fold based on indent level
-vim.o.foldmethod = 'indent'
+-- vim.o.foldmethod = 'indent'
 
 -- Case insensitive search
 vim.o.ignorecase = true
@@ -108,6 +108,7 @@ vim.o.expandtab = true
 vim.o.smarttab = true
 
 vim.o.foldmethod = 'expr'
+-- Use treesitter for folding
 vim.o.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
 vim.o.foldenable = false
 
