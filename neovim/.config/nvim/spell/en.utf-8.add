@@ -19,3 +19,11 @@ LVDS
 FPA
 CCE4K
 SensIR
+coregistration
+url
+flatfield
+prometheus
+swir
+vnir
+rgb
+mwir
