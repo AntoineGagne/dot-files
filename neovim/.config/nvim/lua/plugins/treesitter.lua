@@ -13,6 +13,7 @@ return {
 
       configs.setup({
         ensure_installed = {
+          'asm',
           'awk',
           'bash',
           'c',
@@ -42,7 +43,9 @@ return {
           'jq',
           'json',
           'lalrpop',
+          -- 'latex',
           'lua',
+          'luadoc',
           'make',
           'menhir',
           'muttrc',
