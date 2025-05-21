@@ -94,7 +94,7 @@ vim.opt.spelllang = { 'en', 'fr' }
 vim.o.list = true
 -- Display spaces as dots and tabs as arrows
 vim.opt.listchars = {
-  space = '•',
+  space = '·',
   tab = '→ ',
   nbsp = '␣',
 }
