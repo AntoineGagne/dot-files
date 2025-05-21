@@ -90,9 +90,18 @@ _bartib() {
                         '(-t --time)'{-t,--time}'[the time for changing the activity status (HH:MM)]:TIME:()' \
                         '*::NUMBER:_bartib_tasks'
                     ;;
+                current)
+                    _arguments -C \
+                        '(-h --help)'{-h,--help}'[Prints help information]'
+                    ;;
                 help)
                     _arguments \
                         '*::SUBCOMMAND:(cancel change check continue current edit help last list projects report sanity search start status stop)'
+                    ;;
+                last)
+                    _arguments -C \
+                        '(-h --help)'{-h,--help}'[Prints help information]' \
+                        '(--n --number)'{-n,--number}'[maximum number of activities to display]:NUMBER:'
                     ;;
                 list)
                     _arguments -C \
@@ -143,6 +152,11 @@ _bartib() {
                         '(-d --description)'{-d,--description}'[the description of the new activity]:DESCRIPTION:()' \
                         '(-p,--project)'{-p,--project}'[the project to which the new activity belongs]:PROJECT:_bartib_projects' \
                         '(-t,--time)'{-t,--time}'[the time for changing the activity status (HH:MM)]:TIME:()'
+                    ;;
+                status)
+                    _arguments -C \
+                        '(-h --help)'{-h,--help}'[Prints help information]' \
+                        '(-p,--project)'{-p,--project}'[the project to which the new activity belongs]:PROJECT:_bartib_projects'
                     ;;
                 stop)
                     _arguments -C \
