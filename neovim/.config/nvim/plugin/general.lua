@@ -4,6 +4,11 @@ vim.o.fileformat = 'unix'
 vim.o.fileformats = 'unix,dos,mac'
 vim.o.formatoptions = 'tcroqnj'
 
+vim.g.loaded_node_provider = 0
+vim.g.loaded_perl_provider = 0
+vim.g.loaded_ruby_provider = 0
+vim.g.loaded_python3_provider = 0
+
 local state_directory = vim.fn.stdpath('state')
 if type(state_directory) == 'table' then
   state_directory = state_directory[0]
