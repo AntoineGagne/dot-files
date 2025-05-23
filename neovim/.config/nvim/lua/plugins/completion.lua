@@ -3,39 +3,20 @@ return {
     'neovim/nvim-lspconfig',
     dependencies = { 'saghen/blink.cmp' },
     config = function(_, opts)
-      local local_config = require('lsp.config')
-      local capabilities = require('blink.cmp').get_lsp_capabilities({})
+      local Config = require('lsp.config')
+      local handlers = require('lsp.callbacks')
       local lspconfig = require('lspconfig')
-      local global_settings = local_config.global_settings.with_snacks(local_config.global_settings.create({}))
-      for server, setup in pairs(local_config.to_enable) do
-        setup = setup or {}
-        if not setup.enabled then
-          goto continue
-        end
+      local capabilities = require('blink.cmp').get_lsp_capabilities(lspconfig.util.default_config.capabilities)
 
-        local lsp = {
-          settings = setup.settings or {},
-          on_attach = function(client, bufnr)
-            -- Global `on_attach`
-            local_config.on_attach(global_settings, client, bufnr)
-            -- Per client `on_attach`
-            setup.callbacks.on_attach(client, bufnr)
-          end,
-          flags = {
-            debounce_text_changes = 150,
-          },
-          capabilities = capabilities,
-        }
-
-        lsp['on_init'] = setup.callbacks.on_init
-
-        if setup.command then
-          lsp['cmd'] = setup.command
-        end
-
-        lspconfig[server].setup(lsp)
-        ::continue::
-      end
+      local snacks_handler = handlers.with_snacks(handlers.new())
+      local config = Config.new(snacks_handler)
+      vim.lsp.enable(Config:servers())
+      vim.lsp.config('*', {
+        on_attach = function(client, bufnr)
+          config:on_attach(client, bufnr)
+        end,
+        capabilities = capabilities,
+      })
     end,
   },
   {
@@ -70,6 +51,17 @@ return {
       },
 
       completion = {
+        list = {
+          selection = {
+            preselect = true,
+            auto_insert = false,
+          },
+        },
+        accept = {
+          auto_brackets = {
+            enabled = false,
+          },
+        },
         -- Automatically show the documentation
         documentation = { auto_show = true },
         ghost_text = { enabled = true },

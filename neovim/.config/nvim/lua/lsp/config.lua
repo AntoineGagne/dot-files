@@ -1,253 +1,82 @@
-local Setup = (function()
-  local defaults = {
-    command = nil,
-    settings = nil,
-    enabled = true,
+local Config = {}
+Config.__index = Config
 
-    callbacks = {
-      on_attach = function(client, bufnr) end,
-      on_init = function(client) end,
-    },
+function Config.new(handler)
+  --- @class Config
+  local self = {
+    handler = handler,
   }
 
-  return {
-    create = function(overrides)
-      return vim.tbl_deep_extend('force', defaults, overrides)
-    end,
-  }
-end)()
-
-local to_enable = {
-  bashls = Setup.create({}),
-  clangd = Setup.create({}),
-  cmake = Setup.create({}),
-  csharp_ls = Setup:create({}),
-  cssls = Setup.create({}),
-  elmls = Setup.create({}),
-  erlangls = Setup.create({}),
-  elixirls = Setup.create({
-    command = { '/home/a.gagne/.local/bin/elixir-ls' },
-  }),
-  harper_ls = Setup.create({
-    settings = {
-      ['harper-ls'] = {
-        userDictPath = '~/.local/state/harper-ls/dictionary',
-      },
-    },
-  }),
-  hie = Setup.create({}),
-  hls = Setup.create({}),
-  lua_ls = Setup.create({
-    callbacks = {
-      on_init = function(client)
-        if client.workspace_folders then
-          local path = client.workspace_folders[1].name
-          if
-            path ~= vim.fn.stdpath('config')
-            and (vim.loop.fs_stat(path .. '/.luarc.json') or vim.loop.fs_stat(path .. '/.luarc.jsonc'))
-          then
-            return
-          end
-        end
-
-        if not client.config.settings.Lua then
-          client.config.settings['Lua'] = {}
-        end
-
-        client.config.settings.Lua = vim.tbl_deep_extend('force', client.config.settings.Lua, {
-          runtime = {
-            version = 'LuaJIT',
-          },
-
-          -- Make the server aware of Neovim runtime files
-          workspace = {
-            checkThirdParty = false,
-            library = {
-              '$VIMRUNTIME',
-              '${3rd}/luv/library',
-              '$XDG_DATA_HOME/nvim/lazy',
-              -- "${3rd}/busted/library",
-            },
-            -- or pull in all of 'runtimepath'. NOTE: this is a lot slower
-            -- library = vim.api.nvim_get_runtime_file("", true)
-          },
-        })
-      end,
-    },
-  }),
-  purescriptls = Setup.create({}),
-  basedpyright = Setup.create({}),
-  pyright = Setup.create({
-    enabled = false,
-    callbacks = {
-      on_attach = function(client, bufnr)
-        client.server_capabilities.hoverProvider = false
-      end,
-    },
-  }),
-  pylsp = Setup.create({
-    enabled = false,
-    callbacks = {
-      on_attach = function(client, bufnr)
-        client.server_capabilities.definitionProvider = false
-        client.server_capabilities.documentSymbolProvider = false
-        client.server_capabilities.documentFormattingProvider = false
-        client.server_capabilities.renameProvider = false
-        client.server_capabilities.referencesProvider = false
-      end,
-    },
-  }),
-  ruff = Setup.create({}),
-  rust_analyzer = Setup.create({
-    settings = {
-      ['rust-analyzer'] = {
-        checkOnSave = {
-          command = 'clippy',
-        },
-        imports = {
-          granularity = {
-            group = 'module',
-          },
-          prefix = 'self',
-        },
-        cargo = {
-          buildScripts = {
-            enable = true,
-          },
-        },
-        procMacro = {
-          enable = true,
-        },
-      },
-    },
-  }),
-  texlab = Setup.create({}),
-  tinymist = Setup.create({
-    settings = {
-      formatterMode = 'typstyle',
-      exportPdf = 'onType',
-    },
-  }),
-  ts_ls = Setup.create({}),
-}
-
-local function with(f, config)
-  return function(options)
-    options = options or {}
-    return f(vim.tbl_deep_extend('force', options, config))
-  end
+  setmetatable(self, Config)
+  return self
 end
 
-local GlobalSettings = (function()
-  local defaults = {
-    callbacks = {
-      implementations = vim.lsp.buf.implementation,
-      declaration = vim.lsp.buf.declaration,
-      definitions = vim.lsp.buf.definition,
-      document_symbols = vim.lsp.buf.document_symbol,
-      type_definition = vim.lsp.buf.type_definition,
-      reference = vim.lsp.buf.references,
-      hover = with(vim.lsp.buf.hover, { border = 'rounded', silent = false }),
-      signature_help = with(vim.lsp.buf.signature_help, { border = 'rounded', silent = false }),
-      workspace = {
-        add = vim.lsp.buf.add_workspace_folder,
-        remove = vim.lsp.buf.remove_workspace_folder,
-        list = function()
-          vim.print(vim.lsp.buf.list_workspace_folders())
-        end,
-      },
-      rename = vim.lsp.buf.rename,
-    },
+--- @param client vim.lsp.Client
+--- @param bufnr integer
+function Config:on_attach(client, bufnr)
+  -- Mappings.
+  local opts = { remap = false, silent = true, buffer = bufnr }
+  local handler = self.handler
+
+  local keymappings = {
+    ['gD'] = { handler.declaration, 'Show symbol declaration' },
+    ['gd'] = { handler.definitions, 'Show symbol definition' },
+    ['gri'] = { handler.implementations, 'Show symbol implementation' },
+    ['gO'] = { handler.document_symbols, 'Show symbol implementation' },
+    ['<leader>wa'] = { handler.workspace.add, 'Add to workspace folder' },
+    ['<leader>wr'] = { handler.workspace.remove, 'Remove from workspace folder' },
+    ['<leader>wl'] = { handler.workspace.list, 'Show the workspace folders' },
+    ['<leader>D'] = { handler.type_definition, 'Show the symbol type definition' },
+    ['<leader>rn'] = { handler.rename, 'Rename the symbol under the cursor' },
+    ['grr'] = { handler.reference, 'Show the symbol references' },
+    ['K'] = { handler.hover, 'Show symbol details' },
+    ['<C-k>'] = { handler.signature_help, 'Show signature help' },
   }
 
-  local function create(overrides)
-    return vim.tbl_deep_extend('force', defaults, overrides)
+  for keys, mapping in pairs(keymappings) do
+    local function_, description = unpack(mapping)
+    vim.keymap.set('n', keys, function_, vim.tbl_deep_extend('force', opts, { desc = description }))
   end
 
-  return {
-    create = create,
+  vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
 
-    with_telescope = function(settings)
-      local telescope_builtins = require('telescope.builtin')
-      return vim.tbl_deep_extend('force', settings, {
-        callbacks = {
-          definitions = telescope_builtins.lsp_definitions,
-          implementations = telescope_builtins.lsp_implementations,
-          document_symbols = telescope_builtins.lsp_document_symbols,
-          type_definition = telescope_builtins.lsp_type_definitions,
-          reference = telescope_builtins.lsp_references,
-        },
-      })
-    end,
-
-    with_snacks = function(settings)
-      local snacks = require('snacks.picker')
-      return vim.tbl_deep_extend('force', settings, {
-        callbacks = {
-          definitions = snacks.lsp_definitions,
-          implementations = snacks.lsp_implementations,
-          document_symbols = snacks.lsp_document_symbols,
-          type_definition = snacks.lsp_type_definitions,
-          reference = snacks.lsp_references,
-        },
-      })
-    end,
-  }
-end)()
-
-return {
-  to_enable = to_enable,
-  global_settings = GlobalSettings,
-  on_attach = function(settings, client, bufnr)
-    -- Mappings.
-    local opts = { remap = false, silent = true, buffer = bufnr }
-
-    local keymappings = {
-      ['gD'] = { settings.callbacks.declaration, 'Show symbol declaration' },
-      ['gd'] = { settings.callbacks.definitions, 'Show symbol definition' },
-      ['gri'] = { settings.callbacks.implementations, 'Show symbol implementation' },
-      ['gO'] = { settings.callbacks.document_symbols, 'Show symbol implementation' },
-      ['<leader>wa'] = { settings.callbacks.workspace.add, 'Add to workspace folder' },
-      ['<leader>wr'] = { settings.callbacks.workspace.remove, 'Remove from workspace folder' },
-      ['<leader>wl'] = { settings.callbacks.workspace.list, 'Show the workspace folders' },
-      ['<leader>D'] = { settings.callbacks.type_definition, 'Show the symbol type definition' },
-      ['<leader>rn'] = { settings.callbacks.rename, 'Rename the symbol under the cursor' },
-      ['grr'] = { settings.callbacks.reference, 'Show the symbol references' },
-      ['K'] = { settings.callbacks.hover, 'Show symbol details' },
-      ['<C-k>'] = { settings.callbacks.signature_help, 'Show signature help' },
-    }
-
-    for keys, mapping in pairs(keymappings) do
-      local function_, description = unpack(mapping)
-      vim.keymap.set('n', keys, function_, vim.tbl_deep_extend('force', opts, { desc = description }))
-    end
-
-    vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
-
-    -- Set autocommands conditional on server_capabilities
-    if client.server_capabilities.document_highlight then
-      local lsp_document_highlight = vim.api.nvim_create_augroup('lsp_document_highlight', { clear = true })
-      vim.api.nvim_clear_autocmds({ event = '*', pattern = '*', group = lsp_document_highlight })
-      vim.api.nvim_create_autocmd('CursorHold', {
-        callback = vim.lsp.buf.document_highlight,
-        desc = 'Send request to the server to resolve document highlights for the current text document position.',
-        buffer = bufnr,
-        group = lsp_document_highlight,
-      })
-      vim.api.nvim_create_autocmd('CursorMoved', {
-        callback = vim.lsp.buf.clear_references,
-        desc = 'Removes document highlights from current buffer.',
-        buffer = bufnr,
-        group = lsp_document_highlight,
-      })
-      vim.api.nvim_exec2(
-        [[
+  -- Set autocommands conditional on server_capabilities
+  if client.server_capabilities.document_highlight then
+    local lsp_document_highlight = vim.api.nvim_create_augroup('lsp_document_highlight', { clear = true })
+    vim.api.nvim_clear_autocmds({ event = '*', pattern = '*', group = lsp_document_highlight })
+    vim.api.nvim_create_autocmd('CursorHold', {
+      callback = vim.lsp.buf.document_highlight,
+      desc = 'Send request to the server to resolve document highlights for the current text document position.',
+      buffer = bufnr,
+      group = lsp_document_highlight,
+    })
+    vim.api.nvim_create_autocmd('CursorMoved', {
+      callback = vim.lsp.buf.clear_references,
+      desc = 'Removes document highlights from current buffer.',
+      buffer = bufnr,
+      group = lsp_document_highlight,
+    })
+    vim.api.nvim_exec2(
+      [[
       hi LspReferenceRead cterm=bold ctermbg=red guibg=LightYellow
       hi LspReferenceText cterm=bold ctermbg=red guibg=LightYellow
       hi LspReferenceWrite cterm=bold ctermbg=red guibg=LightYellow
       ]],
-        { output = false }
-      )
-    end
-  end,
-}
+      { output = false }
+    )
+  end
+end
+
+function Config:servers()
+  local servers = {}
+
+  local lsp_files = vim.api.nvim_get_runtime_file(vim.fs.joinpath('after', 'lsp') .. '/*.lua', true)
+  for _, file in ipairs(lsp_files) do
+    local server_name = vim.fn.fnamemodify(file, ':t:r')
+    table.insert(servers, server_name)
+  end
+
+  return servers
+end
+
+return Config
