@@ -34,6 +34,10 @@
                 "path": "./rust.json"
             },
             {
+                "language": "sh",
+                "path": "./sh.json"
+            },
+            {
                 "language": "tex",
                 "path": "./tex.json"
             },
@@ -44,6 +48,10 @@
             {
                 "language": "typescriptreact",
                 "path": "./typescriptreact.json"
+            },
+            {
+                "language": "zsh",
+                "path": "./sh.json"
             }
         ]
     },

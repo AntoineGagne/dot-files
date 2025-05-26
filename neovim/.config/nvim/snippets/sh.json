@@ -1,0 +1,72 @@
+{
+  "case..in..esac": {
+    "prefix": "esac",
+    "body": [
+      "case ${1} in",
+      "    ${2}",
+      "esac"
+    ]
+  },
+  "match": {
+    "prefix": "match",
+    "body": [
+      "${1})",
+      "    ${2}",
+      "    ;;"
+    ]
+  },
+  "if": {
+    "prefix": "if",
+    "body": [
+      "if ${1}; then",
+      "    ${2}",
+      "fi"
+    ]
+  },
+  "if..else": {
+    "prefix": "ifelse",
+    "body": [
+      "if ${1}; then",
+      "    ${2}",
+      "else",
+      "   ${3}",
+      "fi"
+    ]
+  },
+  "if..elif..else": {
+    "prefix": "ifelif",
+    "body": [
+      "if ${1}; then",
+      "    ${2}",
+      "elif ${3}; then",
+      "    ${4}",
+      "else",
+      "    ${5}",
+      "fi"
+    ]
+  },
+  "for": {
+    "prefix": "for",
+    "body": [
+      "for ${1}; do",
+      "    ${2}",
+      "done"
+    ]
+  },
+  "while": {
+    "prefix": "while",
+    "body": [
+      "while ${1}; do",
+      "    ${2}",
+      "done"
+    ]
+  },
+  "heredoc": {
+    "prefix": "heredoc",
+    "body": [
+      "cat << EOF",
+      "${1}",
+      "EOF"
+    ]
+  }
+}
