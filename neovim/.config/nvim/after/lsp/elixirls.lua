@@ -1,3 +1,3 @@
 return {
-  cmd = { '/home/twain/.local/bin/elixir-ls' },
+  cmd = { 'elixir-ls' },
 }
