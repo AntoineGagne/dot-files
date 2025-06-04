@@ -1,4 +1,13 @@
 {
+    "testmodule": {
+        "prefix": "testmod",
+        "body": [
+            "#[cfg(test)]",
+            "mod tests {",
+            "    ${0}",
+            "}"
+        ]
+    },
     "testcase": {
         "prefix": "testcase",
         "body": [
@@ -16,6 +25,27 @@
             "        write!(formatter, \"{}\", self.0)",
             "    }",
             "}"
+        ]
+    },
+    "match": {
+        "prefix": "match",
+        "body": [
+            "match $1 {",
+            "    $0",
+            "}"
+        ]
+    },
+    "match_result": {
+        "prefix": "matchr",
+        "body": [
+                "match $1 {",
+                "   Ok($2) => {",
+                "       $3",
+                "   }",
+                "   Err($4) => {",
+                "       $5",
+                "   }",
+                "}"
         ]
     }
 }
