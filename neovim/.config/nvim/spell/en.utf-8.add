@@ -27,3 +27,7 @@ swir
 vnir
 rgb
 mwir
+timestamp
+ENVI
+hyperspectral
+timeouted
