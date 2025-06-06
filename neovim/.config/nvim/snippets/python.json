@@ -255,5 +255,16 @@
             "if __name__ == \"__main__\":",
             "    ${1:pass}"
         ]
+    },
+    "TestCase": {
+        "prefix": "testcase",
+        "description": "unittest TestCase",
+        "body": [
+            "from unittest import TestCase",
+            "",
+            "",
+            "class $1(TestCase):",
+            "    ${1:pass}"
+        ]
     }
 }
