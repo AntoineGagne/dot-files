@@ -75,7 +75,7 @@ if vim.fn.executable('pt') then
 end
 
 if vim.fn.executable('rg') then
-  vim.o.grepprg = 'rg --vimgrep --no-heading'
+  vim.o.grepprg = 'rg --vimgrep --no-heading --smart-case'
   vim.o.grepformat = '%f:%l:%c:%m,%f:%l:%m'
 end
 
