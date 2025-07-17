@@ -64,6 +64,20 @@ return {
     build = false,
     opts = {
       processor = 'magick_cli',
+      integrations = {
+        markdown = {
+          -- defaults to false
+          only_render_image_at_cursor = true,
+          -- "popup" or "inline", defaults to "popup"
+          only_render_image_at_cursor_mode = 'popup',
+        },
+        neorg = {
+          -- defaults to false
+          only_render_image_at_cursor = true,
+          -- "popup" or "inline", defaults to "popup"
+          only_render_image_at_cursor_mode = 'popup',
+        },
+      },
     },
   },
 }
