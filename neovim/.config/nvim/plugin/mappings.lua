@@ -15,7 +15,7 @@ vim.keymap.set({ 'n', 'v' }, '^', 'g0', { remap = false })
 vim.keymap.set({ 'n', 'v' }, '$', 'g$', { remap = false })
 
 -- Fix an issue with nvim-cmp
-vim.keymap.set('c', '<tab>', '<C-z>', { silent = false })
+-- vim.keymap.set('c', '<tab>', '<C-z>', { silent = false })
 
 -- Map leader key to space
 -- vim.keymap.set({'n', 'v', 'i'}, '<Space>', '<leader>')
