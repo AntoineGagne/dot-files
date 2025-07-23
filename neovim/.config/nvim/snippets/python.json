@@ -266,5 +266,19 @@
             "class $1(TestCase):",
             "    ${1:pass}"
         ]
+    },
+    "numpy_import": {
+        "prefix": "numpy_import",
+        "description": "import numpy",
+        "body": [
+            "import numpy as np"
+        ]
+    },
+    "logger": {
+        "prefix": "logger",
+        "description": "instantiate a logger instance",
+        "body": [
+            "logger = logging.getLogger(__name__)"
+        ]
     }
 }
