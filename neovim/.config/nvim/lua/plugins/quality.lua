@@ -4,9 +4,15 @@ return {
     config = function()
       local lint = require('lint')
       lint.linters_by_ft = {
+        awk = { 'gawk' },
+        bash = { 'bash', 'shellcheck' },
         dockerfile = { 'hadolint' },
+        nix = { 'nix' },
+        python = { 'ruff' },
+        rust = { 'clippy' },
+        sh = { 'shellcheck' },
         yaml = { 'yamllint' },
-        zsh = { 'zsh' },
+        zsh = { 'zsh', 'shellcheck' },
       }
 
       local group = vim.api.nvim_create_augroup('linting', { clear = true })
