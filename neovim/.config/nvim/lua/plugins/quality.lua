@@ -37,6 +37,11 @@ return {
         elixir = { 'mix' },
         jq = { 'jq' },
         lua = { 'stylua' },
+        python = {
+          'ruff_format',
+          'ruff_fix',
+          'ruff_organize_imports',
+        },
         rust = { 'rustfmt', lsp_format = 'fallback' },
         sh = { 'shellcheck' },
       },
