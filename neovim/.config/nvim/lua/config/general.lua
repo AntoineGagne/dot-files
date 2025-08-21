@@ -184,6 +184,7 @@ highlight NonText ctermbg=none
 ]])
 
 vim.diagnostic.config({
+  virtual_lines = true,
   virtual_text = true,
   signs = {
     text = {
