@@ -175,6 +175,8 @@ vim.g.netrw_sort_options = 'i'
 -- see `exrc`
 vim.g.exrc = false
 
+vim.o.diffopt = 'internal,filler,closeoff,linematch:40'
+
 -- For transparency
 vim.cmd([[
 highlight Normal guibg=none
