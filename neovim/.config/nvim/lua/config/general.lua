@@ -175,8 +175,6 @@ vim.g.netrw_sort_options = 'i'
 -- see `exrc`
 vim.g.exrc = false
 
-vim.o.diffopt = 'internal,filler,closeoff,linematch:40'
-
 -- For transparency
 vim.cmd([[
 highlight Normal guibg=none
@@ -196,3 +194,8 @@ vim.diagnostic.config({
     },
   },
 })
+
+-- see https://github.com/neovim/neovim/issues/22696
+if vim.opt.diff:get() then
+  vim.o.diffopt = 'internal,filler,closeoff'
+end
