@@ -23,6 +23,10 @@ setopt autocd
 # Automatically list choices on an ambiguous completion.
 setopt autolist
 
+# If the argument to cd is the name of a parameter whose value is a valid
+# directory, it will become the current directory.
+setopt cdablevars
+
 # Prevents aliases on the command line from being internally substituted before
 # completion is attempted. The effect is to make the alias a distinct command
 # for completion purposes.
