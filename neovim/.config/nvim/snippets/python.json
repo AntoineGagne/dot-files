@@ -264,7 +264,8 @@
             "",
             "",
             "class $1(TestCase):",
-            "    ${1:pass}"
+            "    def setUp(self):",
+            "        ${2:pass}"
         ]
     },
     "numpy_import": {
