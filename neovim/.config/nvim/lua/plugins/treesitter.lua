@@ -60,6 +60,7 @@ return {
           'regex',
           'ruby',
           'rust',
+          'sql',
           'tmux',
           'toml',
           'typst',
