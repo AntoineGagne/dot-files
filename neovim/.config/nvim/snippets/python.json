@@ -169,9 +169,44 @@
     },
     "Abstract Method": {
         "prefix": "defa",
+        "description": "abstract method",
         "body": [
             "@abstractmethod",
             "def ${1}(${2}):",
+            "    pass"
+        ]
+    },
+    "Async Method": {
+        "prefix": "adefm",
+        "description": "async method",
+        "body": [
+            "async def $1(self$2):",
+            "    ${3:raise NotImplementedError}"
+        ]
+    },
+    "Async Class Method": {
+        "prefix": "adefc",
+        "description": "async classmethod",
+        "body": [
+            "@classmethod",
+            "async def $1(cls$2):",
+            "    ${3:raise NotImplementedError}"
+        ]
+    },
+    "Async Free Function": {
+        "prefix": "adef",
+        "description": "async function",
+        "body": [
+            "def $1($2):",
+            "    ${3:raise NotImplementedError}"
+        ]
+    },
+    "Async Abstract Method": {
+        "prefix": "adefa",
+        "description": "async abstract method",
+        "body": [
+            "@abstractmethod",
+            "async def ${1}(${2}):",
             "    pass"
         ]
     },
