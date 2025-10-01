@@ -147,7 +147,7 @@
         "description": "method",
         "body": [
             "def $1(self$2):",
-            "    $3"
+            "    ${3:raise NotImplementedError}"
         ]
     },
     "Class Method": {
@@ -156,7 +156,7 @@
         "body": [
             "@classmethod",
             "def $1(cls$2):",
-            "    $3"
+            "    ${3:raise NotImplementedError}"
         ]
     },
     "Free Function": {
@@ -164,7 +164,7 @@
         "description": "function",
         "body": [
             "def $1($2):",
-            "    $3"
+            "    ${3:raise NotImplementedError}"
         ]
     },
     "Abstract Method": {
@@ -172,7 +172,7 @@
         "body": [
             "@abstractmethod",
             "def ${1}(${2}):",
-            "    raise NotImplementedError"
+            "    pass"
         ]
     },
     "Custom Exception": {
