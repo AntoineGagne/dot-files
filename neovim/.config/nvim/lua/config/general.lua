@@ -195,6 +195,10 @@ vim.diagnostic.config({
   },
 })
 
+-- Defines the default border style of floating windows.
+-- see :h winborder
+vim.o.winborder = 'rounded'
+
 -- see https://github.com/neovim/neovim/issues/22696
 if vim.opt.diff:get() then
   vim.o.diffopt = 'internal,filler,closeoff'
