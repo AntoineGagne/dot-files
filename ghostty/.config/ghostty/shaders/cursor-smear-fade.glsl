@@ -62,8 +62,8 @@ float ease(float x) {
     return pow(1.0 - x, 3.0);
 }
 
-const vec4 TRAIL_COLOR = vec4(0., 1., 1., 0.);
-const float DURATION = 0.1; //IN SECONDS
+const vec4 TRAIL_COLOR = vec4(255., 255., 255., 255.);
+const float DURATION_IN_SECONDS = 0.005;
 
 void mainImage(out vec4 fragColor, in vec2 fragCoord) {
 #if !defined(WEB)
@@ -92,7 +92,7 @@ void mainImage(out vec4 fragColor, in vec2 fragCoord) {
     float sdfCurrentCursor = getSdfRectangle(vu, currentCursor.xy - (currentCursor.zw * offsetFactor), currentCursor.zw * 0.5);
     float sdfTrail = getSdfParallelogram(vu, v0, v1, v2, v3);
 
-    float progress = clamp((iTime - iTimeCursorChange) / DURATION, 0.0, 1.0);
+    float progress = clamp((iTime - iTimeCursorChange) / DURATION_IN_SECONDS, 0.0, 1.0);
     float easedProgress = ease(progress);
     // Distance between cursors determine the total length of the parallelogram;
     vec2 centerCC = getRectangleCenter(currentCursor);
