@@ -44,10 +44,19 @@ float antialising(float distance) {
     return 1. - smoothstep(0., norm(vec2(2., 2.), 0.).x, distance);
 }
 
-float determineStartVertexFactor(vec2 a, vec2 b) {
+float determineStartVertexFactor(vec2 c, vec2 p) {
     // Conditions using step
-    float condition1 = step(b.x, a.x) * step(a.y, b.y); // a.x < b.x && a.y > b.y
-    float condition2 = step(a.x, b.x) * step(b.y, a.y); // a.x > b.x && a.y < b.y
+    float condition1 = step(p.x, c.x) * step(c.y, p.y); // c.x < p.x && c.y > p.y
+    float condition2 = step(c.x, p.x) * step(p.y, c.y); // c.x > p.x && c.y < p.y
+
+    // If neither condition is met, return 1 (else case)
+    return 1.0 - max(condition1, condition2);
+}
+
+float determineStartVertexFactor2(vec2 c, vec2 p) {
+    // Conditions using step
+    float condition1 = step(p.x, c.x) * step(c.y, p.y); // c.x < p.x && c.y > p.y
+    float condition2 = step(c.x, p.x) * step(p.y, c.y); // c.x > p.x && c.y < p.y
 
     // If neither condition is met, return 1 (else case)
     return 1.0 - max(condition1, condition2);
@@ -60,8 +69,9 @@ float ease(float x) {
     return pow(1.0 - x, 3.0);
 }
 
-const vec4 TRAIL_COLOR = vec4(1., 1., 0., 1.0);
-const float DURATION = 0.5; //IN SECONDS
+const vec4 TRAIL_COLOR = vec4(.502, 0.98, 1., 1.0);
+const vec4 TRAIL_COLOR_ACCENT = vec4(.0, 0., 1., 1.0);
+const float DURATION = 0.3; //IN SECONDS
 
 void mainImage(out vec4 fragColor, in vec2 fragCoord)
 {
@@ -76,6 +86,8 @@ void mainImage(out vec4 fragColor, in vec2 fragCoord)
     vec4 currentCursor = vec4(norm(iCurrentCursor.xy, 1.), norm(iCurrentCursor.zw, 0.));
     vec4 previousCursor = vec4(norm(iPreviousCursor.xy, 1.), norm(iPreviousCursor.zw, 0.));
 
+    vec2 centerCC = getRectangleCenter(currentCursor);
+    vec2 centerCP = getRectangleCenter(previousCursor);
     // When drawing a parellelogram between cursors for the trail i need to determine where to start at the top-left or top-right vertex of the cursor
     float vertexFactor = determineStartVertexFactor(currentCursor.xy, previousCursor.xy);
     float invertedVertexFactor = 1.0 - vertexFactor;
@@ -92,21 +104,19 @@ void mainImage(out vec4 fragColor, in vec2 fragCoord)
     float progress = clamp((iTime - iTimeCursorChange) / DURATION, 0.0, 1.0);
     float easedProgress = ease(progress);
     // Distance between cursors determine the total length of the parallelogram;
-    vec2 centerCC = getRectangleCenter(currentCursor);
-    vec2 centerCP = getRectangleCenter(previousCursor);
     float lineLength = distance(centerCC, centerCP);
 
     vec4 newColor = vec4(fragColor);
     // Compute fade factor based on distance along the trail
     float fadeFactor = 1.0 - smoothstep(lineLength, sdfCurrentCursor, easedProgress * lineLength);
 
-    // Apply fading effect to trail color
-    vec4 fadedTrailColor = TRAIL_COLOR * fadeFactor;
-
-    // Blend trail with fade effect
-    newColor = mix(newColor, fadedTrailColor, antialising(sdfTrail));
-    // Draw current cursor
-    newColor = mix(newColor, TRAIL_COLOR, antialising(sdfCurrentCursor));
-    newColor = mix(newColor, fragColor, step(sdfCurrentCursor, 0.));
-    fragColor = mix(fragColor, newColor, step(sdfCurrentCursor, easedProgress * lineLength));
+    float mod = .007;
+    //trailblaze
+    vec4 trail = mix(TRAIL_COLOR_ACCENT, fragColor, 1. - smoothstep(0., sdfTrail + mod, 0.007));
+    trail = mix(TRAIL_COLOR, trail, 1. - smoothstep(0., sdfTrail + mod, 0.006));
+    trail = mix(trail, TRAIL_COLOR, step(sdfTrail + mod, 0.));
+    //cursorblaze
+    trail = mix(TRAIL_COLOR_ACCENT, trail, 1. - smoothstep(0., sdfCurrentCursor + .002, 0.004));
+    trail = mix(TRAIL_COLOR, trail, 1. - smoothstep(0., sdfCurrentCursor + .002, 0.004));
+    fragColor = mix(trail, fragColor, 1. - smoothstep(0., sdfCurrentCursor, easedProgress * lineLength));
 }

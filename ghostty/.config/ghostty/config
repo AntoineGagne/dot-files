@@ -9,4 +9,4 @@ theme = "GruvboxDark"
 background-opacity = "0.80"
 scrollback-limit = "0"
 gtk-single-instance = true
-custom-shader = ~/.config/ghostty/shaders/cursor-smear-fade.glsl
+custom-shader = ~/.config/ghostty/shaders/cursor-smear.glsl
