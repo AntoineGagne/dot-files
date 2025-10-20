@@ -54,6 +54,7 @@ return {
           'ocaml',
           'ocaml_interface',
           'php',
+          'powershell',
           'prolog',
           'purescript',
           'python',
