@@ -316,5 +316,12 @@
         "body": [
             "logger = logging.getLogger(__name__)"
         ]
+    },
+    "annotations": {
+        "prefix": "annotations",
+        "description": "import annotations",
+        "body": [
+            "from __future__ import annotations"
+        ]
     }
 }
