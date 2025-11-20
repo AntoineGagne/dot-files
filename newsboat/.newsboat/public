@@ -8,9 +8,9 @@ http://www.reddit.com/r/programming+haskell+bash+coolgithubprojects+cpp+erlang+r
 https://blog.erlang.org/feed.xml programming functionalprogramming erlang
 https://blog.janestreet.com/feed.xml programming blog ocaml functionalprogramming janestreet
 https://blog.jetbrains.com/feed/ jetbrains programming
-https://crescentro.se/posts/rss.xml programming blog
 https://blog.rust-lang.org/feed.xml programming rust
 https://code.facebook.com/posts/rss/ programming facebook
+https://crescentro.se/posts/rss.xml programming blog
 https://duckdb.org/feed.xml programming database
 https://en.wikipedia.org/w/index.php?title=Special:NewPages&feed=rss wikipedia
 https://feeds.feedburner.com/Explosm comics "c&h"
@@ -25,6 +25,7 @@ https://hnrss.org/frontpage programming hackernews
 https://hnrss.org/newest programming hackernews
 https://neovim.io/news.xml programming editor neovim commandline
 https://newsboat.org/news.atom newsboat rss
+https://okmij.org/ftp/atom.xml programming functionalprogramming haskell ocaml blog
 https://serokell.io/blog.rss.xml programming functionalprogramming haskell
 https://this-week-in-rust.org/atom.xml programming rust
 https://weechat.org/blog/feed/atom irc chat weechat commandline
