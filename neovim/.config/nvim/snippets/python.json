@@ -303,6 +303,18 @@
             "        ${2:pass}"
         ]
     },
+    "IsolatedAsyncioTestCase": {
+        "prefix": "atestcase",
+        "description": "unittest IsolatedAsyncioTestCase",
+        "body": [
+            "from unittest import IsolatedAsyncioTestCase",
+            "",
+            "",
+            "class $1(IsolatedAsyncioTestCase):",
+            "    def setUp(self):",
+            "        ${2:pass}"
+        ]
+    },
     "numpy_import": {
         "prefix": "numpy_import",
         "description": "import numpy",
