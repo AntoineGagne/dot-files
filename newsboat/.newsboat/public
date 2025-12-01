@@ -1,5 +1,4 @@
-http://beets.io/blog/atom.xml filemanager music beets
-http://beets.io/blog/atom.xml music beets tag
+http://beets.io/blog/atom.xml filemanager music beets tag
 http://feeds.feedburner.com/codinghorror?format=xml programming
 http://feeds.nature.com/nature/rss/current news science nature
 http://planet.haskell.org/rss20.xml programming functionalprogramming haskell
@@ -27,6 +26,7 @@ https://neovim.io/news.xml programming editor neovim commandline
 https://newsboat.org/news.atom newsboat rss
 https://okmij.org/ftp/atom.xml programming functionalprogramming haskell ocaml blog
 https://serokell.io/blog.rss.xml programming functionalprogramming haskell
+https://blog.haskell.org/atom.xml programming functionalprogramming haskell blog
 https://this-week-in-rust.org/atom.xml programming rust
 https://weechat.org/blog/feed/atom irc chat weechat commandline
 https://www.latex-project.org/feed.xml programming latex
