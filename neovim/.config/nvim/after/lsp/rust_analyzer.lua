@@ -1,9 +1,7 @@
 return {
   settings = {
     ['rust-analyzer'] = {
-      checkOnSave = {
-        command = 'clippy',
-      },
+      checkOnSave = true,
       imports = {
         granularity = {
           group = 'module',
