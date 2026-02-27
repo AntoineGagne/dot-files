@@ -14,4 +14,5 @@ return {
   { 'kergoth/vim-bitbake' },
   { 'hail2u/vim-css3-syntax' },
   { 'zchee/vim-flatbuffers' },
+  { 'Joorem/vim-haproxy', version = 'v0.2.1' },
 }
