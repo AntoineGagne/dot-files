@@ -2,5 +2,32 @@
     "inspect": {
         "prefix": "inspect",
         "body": "vim.print(vim.inspect($0))"
+    },
+    "while": {
+      "prefix": "while",
+      "description": "while loop",
+      "body": [
+        "while ${1} do",
+        "  ${0}",
+        "end"
+      ]
+    },
+    "for": {
+      "prefix": "for",
+      "description": "for loop",
+      "body": [
+        "for ${1} do",
+        "  ${0}",
+        "end"
+      ]
+    },
+    "if": {
+      "prefix": "if",
+      "description": "if statement",
+      "body": [
+        "if ${1} then",
+        "  ${0}",
+        "end"
+      ]
     }
 }
