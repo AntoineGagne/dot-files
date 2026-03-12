@@ -9,7 +9,7 @@ return {
       local capabilities = require('blink.cmp').get_lsp_capabilities(lspconfig.util.default_config.capabilities)
 
       local snacks_handler = handlers.with_snacks(handlers.new())
-      local config = Config.new(snacks_handler)
+      local config = Config:new(snacks_handler)
       vim.lsp.enable(Config:servers())
       vim.lsp.config('*', {
         on_attach = function(client, bufnr)

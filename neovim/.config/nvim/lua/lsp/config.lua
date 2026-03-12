@@ -1,14 +1,8 @@
 local Config = {}
 Config.__index = Config
 
-function Config.new(handler)
-  --- @class Config
-  local self = {
-    handler = handler,
-  }
-
-  setmetatable(self, Config)
-  return self
+function Config:new(handler)
+  return setmetatable({ handler = handler }, self)
 end
 
 --- @param client vim.lsp.Client
