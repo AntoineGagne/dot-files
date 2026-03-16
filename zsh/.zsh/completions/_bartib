@@ -13,13 +13,12 @@ NR > 2 {
             a=$i;
         }
     }
-    gsub("[\[\]]", "", $1);
+    gsub("[\\[\\]]", "", $1);
     printf("%s[%s]\n", $1, a);
 }
 EOF
 )"
     local -a _tasks=($(bartib last | head -n -1 | awk "${_awk_command}" | tr '\n' ' '))
-
     _values "TASK" ${_tasks[@]}
 }
 
