@@ -335,5 +335,14 @@
         "body": [
             "from __future__ import annotations"
         ]
+    },
+    "composite_strategies": {
+      "prefix": "hcomposite",
+      "description": "define a new Hypothesis composite strategy",
+      "body": [
+        "@strategies.composite",
+        "def ${1}(draw):",
+        "    ${2}"
+      ]
     }
 }
