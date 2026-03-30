@@ -30,7 +30,7 @@
     "match": {
         "prefix": "match",
         "body": [
-            "match $1 {",
+            "match $1 {",
             "    $0",
             "}"
         ]
@@ -38,14 +38,44 @@
     "match_result": {
         "prefix": "matchr",
         "body": [
-                "match $1 {",
-                "   Ok($2) => {",
-                "       $3",
-                "   }",
-                "   Err($4) => {",
-                "       $5",
-                "   }",
-                "}"
+            "match $1 {",
+            "   Ok($2) => {",
+            "       $3",
+            "   }",
+            "   Err($4) => {",
+            "       $5",
+            "   }",
+            "}"
+        ]
+    },
+    "if_let": {
+        "prefix": "iflet",
+        "body": [
+            "if let ${1:Some}($2) = $3 {",
+            "    $4",
+            "}"
+        ]
+    },
+    "while_let": {
+        "prefix": "whilelet",
+        "body": [
+            "while let ${1:Some}($2) = $3 {",
+            "    $4",
+            "}"
+        ]
+    },
+    "typestate_pattern": {
+        "prefix": "typestate",
+        "body": [
+            "struct $1<T> {",
+            "    _phantom: PhantomData<T>,",
+            "}",
+            "",
+            "struct $2;",
+            "",
+            "impl $1<$2> {",
+            "",
+            "}"
         ]
     }
 }
