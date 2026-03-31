@@ -9,6 +9,13 @@ vim.api.nvim_create_autocmd('ColorScheme', {
   command = 'highlight Normal ctermbg=none guibg=none',
   group = ui,
 })
+vim.api.nvim_create_autocmd('FileType', {
+  desc = 'Start Treesitter for supported filetypes',
+  pattern = require('config.constants').TREESITTER_ENABLED_FILETYPES,
+  callback = function()
+    vim.treesitter.start()
+  end,
+})
 
 local snacks = vim.api.nvim_create_augroup('snacks', { clear = true })
 vim.api.nvim_create_autocmd('User', {
