@@ -5,7 +5,6 @@ return {
     event = 'VeryLazy',
     opts = {},
   },
-  { 'mbbill/undotree' },
   { 'tpope/vim-abolish' },
   { 'tpope/vim-repeat' },
 }
