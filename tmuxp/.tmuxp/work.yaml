@@ -1,0 +1,30 @@
+session_name: work
+start_directory: ${HOME}
+global_options:
+  default-shell: /usr/bin/zsh
+  default-command: /usr/bin/zsh
+windows:
+  - layout: c95d,211x57,0,0,0
+    options:
+      automatic-rename: "off"
+    panes:
+      - focus: "true"
+    window_name: edit
+  - layout: c95d,211x57,0,0,0
+    options:
+      automatic-rename: "off"
+    panes:
+      - focus: "true"
+    window_name: build
+  - layout: c95d,211x57,0,0,0
+    options:
+      automatic-rename: "off"
+    panes:
+      - focus: "true"
+    window_name: others
+  - layout: c95d,211x57,0,0,0
+    options:
+      automatic-rename: "off"
+    panes:
+      - focus: "true"
+    window_name: source
