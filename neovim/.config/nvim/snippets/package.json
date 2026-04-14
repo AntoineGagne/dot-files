@@ -30,6 +30,10 @@
                 "path": "./lua.json"
             },
             {
+                "language": "ps1",
+                "path": "./powershell.json"
+            },
+            {
                 "language": "python",
                 "path": "./python.json"
             },
