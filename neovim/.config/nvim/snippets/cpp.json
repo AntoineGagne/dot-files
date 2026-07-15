@@ -1,0 +1,73 @@
+{
+    "Class": {
+        "prefix": "class",
+        "description": "Declare a class",
+        "body": [
+            "class $1 {",
+            "  $2",
+            "};"
+        ]
+    },
+    "Structure": {
+        "prefix": "struct",
+        "description": "Declare a struct",
+        "body": [
+            "struct $1 {",
+            "  $2",
+            "};"
+        ]
+    },
+    "Scoped Enum": {
+        "prefix": "enum_class",
+        "description": "Declare a scoped enum",
+        "body": [
+            "enum class $1 {",
+            "  $2",
+            "};"
+        ]
+    },
+    "Google Test": {
+        "prefix": "gtest",
+        "description": "Create a Google Test suite",
+        "body": [
+            "#include \"gmock/gmock.h\"",
+            "#include \"gtest/gtest.h\"",
+            "",
+            "using testing::_;",
+            "using testing::Return;",
+            "using testing::Values;"
+        ]
+    },
+    "Google Test Case": {
+        "prefix": "gtestcase",
+        "description": "Create a Google Test case",
+        "body": [
+            "TEST($1, $2) {",
+            "  $3",
+            "}"
+        ]
+    },
+    "Google Parameterized Test Case": {
+        "prefix": "gparamtestcase",
+        "description": "Create a parameterized Google Test case",
+        "body": [
+            "class $1 : public testing::TestWithParam<$2> {};",
+            "TEST_P($1, $3) {",
+            "  const auto parameter = GetParam();",
+            "  $4",
+            "}",
+            "",
+            "INSTANTIATE_TEST_SUITE_P($5, $1, Values($6));"
+        ]
+    },
+    "Google Mock": {
+        "prefix": "gmock",
+        "description": "Create a mock",
+        "body": [
+            "class $1 : public $2 {",
+            "public:",
+            "  MOCK_METHOD($3);",
+            "};"
+        ]
+    }
+}

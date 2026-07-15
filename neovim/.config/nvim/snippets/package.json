@@ -10,6 +10,10 @@
                 "path": "./c.json"
             },
             {
+                "language": "cpp",
+                "path": "./cpp.json"
+            },
+            {
                 "language": "erlang",
                 "path": "./erlang.json"
             },
