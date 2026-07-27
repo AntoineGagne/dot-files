@@ -78,11 +78,6 @@ validate_mandatory_variables() {
     done
 }
 
-is_program_installed() {
-    _program_name="${1}"
-    command -v "${_program_name}" >/dev/null
-}
-
 validate_dependencies() {
     for _command in ${REQUIRED_COMMANDS}; do
         if ! is_program_installed "${_command}"; then
