@@ -69,5 +69,14 @@
             "  MOCK_METHOD($3);",
             "};"
         ]
+    },
+    "Include Guard": {
+        "prefix": "includeguard",
+        "description": "Define include guards",
+        "body": [
+          "#ifndef ${TM_FILENAME_BASE/(.*)/${1:/upcase}/}_H",
+          "#define ${TM_FILENAME_BASE/(.*)/${1:/upcase}/}_H",
+          "#endif"
+        ]
     }
 }
