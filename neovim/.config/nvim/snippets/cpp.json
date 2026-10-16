@@ -17,6 +17,23 @@
             "};"
         ]
     },
+    "Interface": {
+        "prefix": "interface",
+        "description": "Declare an interface",
+        "body": [
+            "class $1 {",
+            "public:",
+            "  $1() = default;",
+            "  virtual ~$1() = default;",
+            "  $1(const $1 &) = delete;",
+            "  $1 &operator=(const $1 &) = delete;",
+            "  $1($1 &&) = delete;",
+            "  $1 &operator=($1 &&) = delete;",
+            "",
+            "  virtual ${4:void} $2($3) = 0;",
+            "};"
+        ]
+    },
     "Scoped Enum": {
         "prefix": "enum_class",
         "description": "Declare a scoped enum",
@@ -74,9 +91,9 @@
         "prefix": "includeguard",
         "description": "Define include guards",
         "body": [
-          "#ifndef ${TM_FILENAME_BASE/(.*)/${1:/upcase}/}_H",
-          "#define ${TM_FILENAME_BASE/(.*)/${1:/upcase}/}_H",
-          "#endif"
+            "#ifndef ${TM_FILENAME_BASE/(.*)/${1:/upcase}/}_H",
+            "#define ${TM_FILENAME_BASE/(.*)/${1:/upcase}/}_H",
+            "#endif"
         ]
     }
 }
