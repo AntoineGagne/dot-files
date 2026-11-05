@@ -16,6 +16,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 readonly AUTHORS='Antoine Gagné'
+# shellcheck disable=2155
 readonly PROGRAM_NAME="$(basename "${0%.*}")"
 readonly REQUIRED_COMMANDS=''
 readonly REQUIRED_VARIABLES=''
