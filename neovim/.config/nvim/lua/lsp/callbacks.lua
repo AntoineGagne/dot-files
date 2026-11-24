@@ -49,8 +49,9 @@ function M.with_snacks(settings)
   local snacks = require('snacks.picker')
   return vim.tbl_deep_extend('force', settings, {
     definitions = snacks.lsp_definitions,
+    declarations = snacks.lsp_declarations,
     implementations = snacks.lsp_implementations,
-    document_symbols = snacks.lsp_document_symbols,
+    document_symbols = snacks.lsp_symbols,
     type_definition = snacks.lsp_type_definitions,
     reference = snacks.lsp_references,
   })
