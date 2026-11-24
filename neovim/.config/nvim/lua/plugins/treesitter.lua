@@ -8,7 +8,7 @@ return {
     build = ':TSUpdate',
     lazy = false,
     config = function(_, options)
-      local filetypes = require('config.constants').TREESITTER_ENABLED_FILETYPES
+      local filetypes = require('config.constants').treesitter_enabled_filetypes
       require('nvim-treesitter').setup(options)
       require('nvim-treesitter').install(filetypes)
     end,

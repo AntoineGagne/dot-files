@@ -11,7 +11,7 @@ vim.api.nvim_create_autocmd('ColorScheme', {
 })
 vim.api.nvim_create_autocmd('FileType', {
   desc = 'Start Treesitter for supported filetypes',
-  pattern = require('config.constants').TREESITTER_ENABLED_FILETYPES,
+  pattern = require('config.constants').treesitter_enabled_filetypes,
   callback = function()
     vim.treesitter.start()
   end,

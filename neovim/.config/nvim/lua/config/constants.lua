@@ -1,5 +1,5 @@
 return {
-  TREESITTER_ENABLED_FILETYPES = {
+  treesitter_enabled_filetypes = {
     'asm',
     'awk',
     'bash',
